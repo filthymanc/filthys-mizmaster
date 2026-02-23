@@ -1,6 +1,26 @@
 # Changelog
 
-All notable changes to **filthy's MizMaster** will be documented in this file.
+All notable changes to this project will be documented in this file.
+### 1.0.1 (2026-02-23)
+
+
+### Features
+
+* **core:** implement XML-based system instructions and anti-hallucination protocols ([ce05b99](https://github.com/filthymanc/filthys-mizmaster/commit/ce05b9990883bd01bb5253f880a5d65fb8d0ffe9))
+
+
+### Bug Fixes
+
+* **security:** resolve insecure randomness & restore vite 5.4 build ([7219052](https://github.com/filthymanc/filthys-mizmaster/commit/7219052be25bfddc099df1d6b814e08a92b45300))
+
+
+### Miscellaneous Chores
+
+* add generated SVG icon for PWA ([3536e88](https://github.com/filthymanc/filthys-mizmaster/commit/3536e8862f865d0fad133ac664dd1d736d7a56cc))
+* **deps:** bump esbuild and vite ([7151430](https://github.com/filthymanc/filthys-mizmaster/commit/7151430ad2928dd0e406c4220868928259e9aa56))
+* **deps:** update package-lock.json with security overrides ([8aea42e](https://github.com/filthymanc/filthys-mizmaster/commit/8aea42eeadd44f406ec4c92fbc0ab79632b6e840))
+* initial commit for filthy's MizMaster v1.0.0 ([8805fe4](https://github.com/filthymanc/filthys-mizmaster/commit/8805fe4f04827cc88a9ba3f77921de5f0331cf57))
+* **release:** 1.0.1 - fix security vulnerabilities in build dependencies ([42543e9](https://github.com/filthymanc/filthys-mizmaster/commit/42543e9560c8b2ab29dd635638e2646a87f244be))
 
 ## [1.0.0] - 2026-02-22
 ### Initial Release
