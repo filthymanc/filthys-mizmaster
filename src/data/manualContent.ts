@@ -16,7 +16,7 @@ export const MANUAL_CONTENT = {
     concept: {
       subtitle: "The Concept",
       title: "Design. Refine. Deploy.",
-      text: "The MizMaster is your collaborative partner for DCS mission design. It bridges the gap between your creative ideas and the technical complexities of Lua scripting, allowing you to focus on the scenario while it handles the underlying logic and framework accuracy.",
+      text: "The MizMaster is your collaborative partner for DCS mission design. It bridges the gap between your creative ideas and the technical complexities of Lua scripting, allowing you to focus on the scenario while it handles the underlying logic and framework accuracy with strict anti-hallucination protocols.",
     },
     features: [
       {

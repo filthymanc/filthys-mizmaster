@@ -22,7 +22,8 @@ import {
   Part,
   FunctionCall,
 } from "@google/genai";
-import { SYSTEM_INSTRUCTION, DEFAULT_MODEL_ID } from "../../core/constants";
+import { SYSTEM_INSTRUCTION } from "../../core/systemInstruction";
+import { DEFAULT_MODEL_ID } from "../../core/constants";
 import { Message, ModelType } from "../../core/types";
 import { getFrameworkDocs } from "./githubService";
 import { SSE_DEFINITIONS } from "../../data/sse-definitions";

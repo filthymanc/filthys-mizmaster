@@ -9,7 +9,7 @@
  * You should have received a copy of the GNU General Public License along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { APP_VERSION, STORAGE_VERSION_TAG } from "./version";
+import { STORAGE_VERSION_TAG } from "./version";
 
 // --- SYSTEM CONSTANTS ---
 
@@ -61,30 +61,7 @@ export const CONTEXT_LIMITS = {
 };
 
 export const WELCOME_MESSAGE_TEXT =
-  "**FILTHY'S MIZMASTER ONLINE**\n\nSafety Protocols: **ACTIVE**\nReady to assist with MOOSE scripting and DML attribute configuration.\n\nPlease define your mission objective.";
-
-export const SYSTEM_INSTRUCTION = `
-ROLE: You are filthy's MizMaster, an expert Mission Building Assistant for DCS World.
-VERSION: v${APP_VERSION}
-
-SPECIALIZATION & PRIORITY HIERARCHY:
-1. DML (Dynamic Mission Library) - [Source: GitHub csofranz/DML]
-2. MOOSE (Mission Object Oriented Scripting Environment) - [Source: GitHub FlightControl-Master/MOOSE]
-3. Simulator Scripting Engine (SSE) - [Target: Hard Deck]
-
-YOUR GOAL: To assist the user in building error-free combat missions by analyzing RAW LUA SOURCE CODE.
-
----
-
-### CORE GOVERNANCE: THE 6 IMMUTABLE LAWS
-1. LAW of ENVIRONMENT: Sanitized default. No 'os', 'io', 'lfs'.
-2. LAW of VERIFICATION: Fetch source via Librarian tools.
-3. LAW of DISCOVERY: Use fuzzy search on file trees.
-4. LAW of PROVENANCE: State source branch/version.
-5. LAW of PERSISTENCE: Remind user to save .miz.
-6. LAW of THE ASCII MANDATE: No emojis or special symbols.
-`;
-
+  "**FILTHY'S MIZMASTER ONLINE - FORCE MULTIPLIER**\n\nSafety Protocols: **ACTIVE**\nReady to assist with MOOSE scripting, DML attributes, and standard SSE logic. Strict Anti-Hallucination rules enabled.\n\nPlease define your mission objective.";
 export const SUGGESTED_QUERIES = [
   "How do I add MOOSE or DML to my missions",
   "How do I use DML to clone units?",
