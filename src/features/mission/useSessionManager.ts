@@ -13,7 +13,6 @@ import { useState, useEffect, useCallback } from "react";
 import { Session, Message } from "../../core/types";
 import * as storage from "../../shared/services/storageService";
 import { WELCOME_MESSAGE_TEXT } from "../../core/constants";
-import * as nodeCrypto from "crypto";
 
 const generateSecureId = (): string => {
   // Combine a timestamp with cryptographically secure random bytes.
@@ -28,15 +27,6 @@ const generateSecureId = (): string => {
   if (globalCrypto && typeof globalCrypto.getRandomValues === "function") {
     const randomBytes = new Uint8Array(8); // 64 bits of randomness
     globalCrypto.getRandomValues(randomBytes);
-    const randomPart = Array.from(randomBytes)
-      .map((b) => b.toString(16).padStart(2, "0"))
-      .join("");
-    return `${timestampPart}-${randomPart}`;
-  }
-
-  // Node.js fallback: use crypto.randomBytes when Web Crypto is not available.
-  if (nodeCrypto && typeof nodeCrypto.randomBytes === "function") {
-    const randomBytes = nodeCrypto.randomBytes(8); // 64 bits of randomness
     const randomPart = Array.from(randomBytes)
       .map((b) => b.toString(16).padStart(2, "0"))
       .join("");
