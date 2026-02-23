@@ -13,29 +13,39 @@ import { useState, useEffect, useCallback } from "react";
 import { Session, Message } from "../../core/types";
 import * as storage from "../../shared/services/storageService";
 import { WELCOME_MESSAGE_TEXT } from "../../core/constants";
+import * as nodeCrypto from "crypto";
 
 const generateSecureId = (): string => {
   // Combine a timestamp with cryptographically secure random bytes.
   const timestampPart = Date.now().toString();
 
-  // Use Web Crypto API for secure randomness where available.
-  // Fallback to Math.random is intentionally omitted to keep IDs unpredictable.
-  if (typeof crypto !== "undefined" && typeof crypto.getRandomValues === "function") {
+  // Prefer Web Crypto API for secure randomness where available (browsers / modern runtimes).
+  const globalCrypto: Crypto | undefined =
+    typeof globalThis !== "undefined" && "crypto" in globalThis
+      ? (globalThis.crypto as Crypto)
+      : undefined;
+
+  if (globalCrypto && typeof globalCrypto.getRandomValues === "function") {
     const randomBytes = new Uint8Array(8); // 64 bits of randomness
-    crypto.getRandomValues(randomBytes);
+    globalCrypto.getRandomValues(randomBytes);
     const randomPart = Array.from(randomBytes)
       .map((b) => b.toString(16).padStart(2, "0"))
       .join("");
     return `${timestampPart}-${randomPart}`;
   }
 
-  // As a very conservative fallback (in unlikely environments without Web Crypto),
-  // still avoid exposing Math.random directly as an identifier; we at least
-  // increase entropy with multiple calls and keep the format consistent.
-  const fallbackRandom = Array.from({ length: 4 })
-    .map(() => Math.floor(Math.random() * 1e9).toString(16))
-    .join("");
-  return `${timestampPart}-${fallbackRandom}`;
+  // Node.js fallback: use crypto.randomBytes when Web Crypto is not available.
+  if (nodeCrypto && typeof nodeCrypto.randomBytes === "function") {
+    const randomBytes = nodeCrypto.randomBytes(8); // 64 bits of randomness
+    const randomPart = Array.from(randomBytes)
+      .map((b) => b.toString(16).padStart(2, "0"))
+      .join("");
+    return `${timestampPart}-${randomPart}`;
+  }
+
+  // Ultimate conservative fallback: avoid Math.random() entirely to keep IDs non-predictable
+  // from a cryptographic perspective. We rely solely on the timestamp here.
+  return timestampPart;
 };
 
 export const useSessionManager = () => {
