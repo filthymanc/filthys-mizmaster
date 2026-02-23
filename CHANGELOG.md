@@ -1,6 +1,13 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+### [1.0.2](https://github.com/filthymanc/filthys-mizmaster/compare/v1.0.1...v1.0.2) (2026-02-23)
+
+
+### Miscellaneous Chores
+
+* **deps:** override minimatch to v10.2.1 to resolve ReDoS vulnerability ([8959a43](https://github.com/filthymanc/filthys-mizmaster/commit/8959a43318526d90b62b694f990fcdf817c7d346))
+
 ### 1.0.1 (2026-02-23)
 
 
