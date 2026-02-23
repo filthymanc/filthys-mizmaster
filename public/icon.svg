@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6" />
+      <stop offset="100%" stop-color="#2563eb" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="15" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="512" height="512" rx="128" fill="url(#bg)" />
+  <rect width="512" height="512" rx="128" fill="transparent" stroke="#334155" stroke-width="8" />
+
+  <!-- Outer HUD Ring -->
+  <circle cx="256" cy="256" r="180" fill="none" stroke="#334155" stroke-width="6" stroke-dasharray="10 20" />
+  <circle cx="256" cy="256" r="140" fill="none" stroke="#475569" stroke-width="2" />
+
+  <!-- Crosshairs -->
+  <path d="M256 50 L256 120 M256 392 L256 462 M50 256 L120 256 M392 256 L462 256" stroke="#64748b" stroke-width="8" stroke-linecap="round" />
+  
+  <!-- Central Target / AI Node -->
+  <g filter="url(#glow)">
+    <!-- Inner glowing ring -->
+    <circle cx="256" cy="256" r="60" fill="url(#accent)" opacity="0.8" />
+    <!-- Data/Connection Nodes -->
+    <path d="M256 160 L256 196 M256 316 L256 352 M160 256 L196 256 M316 256 L352 256" stroke="#60a5fa" stroke-width="12" stroke-linecap="round" />
+    <path d="M188 188 L213 213 M324 324 L299 299 M324 188 L299 213 M188 324 L213 299" stroke="#60a5fa" stroke-width="10" stroke-linecap="round" />
+    <!-- Core -->
+    <circle cx="256" cy="256" r="30" fill="#bfdbfe" />
+  </g>
+
+  <!-- Code brackets (Subtle overlay for "scripting/AI") -->
+  <path d="M150 200 L110 256 L150 312" fill="none" stroke="#64748b" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>
+  <path d="M362 200 L402 256 L362 312" fill="none" stroke="#64748b" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>
+
+</svg>
