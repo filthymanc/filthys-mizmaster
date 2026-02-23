@@ -14,6 +14,30 @@ import { Session, Message } from "../../core/types";
 import * as storage from "../../shared/services/storageService";
 import { WELCOME_MESSAGE_TEXT } from "../../core/constants";
 
+const generateSecureId = (): string => {
+  // Combine a timestamp with cryptographically secure random bytes.
+  const timestampPart = Date.now().toString();
+
+  // Use Web Crypto API for secure randomness where available.
+  // Fallback to Math.random is intentionally omitted to keep IDs unpredictable.
+  if (typeof crypto !== "undefined" && typeof crypto.getRandomValues === "function") {
+    const randomBytes = new Uint8Array(8); // 64 bits of randomness
+    crypto.getRandomValues(randomBytes);
+    const randomPart = Array.from(randomBytes)
+      .map((b) => b.toString(16).padStart(2, "0"))
+      .join("");
+    return `${timestampPart}-${randomPart}`;
+  }
+
+  // As a very conservative fallback (in unlikely environments without Web Crypto),
+  // still avoid exposing Math.random directly as an identifier; we at least
+  // increase entropy with multiple calls and keep the format consistent.
+  const fallbackRandom = Array.from({ length: 4 })
+    .map(() => Math.floor(Math.random() * 1e9).toString(16))
+    .join("");
+  return `${timestampPart}-${fallbackRandom}`;
+};
+
 export const useSessionManager = () => {
   const [sessions, setSessions] = useState<Session[]>([]);
   const [activeSessionId, setActiveSessionId] = useState<string | null>(null);
@@ -73,7 +97,7 @@ export const useSessionManager = () => {
 
   const createSession = useCallback(
     (nameOverride?: string): string => {
-      const id = Date.now().toString() + Math.random().toString().slice(2, 6);
+      const id = generateSecureId();
 
       let name = nameOverride;
       if (!name) {

@@ -24,7 +24,8 @@ self.addEventListener("fetch", (event) => {
   const url = new URL(event.request.url);
 
   // STRATEGY 1: IGNORE API CALLS (Network Only)
-  if (url.hostname.includes("googleapis.com")) {
+  const hostname = url.hostname;
+  if (hostname === "googleapis.com" || hostname.endsWith(".googleapis.com")) {
     return;
   }
 
