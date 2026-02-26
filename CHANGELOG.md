@@ -1,6 +1,13 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+## [1.1.0](https://github.com/filthymanc/filthys-mizmaster/compare/v1.0.2...v1.1.0) (2026-02-26)
+
+
+### Features
+
+* phase 1 - syntax highlighting and chat virtualization ([917b069](https://github.com/filthymanc/filthys-mizmaster/commit/917b069046de231657ab9aa9e90c7167cea8090c))
+
 ### [1.0.2](https://github.com/filthymanc/filthys-mizmaster/compare/v1.0.1...v1.0.2) (2026-02-23)
 
 
