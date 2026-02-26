@@ -56,7 +56,8 @@ export const STORAGE_KEYS = {
 
 // --- CHAT & CONTEXT LIMITS ---
 export const CONTEXT_LIMITS = {
-  MAX_MESSAGES: 20,         
+  MAX_MESSAGES: 50,         
+  MAX_TOKENS: 30000,
   PROTECT_FIRST_MSG: true,  
 };
 

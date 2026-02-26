@@ -18,8 +18,8 @@ import {
   Source,
   ModelType,
 } from "../../core/types";
-import { CONTEXT_LIMITS } from "../../core/constants";
 import { startNewSession, sendMessageStream } from "../librarian/geminiService";
+import { pruneHistoryByTokens } from "./tokenService";
 
 interface ChatEngineProps {
   apiKey: string;
@@ -34,24 +34,6 @@ interface ChatEngineProps {
 }
 
 const CONNECTION_TIMEOUT_MS = 30000; // 30 seconds to establish connection
-
-/**
- * Phase 16.3: Helper to prune message history to fit context windows.
- */
-const pruneHistory = (messages: Message[]): Message[] => {
-  const filtered = messages.filter((m) => !m.isStreaming);
-  if (filtered.length <= CONTEXT_LIMITS.MAX_MESSAGES) return filtered;
-
-  console.log(`[Context Engine] Pruning history from ${filtered.length} to ${CONTEXT_LIMITS.MAX_MESSAGES} messages.`);
-
-  if (CONTEXT_LIMITS.PROTECT_FIRST_MSG && filtered.length > 0) {
-    const firstMsg = filtered[0];
-    const recentMsgs = filtered.slice(-(CONTEXT_LIMITS.MAX_MESSAGES - 1));
-    return [firstMsg, ...recentMsgs];
-  }
-
-  return filtered.slice(-CONTEXT_LIMITS.MAX_MESSAGES);
-};
 
 export const useChatEngine = ({
   apiKey,
@@ -90,7 +72,8 @@ export const useChatEngine = ({
       Math.abs((sessionConfigRef.current?.messageCount || 0) - messages.length) > 5;
 
     if (needsRefresh) {
-      const history = pruneHistory(messages);
+      // Use the new token-aware pruning service
+      const history = pruneHistoryByTokens(messages);
       try {
         chatSessionRef.current = startNewSession(
           apiKey,
@@ -172,7 +155,8 @@ export const useChatEngine = ({
 
     try {
       if (!chatSessionRef.current) {
-        const history = pruneHistory(messages);
+        // Use the new token-aware pruning service
+        const history = pruneHistoryByTokens(messages);
         chatSessionRef.current = startNewSession(
           apiKey,
           history,

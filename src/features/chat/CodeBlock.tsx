@@ -11,6 +11,7 @@
 
 import React, { useState, useMemo } from "react";
 import { toast } from "../../shared/services/toastService";
+import SyntaxHighlighter from "../../shared/ui/SyntaxHighlighter";
 
 interface CodeBlockProps {
   className?: string;
@@ -94,25 +95,6 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
 
   if (!codeText) return null;
 
-  const LightweightHighlighter = ({ code }: { code: string }) => {
-    const tokenRegex = /(--\[\[[\s\S]*?\]\]|--.*$)|("[^"]*"|'[^']*')|(\b(?:local|function|end|if|then|else|elseif|for|in|do|while|repeat|until|return|break|true|false|nil|and|or|not)\b)|(\b\d+(?:\.\d+)?\b)|(\b[A-Z_][A-Z0-9_]*\b)/gm;
-    const parts = code.split(tokenRegex);
-
-    return (
-      <>
-        {parts.map((part, i) => {
-          if (!part) return null;
-          if (part.startsWith("--")) return <span key={i} className="text-app-tertiary italic">{part}</span>;
-          if (part.startsWith('"') || part.startsWith("'")) return <span key={i} className="text-emerald-400">{part}</span>;
-          if (/^(local|function|end|if|then|else|elseif|for|in|do|while|repeat|until|return|break|true|false|nil|and|or|not)$/.test(part)) return <span key={i} className="text-purple-400 font-bold">{part}</span>;
-          if (/^\d+(\.\d+)?$/.test(part)) return <span key={i} className="text-orange-400">{part}</span>;
-          if (/^[A-Z_][A-Z0-9_]*$/.test(part) && part.length > 1) return <span key={i} className="text-blue-300">{part}</span>;
-          return <span key={i} className="text-slate-300">{part}</span>;
-        })}
-      </>
-    );
-  };
-
   return (
     <div className="my-4 rounded-xl overflow-hidden border border-app-border bg-app-frame shadow-xl not-prose">
       {/* Header */}
@@ -169,12 +151,12 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
         </div>
       </div>
 
-      {/* Code Body */}
-      <div 
-        className={`p-4 overflow-x-auto text-[13px] lg:text-sm font-mono leading-relaxed bg-[#0d0d0f] custom-scrollbar ${isSoftWrap ? 'whitespace-pre-wrap' : 'whitespace-pre'}`}
-      >
-        <LightweightHighlighter code={codeText} />
-      </div>
+      {/* Code Body - Now using PrismJS Highlighting */}
+      <SyntaxHighlighter 
+        code={codeText} 
+        language={language}
+        wrap={isSoftWrap}
+      />
     </div>
   );
 };

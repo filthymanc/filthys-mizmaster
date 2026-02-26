@@ -9,11 +9,10 @@
  * You should have received a copy of the GNU General Public License along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React, { Fragment } from "react";
-import { AppSettings, ApiStatus, Session } from "../../core/types";
+import React, { Fragment, useRef, useEffect } from "react";
+import { AppSettings, ApiStatus, Session, Message } from "../../core/types";
 import { useSessionData } from "./useSessionData";
 import { useChatEngine } from "../chat/useChatEngine";
-import { useScrollManager } from "../chat/useScrollManager";
 import Dashboard from "./Dashboard";
 import ChatInput from "../chat/ChatInput";
 import ChatMessage from "../chat/ChatMessage";
@@ -22,6 +21,7 @@ import { TrashIcon, MenuIcon, EllipsisVerticalIcon } from "../../shared/ui/Icons
 import { AVAILABLE_MODELS } from "../../core/constants";
 import { APP_VERSION } from "../../core/version";
 import { Menu, Transition } from "@headlessui/react";
+import { Virtuoso, VirtuosoHandle } from "react-virtuoso";
 
 interface MissionWorkspaceProps {
   settings: AppSettings;
@@ -72,12 +72,24 @@ const MissionWorkspace: React.FC<MissionWorkspaceProps> = ({
     onActivity: () => activeSessionId && touchSession(activeSessionId),
   });
 
-  const { messagesEndRef, scrollContainerRef, handleScroll, scrollToBottom } =
-    useScrollManager(messages, isGenerating);
+  const virtuosoRef = useRef<VirtuosoHandle>(null);
+
+  // Auto-scroll when generating
+  useEffect(() => {
+    if (isGenerating && virtuosoRef.current) {
+        // Use a small timeout to allow DOM to update height
+        setTimeout(() => {
+            virtuosoRef.current?.scrollToIndex({ index: messages.length - 1, align: "end", behavior: "smooth" });
+        }, 100);
+    }
+  }, [messages, isGenerating]);
 
   const handleSendMessage = (text: string) => {
     sendMessage(text);
-    scrollToBottom();
+    // Immediate scroll to bottom
+    setTimeout(() => {
+        virtuosoRef.current?.scrollToIndex({ index: messages.length, align: "end", behavior: "smooth" });
+    }, 50);
   };
 
   const isInitialState = 
@@ -178,36 +190,46 @@ const MissionWorkspace: React.FC<MissionWorkspaceProps> = ({
         </div>
       </header>
 
-      {/* Main Content Area */}
-      <div
-        ref={scrollContainerRef}
-        onScroll={handleScroll}
-        className="flex-1 overflow-y-auto p-4 md:p-6 scroll-smooth custom-scrollbar"
-      >
-        <div className="max-w-4xl mx-auto min-h-full flex flex-col">
-          {isInitialState ? (
-            <Dashboard
-              settings={settings}
-              apiStatus={apiStatus}
-              sessions={sessions}
-              activeSessionId={activeSessionId}
-              onSelectSession={onSelectSession}
-              onCreateSession={onCreateSession}
-              onImportData={onImportData}
-              onPrompt={handleSendMessage}
-              onUpdateSettings={onUpdateSettings}
+      {/* Main Content Area - Virtualized */}
+      <div className="flex-1 overflow-hidden relative">
+        {isInitialState ? (
+            <div className="absolute inset-0 overflow-y-auto p-4 md:p-6 custom-scrollbar">
+                <div className="max-w-4xl mx-auto min-h-full flex flex-col">
+                    <Dashboard
+                        settings={settings}
+                        apiStatus={apiStatus}
+                        sessions={sessions}
+                        activeSessionId={activeSessionId}
+                        onSelectSession={onSelectSession}
+                        onCreateSession={onCreateSession}
+                        onImportData={onImportData}
+                        onPrompt={handleSendMessage}
+                        onUpdateSettings={onUpdateSettings}
+                    />
+                </div>
+            </div>
+        ) : (
+            <Virtuoso
+                ref={virtuosoRef}
+                data={messages}
+                totalCount={messages.length}
+                initialTopMostItemIndex={messages.length - 1}
+                followOutput="smooth"
+                className="custom-scrollbar"
+                itemContent={(index, msg) => (
+                    <div className="px-4 md:px-6 py-2 max-w-4xl mx-auto w-full">
+                        <ErrorBoundary key={msg.id} scope="message">
+                            <ChatMessage message={msg} />
+                        </ErrorBoundary>
+                    </div>
+                )}
+                components={{
+                    // Optional: Add padding to top/bottom of list
+                    Header: () => <div className="h-4" />,
+                    Footer: () => <div className="h-4" />,
+                }}
             />
-          ) : (
-            <>
-              {messages.map((msg) => (
-                <ErrorBoundary key={msg.id} scope="message">
-                  <ChatMessage message={msg} />
-                </ErrorBoundary>
-              ))}
-              <div ref={messagesEndRef} className="h-4" />
-            </>
-          )}
-        </div>
+        )}
       </div>
 
       {/* Input Area */}
