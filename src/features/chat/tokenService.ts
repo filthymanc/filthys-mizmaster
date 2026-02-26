@@ -44,7 +44,7 @@ export const pruneHistoryByTokens = (messages: Message[]): Message[] => {
   // 2. Identify Protected Message (First User Message)
   let protectedMsg: Message | null = null;
   let protectedTokens = 0;
-  let candidates = [...stableMessages];
+  const candidates = [...stableMessages];
 
   if (CONTEXT_LIMITS.PROTECT_FIRST_MSG && candidates.length > 0) {
     protectedMsg = candidates[0];

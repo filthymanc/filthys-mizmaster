@@ -47,6 +47,15 @@ export interface Session {
   lastModified: Date;
 }
 
+export interface Snippet {
+  id: string;
+  title: string;
+  language: string;
+  code: string;
+  createdAt: Date;
+  description?: string;
+}
+
 export type ModelType = string;
 
 export type ApiStatus =

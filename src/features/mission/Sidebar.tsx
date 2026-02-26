@@ -9,7 +9,7 @@
  * You should have received a copy of the GNU General Public License along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { Session } from "../../core/types";
 import { SpinnerIcon, PlusIcon, XIcon } from "../../shared/ui/Icons";
 import SidebarSessionItem from "./SidebarSessionItem";
@@ -26,6 +26,7 @@ interface SidebarProps {
   onClose: () => void;
   onOpenSettings: () => void;
   onOpenFieldManual: () => void;
+  onOpenArmory: () => void;
   isLoading: boolean;
 }
 
@@ -40,12 +41,23 @@ const Sidebar: React.FC<SidebarProps> = ({
   onClose,
   onOpenSettings,
   onOpenFieldManual,
+  onOpenArmory,
   isLoading,
 }) => {
   // Logic for List Management is still orchestrated here to ensure mutual exclusivity
   // (e.g., only one row can be edited or deleted at a time)
   const [editingId, setEditingId] = useState<string | null>(null);
   const [deleteConfirmId, setDeleteConfirmId] = useState<string | null>(null);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const filteredSessions = useMemo(() => {
+    if (!searchTerm) return sessions;
+    const lowerTerm = searchTerm.toLowerCase();
+    return sessions.filter(
+        (s) => s.name.toLowerCase().includes(lowerTerm) || 
+               s.lastModified.toLocaleDateString().includes(lowerTerm)
+    );
+  }, [sessions, searchTerm]);
 
   const handleStartEdit = (id: string) => {
     setEditingId(id);
@@ -99,7 +111,7 @@ const Sidebar: React.FC<SidebarProps> = ({
         </div>
 
         {/* New Mission Button */}
-        <div className="p-4 shrink-0">
+        <div className="p-4 pb-2 shrink-0 space-y-3">
           <button
             onClick={() => {
               if (!isLoading) {
@@ -129,41 +141,70 @@ const Sidebar: React.FC<SidebarProps> = ({
             )}
             {isLoading ? "GENERATING..." : "NEW MISSION"}
           </button>
+
+          {/* Search Input */}
+          <div className="relative">
+             <input 
+                type="text" 
+                placeholder="Find Mission..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full bg-app-canvas border border-app-border rounded-lg px-3 py-2 pl-9 text-xs text-app-primary placeholder-app-tertiary focus:outline-none focus:border-app-brand focus:ring-1 focus:ring-app-brand transition-all"
+             />
+             <svg xmlns="http://www.w3.org/2000/svg" className="absolute left-2.5 top-2.5 h-3.5 w-3.5 text-app-tertiary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+             </svg>
+             {searchTerm && (
+                 <button 
+                    onClick={() => setSearchTerm("")}
+                    className="absolute right-2 top-2 text-app-tertiary hover:text-app-primary"
+                 >
+                     <XIcon className="h-4 w-4" />
+                 </button>
+             )}
+          </div>
         </div>
 
         {/* Session List */}
         <div
           className={`flex-1 overflow-y-auto px-2 pb-4 space-y-1 custom-scrollbar transition-opacity duration-300 ${isLoading ? "opacity-40 pointer-events-none select-none" : "opacity-100"}`}
         >
-          {sessions.map((session) => (
-            <SidebarSessionItem
-              key={session.id}
-              session={session}
-              isActive={activeSessionId === session.id}
-              isEditing={editingId === session.id}
-              isDeleteConfirming={deleteConfirmId === session.id}
-              isLoading={isLoading}
-              onSelect={(id) => {
-                onSelectSession(id);
-                onClose();
-              }}
-              onStartEdit={handleStartEdit}
-              onConfirmEdit={handleConfirmEdit}
-              onCancelEdit={() => setEditingId(null)}
-              onStartDelete={handleStartDelete}
-              onConfirmDelete={(id) => {
-                onDeleteSession(id);
-                setDeleteConfirmId(null);
-              }}
-              onCancelDelete={() => setDeleteConfirmId(null)}
-            />
-          ))}
+          {filteredSessions.length === 0 && !isLoading ? (
+              <div className="text-center py-8 opacity-50 text-xs font-mono tracking-widest text-app-tertiary">
+                  NO MISSIONS FOUND
+              </div>
+          ) : (
+            filteredSessions.map((session) => (
+                <SidebarSessionItem
+                key={session.id}
+                session={session}
+                isActive={activeSessionId === session.id}
+                isEditing={editingId === session.id}
+                isDeleteConfirming={deleteConfirmId === session.id}
+                isLoading={isLoading}
+                onSelect={(id) => {
+                    onSelectSession(id);
+                    onClose();
+                }}
+                onStartEdit={handleStartEdit}
+                onConfirmEdit={handleConfirmEdit}
+                onCancelEdit={() => setEditingId(null)}
+                onStartDelete={handleStartDelete}
+                onConfirmDelete={(id) => {
+                    onDeleteSession(id);
+                    setDeleteConfirmId(null);
+                }}
+                onCancelDelete={() => setDeleteConfirmId(null)}
+                />
+            ))
+          )}
         </div>
 
         {/* Footer info & Actions */}
         <SidebarFooter
           onOpenSettings={onOpenSettings}
           onOpenFieldManual={onOpenFieldManual}
+          onOpenArmory={onOpenArmory}
         />
       </aside>
     </>

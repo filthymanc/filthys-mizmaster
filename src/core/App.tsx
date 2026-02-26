@@ -21,6 +21,7 @@ import OnboardingModal from "../shared/ui/OnboardingModal";
 import FieldManual from "../shared/ui/FieldManual";
 import ErrorBoundary from "../shared/ui/ErrorBoundary";
 import SettingsModal from "../shared/ui/SettingsModal";
+import ArmoryModal from "../features/armory/ArmoryModal";
 import { useSwipeGesture } from "../shared/hooks/useSwipeGesture";
 
 const App: React.FC = () => {
@@ -41,6 +42,7 @@ const App: React.FC = () => {
   const [isOnboardingOpen, setIsOnboardingOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [isArmoryOpen, setIsArmoryOpen] = useState(false);
 
   // Viewport Height Fix for Mobile Browsers
   const [appHeight, setAppHeight] = useState("100dvh");
@@ -168,6 +170,7 @@ const App: React.FC = () => {
         <ToastContainer />
 
         {isManualOpen && <FieldManual isOpen={isManualOpen} onClose={() => setIsManualOpen(false)} />}
+        {isArmoryOpen && <ArmoryModal isOpen={isArmoryOpen} onClose={() => setIsArmoryOpen(false)} />}
 
         {isOnboardingOpen && (
           <OnboardingModal isOpen={isOnboardingOpen} onComplete={handleCloseOnboarding} />
@@ -199,6 +202,7 @@ const App: React.FC = () => {
           onClose={() => setIsSidebarOpen(false)} 
           onOpenSettings={() => setIsSettingsOpen(true)}
           onOpenFieldManual={() => setIsManualOpen(true)}
+          onOpenArmory={() => setIsArmoryOpen(true)}
           isLoading={!sessionManager.isReady}
         />
 

@@ -74,6 +74,26 @@ export const MANUAL_CONTENT = {
             },
           ],
         },
+        {
+          title: "Tactical Tools",
+          items: [
+            {
+              label: "THE ARMORY",
+              color: "amber",
+              text: 'A persistent snippet library. Save useful code blocks from the chat stream by clicking the "Star" icon on any code block. Access your saved snippets via the Armory button in the sidebar footer.',
+            },
+            {
+              label: "FIELD MODE",
+              color: "cyan",
+              text: 'Click the "Expand" icon on any code block to view it in full-screen mode. This is optimised for reading complex scripts on tablets or secondary monitors.',
+            },
+            {
+              label: "SEARCH",
+              color: "blue",
+              text: 'Use the search bar at the top of the mission list to quickly filter your sessions by name or date.',
+            },
+          ],
+        },
       ],
     },
     librarian: {

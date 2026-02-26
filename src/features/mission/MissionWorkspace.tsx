@@ -10,7 +10,7 @@
  */
 
 import React, { Fragment, useRef, useEffect } from "react";
-import { AppSettings, ApiStatus, Session, Message } from "../../core/types";
+import { AppSettings, ApiStatus, Session } from "../../core/types";
 import { useSessionData } from "./useSessionData";
 import { useChatEngine } from "../chat/useChatEngine";
 import Dashboard from "./Dashboard";
@@ -216,7 +216,7 @@ const MissionWorkspace: React.FC<MissionWorkspaceProps> = ({
                 initialTopMostItemIndex={messages.length - 1}
                 followOutput="smooth"
                 className="custom-scrollbar"
-                itemContent={(index, msg) => (
+                itemContent={(_index, msg) => (
                     <div className="px-4 md:px-6 py-2 max-w-4xl mx-auto w-full">
                         <ErrorBoundary key={msg.id} scope="message">
                             <ChatMessage message={msg} />

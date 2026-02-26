@@ -10,7 +10,7 @@
  */
 
 import { openDB, DBSchema, IDBPDatabase } from "idb";
-import { Session, Message } from "../../core/types";
+import { Session, Message, Snippet } from "../../core/types";
 
 interface MissionArchitectDB extends DBSchema {
   sessions: {
@@ -21,23 +21,30 @@ interface MissionArchitectDB extends DBSchema {
     key: string; // sessionId
     value: { sessionId: string; messages: Message[] };
   };
+  snippets: {
+    key: string;
+    value: Snippet;
+  };
 }
 
 const DB_NAME = "filthys-mizmaster-db";
-const DB_VERSION = 1;
+const DB_VERSION = 2; // Incremented for Snippets
 
 let dbPromise: Promise<IDBPDatabase<MissionArchitectDB>> | null = null;
 
 const getDB = () => {
   if (!dbPromise) {
     dbPromise = openDB<MissionArchitectDB>(DB_NAME, DB_VERSION, {
-      upgrade(db) {
+      upgrade(db, oldVersion, _newVersion, _transaction) {
         // Create object stores if they don't exist
         if (!db.objectStoreNames.contains("sessions")) {
           db.createObjectStore("sessions", { keyPath: "id" });
         }
         if (!db.objectStoreNames.contains("messages")) {
           db.createObjectStore("messages", { keyPath: "sessionId" });
+        }
+        if (oldVersion < 2 && !db.objectStoreNames.contains("snippets")) {
+          db.createObjectStore("snippets", { keyPath: "id" });
         }
       },
     });
@@ -92,10 +99,28 @@ export const deleteSessionMessages = async (sessionId: string): Promise<void> =>
   await db.delete("messages", sessionId);
 };
 
+// --- Snippets Operations ---
+
+export const getAllSnippets = async (): Promise<Snippet[]> => {
+  const db = await getDB();
+  return db.getAll("snippets");
+};
+
+export const saveSnippet = async (snippet: Snippet): Promise<void> => {
+  const db = await getDB();
+  await db.put("snippets", snippet);
+};
+
+export const deleteSnippet = async (id: string): Promise<void> => {
+  const db = await getDB();
+  await db.delete("snippets", id);
+};
+
 // --- System Operations ---
 
 export const clearDatabase = async (): Promise<void> => {
   const db = await getDB();
   await db.clear("sessions");
   await db.clear("messages");
+  await db.clear("snippets");
 };

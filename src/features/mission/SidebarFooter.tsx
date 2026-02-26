@@ -16,11 +16,13 @@ import { APP_VERSION, AUTHOR_CREDIT } from "../../core/version";
 interface SidebarFooterProps {
   onOpenFieldManual: () => void;
   onOpenSettings: () => void;
+  onOpenArmory: () => void;
 }
 
 const SidebarFooter: React.FC<SidebarFooterProps> = ({
   onOpenFieldManual,
   onOpenSettings,
+  onOpenArmory,
 }) => {
   return (
     <div className="p-4 border-t border-app-border space-y-3 bg-app-frame flex flex-col justify-between shrink-0 h-48 lg:h-52">
@@ -35,14 +37,26 @@ const SidebarFooter: React.FC<SidebarFooterProps> = ({
           SYSTEM SETTINGS
         </button>
 
-        <button
-          onClick={onOpenFieldManual}
-          className="w-full py-2.5 px-3 bg-app-surface border border-app-border hover:bg-app-highlight hover:text-app-primary text-app-secondary rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-2 shadow-sm"
-          title="Open Field Manual"
-        >
-          <BookIcon className="h-4 w-4" />
-          FIELD MANUAL
-        </button>
+        <div className="flex gap-2">
+            <button
+            onClick={onOpenFieldManual}
+            className="flex-1 py-2.5 px-3 bg-app-surface border border-app-border hover:bg-app-highlight hover:text-app-primary text-app-secondary rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-2 shadow-sm"
+            title="Open Field Manual"
+            >
+            <BookIcon className="h-4 w-4" />
+            MANUAL
+            </button>
+            <button
+            onClick={onOpenArmory}
+            className="flex-1 py-2.5 px-3 bg-app-surface border border-app-border hover:bg-app-highlight hover:text-app-primary text-app-secondary rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-2 shadow-sm"
+            title="Open Armory (Snippet Library)"
+            >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+            </svg>
+            ARMORY
+            </button>
+        </div>
       </div>
 
       {/* Secondary Actions / Info Group */}
