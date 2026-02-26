@@ -1,6 +1,13 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+## [1.2.0](https://github.com/filthymanc/filthys-mizmaster/compare/v1.1.0...v1.2.0) (2026-02-26)
+
+
+### Features
+
+* **phase-2:** implement tactical interface enhancements ([f6b0cb3](https://github.com/filthymanc/filthys-mizmaster/commit/f6b0cb32ab71c0e891f8832fda2299bd1f704d1e))
+
 ## [1.1.0](https://github.com/filthymanc/filthys-mizmaster/compare/v1.0.2...v1.1.0) (2026-02-26)
 
 
