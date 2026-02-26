@@ -10,6 +10,11 @@
  */
 
 import { parseLuaSource } from "./luaParserService";
+import {
+  getCachedFile,
+  cacheFile,
+  pruneCache,
+} from "../../shared/services/idbService";
 
 // Service to fetch raw Lua source code via GitHub API
 // Implements "Code-First Librarian" & "Semantic Architect" protocols (v2.3)
@@ -43,8 +48,9 @@ const REPOS: Record<string, Record<string, RepoConfig>> = {
   },
 };
 
-const CACHE_PREFIX = "filthys-mizmaster-tree-";
-const CACHE_TTL = 24 * 60 * 60 * 1000; // 24 Hours
+const TREE_CACHE_PREFIX = "filthys-mizmaster-tree-";
+const TREE_CACHE_TTL = 24 * 60 * 60 * 1000; // 24 Hours
+const CONTENT_CACHE_TTL = 7 * 24 * 60 * 60 * 1000; // 7 Days (longer than tree)
 
 /**
  * Helper to get authorization headers if a token is provided
@@ -66,13 +72,13 @@ const fetchRepoTree = async (
   config: RepoConfig,
   token?: string,
 ): Promise<GitHubFile[]> => {
-  const cacheKey = `${CACHE_PREFIX}${config.owner}-${config.repo}-${config.branch}`;
+  const cacheKey = `${TREE_CACHE_PREFIX}${config.owner}-${config.repo}-${config.branch}`;
   const cached = localStorage.getItem(cacheKey);
 
   if (cached) {
     try {
       const parsed = JSON.parse(cached);
-      if (Date.now() - parsed.timestamp < CACHE_TTL) {
+      if (Date.now() - parsed.timestamp < TREE_CACHE_TTL) {
         console.log(`[Librarian] Loaded ${config.repo} tree from cache.`);
         return parsed.tree;
       }
@@ -179,6 +185,12 @@ export const getFrameworkDocs = async (
   githubToken?: string, // Token passed from context
 ): Promise<string> => {
   try {
+    // 1. Opportunistic Cleanup
+    // We run this async without awaiting to not block the request
+    pruneCache(CONTENT_CACHE_TTL).catch((e) =>
+      console.warn("[Librarian] Cache prune failed:", e),
+    );
+
     const fwKey = framework.toUpperCase();
     let branchKey = branch.toUpperCase();
 
@@ -189,6 +201,7 @@ export const getFrameworkDocs = async (
       return `ERROR: Invalid Framework/Branch configuration: ${framework} [${branch}]`;
     }
 
+    // 2. Fetch Tree (Fastest, usually cached in LocalStorage)
     let tree: GitHubFile[];
     try {
       tree = await fetchRepoTree(config, githubToken);
@@ -208,7 +221,33 @@ export const getFrameworkDocs = async (
       return `ERROR: Module '${moduleName}' not found in ${config.repo}. Did you mean: ${suggestions.join(", ")}?`;
     }
 
+    // 3. Check Content Cache (IndexedDB)
     const rawUrl = `https://raw.githubusercontent.com/${config.owner}/${config.repo}/${config.branch}/${file.path}`;
+    
+    try {
+      const cachedEntry = await getCachedFile(rawUrl);
+      if (cachedEntry) {
+        // Cache Hit!
+        // We use a shorter TTL check here if we want strict freshness, but for now relies on Pruning
+        const ageHours = (Date.now() - cachedEntry.timestamp) / (1000 * 60 * 60);
+        console.log(`[Librarian] Cache Hit: ${file.path} (Age: ${ageHours.toFixed(1)}h)`);
+        
+        const metadata = `[Librarian Source Metadata]
+Repo: ${config.owner}/${config.repo}
+Branch: ${config.branch}
+File: ${file.path}
+Source: Local Cache (IDB)
+Raw URL: ${rawUrl}
+--------------------------------------------------
+`;
+        return metadata + cachedEntry.content;
+      }
+    } catch (dbError) {
+      console.warn("[Librarian] IDB Read Failed:", dbError);
+    }
+
+
+    // 4. Cache Miss -> Network Fetch
     console.log(`[Librarian] Fetching Raw Source: ${rawUrl}`);
 
     const response = await fetch(rawUrl, {
@@ -229,6 +268,9 @@ export const getFrameworkDocs = async (
       );
       content = parseLuaSource(content);
     }
+
+    // 5. Write to Cache (Async)
+    cacheFile(rawUrl, content).catch(e => console.warn("[Librarian] Failed to cache file:", e));
 
     const metadata = `[Librarian Source Metadata]
 Repo: ${config.owner}/${config.repo}

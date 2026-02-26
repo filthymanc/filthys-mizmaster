@@ -18,6 +18,104 @@
  * - Goal: Reduce token usage by >80%.
  */
 
+export interface LuaValidationResult {
+  isValid: boolean;
+  error?: string;
+  line?: number;
+}
+
+const PROHIBITED_LUA_LIBS = [
+  "os.",
+  "io.",
+  "lfs.",
+  "require",
+  "package.",
+  "debug.",
+];
+
+export const validateLuaSyntax = (code: string): LuaValidationResult => {
+  if (!code || !code.trim()) return { isValid: true };
+
+  const lines = code.split("\n");
+
+  // 1. Prohibited Libraries Check
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    // Ignore simple comments for this check to avoid false positives in documentation
+    if (line.trim().startsWith("--")) continue;
+
+    const lowerLine = line.toLowerCase();
+    
+    for (const lib of PROHIBITED_LUA_LIBS) {
+      if (lowerLine.includes(lib)) {
+        return {
+          isValid: false,
+          error: `Restricted Library Detected: '${lib}'`,
+          line: i + 1,
+        };
+      }
+    }
+  }
+
+  // 2. Structural Integrity (Brackets)
+  // We need to strip comments and strings to accurately check bracket balance
+  let cleanCode = code.replace(/--.*$/gm, ""); // Remove single line comments
+  // Remove long comments/strings (simplified regex)
+  cleanCode = cleanCode.replace(/\[(=*)\[[\s\S]*?\]\1\]/g, ""); 
+  // Remove string literals
+  cleanCode = cleanCode.replace(/"[^"\\]*(?:\\.[^"\\]*)*"/g, ""); 
+  cleanCode = cleanCode.replace(/'[^'\\]*(?:\\.[^'\\]*)*'/g, ""); 
+
+  const stack: string[] = [];
+  const pairs: Record<string, string> = { "(": ")", "{": "}", "[": "]" };
+
+  for (const char of cleanCode) {
+    if ("({[".includes(char)) {
+      stack.push(char);
+    } else if (")]}".includes(char)) {
+      const last = stack.pop();
+      if (!last || pairs[last] !== char) {
+        return { 
+          isValid: false, 
+          error: `Unmatched bracket: '${char}'` 
+        };
+      }
+    }
+  }
+
+  if (stack.length > 0) {
+    return { 
+      isValid: false, 
+      error: `Unclosed bracket: '${stack[stack.length - 1]}'` 
+    };
+  }
+
+  // 3. Block Balancing (Heuristic)
+  // This is a naive check for "end" matching "function/if/do/for"
+  // It is not a full parser, so we treat it as a warning heuristic
+  const tokens = cleanCode.match(/\b(function|if|for|while|repeat|do|end|until)\b/g) || [];
+  let blockDepth = 0;
+  
+  for (const token of tokens) {
+    if (["function", "if", "for", "while", "do"].includes(token)) {
+      blockDepth++;
+    } else if (token === "end") {
+      blockDepth--;
+    } else if (token === "repeat") {
+        // Repeat ... until is special, handled separately or ignored in this simple counter
+        // For now, ignoring repeats in this counter to avoid complexity
+    }
+  }
+
+  if (blockDepth !== 0) {
+     // We don't fail validation for this because the regex tokenizer is fragile
+     // But we could return a warning if we had a warning field.
+     // For now, we trust the bracket checker more.
+  }
+
+  return { isValid: true };
+};
+
 export const parseLuaSource = (raw: string): string => {
   if (!raw) return "";
 

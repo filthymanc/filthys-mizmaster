@@ -12,6 +12,12 @@
 import { openDB, DBSchema, IDBPDatabase } from "idb";
 import { Session, Message, Snippet } from "../../core/types";
 
+export interface LibrarianCacheEntry {
+  url: string;
+  content: string;
+  timestamp: number;
+}
+
 interface MissionArchitectDB extends DBSchema {
   sessions: {
     key: string;
@@ -25,10 +31,14 @@ interface MissionArchitectDB extends DBSchema {
     key: string;
     value: Snippet;
   };
+  librarian_cache: {
+    key: string;
+    value: LibrarianCacheEntry;
+  };
 }
 
 const DB_NAME = "filthys-mizmaster-db";
-const DB_VERSION = 2; // Incremented for Snippets
+const DB_VERSION = 3; // Incremented for Librarian Cache
 
 let dbPromise: Promise<IDBPDatabase<MissionArchitectDB>> | null = null;
 
@@ -45,6 +55,9 @@ const getDB = () => {
         }
         if (oldVersion < 2 && !db.objectStoreNames.contains("snippets")) {
           db.createObjectStore("snippets", { keyPath: "id" });
+        }
+        if (oldVersion < 3 && !db.objectStoreNames.contains("librarian_cache")) {
+          db.createObjectStore("librarian_cache", { keyPath: "url" });
         }
       },
     });
@@ -116,6 +129,45 @@ export const deleteSnippet = async (id: string): Promise<void> => {
   await db.delete("snippets", id);
 };
 
+// --- Librarian Cache Operations ---
+
+export const getCachedFile = async (
+  url: string,
+): Promise<LibrarianCacheEntry | undefined> => {
+  const db = await getDB();
+  return db.get("librarian_cache", url);
+};
+
+export const cacheFile = async (
+  url: string,
+  content: string,
+): Promise<void> => {
+  const db = await getDB();
+  await db.put("librarian_cache", {
+    url,
+    content,
+    timestamp: Date.now(),
+  });
+};
+
+export const pruneCache = async (ttlMs: number): Promise<void> => {
+  const db = await getDB();
+  const tx = db.transaction("librarian_cache", "readwrite");
+  const store = tx.objectStore("librarian_cache");
+  const now = Date.now();
+
+  let cursor = await store.openCursor();
+
+  while (cursor) {
+    if (now - cursor.value.timestamp > ttlMs) {
+      await cursor.delete();
+    }
+    cursor = await cursor.continue();
+  }
+
+  await tx.done;
+};
+
 // --- System Operations ---
 
 export const clearDatabase = async (): Promise<void> => {
@@ -123,4 +175,5 @@ export const clearDatabase = async (): Promise<void> => {
   await db.clear("sessions");
   await db.clear("messages");
   await db.clear("snippets");
+  await db.clear("librarian_cache");
 };

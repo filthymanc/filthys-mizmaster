@@ -11,6 +11,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import { SendIcon } from "../../shared/ui/Icons";
+import { useLibrarian, LibrarianSuggestion } from "../librarian/useLibrarian";
 
 interface ChatInputProps {
   onSend: (message: string) => void;
@@ -29,6 +30,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
 }) => {
   const [input, setInput] = useState("");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const { suggestions, isVisible } = useLibrarian(input);
 
   useEffect(() => {
     if (textareaRef.current) {
@@ -47,23 +49,70 @@ const ChatInput: React.FC<ChatInputProps> = ({
     if (e.key === "Enter" && e.ctrlKey) {
       handleSend();
     }
+    // Simple Tab completion for the first suggestion
+    if (e.key === "Tab" && isVisible && suggestions.length > 0) {
+      e.preventDefault();
+      handleSuggestionClick(suggestions[0]);
+    }
+  };
+
+  const handleSuggestionClick = (suggestion: LibrarianSuggestion) => {
+    const words = input.split(/[\s\n]+/);
+    const lastWord = words.pop() || "";
+    // We replace the partially typed word with the full suggestion
+    const newInput = input.substring(0, input.length - lastWord.length) + suggestion.label + " ";
+    setInput(newInput);
+    if (textareaRef.current) textareaRef.current.focus();
   };
 
   // Mobile/Tablet Keyboard Fix
-  // When the textarea receives focus on a touch device, standard browsers 
-  // try to scroll it into view, but sometimes fail with flex layouts.
-  // This forces the window to scroll down, ensuring the input is visible.
   const handleFocus = () => {
     setTimeout(() => {
       window.scrollTo({
         top: document.body.scrollHeight,
         behavior: 'smooth'
       });
-    }, 300); // 300ms delay to allow the virtual keyboard to fully animate up
+    }, 300);
   };
 
   return (
     <div className="max-w-4xl mx-auto relative px-2 sm:px-0">
+      
+      {/* Librarian Intelligence Overlay */}
+      {isVisible && !isGenerating && (
+        <div className="absolute bottom-full left-0 mb-2 ml-4 flex flex-col gap-1 z-10 animate-scaleIn origin-bottom-left">
+          <div className="text-[10px] font-bold text-app-tertiary uppercase tracking-wider pl-1 mb-1">
+            Librarian Suggestion
+          </div>
+          {suggestions.map((s, idx) => (
+            <button
+              key={idx}
+              onClick={() => handleSuggestionClick(s)}
+              className="group flex items-center gap-3 bg-app-frame border border-app-border hover:border-app-brand px-3 py-2 rounded-lg shadow-lg hover:bg-app-surface transition-all text-left max-w-xs"
+            >
+              <div className={`
+                w-1.5 h-8 rounded-full shrink-0
+                ${s.framework === 'MOOSE' ? 'bg-indigo-500' : 
+                  s.framework === 'DML' ? 'bg-amber-500' : 'bg-emerald-500'}
+              `} />
+              <div>
+                <div className="font-mono text-xs font-bold text-app-primary group-hover:text-app-brand transition-colors">
+                  {s.label}
+                </div>
+                <div className="text-[10px] text-app-tertiary truncate max-w-[180px]">
+                  {s.description}
+                </div>
+              </div>
+              {idx === 0 && (
+                <div className="hidden sm:block ml-auto text-[9px] font-mono text-app-tertiary opacity-50 border border-app-border px-1 rounded">
+                  TAB
+                </div>
+              )}
+            </button>
+          ))}
+        </div>
+      )}
+
       <div 
         className={`
             relative w-full bg-app-surface border rounded-2xl shadow-2xl transition-all duration-500 overflow-hidden

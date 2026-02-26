@@ -13,21 +13,13 @@ import React, { useState, useMemo } from "react";
 import { toast } from "../../shared/services/toastService";
 import SyntaxHighlighter from "../../shared/ui/SyntaxHighlighter";
 import { useSnippetSaver } from "../armory/useArmory";
+import { validateLuaSyntax } from "../librarian/luaParserService";
 
 interface CodeBlockProps {
   className?: string;
   children?: React.ReactNode;
   inline?: boolean;
 }
-
-const PROHIBITED_LUA_LIBS = [
-  "os.",
-  "io.",
-  "lfs.",
-  "require",
-  "package.",
-  "debug.",
-];
 
 const CodeBlock: React.FC<CodeBlockProps> = ({
   className,
@@ -60,16 +52,20 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
 
   const codeText = extractText(children).replace(/\n$/, "");
 
-  // Pre-Flight Validation Logic
+  // Real-Time Syntax Validation Logic
   const validation = useMemo(() => {
-    if (language !== "lua") return { safe: true, reasons: [] };
-    const violations = PROHIBITED_LUA_LIBS.filter((lib) =>
-      codeText.toLowerCase().includes(lib.toLowerCase()),
-    );
-    return {
-      safe: violations.length === 0,
-      reasons: violations,
-    };
+    if (language !== "lua") return { safe: true, message: "" };
+    
+    const result = validateLuaSyntax(codeText);
+
+    if (result.isValid) {
+      return { safe: true, message: "DCS COMPLIANT" };
+    } else {
+      return { 
+        safe: false, 
+        message: result.error || "SYNTAX ERROR" 
+      };
+    }
   }, [codeText, language]);
 
   const isInline =
@@ -147,18 +143,14 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
                   ? "bg-emerald-500/10 text-emerald-500"
                   : "bg-red-500/10 text-red-500"
               }`}
-              title={
-                validation.safe
-                  ? "Code uses standard DCS sandbox libraries"
-                  : `Restricted Libraries Detected: ${validation.reasons.join(", ")}`
-              }
+              title={validation.message}
             >
               <div
                 className={`w-1.5 h-1.5 rounded-full ${
                   validation.safe ? "bg-emerald-500 animate-pulse" : "bg-red-500"
                 }`}
               />
-              {validation.safe ? "DCS COMPLIANT" : "RESTRICTED"}
+              {validation.message}
             </div>
           )}
         </div>
