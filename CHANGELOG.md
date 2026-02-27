@@ -1,6 +1,13 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+### [1.2.3](https://github.com/filthymanc/filthys-mizmaster/compare/v1.2.2...v1.2.3) (2026-02-27)
+
+
+### Bug Fixes
+
+* unused variables ([636f3ff](https://github.com/filthymanc/filthys-mizmaster/commit/636f3ffcffed5bc7a5fbc1ac9cce2214ab034e41))
+
 ### [1.2.2](https://github.com/filthymanc/filthys-mizmaster/compare/v1.2.1...v1.2.2) (2026-02-26)
 
 
