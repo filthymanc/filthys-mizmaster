@@ -2,5 +2,5 @@
   "name": "filthy's MizMaster",
   "description": "An AI-powered assistant for DCS World mission building (MOOSE/DML).",
   "requestFramePermissions": [],
-  "version": "1.2.3"
+  "version": "1.3.0"
 }

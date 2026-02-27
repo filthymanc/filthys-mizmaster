@@ -1,6 +1,13 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+## [1.3.0](https://github.com/filthymanc/filthys-mizmaster/compare/v1.2.3...v1.3.0) (2026-02-27)
+
+
+### Features
+
+* add new security briefing ([dc09056](https://github.com/filthymanc/filthys-mizmaster/commit/dc090567961acf5d3c6b3e00da795a180d7b58e3))
+
 ### [1.2.3](https://github.com/filthymanc/filthys-mizmaster/compare/v1.2.2...v1.2.3) (2026-02-27)
 
 
