@@ -1,6 +1,13 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+## [1.4.0](https://github.com/filthymanc/filthys-mizmaster/compare/v1.3.0...v1.4.0) (2026-02-27)
+
+
+### Features
+
+* adaptive layout (the "three-screen" strategy) ([388d928](https://github.com/filthymanc/filthys-mizmaster/commit/388d928f4d2f7f8c978354a226e9ee11daa46462))
+
 ## [1.3.0](https://github.com/filthymanc/filthys-mizmaster/compare/v1.2.3...v1.3.0) (2026-02-27)
 
 
