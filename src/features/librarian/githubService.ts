@@ -82,7 +82,7 @@ const fetchRepoTree = async (
         console.log(`[Librarian] Loaded ${config.repo} tree from cache.`);
         return parsed.tree;
       }
-    } catch (e) {
+    } catch {
       console.warn("Invalid cache, clearing...");
       localStorage.removeItem(cacheKey);
     }
@@ -128,17 +128,16 @@ const fetchRepoTree = async (
 
   // Cache the result
   try {
-    localStorage.setItem(
-      cacheKey,
-      JSON.stringify({
-        timestamp: Date.now(),
-        tree: data.tree,
-      }),
-    );
-  } catch (e) {
-    console.warn("Failed to cache tree (Storage Quota).");
-  }
-
+          localStorage.setItem(
+          cacheKey,
+          JSON.stringify({
+            timestamp: Date.now(),
+            tree: data.tree,
+          }),
+        );
+      } catch {
+        console.warn("Failed to cache tree (Storage Quota).");
+      }
   return data.tree;
 };
 

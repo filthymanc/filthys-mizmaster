@@ -212,7 +212,7 @@ export async function* sendMessageStream(
             detailedError = parsed.error.message;
           }
         }
-      } catch (jsonErr) {
+      } catch {
         // ignore parsing error
       }
 

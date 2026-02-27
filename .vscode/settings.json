@@ -1,0 +1,5 @@
+{
+  // These settings apply universally to all devices that open this workspace
+  "terminal.integrated.sendKeybindingsToShell": true,
+  "terminal.integrated.environmentChangesRelaunch": true,
+}

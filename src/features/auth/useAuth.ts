@@ -55,7 +55,7 @@ export const useAuth = () => {
         setIsVerifying(false);
         return false;
       }
-    } catch (err) {
+    } catch {
       setAuthError("Connection failed. Please check your network.");
       setIsVerifying(false);
       return false;

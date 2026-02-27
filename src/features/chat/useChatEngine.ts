@@ -87,7 +87,7 @@ export const useChatEngine = ({
             sessionId,
             messageCount: messages.length
         };
-      } catch (e) {
+      } catch {
         setApiStatus("error");
       }
     }
