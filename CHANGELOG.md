@@ -1,6 +1,13 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+### [1.4.2](https://github.com/filthymanc/filthys-mizmaster/compare/v1.4.1...v1.4.2) (2026-02-28)
+
+
+### Bug Fixes
+
+* resolve runtime crash by standardizing date deserialization ([394bcdd](https://github.com/filthymanc/filthys-mizmaster/commit/394bcdde51740a7c049e6ebca6fa5833c06dfff0))
+
 ### [1.4.1](https://github.com/filthymanc/filthys-mizmaster/compare/v1.4.0...v1.4.1) (2026-02-28)
 
 
