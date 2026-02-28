@@ -1,6 +1,18 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+### [1.4.1](https://github.com/filthymanc/filthys-mizmaster/compare/v1.4.0...v1.4.1) (2026-02-28)
+
+
+### Miscellaneous Chores
+
+* **deps:** bump minimatch from 10.2.2 to 10.2.4 ([5e0f8dc](https://github.com/filthymanc/filthys-mizmaster/commit/5e0f8dc98571e1c1171a0a3e5fdf9391d31e72b4))
+
+
+### Code Refactoring
+
+* restructure feature modules to isolate UI components ([c33f1be](https://github.com/filthymanc/filthys-mizmaster/commit/c33f1bea922afd0fa0b291851a033d6e7e1c27d8))
+
 ## [1.4.0](https://github.com/filthymanc/filthys-mizmaster/compare/v1.3.0...v1.4.0) (2026-02-27)
 
 
