@@ -14,6 +14,7 @@ import { Session } from "../../../core/types";
 import { SpinnerIcon, PlusIcon, XIcon } from "../../../shared/ui/Icons";
 import SidebarSessionItem from "./SidebarSessionItem";
 import SidebarFooter from "./SidebarFooter";
+import { safeDate } from "../../../shared/utils/dateUtils";
 
 interface SidebarProps {
   sessions: Session[];
@@ -55,7 +56,7 @@ const Sidebar: React.FC<SidebarProps> = ({
     const lowerTerm = searchTerm.toLowerCase();
     return sessions.filter(
         (s) => s.name.toLowerCase().includes(lowerTerm) || 
-               s.lastModified.toLocaleDateString().includes(lowerTerm)
+               safeDate(s.lastModified).toLocaleDateString().includes(lowerTerm)
     );
   }, [sessions, searchTerm]);
 

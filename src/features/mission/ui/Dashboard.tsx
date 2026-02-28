@@ -13,6 +13,7 @@ import React, { useState } from "react";
 import { AppSettings, ApiStatus, Session } from "../../../core/types";
 import { SUGGESTED_QUERIES, AVAILABLE_MODELS } from "../../../core/constants";
 import { GithubIcon, PlusIcon, UploadIcon } from "../../../shared/ui/Icons";
+import { safeDate } from "../../../shared/utils/dateUtils";
 
 interface DashboardProps {
   settings: AppSettings;
@@ -44,7 +45,7 @@ const Dashboard: React.FC<DashboardProps> = ({
     .filter((s) => s.id !== activeSessionId)
     .sort(
       (a, b) =>
-        new Date(b.lastModified).getTime() - new Date(a.lastModified).getTime(),
+        safeDate(b.lastModified).getTime() - safeDate(a.lastModified).getTime(),
     )
     .slice(0, 4);
 
@@ -54,7 +55,7 @@ const Dashboard: React.FC<DashboardProps> = ({
       day: "numeric",
       hour: "2-digit",
       minute: "2-digit",
-    }).format(new Date(date));
+    }).format(safeDate(date));
   };
 
   const getStatusColor = () => {
@@ -77,7 +78,7 @@ const Dashboard: React.FC<DashboardProps> = ({
   const currentModel = AVAILABLE_MODELS.find(m => m.id === settings.model);
 
   return (
-    <div className="flex flex-col gap-6 max-w-5xl mx-auto py-4 md:py-8 animate-fadeIn select-none">
+    <div className="flex-1 flex flex-col gap-6 max-w-5xl mx-auto py-4 md:py-8 animate-fadeIn select-none">
       
       {/* 1. HEADER */}
       <div className="mb-2">

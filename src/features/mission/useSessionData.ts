@@ -13,6 +13,7 @@ import { useState, useEffect } from "react";
 import { Message } from "../../core/types";
 import * as storage from "../../shared/services/storageService";
 import { WELCOME_MESSAGE_TEXT } from "../../core/constants";
+import { safeDate } from "../../shared/utils/dateUtils";
 
 /**
  * Manages the message history for the ACTIVE session only.
@@ -39,8 +40,13 @@ export const useSessionData = (targetSessionId: string | null) => {
     // Load data from storage (Async)
     const load = async () => {
       try {
-        const data = await storage.loadSessionMessages(targetSessionId);
+        let data = await storage.loadSessionMessages(targetSessionId);
         if (active) {
+          // Ensure Date objects for timestamps
+          data = data.map(m => ({
+              ...m,
+              timestamp: safeDate(m.timestamp)
+          }));
           setMessages(data);
           setLoadedSessionId(targetSessionId);
         }

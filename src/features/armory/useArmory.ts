@@ -13,6 +13,7 @@ import { useState, useCallback, useEffect } from "react";
 import { Snippet } from "../../core/types";
 import { saveSnippet, getAllSnippets, deleteSnippet as deleteSnippetService } from "../../shared/services/idbService";
 import { toast } from "../../shared/services/toastService";
+import { safeDate } from "../../shared/utils/dateUtils";
 
 // Hook for managing the entire armory library
 export const useArmoryLibrary = () => {
@@ -22,7 +23,14 @@ export const useArmoryLibrary = () => {
     const loadSnippets = useCallback(async () => {
         setIsLoading(true);
         try {
-            const data = await getAllSnippets();
+            let data = await getAllSnippets();
+            
+            // Map to ensure Date objects
+            data = data.map(s => ({
+                ...s,
+                createdAt: safeDate(s.createdAt)
+            }));
+
             // Sort by most recent
             setSnippets(data.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime()));
         } catch (error) {

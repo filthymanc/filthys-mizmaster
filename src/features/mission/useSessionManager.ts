@@ -13,6 +13,7 @@ import { useState, useEffect, useCallback } from "react";
 import { Session, Message } from "../../core/types";
 import * as storage from "../../shared/services/storageService";
 import { WELCOME_MESSAGE_TEXT } from "../../core/constants";
+import { safeDate } from "../../shared/utils/dateUtils";
 
 const generateSecureId = (): string => {
   // Combine a timestamp with cryptographically secure random bytes.
@@ -50,6 +51,13 @@ export const useSessionManager = () => {
       await storage.initializeStorage();
 
       let loadedSessions = await storage.loadSessionIndex();
+      
+      // Map to ensure Date objects
+      loadedSessions = loadedSessions.map(s => ({
+          ...s,
+          createdAt: safeDate(s.createdAt),
+          lastModified: safeDate(s.lastModified)
+      }));
 
       // Auto-Create Default Session if empty
       if (loadedSessions.length === 0) {

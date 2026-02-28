@@ -13,6 +13,7 @@ import React, { useState, useMemo } from "react";
 import { useArmoryLibrary } from "../useArmory";
 import { XIcon, TrashIcon } from "../../../shared/ui/Icons";
 import SyntaxHighlighter from "../../../shared/ui/SyntaxHighlighter";
+import { safeDate } from "../../../shared/utils/dateUtils";
 
 interface ArmoryModalProps {
   isOpen: boolean;
@@ -151,7 +152,7 @@ const ArmoryModal: React.FC<ArmoryModalProps> = ({ isOpen, onClose }) => {
                 {/* Footer Metadata */}
                 <div className="px-4 py-2 bg-app-canvas/30 border-t border-app-border text-[10px] text-app-tertiary font-mono flex justify-between">
                     <span>ID: {snippet.id.slice(0,8)}</span>
-                    <span>{snippet.createdAt.toLocaleDateString()} {snippet.createdAt.toLocaleTimeString()}</span>
+                    <span>{safeDate(snippet.createdAt).toLocaleDateString()} {safeDate(snippet.createdAt).toLocaleTimeString()}</span>
                 </div>
               </div>
             ))

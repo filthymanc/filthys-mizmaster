@@ -12,6 +12,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import { Session } from "../../../core/types";
 import { PencilIcon, TrashIcon, CheckIcon, XIcon } from "../../../shared/ui/Icons";
+import { safeDate } from "../../../shared/utils/dateUtils";
 
 interface SidebarSessionItemProps {
   session: Session;
@@ -64,7 +65,7 @@ const SidebarSessionItem: React.FC<SidebarSessionItemProps> = ({
       day: "numeric",
       hour: "2-digit",
       minute: "2-digit",
-    }).format(date);
+    }).format(safeDate(date));
   };
 
   return (
