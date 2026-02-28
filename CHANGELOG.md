@@ -1,6 +1,13 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+### [1.4.3](https://github.com/filthymanc/filthys-mizmaster/compare/v1.4.2...v1.4.3) (2026-02-28)
+
+
+### Bug Fixes
+
+* **security:** patch serialize-javascript RCE vulnerability ([5fa7ef9](https://github.com/filthymanc/filthys-mizmaster/commit/5fa7ef971867deb642a6e135b648444bb53e91a3))
+
 ### [1.4.2](https://github.com/filthymanc/filthys-mizmaster/compare/v1.4.1...v1.4.2) (2026-02-28)
 
 
