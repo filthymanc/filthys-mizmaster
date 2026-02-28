@@ -10,16 +10,16 @@
  */
 
 import React, { Fragment, useRef, useEffect } from "react";
-import { AppSettings, ApiStatus, Session } from "../../core/types";
-import { useSessionData } from "./useSessionData";
-import { useChatEngine } from "../chat/useChatEngine";
+import { AppSettings, ApiStatus, Session } from "../../../core/types";
+import { useSessionData } from "../useSessionData";
+import { useChatEngine } from "../../chat/useChatEngine";
 import Dashboard from "./Dashboard";
-import ChatInput from "../chat/ChatInput";
-import ChatMessage from "../chat/ChatMessage";
-import ErrorBoundary from "../../shared/ui/ErrorBoundary";
-import { TrashIcon, MenuIcon, EllipsisVerticalIcon } from "../../shared/ui/Icons";
-import { AVAILABLE_MODELS } from "../../core/constants";
-import { APP_VERSION } from "../../core/version";
+import ChatInput from "../../chat/ui/ChatInput";
+import ChatMessage from "../../chat/ui/ChatMessage";
+import ErrorBoundary from "../../../shared/ui/ErrorBoundary";
+import { TrashIcon, MenuIcon, EllipsisVerticalIcon } from "../../../shared/ui/Icons";
+import { AVAILABLE_MODELS } from "../../../core/constants";
+import { APP_VERSION } from "../../../core/version";
 import { Menu, Transition } from "@headlessui/react";
 import { Virtuoso, VirtuosoHandle } from "react-virtuoso";
 

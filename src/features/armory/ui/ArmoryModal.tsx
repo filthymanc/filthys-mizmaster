@@ -10,9 +10,9 @@
  */
 
 import React, { useState, useMemo } from "react";
-import { useArmoryLibrary } from "./useArmory";
-import { XIcon, TrashIcon } from "../../shared/ui/Icons";
-import SyntaxHighlighter from "../../shared/ui/SyntaxHighlighter";
+import { useArmoryLibrary } from "../useArmory";
+import { XIcon, TrashIcon } from "../../../shared/ui/Icons";
+import SyntaxHighlighter from "../../../shared/ui/SyntaxHighlighter";
 
 interface ArmoryModalProps {
   isOpen: boolean;

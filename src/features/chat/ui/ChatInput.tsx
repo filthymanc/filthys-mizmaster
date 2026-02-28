@@ -10,8 +10,8 @@
  */
 
 import React, { useState, useRef, useEffect } from "react";
-import { SendIcon } from "../../shared/ui/Icons";
-import { useLibrarian, LibrarianSuggestion } from "../librarian/useLibrarian";
+import { SendIcon } from "../../../shared/ui/Icons";
+import { useLibrarian, LibrarianSuggestion } from "../../librarian/useLibrarian";
 
 interface ChatInputProps {
   onSend: (message: string) => void;

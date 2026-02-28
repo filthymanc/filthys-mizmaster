@@ -12,7 +12,7 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { Message } from "../../core/types";
+import { Message } from "../../../core/types";
 import CodeBlock from "./CodeBlock";
 
 interface ChatMessageProps {

@@ -10,8 +10,8 @@
  */
 
 import React, { useRef, useEffect, useState } from "react";
-import { Session } from "../../core/types";
-import { PencilIcon, TrashIcon, CheckIcon, XIcon } from "../../shared/ui/Icons";
+import { Session } from "../../../core/types";
+import { PencilIcon, TrashIcon, CheckIcon, XIcon } from "../../../shared/ui/Icons";
 
 interface SidebarSessionItemProps {
   session: Session;

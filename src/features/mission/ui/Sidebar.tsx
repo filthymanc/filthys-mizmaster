@@ -10,8 +10,8 @@
  */
 
 import React, { useState, useMemo } from "react";
-import { Session } from "../../core/types";
-import { SpinnerIcon, PlusIcon, XIcon } from "../../shared/ui/Icons";
+import { Session } from "../../../core/types";
+import { SpinnerIcon, PlusIcon, XIcon } from "../../../shared/ui/Icons";
 import SidebarSessionItem from "./SidebarSessionItem";
 import SidebarFooter from "./SidebarFooter";
 

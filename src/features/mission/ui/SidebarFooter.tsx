@@ -10,8 +10,8 @@
  */
 
 import React from "react";
-import { BookIcon, AlertIcon, GithubIcon, CogIcon } from "../../shared/ui/Icons";
-import { APP_VERSION, AUTHOR_CREDIT } from "../../core/version";
+import { BookIcon, AlertIcon, GithubIcon, CogIcon } from "../../../shared/ui/Icons";
+import { APP_VERSION, AUTHOR_CREDIT } from "../../../core/version";
 
 interface SidebarFooterProps {
   onOpenFieldManual: () => void;

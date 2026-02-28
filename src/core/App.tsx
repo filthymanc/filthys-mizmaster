@@ -10,10 +10,10 @@
  */
 
 import React, { useEffect, useState, useCallback } from "react";
-import Sidebar from "../features/mission/Sidebar";
-import MissionWorkspace from "../features/mission/MissionWorkspace";
+import Sidebar from "../features/mission/ui/Sidebar";
+import MissionWorkspace from "../features/mission/ui/MissionWorkspace";
 import { useSessionManager } from "../features/mission/useSessionManager";
-import LoginScreen from "../features/auth/LoginScreen";
+import LoginScreen from "../features/auth/ui/LoginScreen";
 import { useAuth } from "../features/auth/useAuth";
 import { useSettings } from "./useSettings";
 import { ToastContainer } from "../shared/ui/Toast";
@@ -21,7 +21,7 @@ import OnboardingModal from "../shared/ui/OnboardingModal";
 import FieldManual from "../shared/ui/FieldManual";
 import ErrorBoundary from "../shared/ui/ErrorBoundary";
 import SettingsModal from "../shared/ui/SettingsModal";
-import ArmoryModal from "../features/armory/ArmoryModal";
+import ArmoryModal from "../features/armory/ui/ArmoryModal";
 import { useSwipeGesture } from "../shared/hooks/useSwipeGesture";
 
 const App: React.FC = () => {

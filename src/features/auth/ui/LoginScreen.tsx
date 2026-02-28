@@ -10,15 +10,15 @@
  */
 
 import React, { useState } from "react";
-import { APP_VERSION, APP_NAME, AUTHOR_CREDIT } from "../../core/version";
+import { APP_VERSION, APP_NAME, AUTHOR_CREDIT } from "../../../core/version";
 import {
   SpinnerIcon,
   BookIcon,
 
   AlertIcon,
   ShieldIcon,
-} from "../../shared/ui/Icons";
-import SecurityBriefingModal from "./ui/SecurityBriefingModal";
+} from "../../../shared/ui/Icons";
+import SecurityBriefingModal from "./SecurityBriefingModal";
 
 interface LoginScreenProps {
   onLogin: (key: string) => void;

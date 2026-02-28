@@ -10,9 +10,9 @@
  */
 
 import React, { useState } from "react";
-import { AppSettings, ApiStatus, Session } from "../../core/types";
-import { SUGGESTED_QUERIES, AVAILABLE_MODELS } from "../../core/constants";
-import { GithubIcon, PlusIcon, UploadIcon } from "../../shared/ui/Icons";
+import { AppSettings, ApiStatus, Session } from "../../../core/types";
+import { SUGGESTED_QUERIES, AVAILABLE_MODELS } from "../../../core/constants";
+import { GithubIcon, PlusIcon, UploadIcon } from "../../../shared/ui/Icons";
 
 interface DashboardProps {
   settings: AppSettings;

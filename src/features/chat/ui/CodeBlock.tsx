@@ -10,10 +10,10 @@
  */
 
 import React, { useState, useMemo } from "react";
-import { toast } from "../../shared/services/toastService";
-import SyntaxHighlighter from "../../shared/ui/SyntaxHighlighter";
-import { useSnippetSaver } from "../armory/useArmory";
-import { validateLuaSyntax } from "../librarian/luaParserService";
+import { toast } from "../../../shared/services/toastService";
+import SyntaxHighlighter from "../../../shared/ui/SyntaxHighlighter";
+import { useSnippetSaver } from "../../armory/useArmory";
+import { validateLuaSyntax } from "../../librarian/luaParserService";
 
 interface CodeBlockProps {
   className?: string;
