@@ -1,6 +1,13 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+### [1.4.4](https://github.com/filthymanc/filthys-mizmaster/compare/v1.4.3...v1.4.4) (2026-03-01)
+
+
+### Bug Fixes
+
+* package update ([c8a1e05](https://github.com/filthymanc/filthys-mizmaster/commit/c8a1e05f21730a94cf141ac56d22f725c5057f08))
+
 ### [1.4.3](https://github.com/filthymanc/filthys-mizmaster/compare/v1.4.2...v1.4.3) (2026-02-28)
 
 
