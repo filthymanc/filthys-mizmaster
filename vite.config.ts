@@ -12,8 +12,8 @@ export default defineConfig({
       strategies: "injectManifest",
       srcDir: "public",
       filename: "sw.js",
-      registerType: "autoUpdate",
-      injectRegister: "inline",
+      registerType: "prompt",
+      injectRegister: null,
       devOptions: {
         enabled: false,
         type: "module",

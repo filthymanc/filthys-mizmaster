@@ -10,12 +10,14 @@
  */
 
 import { precacheAndRoute, cleanupOutdatedCaches } from "workbox-precaching";
+import { clientsClaim } from "workbox-core";
 
 // The self.__WB_MANIFEST is the injection point for the manifest.
 // Vite-plugin-pwa will inject the list of assets to precache here.
 precacheAndRoute(self.__WB_MANIFEST || []);
 
 cleanupOutdatedCaches();
+clientsClaim();
 
 const CACHE_NAME = "filthys-mizmaster-v1"; // Workbox handles versioning of assets, but this remains for custom logic
 

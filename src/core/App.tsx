@@ -22,6 +22,7 @@ import FieldManual from "../shared/ui/FieldManual";
 import ErrorBoundary from "../shared/ui/ErrorBoundary";
 import SettingsModal from "../shared/ui/SettingsModal";
 import ArmoryModal from "../features/armory/ui/ArmoryModal";
+import ReloadPrompt from "../shared/ui/ReloadPrompt";
 import { useSwipeGesture } from "../shared/hooks/useSwipeGesture";
 
 const App: React.FC = () => {
@@ -171,6 +172,7 @@ const App: React.FC = () => {
         style={{ height: appHeight }}
       >
         <ToastContainer />
+        <ReloadPrompt />
 
         {isManualOpen && (
           <FieldManual
