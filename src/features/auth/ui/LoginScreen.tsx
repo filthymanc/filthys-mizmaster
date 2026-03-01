@@ -77,6 +77,8 @@ const LoginScreen: React.FC<LoginScreenProps> = ({
           >
             {/* Hidden username field for accessibility/password managers */}
             <input
+              id="auth-login-username-hidden"
+              data-testid="auth-login-username-hidden"
               type="text"
               name="username"
               defaultValue="Gemini API Key"
@@ -95,6 +97,8 @@ const LoginScreen: React.FC<LoginScreenProps> = ({
                   Gemini API Key
                 </label>
                 <a
+                  id="auth-login-api-key-link"
+                  data-testid="auth-login-api-key-link"
                   href="https://aistudio.google.com/app/apikey"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -120,6 +124,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({
               <div className="relative">
                 <input
                   id="apiKey"
+                  data-testid="auth-login-api-key"
                   name="gemini_api_key"
                   autoComplete="current-password"
                   type="password"
@@ -155,6 +160,8 @@ const LoginScreen: React.FC<LoginScreenProps> = ({
             </div>
 
             <button
+              id="auth-login-submit"
+              data-testid="auth-login-submit"
               type="submit"
               disabled={!tempKey.trim() || isVerifying}
               className="w-full py-3 bg-app-brand hover:bg-opacity-90 disabled:bg-app-surface disabled:text-app-tertiary text-white font-bold rounded-lg transition-all flex items-center justify-center gap-2 shadow-lg shadow-app-brand/20 disabled:shadow-none"
@@ -173,6 +180,8 @@ const LoginScreen: React.FC<LoginScreenProps> = ({
           {/* Security Briefing Trigger */}
           <div className="mt-4 flex justify-center">
             <button
+              id="auth-login-briefing-trigger"
+              data-testid="auth-login-briefing-trigger"
               type="button"
               onClick={() => setIsBriefingOpen(true)}
               className="text-xs text-app-tertiary hover:text-app-secondary flex items-center gap-1 transition-colors"
@@ -184,6 +193,8 @@ const LoginScreen: React.FC<LoginScreenProps> = ({
 
           <div className="mt-6 pt-6 border-t border-app-border text-center">
             <button
+              id="auth-login-manual-trigger"
+              data-testid="auth-login-manual-trigger"
               onClick={onOpenFieldManual}
               className="px-4 py-2 bg-app-canvas hover:bg-app-surface text-app-secondary hover:text-app-primary rounded-lg text-xs font-bold transition-all border border-app-border hover:border-app-highlight flex items-center justify-center gap-2 mx-auto"
             >

@@ -75,6 +75,8 @@ const SidebarSessionItem: React.FC<SidebarSessionItemProps> = ({
 
   return (
     <div
+      id={`sidebar-session-${session.id}`}
+      data-testid="sidebar-session"
       onClick={() => {
         if (!isLoading && !isEditing) onSelect(session.id);
       }}
@@ -95,6 +97,8 @@ const SidebarSessionItem: React.FC<SidebarSessionItemProps> = ({
         <div className="flex items-center" onClick={(e) => e.stopPropagation()}>
           <input
             ref={editInputRef}
+            id={`sidebar-session-${session.id}-edit-input`}
+            data-testid="sidebar-session-edit-input"
             type="text"
             value={editName}
             onChange={(e) => setEditName(e.target.value)}
@@ -124,6 +128,8 @@ const SidebarSessionItem: React.FC<SidebarSessionItemProps> = ({
               onClick={(e) => e.stopPropagation()}
             >
               <button
+                id={`sidebar-session-${session.id}-delete-confirm`}
+                data-testid="sidebar-session-delete-confirm"
                 onClick={(e) => {
                   e.stopPropagation();
                   onConfirmDelete(session.id);
@@ -135,6 +141,8 @@ const SidebarSessionItem: React.FC<SidebarSessionItemProps> = ({
                 <CheckIcon className="h-5 w-5" />
               </button>
               <button
+                id={`sidebar-session-${session.id}-delete-cancel`}
+                data-testid="sidebar-session-delete-cancel"
                 onClick={(e) => {
                   e.stopPropagation();
                   onCancelDelete();
@@ -151,6 +159,8 @@ const SidebarSessionItem: React.FC<SidebarSessionItemProps> = ({
               className={`flex items-center gap-2 transition-opacity ${isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100 lg:opacity-0 touch-device:opacity-100"}`}
             >
               <button
+                id={`sidebar-session-${session.id}-rename-trigger`}
+                data-testid="sidebar-session-rename-trigger"
                 onClick={(e) => {
                   e.stopPropagation();
                   if (!isLoading) onStartEdit(session.id);
@@ -162,6 +172,8 @@ const SidebarSessionItem: React.FC<SidebarSessionItemProps> = ({
                 <PencilIcon className="h-5 w-5" />
               </button>
               <button
+                id={`sidebar-session-${session.id}-delete-trigger`}
+                data-testid="sidebar-session-delete-trigger"
                 onClick={(e) => {
                   e.stopPropagation();
                   if (!isLoading) onStartDelete(session.id);

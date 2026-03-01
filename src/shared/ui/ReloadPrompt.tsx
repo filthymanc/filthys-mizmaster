@@ -40,13 +40,17 @@ const ReloadPrompt: React.FC = () => {
       <div className="flex gap-3 justify-end">
         {needRefresh && (
           <button
+            id="shared-reload-confirm"
+            data-testid="shared-reload-confirm"
             onClick={() => updateServiceWorker(true)}
             className="px-4 py-2 bg-app-brand text-white rounded-md text-sm font-medium hover:opacity-90 transition-opacity"
           >
             Reload
           </button>
-        ) }
+        )}
         <button
+          id="shared-reload-close"
+          data-testid="shared-reload-close"
           onClick={() => close()}
           className="px-4 py-2 bg-app-surface text-app-secondary border border-app-border rounded-md text-sm font-medium hover:bg-app-canvas transition-colors"
         >

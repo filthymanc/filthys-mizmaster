@@ -92,6 +92,8 @@ const ChatInput: React.FC<ChatInputProps> = ({
           {suggestions.map((s, idx) => (
             <button
               key={idx}
+              id={`chat-input-suggestion-${idx}`}
+              data-testid={`chat-input-suggestion-${idx}`}
               onClick={() => handleSuggestionClick(s)}
               className="group flex items-center gap-3 bg-app-frame border border-app-border hover:border-app-brand px-3 py-2 rounded-lg shadow-lg hover:bg-app-surface transition-all text-left max-w-xs"
             >
@@ -141,7 +143,8 @@ const ChatInput: React.FC<ChatInputProps> = ({
 
         <textarea
           ref={textareaRef}
-          id="chat-input"
+          id="chat-input-textarea"
+          data-testid="chat-input-textarea"
           name="chat-input"
           value={input}
           onChange={(e) => setInput(e.target.value)}
@@ -161,6 +164,8 @@ const ChatInput: React.FC<ChatInputProps> = ({
         <div className="absolute right-3 bottom-3 flex items-center gap-2">
           {isGenerating ? (
             <button
+              id="chat-input-stop"
+              data-testid="chat-input-stop"
               onClick={onStop}
               className="p-3 lg:p-2.5 bg-red-500/10 text-red-500 rounded-xl hover:bg-red-500 hover:text-white transition-all active:scale-[0.95]"
               title="Stop Generation"
@@ -169,6 +174,8 @@ const ChatInput: React.FC<ChatInputProps> = ({
             </button>
           ) : (
             <button
+              id="chat-input-send"
+              data-testid="chat-input-send"
               onClick={handleSend}
               disabled={!input.trim()}
               className={`

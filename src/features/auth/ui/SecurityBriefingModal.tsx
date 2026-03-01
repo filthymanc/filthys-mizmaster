@@ -45,6 +45,8 @@ const SecurityBriefingModal: React.FC<SecurityBriefingModalProps> = ({
             </h2>
           </div>
           <button
+            id="auth-briefing-close"
+            data-testid="auth-briefing-close"
             onClick={onClose}
             className="text-app-tertiary hover:text-app-primary p-2 rounded-lg hover:bg-app-surface transition-colors"
             aria-label="Close dialog"
@@ -94,6 +96,8 @@ const SecurityBriefingModal: React.FC<SecurityBriefingModalProps> = ({
             </p>
             <div className="mt-2">
               <a
+                id="auth-briefing-api-key-link"
+                data-testid="auth-briefing-api-key-link"
                 href="https://aistudio.google.com/app/apikey"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -136,6 +140,8 @@ const SecurityBriefingModal: React.FC<SecurityBriefingModalProps> = ({
         {/* Footer */}
         <div className="p-4 sm:p-6 border-t border-app-border bg-app-canvas/50 flex justify-end">
           <button
+            id="auth-briefing-acknowledge"
+            data-testid="auth-briefing-acknowledge"
             onClick={onClose}
             className="px-6 py-2.5 bg-app-brand hover:bg-opacity-90 text-white font-bold rounded-lg transition-colors shadow-lg shadow-app-brand/20"
           >

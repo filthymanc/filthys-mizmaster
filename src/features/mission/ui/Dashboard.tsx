@@ -210,6 +210,8 @@ const Dashboard: React.FC<DashboardProps> = ({
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <button
+                id="dashboard-new-mission"
+                data-testid="dashboard-new-mission"
                 onClick={onCreateSession}
                 className="p-4 bg-app-canvas border border-app-border hover:border-app-brand/50 hover:shadow-md hover:shadow-app-brand/10 rounded-xl transition-all text-left group"
                 aria-label="Create New Mission"
@@ -228,6 +230,8 @@ const Dashboard: React.FC<DashboardProps> = ({
               </button>
 
               <button
+                id="dashboard-import-backup"
+                data-testid="dashboard-import-backup"
                 onClick={onImportData}
                 className="p-4 bg-app-canvas border border-app-border hover:border-purple-500/50 hover:shadow-md hover:shadow-purple-500/10 rounded-xl transition-all text-left group"
                 aria-label="Import Backup File"
@@ -270,6 +274,8 @@ const Dashboard: React.FC<DashboardProps> = ({
               {SUGGESTED_QUERIES.map((query, idx) => (
                 <button
                   key={idx}
+                  id={`dashboard-query-${idx}`}
+                  data-testid="dashboard-query"
                   onClick={() => onPrompt(query)}
                   className="p-4 text-left text-sm bg-app-canvas border border-app-border hover:border-app-brand/50 hover:shadow-sm rounded-xl text-app-secondary hover:text-app-primary transition-all flex items-center justify-between group"
                   role="listitem"
@@ -322,6 +328,8 @@ const Dashboard: React.FC<DashboardProps> = ({
 
               {!showTokenInput ? (
                 <button
+                  id="dashboard-github-token-trigger"
+                  data-testid="dashboard-github-token-trigger"
                   onClick={() => setShowTokenInput(true)}
                   className="w-full py-2 bg-app-surface border border-app-border hover:border-app-highlight hover:text-app-primary text-app-secondary rounded text-xs font-bold transition-colors"
                 >
@@ -330,6 +338,9 @@ const Dashboard: React.FC<DashboardProps> = ({
               ) : (
                 <div className="space-y-3 animate-fadeIn">
                   <input
+                    id="dashboard-github-token-input"
+                    data-testid="dashboard-github-token-input"
+                    name="github_token"
                     type="password"
                     value={tempToken}
                     onChange={(e) => setTempToken(e.target.value)}
@@ -338,12 +349,16 @@ const Dashboard: React.FC<DashboardProps> = ({
                   />
                   <div className="flex gap-2">
                     <button
+                      id="dashboard-github-token-save"
+                      data-testid="dashboard-github-token-save"
                       onClick={handleSaveToken}
                       className="flex-1 py-2 bg-app-brand text-white rounded text-xs font-bold hover:bg-app-brand/90 transition-colors"
                     >
                       SAVE
                     </button>
                     <button
+                      id="dashboard-github-token-cancel"
+                      data-testid="dashboard-github-token-cancel"
                       onClick={() => setShowTokenInput(false)}
                       className="px-3 py-2 bg-app-surface border border-app-border text-app-tertiary rounded text-xs font-bold hover:text-app-primary transition-colors"
                     >
@@ -351,6 +366,8 @@ const Dashboard: React.FC<DashboardProps> = ({
                     </button>
                   </div>
                   <a
+                    id="dashboard-github-token-create-link"
+                    data-testid="dashboard-github-token-create-link"
                     href="https://github.com/settings/tokens?type=beta"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -388,6 +405,8 @@ const Dashboard: React.FC<DashboardProps> = ({
                 {recentSessions.map((session) => (
                   <button
                     key={session.id}
+                    id={`dashboard-recent-session-${session.id}`}
+                    data-testid="dashboard-recent-session"
                     onClick={() => onSelectSession(session.id)}
                     className="w-full text-left p-3 rounded-lg bg-app-canvas border border-app-border hover:border-app-highlight hover:bg-app-surface transition-all group"
                   >

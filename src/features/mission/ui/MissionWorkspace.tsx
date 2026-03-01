@@ -117,6 +117,8 @@ const MissionWorkspace: React.FC<MissionWorkspaceProps> = ({
       <header className="h-16 border-b border-app-border bg-app-frame/95 backdrop-blur-sm flex items-center justify-between px-4 z-20 shrink-0">
         <div className="flex items-center gap-4 min-w-0">
           <button
+            id="workspace-header-sidebar-trigger"
+            data-testid="workspace-header-sidebar-trigger"
             onClick={onOpenSidebar}
             className="lg:hidden p-2 text-app-secondary hover:text-app-primary -ml-2 transition-colors flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-app-brand rounded-full"
             aria-label="Toggle Mission List"
@@ -153,6 +155,8 @@ const MissionWorkspace: React.FC<MissionWorkspaceProps> = ({
           <Menu as="div" className="relative inline-block text-left">
             <div>
               <Menu.Button
+                id="workspace-header-actions-trigger"
+                data-testid="workspace-header-actions-trigger"
                 disabled={isGenerating}
                 className="p-2 text-app-tertiary hover:text-app-primary focus:outline-none focus:ring-2 focus:ring-app-brand rounded-full disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                 aria-label="Mission Actions"
@@ -174,6 +178,8 @@ const MissionWorkspace: React.FC<MissionWorkspaceProps> = ({
                   <Menu.Item>
                     {({ active }) => (
                       <button
+                        id="workspace-header-actions-clear"
+                        data-testid="workspace-header-actions-clear"
                         onClick={() => clearMessages()}
                         className={`${
                           active
@@ -190,6 +196,8 @@ const MissionWorkspace: React.FC<MissionWorkspaceProps> = ({
                   <Menu.Item>
                     {({ active }) => (
                       <button
+                        id="workspace-header-actions-delete"
+                        data-testid="workspace-header-actions-delete"
                         onClick={() => {
                           if (activeSessionId) onDeleteSession(activeSessionId);
                         }}

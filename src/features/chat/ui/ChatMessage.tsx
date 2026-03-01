@@ -129,6 +129,8 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ message }) => {
               {message.sources.map((source, idx) => (
                 <a
                   key={idx}
+                  id={`chat-msg-${message.id}-source-${idx}`}
+                  data-testid="chat-msg-source"
                   href={source.uri}
                   target="_blank"
                   rel="noopener noreferrer"

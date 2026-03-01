@@ -65,6 +65,8 @@ const ArmoryModal: React.FC<ArmoryModalProps> = ({ isOpen, onClose }) => {
             </p>
           </div>
           <button
+            id="armory-modal-close"
+            data-testid="armory-modal-close"
             onClick={onClose}
             className="p-2 text-app-tertiary hover:text-app-primary hover:bg-app-canvas rounded-full transition-colors"
           >
@@ -75,6 +77,9 @@ const ArmoryModal: React.FC<ArmoryModalProps> = ({ isOpen, onClose }) => {
         {/* Search Bar */}
         <div className="p-4 border-b border-app-border bg-app-canvas/30">
           <input
+            id="armory-search-input"
+            data-testid="armory-search-input"
+            name="armory_search"
             type="text"
             placeholder="SEARCH ARMORY INTEL..."
             value={search}
@@ -116,6 +121,8 @@ const ArmoryModal: React.FC<ArmoryModalProps> = ({ isOpen, onClose }) => {
                   </div>
                   <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                     <button
+                      id={`armory-snippet-${snippet.id}-copy`}
+                      data-testid="armory-snippet-copy"
                       onClick={() => handleCopy(snippet.id, snippet.code)}
                       className="p-1.5 text-app-tertiary hover:text-emerald-400 hover:bg-emerald-500/10 rounded-lg transition-colors"
                       title="Copy to Clipboard"
@@ -142,6 +149,8 @@ const ArmoryModal: React.FC<ArmoryModalProps> = ({ isOpen, onClose }) => {
                       )}
                     </button>
                     <button
+                      id={`armory-snippet-${snippet.id}-delete`}
+                      data-testid="armory-snippet-delete"
                       onClick={() => {
                         if (
                           window.confirm("Delete this snippet permanently?")

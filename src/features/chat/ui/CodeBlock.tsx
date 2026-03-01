@@ -160,6 +160,8 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
         <div className="flex items-center gap-1">
           {/* Save Button */}
           <button
+            id="chat-code-save-trigger"
+            data-testid="chat-code-save-trigger"
             onClick={handleSaveToArmory}
             className="p-2 text-app-tertiary hover:text-amber-400 hover:bg-amber-500/10 rounded-lg transition-colors"
             title="Save to Armory"
@@ -182,6 +184,8 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
 
           {/* Wrap Toggle */}
           <button
+            id="chat-code-wrap-toggle"
+            data-testid="chat-code-wrap-toggle"
             onClick={() => setIsSoftWrap(!isSoftWrap)}
             className={`p-2 rounded-lg transition-colors ${
               isSoftWrap
@@ -208,6 +212,8 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
 
           {/* Expand/Collapse */}
           <button
+            id="chat-code-expand-toggle"
+            data-testid="chat-code-expand-toggle"
             onClick={() => setIsExpanded(!isExpanded)}
             className="p-2 text-app-tertiary hover:text-app-primary hover:bg-app-surface rounded-lg transition-colors"
             title={isModal ? "Collapse View" : "Expand View"}
@@ -247,6 +253,8 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
 
           {/* Download */}
           <button
+            id="chat-code-download"
+            data-testid="chat-code-download"
             onClick={handleDownload}
             className="p-2 text-app-tertiary hover:text-app-primary hover:bg-app-surface rounded-lg transition-colors"
             title="Download Script"
@@ -269,6 +277,8 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
 
           {/* Copy */}
           <button
+            id="chat-code-copy"
+            data-testid="chat-code-copy"
             onClick={handleCopy}
             className="p-2 text-app-tertiary hover:text-app-primary hover:bg-app-surface rounded-lg transition-colors"
             title="Copy Code"
@@ -326,6 +336,9 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
               Save to Armory
             </h3>
             <input
+              id="chat-code-save-title"
+              data-testid="chat-code-save-title"
+              name="snippet_title"
               type="text"
               value={saveTitle}
               onChange={(e) => setSaveTitle(e.target.value)}
@@ -335,12 +348,16 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
             />
             <div className="flex gap-2 justify-end">
               <button
+                id="chat-code-save-cancel"
+                data-testid="chat-code-save-cancel"
                 onClick={() => setShowSaveDialog(false)}
                 className="px-3 py-1.5 text-xs font-bold text-app-tertiary hover:text-app-primary transition-colors"
               >
                 CANCEL
               </button>
               <button
+                id="chat-code-save-confirm"
+                data-testid="chat-code-save-confirm"
                 onClick={confirmSave}
                 disabled={!saveTitle.trim()}
                 className="px-3 py-1.5 bg-app-brand text-white text-xs font-bold rounded hover:bg-opacity-90 transition-colors disabled:opacity-50"

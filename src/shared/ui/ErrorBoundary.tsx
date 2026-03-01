@@ -108,6 +108,8 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
               {this.state.error?.toString()}
             </div>
             <button
+              id="shared-error-retry"
+              data-testid="shared-error-retry"
               onClick={this.handleSoftReset}
               className="mt-2 text-[10px] font-bold text-red-400 hover:text-red-300 underline uppercase"
             >
@@ -138,6 +140,8 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
               {!this.state.isConfirmingReset ? (
                 <>
                   <button
+                    id="shared-error-restore"
+                    data-testid="shared-error-restore"
                     type="button"
                     onClick={this.handleSoftReset}
                     className="w-full px-4 py-3 bg-red-600 hover:bg-red-500 text-white rounded-lg font-bold transition-colors text-sm uppercase tracking-wide shadow-lg shadow-red-900/20"
@@ -147,6 +151,8 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
 
                   <div className="pt-2 border-t border-slate-800">
                     <button
+                      id="shared-error-factory-reset-trigger"
+                      data-testid="shared-error-factory-reset-trigger"
                       type="button"
                       onClick={this.toggleResetConfirmation}
                       className="text-xs text-slate-600 hover:text-red-500 transition-colors"
@@ -166,12 +172,16 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
                   </p>
                   <div className="flex gap-2">
                     <button
+                      id="shared-error-factory-reset-confirm"
+                      data-testid="shared-error-factory-reset-confirm"
                       onClick={this.executeHardReset}
                       className="flex-1 px-3 py-2 bg-red-600 hover:bg-red-500 text-white rounded font-bold text-xs"
                     >
                       YES, DELETE ALL
                     </button>
                     <button
+                      id="shared-error-factory-reset-cancel"
+                      data-testid="shared-error-factory-reset-cancel"
                       onClick={this.toggleResetConfirmation}
                       className="flex-1 px-3 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded font-bold text-xs"
                     >

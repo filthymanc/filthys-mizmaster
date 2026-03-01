@@ -83,6 +83,8 @@ const Sidebar: React.FC<SidebarProps> = ({
       {/* Mobile Overlay (Z-30) */}
       {isOpen && (
         <div
+          id="sidebar-overlay"
+          data-testid="sidebar-overlay"
           className="fixed inset-0 bg-app-overlay/60 z-30 lg:hidden backdrop-blur-sm"
           onClick={onClose}
           aria-hidden="true"
@@ -104,6 +106,8 @@ const Sidebar: React.FC<SidebarProps> = ({
             MISSIONS
           </h2>
           <button
+            id="sidebar-close"
+            data-testid="sidebar-close"
             onClick={onClose}
             className="lg:hidden p-3 -mr-2 text-app-secondary hover:text-app-primary active:bg-app-surface/50 rounded-full"
             aria-label="Close Sidebar"
@@ -115,6 +119,8 @@ const Sidebar: React.FC<SidebarProps> = ({
         {/* New Mission Button */}
         <div className="p-4 pb-2 shrink-0 space-y-3">
           <button
+            id="sidebar-new-mission"
+            data-testid="sidebar-new-mission"
             onClick={() => {
               if (!isLoading) {
                 const newId = onCreateSession();
@@ -147,6 +153,9 @@ const Sidebar: React.FC<SidebarProps> = ({
           {/* Search Input */}
           <div className="relative">
             <input
+              id="sidebar-search-input"
+              data-testid="sidebar-search-input"
+              name="sidebar_search"
               type="text"
               placeholder="Find Mission..."
               value={searchTerm}
@@ -169,6 +178,8 @@ const Sidebar: React.FC<SidebarProps> = ({
             </svg>
             {searchTerm && (
               <button
+                id="sidebar-search-clear"
+                data-testid="sidebar-search-clear"
                 onClick={() => setSearchTerm("")}
                 className="absolute right-2 top-2 text-app-tertiary hover:text-app-primary"
               >

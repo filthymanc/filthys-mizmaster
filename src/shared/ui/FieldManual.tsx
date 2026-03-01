@@ -89,7 +89,12 @@ const FieldManual: React.FC<FieldManualProps> = ({
           <h2 className="text-sm font-bold tracking-widest uppercase">
             Field Manual
           </h2>
-          <button onClick={onClose} className="p-2 hover:bg-app-canvas rounded">
+          <button
+            id="shared-manual-close-inline"
+            data-testid="shared-manual-close-inline"
+            onClick={onClose}
+            className="p-2 hover:bg-app-canvas rounded"
+          >
             <XIcon className="h-4 w-4" />
           </button>
         </div>
@@ -268,6 +273,8 @@ const FieldManual: React.FC<FieldManualProps> = ({
                   {tabs.map((tab) => (
                     <button
                       key={tab.id}
+                      id={`shared-manual-tab-${tab.id}`}
+                      data-testid={`shared-manual-tab-${tab.id}`}
                       onClick={() => setActiveTab(tab.id)}
                       className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold transition-all focus:outline-none focus:ring-2 focus:ring-app-brand ${
                         activeTab === tab.id
@@ -291,6 +298,8 @@ const FieldManual: React.FC<FieldManualProps> = ({
 
                 <div className="p-4 border-t border-app-border shrink-0">
                   <button
+                    id="shared-manual-close-desktop"
+                    data-testid="shared-manual-close-desktop"
                     onClick={onClose}
                     className="w-full py-2.5 bg-app-canvas border border-app-border hover:bg-app-highlight text-app-primary rounded-lg font-bold text-xs uppercase tracking-wider transition-colors focus:outline-none focus:ring-2 focus:ring-app-brand"
                   >
@@ -315,6 +324,8 @@ const FieldManual: React.FC<FieldManualProps> = ({
                     </p>
                   </div>
                   <button
+                    id="shared-manual-close-mobile"
+                    data-testid="shared-manual-close-mobile"
                     onClick={onClose}
                     className="p-2 text-app-tertiary hover:text-app-primary focus:outline-none focus:ring-2 focus:ring-app-brand rounded-full bg-app-canvas border border-app-border"
                   >
@@ -330,6 +341,8 @@ const FieldManual: React.FC<FieldManualProps> = ({
                   {tabs.map((tab) => (
                     <button
                       key={tab.id}
+                      id={`shared-manual-tab-mobile-${tab.id}`}
+                      data-testid={`shared-manual-tab-mobile-${tab.id}`}
                       onClick={() => setActiveTab(tab.id)}
                       className={`flex flex-col items-center justify-center shrink-0 min-w-[72px] p-2 rounded-xl transition-all focus:outline-none focus:ring-2 focus:ring-app-brand ${
                         activeTab === tab.id
@@ -802,6 +815,8 @@ const FieldManual: React.FC<FieldManualProps> = ({
                           return (
                             <a
                               key={idx}
+                              id={`shared-manual-resource-${idx}`}
+                              data-testid={`shared-manual-resource-${idx}`}
                               href={link.url}
                               target="_blank"
                               rel="noopener noreferrer"

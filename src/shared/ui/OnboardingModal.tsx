@@ -173,6 +173,8 @@ const OnboardingModal: React.FC<OnboardingModalProps> = ({
         {/* Footer */}
         <div className="p-6 border-t border-app-border bg-app-frame/50 rounded-b-2xl flex justify-end">
           <button
+            id="shared-onboarding-complete"
+            data-testid="shared-onboarding-complete"
             onClick={onComplete}
             className="px-8 py-3 bg-app-brand hover:bg-opacity-90 text-white font-bold rounded-lg transition-all shadow-lg shadow-app-brand/20 flex items-center gap-2 group"
           >

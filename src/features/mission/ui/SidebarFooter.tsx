@@ -34,6 +34,8 @@ const SidebarFooter: React.FC<SidebarFooterProps> = ({
       {/* Primary Actions Group */}
       <div className="space-y-2">
         <button
+          id="sidebar-footer-settings"
+          data-testid="sidebar-footer-settings"
           onClick={onOpenSettings}
           className="w-full py-2.5 px-3 bg-app-brand/10 border border-app-brand/30 hover:bg-app-brand/20 hover:border-app-brand/50 text-app-brand rounded-lg text-sm font-bold transition-all flex items-center justify-center gap-2 shadow-sm shadow-app-brand/5"
           title="Open System Settings (Ctrl+,)"
@@ -44,6 +46,8 @@ const SidebarFooter: React.FC<SidebarFooterProps> = ({
 
         <div className="flex gap-2">
           <button
+            id="sidebar-footer-manual"
+            data-testid="sidebar-footer-manual"
             onClick={onOpenFieldManual}
             className="flex-1 py-2.5 px-3 bg-app-surface border border-app-border hover:bg-app-highlight hover:text-app-primary text-app-secondary rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-2 shadow-sm"
             title="Open Field Manual"
@@ -52,6 +56,8 @@ const SidebarFooter: React.FC<SidebarFooterProps> = ({
             MANUAL
           </button>
           <button
+            id="sidebar-footer-armory"
+            data-testid="sidebar-footer-armory"
             onClick={onOpenArmory}
             className="flex-1 py-2.5 px-3 bg-app-surface border border-app-border hover:bg-app-highlight hover:text-app-primary text-app-secondary rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-2 shadow-sm"
             title="Open Armory (Snippet Library)"
@@ -79,6 +85,8 @@ const SidebarFooter: React.FC<SidebarFooterProps> = ({
       <div className="space-y-3 pt-2 border-t border-app-border/50">
         <div className="flex justify-center gap-6">
           <a
+            id="sidebar-footer-github"
+            data-testid="sidebar-footer-github"
             href="https://github.com/filthymanc/filthys-mizmaster"
             target="_blank"
             rel="noopener noreferrer"
@@ -88,6 +96,8 @@ const SidebarFooter: React.FC<SidebarFooterProps> = ({
             <GithubIcon className="h-4 w-4" />
           </a>
           <a
+            id="sidebar-footer-issues"
+            data-testid="sidebar-footer-issues"
             href="https://github.com/filthymanc/filthys-mizmaster/issues"
             target="_blank"
             rel="noopener noreferrer"

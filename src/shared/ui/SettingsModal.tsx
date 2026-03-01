@@ -122,6 +122,8 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                     System Configuration
                   </Dialog.Title>
                   <button
+                    id="shared-settings-close"
+                    data-testid="shared-settings-close"
                     onClick={onClose}
                     className="text-app-tertiary hover:text-app-primary transition-colors focus:outline-none focus:ring-2 focus:ring-app-brand rounded-full p-1"
                   >
@@ -136,6 +138,8 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                         (category) => (
                           <Tab
                             key={category}
+                            id={`shared-settings-tab-${category.toLowerCase().replace(/\s+/g, "-")}`}
+                            data-testid={`shared-settings-tab-${category.toLowerCase().replace(/\s+/g, "-")}`}
                             className={({ selected }) =>
                               `w-full rounded-lg py-2.5 text-sm font-bold leading-5 ring-white/60 ring-offset-2 ring-offset-app-brand focus:outline-none focus:ring-2
                               ${
@@ -162,6 +166,8 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                             {AVAILABLE_MODELS.map((model) => (
                               <button
                                 key={model.id}
+                                id={`shared-settings-model-${model.id}`}
+                                data-testid={`shared-settings-model-${model.id}`}
                                 onClick={() =>
                                   updateSettings({ model: model.id })
                                 }
@@ -205,6 +211,8 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                               </div>
                             </div>
                             <button
+                              id="shared-settings-safety-toggle"
+                              data-testid="shared-settings-safety-toggle"
                               onClick={() =>
                                 updateSettings({
                                   isDesanitized: !settings.isDesanitized,
@@ -256,6 +264,8 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                             {modes.map((mode) => (
                               <button
                                 key={mode.id}
+                                id={`shared-settings-theme-${mode.id}`}
+                                data-testid={`shared-settings-theme-${mode.id}`}
                                 onClick={() =>
                                   updateSettings({ themeMode: mode.id })
                                 }
@@ -280,6 +290,8 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                             {accents.map((accent) => (
                               <button
                                 key={accent.id}
+                                id={`shared-settings-accent-${accent.id}`}
+                                data-testid={`shared-settings-accent-${accent.id}`}
                                 onClick={() =>
                                   updateSettings({ themeAccent: accent.id })
                                 }
@@ -313,6 +325,9 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                             </p>
                             <div className="flex gap-2">
                               <input
+                                id="shared-settings-github-token-input"
+                                data-testid="shared-settings-github-token-input"
+                                name="github_token"
                                 type="password"
                                 value={tempGithubToken}
                                 onChange={(e) =>
@@ -322,6 +337,8 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                                 className="flex-1 bg-app-canvas border border-app-border rounded p-2 text-sm font-mono focus:outline-none focus:border-app-brand"
                               />
                               <button
+                                id="shared-settings-github-token-save"
+                                data-testid="shared-settings-github-token-save"
                                 onClick={() =>
                                   updateSettings({
                                     githubToken: tempGithubToken,
@@ -347,6 +364,8 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                           </h4>
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <button
+                              id="shared-settings-import-trigger"
+                              data-testid="shared-settings-import-trigger"
                               onClick={() => {
                                 onImportData();
                                 onClose();
@@ -359,6 +378,8 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                               </span>
                             </button>
                             <button
+                              id="shared-settings-export-trigger"
+                              data-testid="shared-settings-export-trigger"
                               onClick={() => {
                                 onExportData();
                                 onClose();
@@ -380,6 +401,8 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                           </h4>
                           <div className="space-y-3">
                             <button
+                              id="shared-settings-disconnect-trigger"
+                              data-testid="shared-settings-disconnect-trigger"
                               onClick={handleDisconnect}
                               className={`
                                   w-full p-3 border rounded-xl text-sm font-bold transition-all flex items-center justify-center gap-2
@@ -404,6 +427,8 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                             </button>
 
                             <button
+                              id="shared-settings-factory-reset-trigger"
+                              data-testid="shared-settings-factory-reset-trigger"
                               onClick={handleFactoryReset}
                               className={`
                                   w-full p-3 border rounded-xl text-sm font-bold transition-all flex items-center justify-center gap-2

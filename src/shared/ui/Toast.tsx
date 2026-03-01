@@ -46,10 +46,16 @@ export const ToastContainer: React.FC = () => {
 };
 
 interface ToastItemProps extends ToastEvent {
+  id: number;
   onClose: () => void;
 }
 
-const ToastItem: React.FC<ToastItemProps> = ({ message, type, onClose }) => {
+const ToastItem: React.FC<ToastItemProps> = ({
+  id,
+  message,
+  type,
+  onClose,
+}) => {
   const bgColors = {
     success: "bg-app-brand/90 border-app-brand shadow-app-brand/20",
     error: "bg-red-600/90 border-red-500 shadow-red-900/20",
@@ -59,12 +65,16 @@ const ToastItem: React.FC<ToastItemProps> = ({ message, type, onClose }) => {
   return (
     <div
       role="alert"
+      id={`shared-toast-${id}`}
+      data-testid={`shared-toast-${type}`}
       className={`pointer-events-auto flex items-center gap-3 px-6 py-3 rounded-lg shadow-2xl backdrop-blur-sm border ${bgColors[type]} text-white animate-bounce`}
     >
       {type === "success" && <CheckIcon className="h-5 w-5" />}
       {type === "error" && <AlertIcon className="h-5 w-5" />}
       <span className="font-semibold text-sm">{message}</span>
       <button
+        id={`shared-toast-close-${id}`}
+        data-testid="shared-toast-close"
         onClick={onClose}
         className="ml-2 opacity-70 hover:opacity-100"
         aria-label="Close Notification"
