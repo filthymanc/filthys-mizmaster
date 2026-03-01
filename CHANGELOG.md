@@ -1,6 +1,13 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+### [1.4.6](https://github.com/filthymanc/filthys-mizmaster/compare/v1.4.5...v1.4.6) (2026-03-01)
+
+
+### Miscellaneous Chores
+
+* automate release and push workflow ([a14e042](https://github.com/filthymanc/filthys-mizmaster/commit/a14e04222df04a02a886da1bf2a80238903f7c35))
+
 ### [1.4.5](https://github.com/filthymanc/filthys-mizmaster/compare/v1.4.4...v1.4.5) (2026-03-01)
 
 
