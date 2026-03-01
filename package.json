@@ -11,7 +11,8 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "prepare": "husky",
     "format": "prettier --write .",
-    "release": "standard-version"
+    "release": "standard-version",
+    "release:push": "npm run build && npm run release && git push --follow-tags origin main"
   },
   "dependencies": {
     "@google/genai": "^1.43.0",
