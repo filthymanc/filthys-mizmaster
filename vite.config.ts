@@ -13,7 +13,7 @@ export default defineConfig({
       srcDir: "public",
       filename: "sw.js",
       registerType: "prompt",
-      injectRegister: null,
+      injectRegister: "auto",
       devOptions: {
         enabled: false,
         type: "module",
