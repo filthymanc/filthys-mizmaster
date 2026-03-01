@@ -1,6 +1,12 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+## [1.6.0](https://github.com/filthymanc/filthys-mizmaster/compare/v1.5.0...v1.6.0) (2026-03-01)
+
+
+### Features
+
+* add unique identifiers and test hooks to interactive UI elements ([fb514d9](https://github.com/filthymanc/filthys-mizmaster/commit/fb514d9ff5bf0adda217c015126d3911d9e10842))
 
 ## [1.5.0](https://github.com/filthymanc/filthys-mizmaster/compare/v1.4.6...v1.5.0) (2026-03-01)
 
