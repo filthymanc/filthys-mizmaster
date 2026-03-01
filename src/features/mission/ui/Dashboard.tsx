@@ -77,7 +77,11 @@ const Dashboard: React.FC<DashboardProps> = ({
     setShowTokenInput(false);
   };
 
-  const currentModel = AVAILABLE_MODELS.find((m) => m.id === settings.model);
+  const currentModel = (
+    settings.availableModels.length > 0
+      ? settings.availableModels
+      : AVAILABLE_MODELS
+  ).find((m) => m.id === settings.model);
 
   return (
     <div className="flex-1 flex flex-col gap-6 max-w-5xl mx-auto py-4 md:py-8 animate-fadeIn select-none">

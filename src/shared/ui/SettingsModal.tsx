@@ -13,7 +13,6 @@ import React, { useState, Fragment } from "react";
 import { Dialog, Transition, Tab } from "@headlessui/react";
 import { useSettings } from "../../core/useSettings";
 import { ThemeMode, ThemeAccent } from "../../core/types";
-import { AVAILABLE_MODELS } from "../../core/constants";
 import { clearAllData } from "../services/storageService";
 import {
   XIcon,
@@ -23,6 +22,7 @@ import {
   UploadIcon,
   ExportIcon,
   LogoutIcon,
+  SpinnerIcon,
 } from "./Icons";
 
 interface SettingsModalProps {
@@ -40,7 +40,8 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
   onExportData,
   onDisconnect,
 }) => {
-  const { settings, updateSettings } = useSettings();
+  const { settings, updateSettings, refreshModels, isModelLoading } =
+    useSettings();
 
   // Local state for complex interactions within the modal
   const [tempGithubToken, setTempGithubToken] = useState(
@@ -159,11 +160,29 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                       <Tab.Panel className="focus:outline-none space-y-8 animate-fadeIn">
                         {/* Model Selection */}
                         <div className="space-y-4">
-                          <h4 className="text-sm font-bold text-app-secondary uppercase tracking-wider">
-                            Language Model
-                          </h4>
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            {AVAILABLE_MODELS.map((model) => (
+                          <div className="flex items-center justify-between">
+                            <h4 className="text-sm font-bold text-app-secondary uppercase tracking-wider">
+                              Language Model
+                            </h4>
+                            <div className="flex items-center gap-2">
+                              <button
+                                id="shared-settings-refresh-models"
+                                onClick={refreshModels}
+                                disabled={isModelLoading}
+                                className="flex items-center gap-1.5 px-2 py-1 rounded text-[10px] font-bold bg-app-surface text-app-tertiary hover:text-app-secondary transition-colors disabled:opacity-50"
+                              >
+                                {isModelLoading ? (
+                                  <SpinnerIcon className="h-3 w-3" />
+                                ) : (
+                                  <RefreshIcon className="h-3 w-3" />
+                                )}
+                                REFRESH
+                              </button>
+                            </div>
+                          </div>
+
+                          <div className="flex flex-col gap-2 max-h-[400px] overflow-y-auto pr-1 custom-scrollbar">
+                            {settings.availableModels.map((model) => (
                               <button
                                 key={model.id}
                                 id={`shared-settings-model-${model.id}`}
@@ -171,26 +190,54 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                                 onClick={() =>
                                   updateSettings({ model: model.id })
                                 }
-                                className={`text-left p-4 rounded-xl border transition-all ${
+                                className={`text-left p-2.5 rounded-lg border transition-all ${
                                   settings.model === model.id
-                                    ? "bg-app-brand/10 border-app-brand text-app-brand"
-                                    : "bg-app-surface border-app-border hover:border-app-highlight text-app-primary"
+                                    ? "bg-app-brand/10 border-app-brand"
+                                    : "bg-app-surface border-app-border hover:border-app-highlight"
                                 }`}
                               >
-                                <div className="font-bold flex items-center justify-between">
-                                  {model.label}
-                                  {model.isExperimental && (
-                                    <span className="text-[10px] bg-app-brand/20 text-app-brand px-2 py-0.5 rounded">
-                                      BETA
-                                    </span>
+                                <div className="flex flex-col gap-1">
+                                  <div
+                                    className={`text-xs font-bold truncate ${
+                                      settings.model === model.id
+                                        ? "text-app-brand"
+                                        : "text-app-primary"
+                                    }`}
+                                  >
+                                    {model.shortLabel}
+                                  </div>
+
+                                  <div className="text-[10px] font-mono text-app-secondary truncate">
+                                    {model.id}
+                                  </div>
+
+                                  {(model.inputTokenLimit ||
+                                    model.outputTokenLimit) && (
+                                    <div className="flex gap-2 items-center font-mono text-[8px] mt-0.5 whitespace-nowrap">
+                                      <span className="text-app-tertiary uppercase tracking-tighter font-bold shrink-0">
+                                        Tokens:
+                                      </span>
+                                      <span className="text-app-secondary font-bold">
+                                        Input{" "}
+                                        {model.inputTokenLimit?.toLocaleString() ||
+                                          "N/A"}
+                                      </span>
+                                      <span className="text-app-secondary font-bold">
+                                        Output{" "}
+                                        {model.outputTokenLimit?.toLocaleString() ||
+                                          "N/A"}
+                                      </span>
+                                    </div>
                                   )}
-                                </div>
-                                <div className="text-xs mt-1 text-app-tertiary">
-                                  {model.description}
                                 </div>
                               </button>
                             ))}
                           </div>
+                          {settings.availableModels.length === 0 && (
+                            <div className="p-8 text-center bg-app-surface rounded-xl border border-app-border border-dashed text-app-tertiary text-xs">
+                              No models matching current filters.
+                            </div>
+                          )}
                         </div>
 
                         {/* Safety Toggle */}

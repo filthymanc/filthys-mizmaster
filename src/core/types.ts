@@ -56,6 +56,18 @@ export interface Snippet {
   description?: string;
 }
 
+export interface ModelDefinition {
+  id: string;
+  label: string;
+  shortLabel: string;
+  description: string;
+  isExperimental?: boolean;
+  isLatest?: boolean;
+  isLegacy?: boolean;
+  inputTokenLimit?: number;
+  outputTokenLimit?: number;
+}
+
 export type ModelType = string;
 
 export type ApiStatus =
@@ -79,6 +91,8 @@ export type ThemeAccent = "emerald" | "cyan" | "amber" | "rose" | "violet";
 
 export interface AppSettings {
   model: ModelType;
+  availableModels: ModelDefinition[];
+  lastModelRefresh?: Date;
   isDesanitized: boolean;
   themeMode: ThemeMode;
   themeAccent: ThemeAccent;

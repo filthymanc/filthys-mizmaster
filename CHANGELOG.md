@@ -1,19 +1,18 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
-### [1.6.1](https://github.com/filthymanc/filthys-mizmaster/compare/v1.6.0...v1.6.1) (2026-03-01)
 
+### [1.6.1](https://github.com/filthymanc/filthys-mizmaster/compare/v1.6.0...v1.6.1) (2026-03-01)
 
 ### Bug Fixes
 
-* enable service worker registration for PWA update notifications ([bd170f1](https://github.com/filthymanc/filthys-mizmaster/commit/bd170f140707effc60fc5acd2269e570250803a0))
+- enable service worker registration for PWA update notifications ([bd170f1](https://github.com/filthymanc/filthys-mizmaster/commit/bd170f140707effc60fc5acd2269e570250803a0))
 
 ## [1.6.0](https://github.com/filthymanc/filthys-mizmaster/compare/v1.5.0...v1.6.0) (2026-03-01)
 
-
 ### Features
 
-* add unique identifiers and test hooks to interactive UI elements ([fb514d9](https://github.com/filthymanc/filthys-mizmaster/commit/fb514d9ff5bf0adda217c015126d3911d9e10842))
+- add unique identifiers and test hooks to interactive UI elements ([fb514d9](https://github.com/filthymanc/filthys-mizmaster/commit/fb514d9ff5bf0adda217c015126d3911d9e10842))
 
 ## [1.5.0](https://github.com/filthymanc/filthys-mizmaster/compare/v1.4.6...v1.5.0) (2026-03-01)
 

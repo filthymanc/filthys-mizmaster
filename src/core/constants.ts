@@ -26,18 +26,18 @@ export interface ModelDefinition {
  */
 export const AVAILABLE_MODELS: ModelDefinition[] = [
   {
-    id: "gemini-3-pro-preview",
-    label: "3 PRO (PREVIEW)",
-    shortLabel: "3 PRO",
-    description:
-      "Advanced intelligence. Best for complex MOOSE logic and architecture.",
-  },
-  {
     id: "gemini-3-flash-preview",
     label: "3 FLASH (PREVIEW)",
-    shortLabel: "3 FLASH",
+    shortLabel: "3 FLASH (PREVIEW)",
     description:
       "Ultra-fast response. Ideal for DML attribute lookups and quick fixes.",
+  },
+  {
+    id: "gemini-3-pro-preview",
+    label: "3 PRO (PREVIEW)",
+    shortLabel: "3 PRO (PREVIEW)",
+    description:
+      "Advanced intelligence. Best for complex MOOSE logic and architecture.",
   },
 ];
 

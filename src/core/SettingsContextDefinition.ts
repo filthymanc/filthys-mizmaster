@@ -15,8 +15,10 @@ import { ApiStatus, AppSettings } from "./types";
 export interface SettingsContextType {
   settings: AppSettings;
   apiStatus: ApiStatus;
+  isModelLoading: boolean;
   updateSettings: (updates: Partial<AppSettings>) => void;
   setApiStatus: (status: ApiStatus) => void;
+  refreshModels: () => Promise<void>;
 }
 
 export const SettingsContext = createContext<SettingsContextType | undefined>(
