@@ -14,29 +14,31 @@ import { STORAGE_VERSION_TAG } from "./version";
 // --- SYSTEM CONSTANTS ---
 
 export interface ModelDefinition {
-    id: string;
-    label: string;
-    shortLabel: string; // Added for mobile optimization
-    description: string;
-    isExperimental?: boolean;
+  id: string;
+  label: string;
+  shortLabel: string; // Added for mobile optimization
+  description: string;
+  isExperimental?: boolean;
 }
 
 /**
  * Verified Model Catalog: Gemini 3 Series
  */
 export const AVAILABLE_MODELS: ModelDefinition[] = [
-  { 
-    id: "gemini-3-pro-preview", 
-    label: "3 PRO (PREVIEW)", 
+  {
+    id: "gemini-3-pro-preview",
+    label: "3 PRO (PREVIEW)",
     shortLabel: "3 PRO",
-    description: "Advanced intelligence. Best for complex MOOSE logic and architecture." 
+    description:
+      "Advanced intelligence. Best for complex MOOSE logic and architecture.",
   },
-  { 
-    id: "gemini-3-flash-preview", 
-    label: "3 FLASH (PREVIEW)", 
+  {
+    id: "gemini-3-flash-preview",
+    label: "3 FLASH (PREVIEW)",
     shortLabel: "3 FLASH",
-    description: "Ultra-fast response. Ideal for DML attribute lookups and quick fixes." 
-  }
+    description:
+      "Ultra-fast response. Ideal for DML attribute lookups and quick fixes.",
+  },
 ];
 
 // Default model for new users
@@ -56,9 +58,9 @@ export const STORAGE_KEYS = {
 
 // --- CHAT & CONTEXT LIMITS ---
 export const CONTEXT_LIMITS = {
-  MAX_MESSAGES: 50,         
+  MAX_MESSAGES: 50,
   MAX_TOKENS: 30000,
-  PROTECT_FIRST_MSG: true,  
+  PROTECT_FIRST_MSG: true,
 };
 
 export const WELCOME_MESSAGE_TEXT =

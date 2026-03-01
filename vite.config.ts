@@ -21,7 +21,8 @@ export default defineConfig({
       manifest: {
         name: "filthy's MizMaster",
         short_name: "MizMaster",
-        description: "Your personal AI co-pilot for DCS World mission scripting.",
+        description:
+          "Your personal AI co-pilot for DCS World mission scripting.",
         theme_color: "#ffffff",
         background_color: "#ffffff",
         display: "standalone",

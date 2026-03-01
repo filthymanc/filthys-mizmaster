@@ -30,9 +30,11 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
-        
+
         // Resilience Check: Ensure the saved model still exists in our catalog
-        const isModelValid = AVAILABLE_MODELS.some(m => m.id === parsed.model);
+        const isModelValid = AVAILABLE_MODELS.some(
+          (m) => m.id === parsed.model,
+        );
         const modelId = isModelValid ? parsed.model : DEFAULT_MODEL_ID;
 
         initialSettings = {
@@ -69,7 +71,7 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({
         settings,
         apiStatus,
         updateSettings: (u) => {
-            setSettings((prev) => ({ ...prev, ...u }));
+          setSettings((prev) => ({ ...prev, ...u }));
         },
         setApiStatus,
       }}

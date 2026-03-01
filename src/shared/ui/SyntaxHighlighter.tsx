@@ -34,8 +34,8 @@ const SyntaxHighlighter: React.FC<SyntaxHighlighterProps> = ({
 
   return (
     <div className={`relative group ${className}`}>
-      <pre 
-        className={`!m-0 !p-4 !bg-transparent !text-sm font-mono leading-relaxed overflow-x-auto custom-scrollbar ${wrap ? '!whitespace-pre-wrap' : ''}`}
+      <pre
+        className={`!m-0 !p-4 !bg-transparent !text-sm font-mono leading-relaxed overflow-x-auto custom-scrollbar ${wrap ? "!whitespace-pre-wrap" : ""}`}
       >
         <code className={`language-${language}`}>{code}</code>
       </pre>
@@ -53,7 +53,7 @@ const SyntaxHighlighter: React.FC<SyntaxHighlighterProps> = ({
           font-family: "JetBrains Mono", monospace;
           direction: ltr;
           text-align: left;
-          white-space: ${wrap ? 'pre-wrap' : 'pre'};
+          white-space: ${wrap ? "pre-wrap" : "pre"};
           word-spacing: normal;
           word-break: normal;
           line-height: 1.5;

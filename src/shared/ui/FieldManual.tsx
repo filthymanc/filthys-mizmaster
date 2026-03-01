@@ -11,7 +11,13 @@
 
 import React, { useState, Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { GithubIcon, YoutubeIcon, DiscordIcon, GlobeIcon, XIcon } from "./Icons";
+import {
+  GithubIcon,
+  YoutubeIcon,
+  DiscordIcon,
+  GlobeIcon,
+  XIcon,
+} from "./Icons";
 import { APP_VERSION } from "../../core/version";
 import { MANUAL_CONTENT } from "../../data/manualContent";
 
@@ -59,7 +65,9 @@ const ShortcutRow: React.FC<{ keys: string[]; description: string }> = ({
             {k}
           </kbd>
           {i < keys.length - 1 && (
-            <span className="text-app-tertiary self-center font-bold text-xs">+</span>
+            <span className="text-app-tertiary self-center font-bold text-xs">
+              +
+            </span>
           )}
         </React.Fragment>
       ))}
@@ -67,33 +75,63 @@ const ShortcutRow: React.FC<{ keys: string[]; description: string }> = ({
   </div>
 );
 
-const FieldManual: React.FC<FieldManualProps> = ({ isOpen, onClose, inline = false }) => {
+const FieldManual: React.FC<FieldManualProps> = ({
+  isOpen,
+  onClose,
+  inline = false,
+}) => {
   const [activeTab, setActiveTab] = useState<TabId>("briefing");
 
   if (inline) {
     return (
       <div className="flex h-full w-full bg-app-canvas overflow-hidden flex-col">
         <div className="p-4 border-b border-app-border bg-app-surface flex items-center justify-between shrink-0">
-          <h2 className="text-sm font-bold tracking-widest uppercase">Field Manual</h2>
-          <button onClick={onClose} className="p-2 hover:bg-app-canvas rounded"><XIcon className="h-4 w-4" /></button>
+          <h2 className="text-sm font-bold tracking-widest uppercase">
+            Field Manual
+          </h2>
+          <button onClick={onClose} className="p-2 hover:bg-app-canvas rounded">
+            <XIcon className="h-4 w-4" />
+          </button>
         </div>
         <div className="flex-1 overflow-y-auto p-8 custom-scrollbar relative flex flex-col items-center justify-center opacity-50 space-y-4">
-                <svg className="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                </svg>
-                <p className="font-mono text-xs uppercase tracking-widest text-center">Manual Opened in Desktop Mode</p>
+          <svg
+            className="h-12 w-12 mx-auto"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+            />
+          </svg>
+          <p className="font-mono text-xs uppercase tracking-widest text-center">
+            Manual Opened in Desktop Mode
+          </p>
         </div>
       </div>
     );
   }
 
-  const tabs: { id: TabId; label: string; shortLabel: string; icon: React.ReactNode }[] = [
+  const tabs: {
+    id: TabId;
+    label: string;
+    shortLabel: string;
+    icon: React.ReactNode;
+  }[] = [
     {
       id: "briefing",
       label: "Briefing",
       shortLabel: "Info",
       icon: (
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+        />
       ),
     },
     {
@@ -102,8 +140,18 @@ const FieldManual: React.FC<FieldManualProps> = ({ isOpen, onClose, inline = fal
       shortLabel: "Sys",
       icon: (
         <>
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+          />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+          />
         </>
       ),
     },
@@ -112,27 +160,51 @@ const FieldManual: React.FC<FieldManualProps> = ({ isOpen, onClose, inline = fal
       label: "Controls",
       shortLabel: "Keys",
       icon: (
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a1 1 0 011-1h12a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V5zm7 1a1 1 0 011 1v7a1 1 0 01-1 1h-2a1 1 0 01-1-1V7a1 1 0 011-1h2z" />
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M3 5a1 1 0 011-1h12a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V5zm7 1a1 1 0 011 1v7a1 1 0 01-1 1h-2a1 1 0 01-1-1V7a1 1 0 011-1h2z"
+        />
       ),
     },
     {
       id: "tactics",
       label: "Comms",
       shortLabel: "Comms",
-      icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />,
+      icon: (
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"
+        />
+      ),
     },
     {
       id: "developer",
       label: "Dev Log",
       shortLabel: "Dev",
-      icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />,
+      icon: (
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+        />
+      ),
     },
     {
       id: "intel",
       label: "Resources",
       shortLabel: "Links",
       icon: (
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+        />
       ),
     },
     {
@@ -140,7 +212,12 @@ const FieldManual: React.FC<FieldManualProps> = ({ isOpen, onClose, inline = fal
       label: "Legal",
       shortLabel: "Law",
       icon: (
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"
+        />
       ),
     },
   ];
@@ -173,11 +250,13 @@ const FieldManual: React.FC<FieldManualProps> = ({ isOpen, onClose, inline = fal
             leaveTo="opacity-0 scale-95 translate-y-4 md:translate-y-0"
           >
             <Dialog.Panel className="w-full max-w-6xl h-[100dvh] md:h-[85vh] bg-app-frame md:rounded-2xl border-0 md:border border-app-border shadow-2xl flex flex-col md:flex-row overflow-hidden transform transition-all">
-              
               {/* --- DESKTOP/TABLET SIDEBAR --- */}
               <div className="hidden md:flex w-64 bg-app-surface border-r border-app-border flex-col shrink-0">
                 <div className="p-6 border-b border-app-border shrink-0">
-                  <Dialog.Title as="h2" className="text-xl font-bold text-app-primary tracking-widest">
+                  <Dialog.Title
+                    as="h2"
+                    className="text-xl font-bold text-app-primary tracking-widest"
+                  >
                     FIELD MANUAL
                   </Dialog.Title>
                   <p className="text-xs text-app-tertiary font-mono font-bold mt-1 tracking-wider">
@@ -225,7 +304,10 @@ const FieldManual: React.FC<FieldManualProps> = ({ isOpen, onClose, inline = fal
                 {/* Header Row */}
                 <div className="flex items-center justify-between p-4 border-b border-app-border/50">
                   <div className="flex flex-col">
-                    <Dialog.Title as="h2" className="text-base font-bold text-app-primary tracking-widest">
+                    <Dialog.Title
+                      as="h2"
+                      className="text-base font-bold text-app-primary tracking-widest"
+                    >
                       FIELD MANUAL
                     </Dialog.Title>
                     <p className="text-[10px] text-app-tertiary font-mono font-bold">
@@ -241,7 +323,10 @@ const FieldManual: React.FC<FieldManualProps> = ({ isOpen, onClose, inline = fal
                 </div>
 
                 {/* Horizontal Scrollable Tabs */}
-                <nav className="flex overflow-x-auto no-scrollbar py-2 px-2 gap-2" aria-label="Manual Sections">
+                <nav
+                  className="flex overflow-x-auto no-scrollbar py-2 px-2 gap-2"
+                  aria-label="Manual Sections"
+                >
                   {tabs.map((tab) => (
                     <button
                       key={tab.id}
@@ -261,7 +346,9 @@ const FieldManual: React.FC<FieldManualProps> = ({ isOpen, onClose, inline = fal
                       >
                         {tab.icon}
                       </svg>
-                      <span className="text-[10px] font-bold uppercase tracking-wider">{tab.shortLabel}</span>
+                      <span className="text-[10px] font-bold uppercase tracking-wider">
+                        {tab.shortLabel}
+                      </span>
                     </button>
                   ))}
                 </nav>
@@ -293,13 +380,33 @@ const FieldManual: React.FC<FieldManualProps> = ({ isOpen, onClose, inline = fal
                           >
                             <h4 className="font-bold text-app-primary mb-2 flex items-center gap-2 text-sm uppercase tracking-wide">
                               {feature.iconType === "device" && (
-                                <svg className="h-4 w-4 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                                <svg
+                                  className="h-4 w-4 text-blue-400"
+                                  fill="none"
+                                  viewBox="0 0 24 24"
+                                  stroke="currentColor"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"
+                                  />
                                 </svg>
                               )}
                               {feature.iconType === "lock" && (
-                                <svg className="h-4 w-4 text-app-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                <svg
+                                  className="h-4 w-4 text-app-brand"
+                                  fill="none"
+                                  viewBox="0 0 24 24"
+                                  stroke="currentColor"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                                  />
                                 </svg>
                               )}
                               {feature.title}
@@ -331,33 +438,38 @@ const FieldManual: React.FC<FieldManualProps> = ({ isOpen, onClose, inline = fal
                         </h3>
 
                         <div className="space-y-6">
-                          {content.systems.interface.sections.map((section, idx) => (
-                            <div
-                              key={idx}
-                              className="bg-app-canvas border border-app-border rounded-xl overflow-hidden shadow-sm"
-                            >
-                              <div className="px-4 py-3 bg-app-surface/80 border-b border-app-border font-bold text-app-primary text-xs uppercase tracking-wider flex items-center gap-2">
-                                <span className="flex-none w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center text-[10px]">
-                                  {idx + 1}
-                                </span>
-                                {section.title}
-                              </div>
-                              <div className="divide-y divide-app-border/50">
-                                {section.items.map((item, i) => (
-                                  <div key={i} className="p-4 flex flex-col sm:flex-row gap-2 sm:gap-4">
-                                    <span
-                                      className={`font-mono text-${item.color}-400 text-xs w-28 shrink-0 font-bold bg-${item.color}-500/10 px-2 py-1 rounded w-max sm:w-24 text-center h-fit`}
+                          {content.systems.interface.sections.map(
+                            (section, idx) => (
+                              <div
+                                key={idx}
+                                className="bg-app-canvas border border-app-border rounded-xl overflow-hidden shadow-sm"
+                              >
+                                <div className="px-4 py-3 bg-app-surface/80 border-b border-app-border font-bold text-app-primary text-xs uppercase tracking-wider flex items-center gap-2">
+                                  <span className="flex-none w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center text-[10px]">
+                                    {idx + 1}
+                                  </span>
+                                  {section.title}
+                                </div>
+                                <div className="divide-y divide-app-border/50">
+                                  {section.items.map((item, i) => (
+                                    <div
+                                      key={i}
+                                      className="p-4 flex flex-col sm:flex-row gap-2 sm:gap-4"
                                     >
-                                      {item.label}
-                                    </span>
-                                    <p className="text-app-secondary text-sm leading-relaxed flex-1 mt-1 sm:mt-0">
-                                      {renderText(item.text)}
-                                    </p>
-                                  </div>
-                                ))}
+                                      <span
+                                        className={`font-mono text-${item.color}-400 text-xs w-28 shrink-0 font-bold bg-${item.color}-500/10 px-2 py-1 rounded w-max sm:w-24 text-center h-fit`}
+                                      >
+                                        {item.label}
+                                      </span>
+                                      <p className="text-app-secondary text-sm leading-relaxed flex-1 mt-1 sm:mt-0">
+                                        {renderText(item.text)}
+                                      </p>
+                                    </div>
+                                  ))}
+                                </div>
                               </div>
-                            </div>
-                          ))}
+                            ),
+                          )}
                         </div>
                       </div>
 
@@ -371,7 +483,11 @@ const FieldManual: React.FC<FieldManualProps> = ({ isOpen, onClose, inline = fal
 
                         <div className="p-5 md:p-6 bg-emerald-500/5 border border-emerald-500/20 rounded-xl">
                           <h4 className="font-bold text-app-primary mb-3 flex items-center gap-2 text-sm uppercase tracking-wider">
-                            <svg className="h-5 w-5 text-emerald-500" fill="currentColor" viewBox="0 0 24 24">
+                            <svg
+                              className="h-5 w-5 text-emerald-500"
+                              fill="currentColor"
+                              viewBox="0 0 24 24"
+                            >
                               <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
                             </svg>
                             {content.systems.librarian.auth.title}
@@ -380,14 +496,18 @@ const FieldManual: React.FC<FieldManualProps> = ({ isOpen, onClose, inline = fal
                             {renderText(content.systems.librarian.auth.text)}
                           </p>
                           <div className="space-y-2 bg-app-surface/50 p-4 rounded-lg border border-app-border/50">
-                            {content.systems.librarian.auth.instructions.map((step, i) => (
-                              <div key={i} className="flex gap-3">
-                                <span className="text-emerald-500 font-mono text-xs">{i+1}.</span>
-                                <p className="text-xs md:text-sm text-app-primary font-mono leading-relaxed">
-                                  {step}
-                                </p>
-                              </div>
-                            ))}
+                            {content.systems.librarian.auth.instructions.map(
+                              (step, i) => (
+                                <div key={i} className="flex gap-3">
+                                  <span className="text-emerald-500 font-mono text-xs">
+                                    {i + 1}.
+                                  </span>
+                                  <p className="text-xs md:text-sm text-app-primary font-mono leading-relaxed">
+                                    {step}
+                                  </p>
+                                </div>
+                              ),
+                            )}
                           </div>
                         </div>
                       </div>
@@ -401,24 +521,50 @@ const FieldManual: React.FC<FieldManualProps> = ({ isOpen, onClose, inline = fal
                         {/* Nav */}
                         <div className="bg-app-canvas p-5 rounded-xl border border-app-border">
                           <h3 className="text-xs font-bold text-app-brand uppercase tracking-widest mb-4 flex items-center gap-2">
-                            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+                            <svg
+                              className="h-4 w-4"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
+                              />
+                            </svg>
                             {content.controls.navigation.title}
                           </h3>
                           <div className="space-y-1">
-                            {content.controls.navigation.items.map((item, idx) => (
-                              <ShortcutRow
-                                key={idx}
-                                keys={item.keys}
-                                description={item.description}
-                              />
-                            ))}
+                            {content.controls.navigation.items.map(
+                              (item, idx) => (
+                                <ShortcutRow
+                                  key={idx}
+                                  keys={item.keys}
+                                  description={item.description}
+                                />
+                              ),
+                            )}
                           </div>
                         </div>
 
                         {/* Editor */}
                         <div className="bg-app-canvas p-5 rounded-xl border border-app-border">
                           <h3 className="text-xs font-bold text-blue-500 uppercase tracking-widest mb-4 flex items-center gap-2">
-                            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
+                            <svg
+                              className="h-4 w-4"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                              />
+                            </svg>
                             {content.controls.editor.title}
                           </h3>
                           <div className="space-y-1">
@@ -435,7 +581,19 @@ const FieldManual: React.FC<FieldManualProps> = ({ isOpen, onClose, inline = fal
                         {/* System */}
                         <div className="bg-app-canvas p-5 rounded-xl border border-app-border md:col-span-2">
                           <h3 className="text-xs font-bold text-red-500 uppercase tracking-widest mb-4 flex items-center gap-2">
-                            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" /></svg>
+                            <svg
+                              className="h-4 w-4"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
+                              />
+                            </svg>
                             {content.controls.system.title}
                           </h3>
                           <div className="space-y-1 grid grid-cols-1 md:grid-cols-2 gap-x-8">
@@ -491,9 +649,21 @@ const FieldManual: React.FC<FieldManualProps> = ({ isOpen, onClose, inline = fal
                         <div className="space-y-4">
                           {content.tactics.errors.items.map((item, idx) => {
                             const styles = [
-                              { border: "border-l-orange-500", bg: "bg-orange-500/10", title: "text-orange-400" },
-                              { border: "border-l-blue-500", bg: "bg-blue-500/10", title: "text-blue-400" },
-                              { border: "border-l-pink-500", bg: "bg-pink-500/10", title: "text-pink-400" },
+                              {
+                                border: "border-l-orange-500",
+                                bg: "bg-orange-500/10",
+                                title: "text-orange-400",
+                              },
+                              {
+                                border: "border-l-blue-500",
+                                bg: "bg-blue-500/10",
+                                title: "text-blue-400",
+                              },
+                              {
+                                border: "border-l-pink-500",
+                                bg: "bg-pink-500/10",
+                                title: "text-pink-400",
+                              },
                             ];
                             const style = styles[idx % styles.length];
 
@@ -503,10 +673,14 @@ const FieldManual: React.FC<FieldManualProps> = ({ isOpen, onClose, inline = fal
                                 className={`p-5 bg-app-canvas border border-app-border rounded-xl border-l-4 ${style.border} shadow-sm`}
                               >
                                 <div className="flex items-center gap-3 mb-2">
-                                  <span className={`flex-none w-6 h-6 rounded-full ${style.bg} ${style.title} flex items-center justify-center font-bold text-xs border border-current/20`}>
+                                  <span
+                                    className={`flex-none w-6 h-6 rounded-full ${style.bg} ${style.title} flex items-center justify-center font-bold text-xs border border-current/20`}
+                                  >
                                     !
                                   </span>
-                                  <strong className={`${style.title} font-bold text-sm tracking-wide uppercase`}>
+                                  <strong
+                                    className={`${style.title} font-bold text-sm tracking-wide uppercase`}
+                                  >
                                     {item.label}
                                   </strong>
                                 </div>
@@ -526,7 +700,19 @@ const FieldManual: React.FC<FieldManualProps> = ({ isOpen, onClose, inline = fal
                     <div className="space-y-10 animate-fadeIn">
                       <div className="p-6 bg-app-canvas rounded-xl border border-app-border shadow-sm">
                         <h3 className="text-app-primary font-bold text-sm uppercase tracking-widest mb-3 flex items-center gap-2">
-                           <svg className="h-5 w-5 text-app-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                          <svg
+                            className="h-5 w-5 text-app-brand"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M13 10V3L4 14h7v7l9-11h-7z"
+                            />
+                          </svg>
                           {content.developer.intent.subtitle}
                         </h3>
                         <p className="text-app-secondary leading-relaxed text-sm md:text-base">
@@ -539,15 +725,19 @@ const FieldManual: React.FC<FieldManualProps> = ({ isOpen, onClose, inline = fal
                           {content.developer.inspiration.subtitle}
                         </h3>
                         <div className="relative p-6 md:p-8 bg-app-canvas border border-app-border rounded-xl text-app-secondary text-sm md:text-base leading-relaxed">
-                          <svg className="absolute top-4 left-4 h-8 w-8 text-app-border opacity-50" fill="currentColor" viewBox="0 0 24 24">
+                          <svg
+                            className="absolute top-4 left-4 h-8 w-8 text-app-border opacity-50"
+                            fill="currentColor"
+                            viewBox="0 0 24 24"
+                          >
                             <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
                           </svg>
                           <div className="pl-8 italic">
                             {renderText(content.developer.inspiration.text)}
                           </div>
                           <div className="mt-6 flex items-center gap-3 pl-8">
-                             <div className="h-px w-8 bg-app-brand"></div>
-                             <span className="text-xs font-bold tracking-widest uppercase text-app-primary">
+                            <div className="h-px w-8 bg-app-brand"></div>
+                            <span className="text-xs font-bold tracking-widest uppercase text-app-primary">
                               {content.developer.inspiration.author}
                             </span>
                           </div>
@@ -556,13 +746,28 @@ const FieldManual: React.FC<FieldManualProps> = ({ isOpen, onClose, inline = fal
 
                       <div className="p-6 bg-app-surface rounded-xl border border-app-border">
                         <h3 className="text-app-tertiary font-bold text-xs uppercase tracking-widest mb-4 flex items-center gap-2">
-                           <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
+                          <svg
+                            className="h-4 w-4"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+                            />
+                          </svg>
                           {content.developer.stack.subtitle}
                         </h3>
                         <div className="flex flex-wrap gap-2">
                           {content.developer.stack.items.map((item, idx) => (
-                            <span key={idx} className="px-3 py-1.5 bg-app-canvas border border-app-border rounded font-mono text-xs text-app-secondary">
-                                {item}
+                            <span
+                              key={idx}
+                              className="px-3 py-1.5 bg-app-canvas border border-app-border rounded font-mono text-xs text-app-secondary"
+                            >
+                              {item}
                             </span>
                           ))}
                         </div>
@@ -584,7 +789,12 @@ const FieldManual: React.FC<FieldManualProps> = ({ isOpen, onClose, inline = fal
                             url: string;
                             author: string;
                             description: string;
-                            type?: "github" | "youtube" | "discord" | "web" | "default";
+                            type?:
+                              | "github"
+                              | "youtube"
+                              | "discord"
+                              | "web"
+                              | "default";
                           }
                           const linkItem = link as LinkItem;
                           const type = linkItem.type || "default";
@@ -600,19 +810,39 @@ const FieldManual: React.FC<FieldManualProps> = ({ isOpen, onClose, inline = fal
                               <div className="flex items-start justify-between mb-3">
                                 <div>
                                   <h4 className="font-bold text-app-primary group-hover:text-orange-400 transition-colors flex items-center gap-2 text-sm">
-                                    {type === "github" && <GithubIcon className="h-4 w-4" />}
-                                    {type === "youtube" && <YoutubeIcon className="h-4 w-4 text-red-500" />}
-                                    {type === "discord" && <DiscordIcon className="h-4 w-4 text-[#5865F2]" />}
-                                    {type === "web" && <GlobeIcon className="h-4 w-4" />}
-                                    {type === "default" && <GlobeIcon className="h-4 w-4" />}
+                                    {type === "github" && (
+                                      <GithubIcon className="h-4 w-4" />
+                                    )}
+                                    {type === "youtube" && (
+                                      <YoutubeIcon className="h-4 w-4 text-red-500" />
+                                    )}
+                                    {type === "discord" && (
+                                      <DiscordIcon className="h-4 w-4 text-[#5865F2]" />
+                                    )}
+                                    {type === "web" && (
+                                      <GlobeIcon className="h-4 w-4" />
+                                    )}
+                                    {type === "default" && (
+                                      <GlobeIcon className="h-4 w-4" />
+                                    )}
                                     {link.title}
                                   </h4>
                                   <p className="text-[10px] font-bold tracking-wider text-app-tertiary uppercase mt-1">
                                     {link.author}
                                   </p>
                                 </div>
-                                <svg className="h-4 w-4 text-app-border group-hover:text-orange-400 transition-colors transform group-hover:-translate-y-1 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                <svg
+                                  className="h-4 w-4 text-app-border group-hover:text-orange-400 transition-colors transform group-hover:-translate-y-1 group-hover:translate-x-1"
+                                  fill="none"
+                                  viewBox="0 0 24 24"
+                                  stroke="currentColor"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                                  />
                                 </svg>
                               </div>
                               <p className="text-sm text-app-secondary leading-relaxed flex-1">
@@ -630,7 +860,19 @@ const FieldManual: React.FC<FieldManualProps> = ({ isOpen, onClose, inline = fal
                     <div className="space-y-10 animate-fadeIn">
                       <div className="p-6 bg-red-500/5 border border-red-500/20 rounded-xl">
                         <h3 className="text-red-500 font-bold text-xs uppercase tracking-widest mb-4 flex items-center gap-2">
-                          <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+                          <svg
+                            className="h-5 w-5"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                            />
+                          </svg>
                           {content.legal.sovereignty.subtitle}
                         </h3>
                         <div className="space-y-4">
@@ -679,7 +921,19 @@ const FieldManual: React.FC<FieldManualProps> = ({ isOpen, onClose, inline = fal
                       <div className="bg-app-canvas border border-app-border rounded-xl overflow-hidden">
                         <div className="p-4 bg-app-surface border-b border-app-border">
                           <h3 className="text-app-tertiary font-bold text-xs uppercase tracking-widest flex items-center gap-2">
-                             <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                            <svg
+                              className="h-4 w-4"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                              />
+                            </svg>
                             {content.legal.license.subtitle}
                           </h3>
                         </div>
@@ -696,7 +950,6 @@ const FieldManual: React.FC<FieldManualProps> = ({ isOpen, onClose, inline = fal
                       </div>
                     </div>
                   )}
-
                 </div>
               </div>
             </Dialog.Panel>

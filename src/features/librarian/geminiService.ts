@@ -106,17 +106,26 @@ const architectTools: Tool[] = [
  */
 export const validateApiKey = async (apiKey: string): Promise<boolean> => {
   const ai = new GoogleGenAI({ apiKey });
-  
+
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), 10000);
 
   try {
     // Correcting to use the established project pattern
-    await (ai as unknown as { models: { generateContent: (args: unknown, opts: unknown) => Promise<unknown> } }).models.generateContent({
-      model: DEFAULT_MODEL_ID,
-      contents: { parts: [{ text: "ping" }] },
-    }, { signal: controller.signal });
-    
+    await (
+      ai as unknown as {
+        models: {
+          generateContent: (args: unknown, opts: unknown) => Promise<unknown>;
+        };
+      }
+    ).models.generateContent(
+      {
+        model: DEFAULT_MODEL_ID,
+        contents: { parts: [{ text: "ping" }] },
+      },
+      { signal: controller.signal },
+    );
+
     clearTimeout(timeoutId);
     return true;
   } catch (error: unknown) {
@@ -181,7 +190,7 @@ ${envStatus}`;
 export async function* sendMessageStream(
   chatSession: Chat | null,
   message: string | Part[],
-  githubToken?: string, 
+  githubToken?: string,
 ): AsyncGenerator<GenerateContentResponse, void, unknown> {
   if (!chatSession) throw new Error("CHAT_NOT_INITIALIZED");
 
@@ -290,7 +299,12 @@ export async function* sendMessageStream(
               "SYSTEM ALERT: You have already fetched this module. Do not fetch it again. Use the data previously provided.";
           } else {
             toolCallHistory.add(fingerprint);
-            result = await getFrameworkDocs(framework, module_name, branch, githubToken);
+            result = await getFrameworkDocs(
+              framework,
+              module_name,
+              branch,
+              githubToken,
+            );
           }
         }
         // HANDLER: SSE Hard Deck
@@ -306,8 +320,14 @@ export async function* sendMessageStream(
             toolCallHistory.add(fingerprint);
             if (category === "All") {
               result = JSON.stringify(SSE_DEFINITIONS, null, 2);
-            } else if (SSE_DEFINITIONS[category as keyof typeof SSE_DEFINITIONS]) {
-              result = JSON.stringify(SSE_DEFINITIONS[category as keyof typeof SSE_DEFINITIONS], null, 2);
+            } else if (
+              SSE_DEFINITIONS[category as keyof typeof SSE_DEFINITIONS]
+            ) {
+              result = JSON.stringify(
+                SSE_DEFINITIONS[category as keyof typeof SSE_DEFINITIONS],
+                null,
+                2,
+              );
             } else {
               result =
                 "ERROR: Category not found in Hard Deck. Available: Group, Unit, timer, trigger, coalition.";

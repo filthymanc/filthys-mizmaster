@@ -61,9 +61,9 @@ const App: React.FC = () => {
     };
 
     if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
-        window.visualViewport?.addEventListener("resize", updateHeight);
-        window.addEventListener("resize", updateHeight);
-        updateHeight();
+      window.visualViewport?.addEventListener("resize", updateHeight);
+      window.addEventListener("resize", updateHeight);
+      updateHeight();
     }
 
     return () => {
@@ -89,13 +89,13 @@ const App: React.FC = () => {
 
   useSwipeGesture({
     onSwipeRight: () => {
-        if (!isSidebarOpen && isAuthenticated) setIsSidebarOpen(true);
+      if (!isSidebarOpen && isAuthenticated) setIsSidebarOpen(true);
     },
     onSwipeLeft: () => {
-        if (isSidebarOpen) setIsSidebarOpen(false);
+      if (isSidebarOpen) setIsSidebarOpen(false);
     },
     edgeThreshold: 50,
-    swipeThreshold: 80
+    swipeThreshold: 80,
   });
 
   useEffect(() => {
@@ -113,36 +113,36 @@ const App: React.FC = () => {
   };
 
   const handleExportData = useCallback(async () => {
-      const data = await sessionManager.exportData();
-      const blob = new Blob([JSON.stringify(data, null, 2)], {
-        type: "application/json",
-      });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `filthys-mizmaster-backup-${new Date().toISOString().slice(0, 10)}.json`;
-      a.click();
-      URL.revokeObjectURL(url);
+    const data = await sessionManager.exportData();
+    const blob = new Blob([JSON.stringify(data, null, 2)], {
+      type: "application/json",
+    });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `filthys-mizmaster-backup-${new Date().toISOString().slice(0, 10)}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
   }, [sessionManager]);
 
   const handleImportDataTrigger = useCallback(() => {
-     const input = document.createElement("input");
-     input.type = "file";
-     input.accept = ".json";
-     input.onchange = async (e) => {
-         const file = (e.target as HTMLInputElement).files?.[0];
-         if (!file) return;
-         try {
-             const text = await file.text();
-             const data = JSON.parse(text);
-             if (data.sessions) {
-                 sessionManager.importData(data.sessions);
-             }
-         } catch (err) {
-             console.error("Import failed", err);
-         }
-     };
-     input.click();
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = ".json";
+    input.onchange = async (e) => {
+      const file = (e.target as HTMLInputElement).files?.[0];
+      if (!file) return;
+      try {
+        const text = await file.text();
+        const data = JSON.parse(text);
+        if (data.sessions) {
+          sessionManager.importData(data.sessions);
+        }
+      } catch (err) {
+        console.error("Import failed", err);
+      }
+    };
+    input.click();
   }, [sessionManager]);
 
   if (!isAuthenticated) {
@@ -155,7 +155,10 @@ const App: React.FC = () => {
           onOpenFieldManual={() => setIsManualOpen(true)}
         />
         {isManualOpen && (
-          <FieldManual isOpen={isManualOpen} onClose={() => setIsManualOpen(false)} />
+          <FieldManual
+            isOpen={isManualOpen}
+            onClose={() => setIsManualOpen(false)}
+          />
         )}
       </>
     );
@@ -163,17 +166,30 @@ const App: React.FC = () => {
 
   return (
     <ErrorBoundary scope="app">
-      <div 
-          className="flex bg-app-canvas text-app-primary overflow-hidden font-sans selection:bg-app-brand selection:text-white"
-          style={{ height: appHeight }}
+      <div
+        className="flex bg-app-canvas text-app-primary overflow-hidden font-sans selection:bg-app-brand selection:text-white"
+        style={{ height: appHeight }}
       >
         <ToastContainer />
 
-        {isManualOpen && <FieldManual isOpen={isManualOpen} onClose={() => setIsManualOpen(false)} />}
-        {isArmoryOpen && <ArmoryModal isOpen={isArmoryOpen} onClose={() => setIsArmoryOpen(false)} />}
+        {isManualOpen && (
+          <FieldManual
+            isOpen={isManualOpen}
+            onClose={() => setIsManualOpen(false)}
+          />
+        )}
+        {isArmoryOpen && (
+          <ArmoryModal
+            isOpen={isArmoryOpen}
+            onClose={() => setIsArmoryOpen(false)}
+          />
+        )}
 
         {isOnboardingOpen && (
-          <OnboardingModal isOpen={isOnboardingOpen} onComplete={handleCloseOnboarding} />
+          <OnboardingModal
+            isOpen={isOnboardingOpen}
+            onComplete={handleCloseOnboarding}
+          />
         )}
 
         <SettingsModal
@@ -189,7 +205,7 @@ const App: React.FC = () => {
           activeSessionId={sessionManager.activeSessionId}
           onSelectSession={(id) => {
             sessionManager.setActiveSessionId(id);
-            setIsSidebarOpen(false); 
+            setIsSidebarOpen(false);
           }}
           onCreateSession={() => {
             const id = sessionManager.createSession();
@@ -198,8 +214,8 @@ const App: React.FC = () => {
           }}
           onDeleteSession={sessionManager.deleteSession}
           onRenameSession={sessionManager.renameSession}
-          isOpen={isSidebarOpen} 
-          onClose={() => setIsSidebarOpen(false)} 
+          isOpen={isSidebarOpen}
+          onClose={() => setIsSidebarOpen(false)}
           onOpenSettings={() => setIsSettingsOpen(true)}
           onOpenFieldManual={() => setIsManualOpen(true)}
           onOpenArmory={() => setIsArmoryOpen(true)}
@@ -221,8 +237,8 @@ const App: React.FC = () => {
             touchSession={sessionManager.touchSession}
             onOpenSidebar={() => setIsSidebarOpen(true)}
             onDeleteSession={(id) => {
-               sessionManager.deleteSession(id);
-               // If the active session is deleted, sessionManager automatically handles setting a new active session
+              sessionManager.deleteSession(id);
+              // If the active session is deleted, sessionManager automatically handles setting a new active session
             }}
           />
         </main>

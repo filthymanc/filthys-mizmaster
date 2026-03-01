@@ -43,9 +43,9 @@ export const useSessionData = (targetSessionId: string | null) => {
         let data = await storage.loadSessionMessages(targetSessionId);
         if (active) {
           // Ensure Date objects for timestamps
-          data = data.map(m => ({
-              ...m,
-              timestamp: safeDate(m.timestamp)
+          data = data.map((m) => ({
+            ...m,
+            timestamp: safeDate(m.timestamp),
           }));
           setMessages(data);
           setLoadedSessionId(targetSessionId);

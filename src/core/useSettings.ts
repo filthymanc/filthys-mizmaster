@@ -10,7 +10,10 @@
  */
 
 import { useContext } from "react";
-import { SettingsContext, SettingsContextType } from "./SettingsContextDefinition";
+import {
+  SettingsContext,
+  SettingsContextType,
+} from "./SettingsContextDefinition";
 
 export const useSettings = (): SettingsContextType => {
   const context = useContext(SettingsContext);

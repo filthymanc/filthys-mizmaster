@@ -21,30 +21,82 @@ export interface LibrarianSuggestion {
 // Eventually this could be populated from the IDB Cache analysis
 const KNOWLEDGE_BASE: LibrarianSuggestion[] = [
   // MOOSE Core
-  { label: "SPAWN", description: "Dynamic Spawning Engine", framework: "MOOSE" },
-  { label: "ZONE", description: "Zone Management & Polymorphism", framework: "MOOSE" },
-  { label: "GROUP", description: "Group Wrapper & Manipulation", framework: "MOOSE" },
-  { label: "UNIT", description: "Unit Wrapper & Manipulation", framework: "MOOSE" },
-  { label: "COORDINATE", description: "3D Space & Navigation", framework: "MOOSE" },
-  { label: "SCHEDULER", description: "Time-based Execution", framework: "MOOSE" },
-  
+  {
+    label: "SPAWN",
+    description: "Dynamic Spawning Engine",
+    framework: "MOOSE",
+  },
+  {
+    label: "ZONE",
+    description: "Zone Management & Polymorphism",
+    framework: "MOOSE",
+  },
+  {
+    label: "GROUP",
+    description: "Group Wrapper & Manipulation",
+    framework: "MOOSE",
+  },
+  {
+    label: "UNIT",
+    description: "Unit Wrapper & Manipulation",
+    framework: "MOOSE",
+  },
+  {
+    label: "COORDINATE",
+    description: "3D Space & Navigation",
+    framework: "MOOSE",
+  },
+  {
+    label: "SCHEDULER",
+    description: "Time-based Execution",
+    framework: "MOOSE",
+  },
+
   // MOOSE Functional
-  { label: "AIRBOSS", description: "Carrier Air Wing Operations", framework: "MOOSE" },
+  {
+    label: "AIRBOSS",
+    description: "Carrier Air Wing Operations",
+    framework: "MOOSE",
+  },
   { label: "RAT", description: "Random Air Traffic", framework: "MOOSE" },
-  { label: "WAREHOUSE", description: "Logistics & Supply Chain", framework: "MOOSE" },
+  {
+    label: "WAREHOUSE",
+    description: "Logistics & Supply Chain",
+    framework: "MOOSE",
+  },
   { label: "RESCUEHELO", description: "CSAR Operations", framework: "MOOSE" },
-  { label: "MISSILETRAINER", description: "Evasion Training", framework: "MOOSE" },
-  { label: "DESIGNATE", description: "Laser/Smoke Designation", framework: "MOOSE" },
-  
+  {
+    label: "MISSILETRAINER",
+    description: "Evasion Training",
+    framework: "MOOSE",
+  },
+  {
+    label: "DESIGNATE",
+    description: "Laser/Smoke Designation",
+    framework: "MOOSE",
+  },
+
   // DML Modules
   { label: "cfxZones", description: "Zone Logic & Triggers", framework: "DML" },
   { label: "cfxMX", description: "Mission Data Access", framework: "DML" },
   { label: "pulse", description: "Heartbeat & Timing", framework: "DML" },
-  
+
   // DCS World API (Common)
-  { label: "trigger.action", description: "Mission Editor Actions", framework: "DCS" },
-  { label: "env.mission", description: "Mission Environment Data", framework: "DCS" },
-  { label: "timer.scheduleFunction", description: "Low-level Scheduling", framework: "DCS" },
+  {
+    label: "trigger.action",
+    description: "Mission Editor Actions",
+    framework: "DCS",
+  },
+  {
+    label: "env.mission",
+    description: "Mission Environment Data",
+    framework: "DCS",
+  },
+  {
+    label: "timer.scheduleFunction",
+    description: "Low-level Scheduling",
+    framework: "DCS",
+  },
 ];
 
 export const useLibrarian = (input: string) => {
@@ -69,15 +121,14 @@ export const useLibrarian = (input: string) => {
     }
 
     const lowerLast = lastWord.toLowerCase();
-    
+
     // Fuzzy match against Knowledge Base
-    const matches = KNOWLEDGE_BASE.filter(item => 
-      item.label.toLowerCase().includes(lowerLast)
+    const matches = KNOWLEDGE_BASE.filter((item) =>
+      item.label.toLowerCase().includes(lowerLast),
     ).slice(0, 3); // Limit to top 3
 
     setSuggestions(matches);
     setIsVisible(matches.length > 0);
-
   }, [input]);
 
   return { suggestions, isVisible };

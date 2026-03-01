@@ -55,15 +55,15 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
   // Real-Time Syntax Validation Logic
   const validation = useMemo(() => {
     if (language !== "lua") return { safe: true, message: "" };
-    
+
     const result = validateLuaSyntax(codeText);
 
     if (result.isValid) {
       return { safe: true, message: "DCS COMPLIANT" };
     } else {
-      return { 
-        safe: false, 
-        message: result.error || "SYNTAX ERROR" 
+      return {
+        safe: false,
+        message: result.error || "SYNTAX ERROR",
       };
     }
   }, [codeText, language]);
@@ -147,7 +147,9 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
             >
               <div
                 className={`w-1.5 h-1.5 rounded-full ${
-                  validation.safe ? "bg-emerald-500 animate-pulse" : "bg-red-500"
+                  validation.safe
+                    ? "bg-emerald-500 animate-pulse"
+                    : "bg-red-500"
                 }`}
               />
               {validation.message}
@@ -305,7 +307,9 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
       </div>
 
       {/* Code Body */}
-      <div className={`overflow-auto custom-scrollbar ${isModal ? "flex-1" : "max-h-[500px]"}`}>
+      <div
+        className={`overflow-auto custom-scrollbar ${isModal ? "flex-1" : "max-h-[500px]"}`}
+      >
         <SyntaxHighlighter
           code={codeText}
           language={language}
@@ -317,32 +321,34 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
       {/* Save Modal (Internal) */}
       {showSaveDialog && (
         <div className="absolute inset-0 z-[110] bg-app-overlay/90 backdrop-blur-sm flex items-center justify-center p-4 animate-fadeIn">
-            <div className="w-full max-w-sm bg-app-frame border border-app-border rounded-xl shadow-2xl p-4 space-y-4 animate-scaleIn">
-                <h3 className="text-sm font-bold text-app-primary uppercase tracking-wider">Save to Armory</h3>
-                <input 
-                    type="text" 
-                    value={saveTitle}
-                    onChange={(e) => setSaveTitle(e.target.value)}
-                    placeholder="Snippet Name..."
-                    className="w-full bg-app-surface border border-app-border rounded px-3 py-2 text-sm text-app-primary focus:outline-none focus:border-app-brand"
-                    autoFocus
-                />
-                <div className="flex gap-2 justify-end">
-                    <button 
-                        onClick={() => setShowSaveDialog(false)}
-                        className="px-3 py-1.5 text-xs font-bold text-app-tertiary hover:text-app-primary transition-colors"
-                    >
-                        CANCEL
-                    </button>
-                    <button 
-                        onClick={confirmSave}
-                        disabled={!saveTitle.trim()}
-                        className="px-3 py-1.5 bg-app-brand text-white text-xs font-bold rounded hover:bg-opacity-90 transition-colors disabled:opacity-50"
-                    >
-                        CONFIRM SAVE
-                    </button>
-                </div>
+          <div className="w-full max-w-sm bg-app-frame border border-app-border rounded-xl shadow-2xl p-4 space-y-4 animate-scaleIn">
+            <h3 className="text-sm font-bold text-app-primary uppercase tracking-wider">
+              Save to Armory
+            </h3>
+            <input
+              type="text"
+              value={saveTitle}
+              onChange={(e) => setSaveTitle(e.target.value)}
+              placeholder="Snippet Name..."
+              className="w-full bg-app-surface border border-app-border rounded px-3 py-2 text-sm text-app-primary focus:outline-none focus:border-app-brand"
+              autoFocus
+            />
+            <div className="flex gap-2 justify-end">
+              <button
+                onClick={() => setShowSaveDialog(false)}
+                className="px-3 py-1.5 text-xs font-bold text-app-tertiary hover:text-app-primary transition-colors"
+              >
+                CANCEL
+              </button>
+              <button
+                onClick={confirmSave}
+                disabled={!saveTitle.trim()}
+                className="px-3 py-1.5 bg-app-brand text-white text-xs font-bold rounded hover:bg-opacity-90 transition-colors disabled:opacity-50"
+              >
+                CONFIRM SAVE
+              </button>
             </div>
+          </div>
         </div>
       )}
     </div>

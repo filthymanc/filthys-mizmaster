@@ -14,7 +14,6 @@ import { APP_VERSION, APP_NAME, AUTHOR_CREDIT } from "../../../core/version";
 import {
   SpinnerIcon,
   BookIcon,
-
   AlertIcon,
   ShieldIcon,
 } from "../../../shared/ui/Icons";
@@ -173,14 +172,14 @@ const LoginScreen: React.FC<LoginScreenProps> = ({
 
           {/* Security Briefing Trigger */}
           <div className="mt-4 flex justify-center">
-             <button
-                type="button"
-                onClick={() => setIsBriefingOpen(true)}
-                className="text-xs text-app-tertiary hover:text-app-secondary flex items-center gap-1 transition-colors"
-             >
-                <ShieldIcon className="h-4 w-4 text-green-500/70" />
-                Why do we need a key? Read the Security Briefing.
-             </button>
+            <button
+              type="button"
+              onClick={() => setIsBriefingOpen(true)}
+              className="text-xs text-app-tertiary hover:text-app-secondary flex items-center gap-1 transition-colors"
+            >
+              <ShieldIcon className="h-4 w-4 text-green-500/70" />
+              Why do we need a key? Read the Security Briefing.
+            </button>
           </div>
 
           <div className="mt-6 pt-6 border-t border-app-border text-center">
@@ -202,9 +201,9 @@ const LoginScreen: React.FC<LoginScreenProps> = ({
         </div>
       </div>
 
-      <SecurityBriefingModal 
-         isOpen={isBriefingOpen} 
-         onClose={() => setIsBriefingOpen(false)} 
+      <SecurityBriefingModal
+        isOpen={isBriefingOpen}
+        onClose={() => setIsBriefingOpen(false)}
       />
     </>
   );

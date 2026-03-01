@@ -15,9 +15,9 @@ If you distribute a modified version of this software, you **must rename it** (e
 
 ## Third-Party Trademarks
 
--   **DCS World**: DCS World is a trademark of Eagle Dynamics SA. This project is a community-created tool and is not endorsed by, affiliated with, or supported by Eagle Dynamics.
--   **MOOSE**: The Mission Object Oriented Scripting Environment is the intellectual property of FlightControl-Master.
--   **DML**: The Dynamic Mission Library is the intellectual property of csofranz.
+- **DCS World**: DCS World is a trademark of Eagle Dynamics SA. This project is a community-created tool and is not endorsed by, affiliated with, or supported by Eagle Dynamics.
+- **MOOSE**: The Mission Object Oriented Scripting Environment is the intellectual property of FlightControl-Master.
+- **DML**: The Dynamic Mission Library is the intellectual property of csofranz.
 
 ## Asset Usage
 

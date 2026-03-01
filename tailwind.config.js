@@ -43,8 +43,8 @@ export default {
         },
       },
       screens: {
-        'touch-device': {'raw': '(hover: none) and (pointer: coarse)'},
-      }
+        "touch-device": { raw: "(hover: none) and (pointer: coarse)" },
+      },
     },
   },
   plugins: [],

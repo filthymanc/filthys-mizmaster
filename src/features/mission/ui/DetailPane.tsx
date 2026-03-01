@@ -12,7 +12,7 @@ const DetailPane: React.FC<DetailPaneProps> = ({ isOpen, onClose }) => {
   return (
     <div className="hidden lg:flex flex-col relative w-[60%] shrink-0 border-l border-app-border bg-app-canvas z-10 h-full">
       <div className="absolute inset-0">
-          <FieldManual isOpen={isOpen} onClose={onClose} inline={true} />
+        <FieldManual isOpen={isOpen} onClose={onClose} inline={true} />
       </div>
     </div>
   );

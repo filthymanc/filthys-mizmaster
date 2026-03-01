@@ -24,7 +24,7 @@ export const estimateTokenCount = (text: string): number => {
 
 export const getMessageTokenCount = (message: Message): number => {
   // We count the text content plus a small overhead for role/metadata
-  return estimateTokenCount(message.text) + 5; 
+  return estimateTokenCount(message.text) + 5;
 };
 
 /**
@@ -35,7 +35,7 @@ export const getMessageTokenCount = (message: Message): number => {
 export const pruneHistoryByTokens = (messages: Message[]): Message[] => {
   // 1. Filter out ephemeral streaming messages
   const stableMessages = messages.filter((m) => !m.isStreaming);
-  
+
   if (stableMessages.length === 0) return [];
 
   const maxTokens = CONTEXT_LIMITS.MAX_TOKENS || 30000;
@@ -64,14 +64,18 @@ export const pruneHistoryByTokens = (messages: Message[]): Message[] => {
 
     // Check Budget
     if (currentTokens + tokens > maxTokens) {
-      console.log(`[TokenService] Pruning message ${msg.id} (Tokens: ${tokens}). Budget Exceeded.`);
-      break; 
+      console.log(
+        `[TokenService] Pruning message ${msg.id} (Tokens: ${tokens}). Budget Exceeded.`,
+      );
+      break;
     }
 
     // Check Count Limit
     if (keptMessages.length >= maxMessages - (protectedMsg ? 1 : 0)) {
-        console.log(`[TokenService] Pruning message ${msg.id}. Message Count Limit Exceeded.`);
-        break;
+      console.log(
+        `[TokenService] Pruning message ${msg.id}. Message Count Limit Exceeded.`,
+      );
+      break;
     }
 
     currentTokens += tokens;
@@ -82,6 +86,6 @@ export const pruneHistoryByTokens = (messages: Message[]): Message[] => {
   if (protectedMsg) {
     return [protectedMsg, ...keptMessages];
   }
-  
+
   return keptMessages;
 };

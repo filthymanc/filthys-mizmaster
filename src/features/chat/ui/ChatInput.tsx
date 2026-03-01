@@ -11,7 +11,10 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import { SendIcon } from "../../../shared/ui/Icons";
-import { useLibrarian, LibrarianSuggestion } from "../../librarian/useLibrarian";
+import {
+  useLibrarian,
+  LibrarianSuggestion,
+} from "../../librarian/useLibrarian";
 
 interface ChatInputProps {
   onSend: (message: string) => void;
@@ -60,7 +63,10 @@ const ChatInput: React.FC<ChatInputProps> = ({
     const words = input.split(/[\s\n]+/);
     const lastWord = words.pop() || "";
     // We replace the partially typed word with the full suggestion
-    const newInput = input.substring(0, input.length - lastWord.length) + suggestion.label + " ";
+    const newInput =
+      input.substring(0, input.length - lastWord.length) +
+      suggestion.label +
+      " ";
     setInput(newInput);
     if (textareaRef.current) textareaRef.current.focus();
   };
@@ -70,14 +76,13 @@ const ChatInput: React.FC<ChatInputProps> = ({
     setTimeout(() => {
       window.scrollTo({
         top: document.body.scrollHeight,
-        behavior: 'smooth'
+        behavior: "smooth",
       });
     }, 300);
   };
 
   return (
     <div className="max-w-4xl mx-auto relative px-2 sm:px-0">
-      
       {/* Librarian Intelligence Overlay */}
       {isVisible && !isGenerating && (
         <div className="absolute bottom-full left-0 mb-2 ml-4 flex flex-col gap-1 z-10 animate-scaleIn origin-bottom-left">
@@ -90,11 +95,18 @@ const ChatInput: React.FC<ChatInputProps> = ({
               onClick={() => handleSuggestionClick(s)}
               className="group flex items-center gap-3 bg-app-frame border border-app-border hover:border-app-brand px-3 py-2 rounded-lg shadow-lg hover:bg-app-surface transition-all text-left max-w-xs"
             >
-              <div className={`
+              <div
+                className={`
                 w-1.5 h-8 rounded-full shrink-0
-                ${s.framework === 'MOOSE' ? 'bg-indigo-500' : 
-                  s.framework === 'DML' ? 'bg-amber-500' : 'bg-emerald-500'}
-              `} />
+                ${
+                  s.framework === "MOOSE"
+                    ? "bg-indigo-500"
+                    : s.framework === "DML"
+                      ? "bg-amber-500"
+                      : "bg-emerald-500"
+                }
+              `}
+              />
               <div>
                 <div className="font-mono text-xs font-bold text-app-primary group-hover:text-app-brand transition-colors">
                   {s.label}
@@ -113,17 +125,18 @@ const ChatInput: React.FC<ChatInputProps> = ({
         </div>
       )}
 
-      <div 
+      <div
         className={`
             relative w-full bg-app-surface border rounded-2xl shadow-2xl transition-all duration-500 overflow-hidden
-            ${isDesanitized 
-                ? "border-red-500/50 ring-1 ring-red-500/20 shadow-red-900/10" 
+            ${
+              isDesanitized
+                ? "border-red-500/50 ring-1 ring-red-500/20 shadow-red-900/10"
                 : "border-app-border focus-within:ring-1 focus-within:ring-app-brand focus-within:border-app-brand shadow-black/40"
             }
         `}
       >
         {isDesanitized && (
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-red-500/50 to-transparent animate-pulse" />
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-red-500/50 to-transparent animate-pulse" />
         )}
 
         <textarea
@@ -134,7 +147,11 @@ const ChatInput: React.FC<ChatInputProps> = ({
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyDown}
           onFocus={handleFocus}
-          placeholder={isDesanitized ? "UNSAFE MODE ACTIVE: Instruct with caution..." : placeholder}
+          placeholder={
+            isDesanitized
+              ? "UNSAFE MODE ACTIVE: Instruct with caution..."
+              : placeholder
+          }
           disabled={isGenerating}
           className="w-full bg-transparent border-none focus:ring-0 focus:outline-none resize-none pl-5 pr-16 py-4 lg:pr-14 lg:py-4 text-base lg:text-sm custom-scrollbar disabled:opacity-50 disabled:cursor-not-allowed overflow-y-auto"
           rows={1}
@@ -156,9 +173,11 @@ const ChatInput: React.FC<ChatInputProps> = ({
               disabled={!input.trim()}
               className={`
                 p-3 lg:p-2.5 rounded-xl transition-all shadow-lg active:scale-[0.95]
-                ${input.trim() 
-                    ? "bg-app-brand text-white shadow-app-brand/20 hover:bg-opacity-90" 
-                    : "bg-app-highlight text-app-tertiary cursor-not-allowed shadow-none"}
+                ${
+                  input.trim()
+                    ? "bg-app-brand text-white shadow-app-brand/20 hover:bg-opacity-90"
+                    : "bg-app-highlight text-app-tertiary cursor-not-allowed shadow-none"
+                }
               `}
             >
               <SendIcon className="h-5 w-5 lg:h-4 lg:w-4" />

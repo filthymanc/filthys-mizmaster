@@ -56,7 +56,10 @@ const getDB = () => {
         if (oldVersion < 2 && !db.objectStoreNames.contains("snippets")) {
           db.createObjectStore("snippets", { keyPath: "id" });
         }
-        if (oldVersion < 3 && !db.objectStoreNames.contains("librarian_cache")) {
+        if (
+          oldVersion < 3 &&
+          !db.objectStoreNames.contains("librarian_cache")
+        ) {
           db.createObjectStore("librarian_cache", { keyPath: "url" });
         }
       },
@@ -107,7 +110,9 @@ export const saveSessionMessages = async (
   await db.put("messages", { sessionId, messages });
 };
 
-export const deleteSessionMessages = async (sessionId: string): Promise<void> => {
+export const deleteSessionMessages = async (
+  sessionId: string,
+): Promise<void> => {
   const db = await getDB();
   await db.delete("messages", sessionId);
 };

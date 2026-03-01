@@ -11,7 +11,12 @@
 
 import React, { useRef, useEffect, useState } from "react";
 import { Session } from "../../../core/types";
-import { PencilIcon, TrashIcon, CheckIcon, XIcon } from "../../../shared/ui/Icons";
+import {
+  PencilIcon,
+  TrashIcon,
+  CheckIcon,
+  XIcon,
+} from "../../../shared/ui/Icons";
 import { safeDate } from "../../../shared/utils/dateUtils";
 
 interface SidebarSessionItemProps {

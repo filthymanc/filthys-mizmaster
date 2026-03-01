@@ -17,7 +17,11 @@ import Dashboard from "./Dashboard";
 import ChatInput from "../../chat/ui/ChatInput";
 import ChatMessage from "../../chat/ui/ChatMessage";
 import ErrorBoundary from "../../../shared/ui/ErrorBoundary";
-import { TrashIcon, MenuIcon, EllipsisVerticalIcon } from "../../../shared/ui/Icons";
+import {
+  TrashIcon,
+  MenuIcon,
+  EllipsisVerticalIcon,
+} from "../../../shared/ui/Icons";
 import { AVAILABLE_MODELS } from "../../../core/constants";
 import { APP_VERSION } from "../../../core/version";
 import { Menu, Transition } from "@headlessui/react";
@@ -77,10 +81,14 @@ const MissionWorkspace: React.FC<MissionWorkspaceProps> = ({
   // Auto-scroll when generating
   useEffect(() => {
     if (isGenerating && virtuosoRef.current) {
-        // Use a small timeout to allow DOM to update height
-        setTimeout(() => {
-            virtuosoRef.current?.scrollToIndex({ index: messages.length - 1, align: "end", behavior: "smooth" });
-        }, 100);
+      // Use a small timeout to allow DOM to update height
+      setTimeout(() => {
+        virtuosoRef.current?.scrollToIndex({
+          index: messages.length - 1,
+          align: "end",
+          behavior: "smooth",
+        });
+      }, 100);
     }
   }, [messages, isGenerating]);
 
@@ -88,15 +96,20 @@ const MissionWorkspace: React.FC<MissionWorkspaceProps> = ({
     sendMessage(text);
     // Immediate scroll to bottom
     setTimeout(() => {
-        virtuosoRef.current?.scrollToIndex({ index: messages.length, align: "end", behavior: "smooth" });
+      virtuosoRef.current?.scrollToIndex({
+        index: messages.length,
+        align: "end",
+        behavior: "smooth",
+      });
     }, 50);
   };
 
-  const isInitialState = 
-    messages.length === 0 || 
+  const isInitialState =
+    messages.length === 0 ||
     (messages.length === 1 && messages[0].role === "model" && !isLoadingData);
 
-  const currentSessionName = sessions.find((s) => s.id === activeSessionId)?.name || "MizMaster";
+  const currentSessionName =
+    sessions.find((s) => s.id === activeSessionId)?.name || "MizMaster";
 
   return (
     <div className="flex-1 flex flex-col min-w-0 relative h-full bg-app-canvas">
@@ -122,10 +135,14 @@ const MissionWorkspace: React.FC<MissionWorkspaceProps> = ({
                     : "text-app-brand"
                 }
               >
-                {(chatApiStatus === "idle" ? "READY" : chatApiStatus.toUpperCase())}
+                {chatApiStatus === "idle"
+                  ? "READY"
+                  : chatApiStatus.toUpperCase()}
               </span>
               {isGenerating && (
-                <span className="text-app-tertiary animate-pulse">| PROCESSING</span>
+                <span className="text-app-tertiary animate-pulse">
+                  | PROCESSING
+                </span>
               )}
             </div>
           </div>
@@ -135,7 +152,7 @@ const MissionWorkspace: React.FC<MissionWorkspaceProps> = ({
           {/* Mission Actions Menu */}
           <Menu as="div" className="relative inline-block text-left">
             <div>
-              <Menu.Button 
+              <Menu.Button
                 disabled={isGenerating}
                 className="p-2 text-app-tertiary hover:text-app-primary focus:outline-none focus:ring-2 focus:ring-app-brand rounded-full disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                 aria-label="Mission Actions"
@@ -159,7 +176,9 @@ const MissionWorkspace: React.FC<MissionWorkspaceProps> = ({
                       <button
                         onClick={() => clearMessages()}
                         className={`${
-                          active ? "bg-app-highlight text-app-primary" : "text-app-secondary"
+                          active
+                            ? "bg-app-highlight text-app-primary"
+                            : "text-app-secondary"
                         } group flex w-full items-center px-4 py-3 text-sm font-bold transition-colors`}
                       >
                         <TrashIcon className="mr-3 h-4 w-4 text-app-tertiary group-hover:text-red-400 transition-colors" />
@@ -175,7 +194,9 @@ const MissionWorkspace: React.FC<MissionWorkspaceProps> = ({
                           if (activeSessionId) onDeleteSession(activeSessionId);
                         }}
                         className={`${
-                          active ? "bg-red-500/10 text-red-500" : "text-app-tertiary"
+                          active
+                            ? "bg-red-500/10 text-red-500"
+                            : "text-app-tertiary"
                         } group flex w-full items-center px-4 py-3 text-sm font-bold transition-colors`}
                       >
                         <TrashIcon className="mr-3 h-4 w-4 opacity-70 group-hover:opacity-100" />
@@ -193,42 +214,42 @@ const MissionWorkspace: React.FC<MissionWorkspaceProps> = ({
       {/* Main Content Area - Virtualized */}
       <div className="flex-1 overflow-hidden relative">
         {isInitialState ? (
-            <div className="absolute inset-0 overflow-y-auto p-4 md:p-6 custom-scrollbar">
-                <div className="max-w-4xl mx-auto min-h-full flex flex-col">
-                    <Dashboard
-                        settings={settings}
-                        apiStatus={apiStatus}
-                        sessions={sessions}
-                        activeSessionId={activeSessionId}
-                        onSelectSession={onSelectSession}
-                        onCreateSession={onCreateSession}
-                        onImportData={onImportData}
-                        onPrompt={handleSendMessage}
-                        onUpdateSettings={onUpdateSettings}
-                    />
-                </div>
+          <div className="absolute inset-0 overflow-y-auto p-4 md:p-6 custom-scrollbar">
+            <div className="max-w-4xl mx-auto min-h-full flex flex-col">
+              <Dashboard
+                settings={settings}
+                apiStatus={apiStatus}
+                sessions={sessions}
+                activeSessionId={activeSessionId}
+                onSelectSession={onSelectSession}
+                onCreateSession={onCreateSession}
+                onImportData={onImportData}
+                onPrompt={handleSendMessage}
+                onUpdateSettings={onUpdateSettings}
+              />
             </div>
+          </div>
         ) : (
-            <Virtuoso
-                ref={virtuosoRef}
-                data={messages}
-                totalCount={messages.length}
-                initialTopMostItemIndex={messages.length - 1}
-                followOutput="smooth"
-                className="custom-scrollbar"
-                itemContent={(_index, msg) => (
-                    <div className="px-4 md:px-6 py-2 max-w-4xl mx-auto w-full">
-                        <ErrorBoundary key={msg.id} scope="message">
-                            <ChatMessage message={msg} />
-                        </ErrorBoundary>
-                    </div>
-                )}
-                components={{
-                    // Optional: Add padding to top/bottom of list
-                    Header: () => <div className="h-4" />,
-                    Footer: () => <div className="h-4" />,
-                }}
-            />
+          <Virtuoso
+            ref={virtuosoRef}
+            data={messages}
+            totalCount={messages.length}
+            initialTopMostItemIndex={messages.length - 1}
+            followOutput="smooth"
+            className="custom-scrollbar"
+            itemContent={(_index, msg) => (
+              <div className="px-4 md:px-6 py-2 max-w-4xl mx-auto w-full">
+                <ErrorBoundary key={msg.id} scope="message">
+                  <ChatMessage message={msg} />
+                </ErrorBoundary>
+              </div>
+            )}
+            components={{
+              // Optional: Add padding to top/bottom of list
+              Header: () => <div className="h-4" />,
+              Footer: () => <div className="h-4" />,
+            }}
+          />
         )}
       </div>
 
@@ -241,7 +262,10 @@ const MissionWorkspace: React.FC<MissionWorkspaceProps> = ({
           isDesanitized={settings.isDesanitized}
         />
         <div className="max-w-4xl mx-auto mt-2 flex justify-center text-[10px] text-app-tertiary font-mono tracking-widest gap-4 opacity-50">
-          <span>{AVAILABLE_MODELS.find(m => m.id === settings.model)?.shortLabel || settings.model}</span>
+          <span>
+            {AVAILABLE_MODELS.find((m) => m.id === settings.model)
+              ?.shortLabel || settings.model}
+          </span>
           <span>•</span>
           <span>v{APP_VERSION}</span>
         </div>

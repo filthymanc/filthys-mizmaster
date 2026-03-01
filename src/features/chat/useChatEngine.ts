@@ -69,7 +69,9 @@ export const useChatEngine = ({
       sessionConfigRef.current?.model !== model ||
       sessionConfigRef.current?.safe !== isDesanitized ||
       sessionConfigRef.current?.sessionId !== sessionId ||
-      Math.abs((sessionConfigRef.current?.messageCount || 0) - messages.length) > 5;
+      Math.abs(
+        (sessionConfigRef.current?.messageCount || 0) - messages.length,
+      ) > 5;
 
     if (needsRefresh) {
       // Use the new token-aware pruning service
@@ -81,11 +83,11 @@ export const useChatEngine = ({
           model,
           isDesanitized,
         );
-        sessionConfigRef.current = { 
-            model, 
-            safe: isDesanitized, 
-            sessionId,
-            messageCount: messages.length
+        sessionConfigRef.current = {
+          model,
+          safe: isDesanitized,
+          sessionId,
+          messageCount: messages.length,
         };
       } catch {
         setApiStatus("error");
@@ -136,7 +138,7 @@ export const useChatEngine = ({
 
     setIsLoading(true);
     setApiStatus("connecting");
-    
+
     // Create new abort controller for this specific request
     const controller = new AbortController();
     abortControllerRef.current = controller;
@@ -165,8 +167,12 @@ export const useChatEngine = ({
         );
       }
 
-      const stream = await sendMessageStream(chatSessionRef.current, text, githubToken);
-      
+      const stream = await sendMessageStream(
+        chatSessionRef.current,
+        text,
+        githubToken,
+      );
+
       // Clear connection timeout as we have established communication
       clearTimeout(timeoutId);
       setApiStatus("streaming");
@@ -185,7 +191,8 @@ export const useChatEngine = ({
 
         const call = parts.find((p) => p.functionCall);
         if (call?.functionCall) {
-          const module = call.functionCall.args?.["module_name"] || "Documentation";
+          const module =
+            call.functionCall.args?.["module_name"] || "Documentation";
           currentLibrarianStatus = `Librarian: Fetching ${module}...`;
         } else if (textContent && textContent.length > 5) {
           currentLibrarianStatus = "";
@@ -196,7 +203,8 @@ export const useChatEngine = ({
         if (contentResponse.usageMetadata) {
           tokenUsage = {
             promptTokens: contentResponse.usageMetadata.promptTokenCount || 0,
-            responseTokens: contentResponse.usageMetadata.candidatesTokenCount || 0,
+            responseTokens:
+              contentResponse.usageMetadata.candidatesTokenCount || 0,
             totalTokens: contentResponse.usageMetadata.totalTokenCount || 0,
           };
         }
@@ -204,10 +212,13 @@ export const useChatEngine = ({
         const sourcesMap = new Map<string, string>();
         contentResponse.candidates?.[0]?.groundingMetadata?.groundingChunks?.forEach(
           (c: { web?: { uri?: string; title?: string } }) => {
-            if (c.web?.uri && c.web?.title) sourcesMap.set(c.web.uri, c.web.title);
+            if (c.web?.uri && c.web?.title)
+              sourcesMap.set(c.web.uri, c.web.title);
           },
         );
-        const sources: Source[] = Array.from(sourcesMap.entries()).map(([uri, title]) => ({ uri, title }));
+        const sources: Source[] = Array.from(sourcesMap.entries()).map(
+          ([uri, title]) => ({ uri, title }),
+        );
 
         setMessages(
           newHistory.map((msg) =>
@@ -246,19 +257,31 @@ export const useChatEngine = ({
 
       let cleanError = "An unexpected system error occurred.";
       const errString = String(error);
-      const isAbortError = typeof error === 'object' && error !== null && 'name' in error && (error as Error).name === "AbortError";
+      const isAbortError =
+        typeof error === "object" &&
+        error !== null &&
+        "name" in error &&
+        (error as Error).name === "AbortError";
 
-      if (error === "CONNECTION_TIMEOUT" || (isAbortError && controller.signal.reason === "CONNECTION_TIMEOUT")) {
-          cleanError = "**CONNECTION TIMEOUT**\n\nThe neural engine failed to respond within 30 seconds. This may be due to high server load or network congestion. Please try again.";
-          setApiStatus("error");
+      if (
+        error === "CONNECTION_TIMEOUT" ||
+        (isAbortError && controller.signal.reason === "CONNECTION_TIMEOUT")
+      ) {
+        cleanError =
+          "**CONNECTION TIMEOUT**\n\nThe neural engine failed to respond within 30 seconds. This may be due to high server load or network congestion. Please try again.";
+        setApiStatus("error");
       } else if (
         errString.includes("Failed to fetch") ||
         errString.includes("NetworkError")
       ) {
-        cleanError = "**NETWORK ERROR**\n\nConnection lost during transmission. Please check your internet.";
+        cleanError =
+          "**NETWORK ERROR**\n\nConnection lost during transmission. Please check your internet.";
         setApiStatus("offline");
       } else {
-        const errorMsg = typeof error === 'object' && error !== null && 'message' in error ? (error as Error).message : errString;
+        const errorMsg =
+          typeof error === "object" && error !== null && "message" in error
+            ? (error as Error).message
+            : errString;
         cleanError = "**SYSTEM ERROR**\n\n" + errorMsg;
         setApiStatus("error");
       }
@@ -266,7 +289,11 @@ export const useChatEngine = ({
       setMessages(
         newHistory.map((msg) =>
           msg.id === modelMessageId
-            ? { ...msg, text: fullText + (fullText ? "\n\n" : "") + cleanError, isStreaming: false }
+            ? {
+                ...msg,
+                text: fullText + (fullText ? "\n\n" : "") + cleanError,
+                isStreaming: false,
+              }
             : msg,
         ),
       );

@@ -44,7 +44,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
 
   // Local state for complex interactions within the modal
   const [tempGithubToken, setTempGithubToken] = useState(
-    settings.githubToken || ""
+    settings.githubToken || "",
   );
   const [isResetConfirming, setIsResetConfirming] = useState(false);
   const [isDisconnectConfirming, setIsDisconnectConfirming] = useState(false);
@@ -147,7 +147,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                           >
                             {category}
                           </Tab>
-                        )
+                        ),
                       )}
                     </Tab.List>
                     <Tab.Panels className="mt-2 flex-1 focus:outline-none">
@@ -306,10 +306,10 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                           </h4>
                           <div className="p-4 rounded-xl border border-app-border bg-app-surface space-y-3">
                             <p className="text-xs text-app-tertiary">
-                              Provide a Personal Access Token (PAT) to enable the
-                              Librarian to read raw files directly from GitHub
-                              repositories without hitting unauthenticated rate
-                              limits.
+                              Provide a Personal Access Token (PAT) to enable
+                              the Librarian to read raw files directly from
+                              GitHub repositories without hitting
+                              unauthenticated rate limits.
                             </p>
                             <div className="flex gap-2">
                               <input

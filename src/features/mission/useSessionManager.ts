@@ -51,12 +51,12 @@ export const useSessionManager = () => {
       await storage.initializeStorage();
 
       let loadedSessions = await storage.loadSessionIndex();
-      
+
       // Map to ensure Date objects
-      loadedSessions = loadedSessions.map(s => ({
-          ...s,
-          createdAt: safeDate(s.createdAt),
-          lastModified: safeDate(s.lastModified)
+      loadedSessions = loadedSessions.map((s) => ({
+        ...s,
+        createdAt: safeDate(s.createdAt),
+        lastModified: safeDate(s.lastModified),
       }));
 
       // Auto-Create Default Session if empty

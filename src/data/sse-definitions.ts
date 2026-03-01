@@ -173,7 +173,8 @@ export const SSE_DEFINITIONS: Record<string, SSEDefinition[]> = {
     },
     {
       name: "Controller.setCommand",
-      description: "Sets a command for the AI controller to execute immediately.",
+      description:
+        "Sets a command for the AI controller to execute immediately.",
       signatures: ["Controller:setCommand(command: table): void"],
     },
     {
@@ -272,9 +273,7 @@ export const SSE_DEFINITIONS: Record<string, SSEDefinition[]> = {
     {
       name: "trigger.action.smoke",
       description: "Spawns colored smoke at a point.",
-      signatures: [
-        "trigger.action.smoke(point: Vec3, color: number): void",
-      ],
+      signatures: ["trigger.action.smoke(point: Vec3, color: number): void"],
     },
   ],
   timer: [
@@ -309,13 +308,17 @@ export const SSE_DEFINITIONS: Record<string, SSEDefinition[]> = {
       name: "coord.LOtoLL",
       description:
         "Converts Local Coordinates (Vec3) to Latitude/Longitude/Altitude. RETURNS 3 VALUES.",
-      signatures: ["coord.LOtoLL(point: Vec3): (lat: number, long: number, alt: number)"],
+      signatures: [
+        "coord.LOtoLL(point: Vec3): (lat: number, long: number, alt: number)",
+      ],
     },
     {
       name: "coord.LLtoLO",
       description:
         "Converts Latitude/Longitude/Altitude to Local Coordinates (Vec3).",
-      signatures: ["coord.LLtoLO(lat: number, long: number, alt: number): Vec3"],
+      signatures: [
+        "coord.LLtoLO(lat: number, long: number, alt: number): Vec3",
+      ],
     },
   ],
   world: [
@@ -367,7 +370,8 @@ export const SSE_DEFINITIONS: Record<string, SSEDefinition[]> = {
     },
     {
       name: "land.getSurfaceType",
-      description: "Returns the surface type at a 2D point (Land, Sea, Road, Runway).",
+      description:
+        "Returns the surface type at a 2D point (Land, Sea, Road, Runway).",
       signatures: ["land.getSurfaceType(point: Vec2): number"],
     },
   ],

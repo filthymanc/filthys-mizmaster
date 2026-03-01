@@ -32,7 +32,7 @@ const ArmoryModal: React.FC<ArmoryModalProps> = ({ isOpen, onClose }) => {
       (s) =>
         s.title.toLowerCase().includes(lowerSearch) ||
         s.language.toLowerCase().includes(lowerSearch) ||
-        s.code.toLowerCase().includes(lowerSearch)
+        s.code.toLowerCase().includes(lowerSearch),
     );
   }, [snippets, search]);
 
@@ -88,11 +88,15 @@ const ArmoryModal: React.FC<ArmoryModalProps> = ({ isOpen, onClose }) => {
           {isLoading ? (
             <div className="flex flex-col items-center justify-center h-full text-app-tertiary animate-pulse gap-4">
               <div className="w-12 h-12 border-4 border-app-border border-t-app-brand rounded-full animate-spin"></div>
-              <p className="font-mono text-xs tracking-widest">DECRYPTING ARCHIVES...</p>
+              <p className="font-mono text-xs tracking-widest">
+                DECRYPTING ARCHIVES...
+              </p>
             </div>
           ) : filteredSnippets.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-full text-app-tertiary opacity-50">
-              <p className="font-mono text-sm tracking-widest">NO INTEL FOUND</p>
+              <p className="font-mono text-sm tracking-widest">
+                NO INTEL FOUND
+              </p>
             </div>
           ) : (
             filteredSnippets.map((snippet) => (
@@ -117,17 +121,32 @@ const ArmoryModal: React.FC<ArmoryModalProps> = ({ isOpen, onClose }) => {
                       title="Copy to Clipboard"
                     >
                       {copiedId === snippet.id ? (
-                        <span className="text-xs font-bold text-emerald-500">COPIED</span>
+                        <span className="text-xs font-bold text-emerald-500">
+                          COPIED
+                        </span>
                       ) : (
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-4 w-4"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                          />
                         </svg>
                       )}
                     </button>
                     <button
                       onClick={() => {
-                        if (window.confirm("Delete this snippet permanently?")) {
-                            removeSnippet(snippet.id);
+                        if (
+                          window.confirm("Delete this snippet permanently?")
+                        ) {
+                          removeSnippet(snippet.id);
                         }
                       }}
                       className="p-1.5 text-app-tertiary hover:text-red-400 hover:bg-red-500/10 rounded-lg transition-colors"
@@ -140,19 +159,22 @@ const ArmoryModal: React.FC<ArmoryModalProps> = ({ isOpen, onClose }) => {
 
                 {/* Code Preview */}
                 <div className="max-h-48 overflow-hidden relative">
-                    <SyntaxHighlighter 
-                        code={snippet.code} 
-                        language={snippet.language} 
-                        className="text-xs" 
-                    />
-                    {/* Fade Out Overlay */}
-                    <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-app-surface to-transparent pointer-events-none" />
+                  <SyntaxHighlighter
+                    code={snippet.code}
+                    language={snippet.language}
+                    className="text-xs"
+                  />
+                  {/* Fade Out Overlay */}
+                  <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-app-surface to-transparent pointer-events-none" />
                 </div>
-                
+
                 {/* Footer Metadata */}
                 <div className="px-4 py-2 bg-app-canvas/30 border-t border-app-border text-[10px] text-app-tertiary font-mono flex justify-between">
-                    <span>ID: {snippet.id.slice(0,8)}</span>
-                    <span>{safeDate(snippet.createdAt).toLocaleDateString()} {safeDate(snippet.createdAt).toLocaleTimeString()}</span>
+                  <span>ID: {snippet.id.slice(0, 8)}</span>
+                  <span>
+                    {safeDate(snippet.createdAt).toLocaleDateString()}{" "}
+                    {safeDate(snippet.createdAt).toLocaleTimeString()}
+                  </span>
                 </div>
               </div>
             ))

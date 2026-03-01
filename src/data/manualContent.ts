@@ -65,7 +65,7 @@ export const MANUAL_CONTENT = {
             {
               label: "ELLIPSIS MENU",
               color: "emerald",
-              text: 'Found in the top right of the workspace. Provides context-specific actions such as clearing the chat history or deleting the current mission.',
+              text: "Found in the top right of the workspace. Provides context-specific actions such as clearing the chat history or deleting the current mission.",
             },
             {
               label: "SAFE / UNSAFE",
@@ -90,7 +90,7 @@ export const MANUAL_CONTENT = {
             {
               label: "SEARCH",
               color: "blue",
-              text: 'Use the search bar at the top of the mission list to quickly filter your sessions by name or date.',
+              text: "Use the search bar at the top of the mission list to quickly filter your sessions by name or date.",
             },
           ],
         },
@@ -119,7 +119,7 @@ export const MANUAL_CONTENT = {
         {
           type: "trap",
           title: "The Ambiguity Trap",
-          example: "Avoid using \"Make a tanker mission\".",
+          example: 'Avoid using "Make a tanker mission".',
           explanationLabel: "Why results vary:",
           explanation:
             "Without specific details on frameworks, unit names, or zones, the AI must guess your requirements, which often leads to generic or unusable placeholders.",

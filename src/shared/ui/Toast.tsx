@@ -33,7 +33,13 @@ export const ToastContainer: React.FC = () => {
   return (
     <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-[60] flex flex-col gap-2 items-center w-full pointer-events-none">
       {toasts.map((t) => (
-        <ToastItem key={t.id} {...t} onClose={() => setToasts((prev) => prev.filter((item) => item.id !== t.id))} />
+        <ToastItem
+          key={t.id}
+          {...t}
+          onClose={() =>
+            setToasts((prev) => prev.filter((item) => item.id !== t.id))
+          }
+        />
       ))}
     </div>
   );

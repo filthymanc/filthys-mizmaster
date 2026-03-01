@@ -55,8 +55,9 @@ const Sidebar: React.FC<SidebarProps> = ({
     if (!searchTerm) return sessions;
     const lowerTerm = searchTerm.toLowerCase();
     return sessions.filter(
-        (s) => s.name.toLowerCase().includes(lowerTerm) || 
-               safeDate(s.lastModified).toLocaleDateString().includes(lowerTerm)
+      (s) =>
+        s.name.toLowerCase().includes(lowerTerm) ||
+        safeDate(s.lastModified).toLocaleDateString().includes(lowerTerm),
     );
   }, [sessions, searchTerm]);
 
@@ -145,24 +146,35 @@ const Sidebar: React.FC<SidebarProps> = ({
 
           {/* Search Input */}
           <div className="relative">
-             <input 
-                type="text" 
-                placeholder="Find Mission..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full bg-app-canvas border border-app-border rounded-lg px-3 py-2 pl-9 text-xs text-app-primary placeholder-app-tertiary focus:outline-none focus:border-app-brand focus:ring-1 focus:ring-app-brand transition-all"
-             />
-             <svg xmlns="http://www.w3.org/2000/svg" className="absolute left-2.5 top-2.5 h-3.5 w-3.5 text-app-tertiary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-             </svg>
-             {searchTerm && (
-                 <button 
-                    onClick={() => setSearchTerm("")}
-                    className="absolute right-2 top-2 text-app-tertiary hover:text-app-primary"
-                 >
-                     <XIcon className="h-4 w-4" />
-                 </button>
-             )}
+            <input
+              type="text"
+              placeholder="Find Mission..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full bg-app-canvas border border-app-border rounded-lg px-3 py-2 pl-9 text-xs text-app-primary placeholder-app-tertiary focus:outline-none focus:border-app-brand focus:ring-1 focus:ring-app-brand transition-all"
+            />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="absolute left-2.5 top-2.5 h-3.5 w-3.5 text-app-tertiary"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              />
+            </svg>
+            {searchTerm && (
+              <button
+                onClick={() => setSearchTerm("")}
+                className="absolute right-2 top-2 text-app-tertiary hover:text-app-primary"
+              >
+                <XIcon className="h-4 w-4" />
+              </button>
+            )}
           </div>
         </div>
 
@@ -171,12 +183,12 @@ const Sidebar: React.FC<SidebarProps> = ({
           className={`flex-1 overflow-y-auto px-2 pb-4 space-y-1 custom-scrollbar transition-opacity duration-300 ${isLoading ? "opacity-40 pointer-events-none select-none" : "opacity-100"}`}
         >
           {filteredSessions.length === 0 && !isLoading ? (
-              <div className="text-center py-8 opacity-50 text-xs font-mono tracking-widest text-app-tertiary">
-                  NO MISSIONS FOUND
-              </div>
+            <div className="text-center py-8 opacity-50 text-xs font-mono tracking-widest text-app-tertiary">
+              NO MISSIONS FOUND
+            </div>
           ) : (
             filteredSessions.map((session) => (
-                <SidebarSessionItem
+              <SidebarSessionItem
                 key={session.id}
                 session={session}
                 isActive={activeSessionId === session.id}
@@ -184,19 +196,19 @@ const Sidebar: React.FC<SidebarProps> = ({
                 isDeleteConfirming={deleteConfirmId === session.id}
                 isLoading={isLoading}
                 onSelect={(id) => {
-                    onSelectSession(id);
-                    onClose();
+                  onSelectSession(id);
+                  onClose();
                 }}
                 onStartEdit={handleStartEdit}
                 onConfirmEdit={handleConfirmEdit}
                 onCancelEdit={() => setEditingId(null)}
                 onStartDelete={handleStartDelete}
                 onConfirmDelete={(id) => {
-                    onDeleteSession(id);
-                    setDeleteConfirmId(null);
+                  onDeleteSession(id);
+                  setDeleteConfirmId(null);
                 }}
                 onCancelDelete={() => setDeleteConfirmId(null)}
-                />
+              />
             ))
           )}
         </div>

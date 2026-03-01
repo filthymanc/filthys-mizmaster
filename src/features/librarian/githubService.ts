@@ -128,16 +128,16 @@ const fetchRepoTree = async (
 
   // Cache the result
   try {
-          localStorage.setItem(
-          cacheKey,
-          JSON.stringify({
-            timestamp: Date.now(),
-            tree: data.tree,
-          }),
-        );
-      } catch {
-        console.warn("Failed to cache tree (Storage Quota).");
-      }
+    localStorage.setItem(
+      cacheKey,
+      JSON.stringify({
+        timestamp: Date.now(),
+        tree: data.tree,
+      }),
+    );
+  } catch {
+    console.warn("Failed to cache tree (Storage Quota).");
+  }
   return data.tree;
 };
 
@@ -222,15 +222,18 @@ export const getFrameworkDocs = async (
 
     // 3. Check Content Cache (IndexedDB)
     const rawUrl = `https://raw.githubusercontent.com/${config.owner}/${config.repo}/${config.branch}/${file.path}`;
-    
+
     try {
       const cachedEntry = await getCachedFile(rawUrl);
       if (cachedEntry) {
         // Cache Hit!
         // We use a shorter TTL check here if we want strict freshness, but for now relies on Pruning
-        const ageHours = (Date.now() - cachedEntry.timestamp) / (1000 * 60 * 60);
-        console.log(`[Librarian] Cache Hit: ${file.path} (Age: ${ageHours.toFixed(1)}h)`);
-        
+        const ageHours =
+          (Date.now() - cachedEntry.timestamp) / (1000 * 60 * 60);
+        console.log(
+          `[Librarian] Cache Hit: ${file.path} (Age: ${ageHours.toFixed(1)}h)`,
+        );
+
         const metadata = `[Librarian Source Metadata]
 Repo: ${config.owner}/${config.repo}
 Branch: ${config.branch}
@@ -244,7 +247,6 @@ Raw URL: ${rawUrl}
     } catch (dbError) {
       console.warn("[Librarian] IDB Read Failed:", dbError);
     }
-
 
     // 4. Cache Miss -> Network Fetch
     console.log(`[Librarian] Fetching Raw Source: ${rawUrl}`);
@@ -269,7 +271,9 @@ Raw URL: ${rawUrl}
     }
 
     // 5. Write to Cache (Async)
-    cacheFile(rawUrl, content).catch(e => console.warn("[Librarian] Failed to cache file:", e));
+    cacheFile(rawUrl, content).catch((e) =>
+      console.warn("[Librarian] Failed to cache file:", e),
+    );
 
     const metadata = `[Librarian Source Metadata]
 Repo: ${config.owner}/${config.repo}

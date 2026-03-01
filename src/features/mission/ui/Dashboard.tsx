@@ -59,8 +59,10 @@ const Dashboard: React.FC<DashboardProps> = ({
   };
 
   const getStatusColor = () => {
-    if (apiStatus === "error") return "bg-red-500/10 text-red-500 border-red-500/20";
-    if (apiStatus === "offline") return "bg-app-surface text-app-tertiary border-app-border";
+    if (apiStatus === "error")
+      return "bg-red-500/10 text-red-500 border-red-500/20";
+    if (apiStatus === "offline")
+      return "bg-app-surface text-app-tertiary border-app-border";
     return "bg-app-brand/10 text-app-brand border-app-brand/20";
   };
 
@@ -75,11 +77,10 @@ const Dashboard: React.FC<DashboardProps> = ({
     setShowTokenInput(false);
   };
 
-  const currentModel = AVAILABLE_MODELS.find(m => m.id === settings.model);
+  const currentModel = AVAILABLE_MODELS.find((m) => m.id === settings.model);
 
   return (
     <div className="flex-1 flex flex-col gap-6 max-w-5xl mx-auto py-4 md:py-8 animate-fadeIn select-none">
-      
       {/* 1. HEADER */}
       <div className="mb-2">
         <h1 className="text-2xl md:text-3xl font-bold text-app-primary tracking-widest uppercase">
@@ -96,26 +97,54 @@ const Dashboard: React.FC<DashboardProps> = ({
         role="region"
         aria-label="System Status"
       >
-        <div className={`p-4 rounded-xl flex items-center gap-4 shadow-sm border ${getStatusColor()}`}>
+        <div
+          className={`p-4 rounded-xl flex items-center gap-4 shadow-sm border ${getStatusColor()}`}
+        >
           <div className="p-2.5 rounded-lg bg-app-canvas shadow-sm">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"
+              />
             </svg>
           </div>
           <div>
             <h3 className="text-[10px] font-bold opacity-70 uppercase tracking-widest">
               Connection
             </h3>
-            <p className={`font-mono font-bold text-sm tracking-wider ${getStatusTextColor()}`}>
+            <p
+              className={`font-mono font-bold text-sm tracking-wider ${getStatusTextColor()}`}
+            >
               {apiStatus === "idle" ? "ONLINE" : apiStatus.toUpperCase()}
             </p>
           </div>
         </div>
 
-        <div className={`p-4 rounded-xl flex items-center gap-4 shadow-sm border ${settings.isDesanitized ? "bg-red-500/10 text-red-500 border-red-500/20" : "bg-blue-500/10 text-blue-500 border-blue-500/20"}`}>
+        <div
+          className={`p-4 rounded-xl flex items-center gap-4 shadow-sm border ${settings.isDesanitized ? "bg-red-500/10 text-red-500 border-red-500/20" : "bg-blue-500/10 text-blue-500 border-blue-500/20"}`}
+        >
           <div className="p-2.5 rounded-lg bg-app-canvas shadow-sm">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+              />
             </svg>
           </div>
           <div>
@@ -130,8 +159,19 @@ const Dashboard: React.FC<DashboardProps> = ({
 
         <div className="p-4 rounded-xl flex items-center gap-4 shadow-sm border bg-purple-500/10 text-purple-500 border-purple-500/20">
           <div className="p-2.5 rounded-lg bg-app-canvas shadow-sm">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M13 10V3L4 14h7v7l9-11h-7z"
+              />
             </svg>
           </div>
           <div className="min-w-0">
@@ -147,15 +187,24 @@ const Dashboard: React.FC<DashboardProps> = ({
 
       {/* 3. MAIN LAYOUT GRID */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        
         {/* LEFT COLUMN: Actions & Suggestions */}
         <div className="lg:col-span-2 flex flex-col gap-6">
-          
           {/* Command Deck */}
           <div className="bg-app-surface/50 border border-app-border rounded-xl p-5 md:p-6 shadow-sm">
             <h2 className="text-xs font-bold text-app-secondary uppercase tracking-widest mb-4 flex items-center gap-2">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-app-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-4 w-4 text-app-brand"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+                />
               </svg>
               Command Deck
             </h2>
@@ -201,8 +250,19 @@ const Dashboard: React.FC<DashboardProps> = ({
           {/* Suggested Parameters */}
           <div className="bg-app-surface/50 border border-app-border rounded-xl p-5 md:p-6 shadow-sm">
             <h2 className="text-xs font-bold text-app-secondary uppercase tracking-widest mb-4 flex items-center gap-2">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-app-highlight" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-4 w-4 text-app-highlight"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M13 10V3L4 14h7v7l9-11h-7z"
+                />
               </svg>
               Suggested Parameters
             </h2>
@@ -223,7 +283,12 @@ const Dashboard: React.FC<DashboardProps> = ({
                       viewBox="0 0 24 24"
                       stroke="currentColor"
                     >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M14 5l7 7m0 0l-7 7m7-7H3"
+                      />
                     </svg>
                   </div>
                 </button>
@@ -234,10 +299,9 @@ const Dashboard: React.FC<DashboardProps> = ({
 
         {/* RIGHT COLUMN: Librarian & History */}
         <div className="lg:col-span-1 flex flex-col gap-6">
-          
           {/* GitHub Token (Librarian) */}
           <div className="bg-app-surface/50 border border-app-border rounded-xl p-5 md:p-6 shadow-sm">
-             <h2 className="text-xs font-bold text-app-secondary uppercase tracking-widest mb-4 flex items-center gap-2">
+            <h2 className="text-xs font-bold text-app-secondary uppercase tracking-widest mb-4 flex items-center gap-2">
               <GithubIcon className="h-4 w-4 text-app-secondary" />
               Librarian Link
             </h2>
@@ -255,7 +319,7 @@ const Dashboard: React.FC<DashboardProps> = ({
                   ? "Authentication active. Rate limit: 5000/hr. Full repository read access granted."
                   : "Anonymous access. Rate limit: 60/hr. Search operations may fail under load."}
               </p>
-              
+
               {!showTokenInput ? (
                 <button
                   onClick={() => setShowTokenInput(true)}
@@ -302,8 +366,19 @@ const Dashboard: React.FC<DashboardProps> = ({
           {/* Recent Files */}
           <div className="bg-app-surface/50 border border-app-border rounded-xl p-5 md:p-6 shadow-sm flex-1 flex flex-col">
             <h2 className="text-xs font-bold text-app-secondary uppercase tracking-widest mb-4 flex items-center gap-2">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-app-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-4 w-4 text-app-secondary"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
               </svg>
               Recent History
             </h2>
@@ -327,15 +402,25 @@ const Dashboard: React.FC<DashboardProps> = ({
               </div>
             ) : (
               <div className="flex-1 flex flex-col items-center justify-center text-app-tertiary space-y-3 opacity-60 min-h-[150px] bg-app-canvas rounded-lg border border-dashed border-app-border/50">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-8 w-8"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.5}
+                    d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"
+                  />
                 </svg>
                 <p className="text-xs font-mono">No recent missions</p>
               </div>
             )}
           </div>
         </div>
-
       </div>
     </div>
   );

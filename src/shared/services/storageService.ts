@@ -22,17 +22,17 @@ export const initializeStorage = async () => {
     const legacyIndex = localStorage.getItem(STORAGE_KEYS.INDEX);
     if (legacyIndex) {
       console.log("Storage: Legacy data detected. Performing cleanup...");
-      
+
       // Remove legacy keys
       localStorage.removeItem(STORAGE_KEYS.INDEX);
-      
+
       // Pattern Matching Removals for Sessions
       Object.keys(localStorage).forEach((key) => {
         if (key.startsWith(STORAGE_KEYS.SESSION_PREFIX)) {
           localStorage.removeItem(key);
         }
       });
-      
+
       console.log("Storage: Legacy cleanup complete. Switched to IndexedDB.");
     }
   } catch (e) {
@@ -67,13 +67,15 @@ export const saveSessionIndex = async (sessions: Session[]): Promise<void> => {
 /**
  * Loads messages for a specific session ID (Lazy Load)
  */
-export const loadSessionMessages = async (sessionId: string): Promise<Message[]> => {
+export const loadSessionMessages = async (
+  sessionId: string,
+): Promise<Message[]> => {
   try {
     return await idb.getSessionMessages(sessionId);
   } catch (e) {
     console.error(
       `Storage Error: Failed to load messages for session ${sessionId}`,
-      e
+      e,
     );
     return [];
   }
@@ -82,13 +84,16 @@ export const loadSessionMessages = async (sessionId: string): Promise<Message[]>
 /**
  * Saves messages for a specific session ID
  */
-export const saveSessionMessages = async (sessionId: string, messages: Message[]): Promise<void> => {
+export const saveSessionMessages = async (
+  sessionId: string,
+  messages: Message[],
+): Promise<void> => {
   try {
     await idb.saveSessionMessages(sessionId, messages);
   } catch (e) {
     console.error(
       `Storage Error: Failed to save messages for session ${sessionId}`,
-      e
+      e,
     );
   }
 };
@@ -105,7 +110,7 @@ export const deleteSessionData = async (sessionId: string): Promise<void> => {
   } catch (e) {
     console.error(
       `Storage Error: Failed to delete session data ${sessionId}`,
-      e
+      e,
     );
   }
 };
@@ -113,7 +118,10 @@ export const deleteSessionData = async (sessionId: string): Promise<void> => {
 /**
  * Exports all data (Sessions + Messages) to a JSON object
  */
-export const exportAllData = async (): Promise<{ sessions: Session[]; messages: Record<string, Message[]> }> => {
+export const exportAllData = async (): Promise<{
+  sessions: Session[];
+  messages: Record<string, Message[]>;
+}> => {
   try {
     const sessions = await idb.getAllSessions();
     const messages: Record<string, Message[]> = {};
@@ -133,7 +141,10 @@ export const exportAllData = async (): Promise<{ sessions: Session[]; messages: 
  * Imports data (Sessions + Messages) from a JSON object
  * Merges with existing data
  */
-export const importAllData = async (data: { sessions: Session[]; messages: Record<string, Message[]> }): Promise<void> => {
+export const importAllData = async (data: {
+  sessions: Session[];
+  messages: Record<string, Message[]>;
+}): Promise<void> => {
   try {
     if (!data.sessions || !Array.isArray(data.sessions)) {
       throw new Error("Invalid import data: Missing sessions array");
@@ -141,7 +152,7 @@ export const importAllData = async (data: { sessions: Session[]; messages: Recor
 
     // Save Sessions (Merging handled by logic, but IDB saveAllSessions overwrites)
     // Actually, we should probably fetch existing, merge, and save.
-    // For simplicity, let's assume the calling logic handles index merging, 
+    // For simplicity, let's assume the calling logic handles index merging,
     // but here we ensure messages are saved for each session.
 
     // 1. Save Messages for each imported session
@@ -150,12 +161,11 @@ export const importAllData = async (data: { sessions: Session[]; messages: Recor
         await idb.saveSessionMessages(sessionId, msgs);
       }
     }
-    
+
     // 2. We assume the session index update is handled by the caller (useSessionManager)
     // or we can update it here if we want to bypass the hook's state.
     // However, since useSessionManager manages the "Source of Truth" for the session list,
     // we should let it handle the index update. This function primarily restores the heavy message data.
-    
   } catch (e) {
     console.error("Storage Error: Failed to import data", e);
     throw e;

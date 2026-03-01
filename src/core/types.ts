@@ -66,13 +66,13 @@ export type ApiStatus =
   | "streaming"
   | "offline";
 
-export type ThemeMode = 
-  | "standard" 
-  | "carbon" 
-  | "oled" 
-  | "paper" 
-  | "green-camo" 
-  | "desert-camo" 
+export type ThemeMode =
+  | "standard"
+  | "carbon"
+  | "oled"
+  | "paper"
+  | "green-camo"
+  | "desert-camo"
   | "supercarrier";
 
 export type ThemeAccent = "emerald" | "cyan" | "amber" | "rose" | "violet";

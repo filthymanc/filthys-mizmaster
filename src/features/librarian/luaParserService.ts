@@ -45,7 +45,7 @@ export const validateLuaSyntax = (code: string): LuaValidationResult => {
     if (line.trim().startsWith("--")) continue;
 
     const lowerLine = line.toLowerCase();
-    
+
     for (const lib of PROHIBITED_LUA_LIBS) {
       if (lowerLine.includes(lib)) {
         return {
@@ -61,10 +61,10 @@ export const validateLuaSyntax = (code: string): LuaValidationResult => {
   // We need to strip comments and strings to accurately check bracket balance
   let cleanCode = code.replace(/--.*$/gm, ""); // Remove single line comments
   // Remove long comments/strings (simplified regex)
-  cleanCode = cleanCode.replace(/\[(=*)\[[\s\S]*?\]\1\]/g, ""); 
+  cleanCode = cleanCode.replace(/\[(=*)\[[\s\S]*?\]\1\]/g, "");
   // Remove string literals
-  cleanCode = cleanCode.replace(/"[^"\\]*(?:\\.[^"\\]*)*"/g, ""); 
-  cleanCode = cleanCode.replace(/'[^'\\]*(?:\\.[^'\\]*)*'/g, ""); 
+  cleanCode = cleanCode.replace(/"[^"\\]*(?:\\.[^"\\]*)*"/g, "");
+  cleanCode = cleanCode.replace(/'[^'\\]*(?:\\.[^'\\]*)*'/g, "");
 
   const stack: string[] = [];
   const pairs: Record<string, string> = { "(": ")", "{": "}", "[": "]" };
@@ -75,42 +75,43 @@ export const validateLuaSyntax = (code: string): LuaValidationResult => {
     } else if (")]}".includes(char)) {
       const last = stack.pop();
       if (!last || pairs[last] !== char) {
-        return { 
-          isValid: false, 
-          error: `Unmatched bracket: '${char}'` 
+        return {
+          isValid: false,
+          error: `Unmatched bracket: '${char}'`,
         };
       }
     }
   }
 
   if (stack.length > 0) {
-    return { 
-      isValid: false, 
-      error: `Unclosed bracket: '${stack[stack.length - 1]}'` 
+    return {
+      isValid: false,
+      error: `Unclosed bracket: '${stack[stack.length - 1]}'`,
     };
   }
 
   // 3. Block Balancing (Heuristic)
   // This is a naive check for "end" matching "function/if/do/for"
   // It is not a full parser, so we treat it as a warning heuristic
-  const tokens = cleanCode.match(/\b(function|if|for|while|repeat|do|end|until)\b/g) || [];
+  const tokens =
+    cleanCode.match(/\b(function|if|for|while|repeat|do|end|until)\b/g) || [];
   let blockDepth = 0;
-  
+
   for (const token of tokens) {
     if (["function", "if", "for", "while", "do"].includes(token)) {
       blockDepth++;
     } else if (token === "end") {
       blockDepth--;
     } else if (token === "repeat") {
-        // Repeat ... until is special, handled separately or ignored in this simple counter
-        // For now, ignoring repeats in this counter to avoid complexity
+      // Repeat ... until is special, handled separately or ignored in this simple counter
+      // For now, ignoring repeats in this counter to avoid complexity
     }
   }
 
   if (blockDepth !== 0) {
-     // We don't fail validation for this because the regex tokenizer is fragile
-     // But we could return a warning if we had a warning field.
-     // For now, we trust the bracket checker more.
+    // We don't fail validation for this because the regex tokenizer is fragile
+    // But we could return a warning if we had a warning field.
+    // For now, we trust the bracket checker more.
   }
 
   return { isValid: true };

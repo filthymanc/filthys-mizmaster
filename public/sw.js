@@ -9,7 +9,7 @@
  * You should have received a copy of the GNU General Public License along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { precacheAndRoute, cleanupOutdatedCaches } from 'workbox-precaching';
+import { precacheAndRoute, cleanupOutdatedCaches } from "workbox-precaching";
 
 // The self.__WB_MANIFEST is the injection point for the manifest.
 // Vite-plugin-pwa will inject the list of assets to precache here.
@@ -17,7 +17,7 @@ precacheAndRoute(self.__WB_MANIFEST || []);
 
 cleanupOutdatedCaches();
 
-const CACHE_NAME = 'filthys-mizmaster-v1'; // Workbox handles versioning of assets, but this remains for custom logic
+const CACHE_NAME = "filthys-mizmaster-v1"; // Workbox handles versioning of assets, but this remains for custom logic
 
 // --- FETCH PHASE ---
 self.addEventListener("fetch", (event) => {
@@ -41,8 +41,8 @@ self.addEventListener("fetch", (event) => {
 });
 
 // Allow the PWA to take control immediately
-self.addEventListener('message', (event) => {
-  if (event.data && event.data.type === 'SKIP_WAITING') {
+self.addEventListener("message", (event) => {
+  if (event.data && event.data.type === "SKIP_WAITING") {
     self.skipWaiting();
   }
 });
