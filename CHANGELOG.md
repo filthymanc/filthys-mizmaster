@@ -1,6 +1,18 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+## [1.5.0](https://github.com/filthymanc/filthys-mizmaster/compare/v1.4.6...v1.5.0) (2026-03-01)
+
+
+### Features
+
+* implement PWA update notification system ([c874b51](https://github.com/filthymanc/filthys-mizmaster/commit/c874b513814a8f5b1cdddd7343f87c3e822dd684))
+
+
+### Miscellaneous Chores
+
+* include package-lock.json in release bumpFiles ([3a315ff](https://github.com/filthymanc/filthys-mizmaster/commit/3a315ff1c6eb83bb72c9996169e72ee350cc9ce7))
+
 ### [1.4.6](https://github.com/filthymanc/filthys-mizmaster/compare/v1.4.5...v1.4.6) (2026-03-01)
 
 
