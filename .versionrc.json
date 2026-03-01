@@ -16,6 +16,10 @@
       "type": "json"
     },
     {
+      "filename": "package-lock.json",
+      "type": "json"
+    },
+    {
       "filename": "metadata.json",
       "type": "json"
     },
