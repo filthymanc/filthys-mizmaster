@@ -1,6 +1,12 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+## [1.7.0](https://github.com/filthymanc/filthys-mizmaster/compare/v1.6.1...v1.7.0) (2026-03-01)
+
+
+### Features
+
+* implement dynamic AI model discovery and refresh cycle ([e8eb9d1](https://github.com/filthymanc/filthys-mizmaster/commit/e8eb9d1d256242b1354ad9e26c33a0d72eb357cb))
 
 ### [1.6.1](https://github.com/filthymanc/filthys-mizmaster/compare/v1.6.0...v1.6.1) (2026-03-01)
 
