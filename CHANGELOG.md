@@ -1,6 +1,13 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+### [1.8.1](https://github.com/filthymanc/filthys-mizmaster/compare/v1.8.0...v1.8.1) (2026-03-02)
+
+
+### Bug Fixes
+
+* enforce CSP directives, validate session imports, and ignore credentials ([cddc31e](https://github.com/filthymanc/filthys-mizmaster/commit/cddc31e6c33922cf05c4b5231661b27875807065))
+
 ## [1.8.0](https://github.com/filthymanc/filthys-mizmaster/compare/v1.7.0...v1.8.0) (2026-03-02)
 
 
