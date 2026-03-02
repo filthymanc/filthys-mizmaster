@@ -1,6 +1,12 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+## [1.8.0](https://github.com/filthymanc/filthys-mizmaster/compare/v1.7.0...v1.8.0) (2026-03-02)
+
+
+### Features
+
+* implement real-time GitHub token validation in Settings ([7113b8b](https://github.com/filthymanc/filthys-mizmaster/commit/7113b8bd23d187be007130048e4f7e0353683648))
 
 ## [1.7.0](https://github.com/filthymanc/filthys-mizmaster/compare/v1.6.1...v1.7.0) (2026-03-01)
 
