@@ -1,6 +1,12 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+### [1.9.3](https://github.com/filthymanc/filthys-mizmaster/compare/v1.9.2...v1.9.3) (2026-03-02)
+
+
+### Documentation
+
+* update security briefing and manual for encrypted vault, fix UI protocols ([e1d092c](https://github.com/filthymanc/filthys-mizmaster/commit/e1d092c013089f6950015ccd4218659303631fc7))
 
 ### [1.9.2](https://github.com/filthymanc/filthys-mizmaster/compare/v1.9.1...v1.9.2) (2026-03-02)
 
