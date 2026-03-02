@@ -118,6 +118,3 @@ dist
 
 # Vite PWA plugin development distribution
 dev-dist/
-
-gha-creds-*.json
-.gemini/

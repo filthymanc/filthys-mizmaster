@@ -14,6 +14,7 @@ import { Session, Message } from "../../core/types";
 import * as storage from "../../shared/services/storageService";
 import { WELCOME_MESSAGE_TEXT } from "../../core/constants";
 import { safeDate } from "../../shared/utils/dateUtils";
+import { validateImportData } from "../../shared/services/migrationService";
 
 const generateSecureId = (): string => {
   // Combine a timestamp with cryptographically secure random bytes.
@@ -185,33 +186,23 @@ export const useSessionManager = () => {
 
   // Handler for importing sessions (merging logic)
   const mergeSessions = useCallback((newSessions: Session[]) => {
-    // Validate that incoming data is actually a Session array
-    if (!Array.isArray(newSessions)) {
-      console.warn("[SessionManager] Import failed: Data is not an array.");
-      return;
-    }
+    // We use the migration service to ensure all imported sessions are valid and have real Date objects
+    const { validSessions } = validateImportData({ sessions: newSessions });
 
-    const isValid = newSessions.every(
-      (s) => s && typeof s === "object" && s.id,
-    );
-    if (!isValid) {
-      console.warn(
-        "[SessionManager] Import failed: Array contains invalid session objects.",
-      );
+    if (validSessions.length === 0) {
+      console.warn("[SessionManager] Import failed: No valid sessions found.");
       return;
     }
 
     setSessions((prev) => {
-      const incomingIds = new Set(newSessions.map((s) => s.id));
+      const incomingIds = new Set(validSessions.map((s) => s.id));
       const existing = prev.filter((s) => !incomingIds.has(s.id));
-      return [...newSessions, ...existing].sort(
+      return [...validSessions, ...existing].sort(
         (a, b) => b.lastModified.getTime() - a.lastModified.getTime(),
       );
     });
 
-    if (newSessions.length > 0) {
-      setActiveSessionId(newSessions[0].id);
-    }
+    setActiveSessionId(validSessions[0].id);
   }, []);
 
   const exportData = useCallback(async () => {

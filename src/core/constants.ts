@@ -33,9 +33,9 @@ export const AVAILABLE_MODELS: ModelDefinition[] = [
       "Ultra-fast response. Ideal for DML attribute lookups and quick fixes.",
   },
   {
-    id: "gemini-3-pro-preview",
-    label: "3 PRO (PREVIEW)",
-    shortLabel: "3 PRO (PREVIEW)",
+    id: "gemini-3.1-pro-preview",
+    label: "3.1 PRO (PREVIEW)",
+    shortLabel: "3.1 PRO (PREVIEW)",
     description:
       "Advanced intelligence. Best for complex MOOSE logic and architecture.",
   },

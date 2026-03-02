@@ -24,6 +24,8 @@ import SettingsModal from "../shared/ui/SettingsModal";
 import ArmoryModal from "../features/armory/ui/ArmoryModal";
 import ReloadPrompt from "../shared/ui/ReloadPrompt";
 import { useSwipeGesture } from "../shared/hooks/useSwipeGesture";
+import * as storage from "../shared/services/storageService";
+import { validateImportData } from "../shared/services/migrationService";
 
 const App: React.FC = () => {
   const { settings, apiStatus, updateSettings } = useSettings();
@@ -135,10 +137,23 @@ const App: React.FC = () => {
       if (!file) return;
       try {
         const text = await file.text();
-        const data = JSON.parse(text);
-        if (data.sessions) {
-          sessionManager.importData(data.sessions);
+        const rawData = JSON.parse(text);
+
+        // 1. Validate the structure (Sessions + Messages)
+        const { validSessions, validMessages } = validateImportData(rawData);
+
+        if (validSessions.length === 0) {
+          throw new Error("No valid sessions found in import file.");
         }
+
+        // 2. Restore Messages to IndexedDB
+        await storage.importAllData({
+          sessions: validSessions,
+          messages: validMessages,
+        });
+
+        // 3. Update Session Index in State (which triggers sync to IDB)
+        sessionManager.importData(validSessions);
       } catch (err) {
         console.error("Import failed", err);
       }
