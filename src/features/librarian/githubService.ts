@@ -175,6 +175,23 @@ const findFileInTree = (
 };
 
 /**
+ * Validates a GitHub Personal Access Token by attempting to fetch the authenticated user.
+ */
+export const validateGitHubToken = async (token: string): Promise<boolean> => {
+  if (!token || token.trim() === "") return true;
+
+  try {
+    const response = await fetch("https://api.github.com/user", {
+      headers: getAuthHeaders(token),
+    });
+    return response.ok;
+  } catch (error) {
+    console.error("[Librarian] Token validation failed:", error);
+    return false;
+  }
+};
+
+/**
  * Main Tool Function
  */
 export const getFrameworkDocs = async (

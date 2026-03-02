@@ -14,6 +14,7 @@ import { Dialog, Transition, Tab } from "@headlessui/react";
 import { useSettings } from "../../core/useSettings";
 import { ThemeMode, ThemeAccent } from "../../core/types";
 import { clearAllData } from "../services/storageService";
+import { validateGitHubToken } from "../../features/librarian/githubService";
 import {
   XIcon,
   GithubIcon,
@@ -47,6 +48,8 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
   const [tempGithubToken, setTempGithubToken] = useState(
     settings.githubToken || "",
   );
+  const [isValidatingToken, setIsValidatingToken] = useState(false);
+  const [tokenError, setTokenError] = useState<string | null>(null);
   const [isResetConfirming, setIsResetConfirming] = useState(false);
   const [isDisconnectConfirming, setIsDisconnectConfirming] = useState(false);
 
@@ -377,26 +380,61 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                                 name="github_token"
                                 type="password"
                                 value={tempGithubToken}
-                                onChange={(e) =>
-                                  setTempGithubToken(e.target.value)
-                                }
+                                onChange={(e) => {
+                                  setTempGithubToken(e.target.value);
+                                  setTokenError(null);
+                                }}
                                 placeholder="ghp_..."
                                 className="flex-1 bg-app-canvas border border-app-border rounded p-2 text-sm font-mono focus:outline-none focus:border-app-brand"
                               />
                               <button
                                 id="shared-settings-github-token-save"
                                 data-testid="shared-settings-github-token-save"
-                                onClick={() =>
-                                  updateSettings({
-                                    githubToken: tempGithubToken,
-                                  })
-                                }
-                                className="px-4 py-2 bg-app-brand text-white rounded font-bold text-sm hover:bg-app-brand/90 transition-colors"
+                                onClick={async () => {
+                                  setTokenError(null);
+                                  if (!tempGithubToken.trim()) {
+                                    updateSettings({ githubToken: "" });
+                                    return;
+                                  }
+
+                                  setIsValidatingToken(true);
+                                  try {
+                                    const isValid =
+                                      await validateGitHubToken(
+                                        tempGithubToken,
+                                      );
+                                    if (isValid) {
+                                      updateSettings({
+                                        githubToken: tempGithubToken,
+                                      });
+                                    } else {
+                                      setTokenError(
+                                        "Invalid GitHub token. Please check and try again.",
+                                      );
+                                    }
+                                  } catch {
+                                    setTokenError(
+                                      "Validation failed. Check your connection.",
+                                    );
+                                  } finally {
+                                    setIsValidatingToken(false);
+                                  }
+                                }}
+                                disabled={isValidatingToken}
+                                className="px-4 py-2 bg-app-brand text-white rounded font-bold text-sm hover:bg-app-brand/90 transition-colors disabled:opacity-50 flex items-center gap-2"
                               >
-                                Save
+                                {isValidatingToken && (
+                                  <SpinnerIcon className="h-4 w-4 animate-spin" />
+                                )}
+                                {isValidatingToken ? "Verifying..." : "Save"}
                               </button>
                             </div>
-                            {settings.githubToken && (
+                            {tokenError && (
+                              <p className="text-red-500 text-[10px] font-bold animate-pulse">
+                                {tokenError}
+                              </p>
+                            )}
+                            {settings.githubToken && !tokenError && (
                               <p className="text-emerald-500 text-xs font-bold flex items-center gap-1">
                                 ✓ Token Active
                               </p>
