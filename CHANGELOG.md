@@ -1,6 +1,12 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+### [1.9.4](https://github.com/filthymanc/filthys-mizmaster/compare/v1.9.3...v1.9.4) (2026-03-02)
+
+
+### Bug Fixes
+
+* **security:** sanitize logs, harden lua validation, and message import ([123e007](https://github.com/filthymanc/filthys-mizmaster/commit/123e00775bb2df4808c4a9fdd63aebc07ce7e233))
 
 ### [1.9.3](https://github.com/filthymanc/filthys-mizmaster/compare/v1.9.2...v1.9.3) (2026-03-02)
 
