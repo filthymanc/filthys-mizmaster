@@ -340,12 +340,31 @@ const Dashboard: React.FC<DashboardProps> = ({
                   {settings.githubToken ? "UPDATE TOKEN" : "CONFIGURE TOKEN"}
                 </button>
               ) : (
-                <div className="space-y-3 animate-fadeIn">
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    handleSaveToken();
+                  }}
+                  className="space-y-3 animate-fadeIn"
+                >
+                  {/* Hidden username field for accessibility/password managers */}
+                  <input
+                    id="dashboard-github-username-hidden"
+                    data-testid="dashboard-github-username-hidden"
+                    type="text"
+                    name="username"
+                    defaultValue="GitHub PAT"
+                    readOnly
+                    autoComplete="username"
+                    className="hidden"
+                    aria-hidden="true"
+                  />
                   <input
                     id="dashboard-github-token-input"
                     data-testid="dashboard-github-token-input"
                     name="github_token"
                     type="password"
+                    autoComplete="current-password"
                     value={tempToken}
                     onChange={(e) => setTempToken(e.target.value)}
                     placeholder="ghp_..."
@@ -355,7 +374,7 @@ const Dashboard: React.FC<DashboardProps> = ({
                     <button
                       id="dashboard-github-token-save"
                       data-testid="dashboard-github-token-save"
-                      onClick={handleSaveToken}
+                      type="submit"
                       className="flex-1 py-2 bg-app-brand text-white rounded text-xs font-bold hover:bg-app-brand/90 transition-colors"
                     >
                       SAVE
@@ -363,6 +382,7 @@ const Dashboard: React.FC<DashboardProps> = ({
                     <button
                       id="dashboard-github-token-cancel"
                       data-testid="dashboard-github-token-cancel"
+                      type="button"
                       onClick={() => setShowTokenInput(false)}
                       className="px-3 py-2 bg-app-surface border border-app-border text-app-tertiary rounded text-xs font-bold hover:text-app-primary transition-colors"
                     >
@@ -379,7 +399,7 @@ const Dashboard: React.FC<DashboardProps> = ({
                   >
                     Create Read-Only Token
                   </a>
-                </div>
+                </form>
               )}
             </div>
           </div>

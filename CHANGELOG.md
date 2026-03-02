@@ -1,12 +1,12 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
-### [1.9.1](https://github.com/filthymanc/filthys-mizmaster/compare/v1.9.0...v1.9.1) (2026-03-02)
 
+### [1.9.1](https://github.com/filthymanc/filthys-mizmaster/compare/v1.9.0...v1.9.1) (2026-03-02)
 
 ### Bug Fixes
 
-* add hidden username fields for accessibility and resolve CSP/API key leakage ([1eadebe](https://github.com/filthymanc/filthys-mizmaster/commit/1eadebe90ead49090d1be462e4234c0d1cef2ad2))
+- add hidden username fields for accessibility and resolve CSP/API key leakage ([1eadebe](https://github.com/filthymanc/filthys-mizmaster/commit/1eadebe90ead49090d1be462e4234c0d1cef2ad2))
 
 ## [1.9.0](https://github.com/filthymanc/filthys-mizmaster/compare/v1.8.2...v1.9.0) (2026-03-02)
 

@@ -394,6 +394,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                                 data-testid="shared-settings-github-token-input"
                                 name="github_token"
                                 type="password"
+                                autoComplete="current-password"
                                 value={tempGithubToken}
                                 onChange={(e) => {
                                   setTempGithubToken(e.target.value);
