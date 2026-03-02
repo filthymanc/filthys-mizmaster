@@ -13,6 +13,8 @@ import React, { useState, useEffect, useCallback } from "react";
 import { ApiStatus, AppSettings, ModelDefinition } from "./types";
 import { STORAGE_KEYS, DEFAULT_MODEL_ID, AVAILABLE_MODELS } from "./constants";
 import { SettingsContext } from "./SettingsContextDefinition";
+import * as crypto from "../shared/services/cryptoService";
+import { useAuth } from "../features/auth/useAuth";
 
 interface GeminiApiModel {
   name: string;
@@ -26,12 +28,13 @@ interface GeminiApiModel {
 export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
+  const { getMasterPassword } = useAuth();
   const [apiStatus, setApiStatus] = useState<ApiStatus>("idle");
   const [isModelLoading, setIsModelLoading] = useState(false);
 
   const [settings, setSettings] = useState<AppSettings>(() => {
     const saved = localStorage.getItem(STORAGE_KEYS.SETTINGS);
-    let initialSettings: AppSettings = {
+    const initialSettings: AppSettings = {
       model: DEFAULT_MODEL_ID,
       availableModels: AVAILABLE_MODELS,
       isDesanitized: false,
@@ -49,7 +52,7 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({
           ? new Date(parsed.lastModelRefresh)
           : undefined;
 
-        initialSettings = {
+        return {
           model: parsed.model || DEFAULT_MODEL_ID,
           availableModels: parsed.availableModels || AVAILABLE_MODELS,
           lastModelRefresh: lastRefresh,
@@ -63,21 +66,54 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({
       }
     }
 
-    if (typeof document !== "undefined" && document.body) {
-      document.body.className = `mode-${initialSettings.themeMode} accent-${initialSettings.themeAccent}`;
-    }
-
     return initialSettings;
   });
 
+  // Handle Token Decryption when master password becomes available
+  useEffect(() => {
+    const pw = getMasterPassword();
+    if (pw && settings.githubToken && crypto.isEncrypted(settings.githubToken)) {
+      crypto
+        .decryptSecret(settings.githubToken, pw)
+        .then((decrypted) => {
+          setSettings((prev) => ({ ...prev, githubToken: decrypted }));
+        })
+        .catch(() => {
+          console.error("Failed to decrypt GitHub token with master password.");
+        });
+    }
+  }, [getMasterPassword, settings.githubToken]);
+
   const refreshModels = useCallback(async () => {
+
     const apiKey = localStorage.getItem(STORAGE_KEYS.API_KEY);
     if (!apiKey) return;
+
+    let effectiveKey = apiKey;
+    const pw = getMasterPassword();
+
+    // If encrypted, decrypt for the fetch
+    if (crypto.isEncrypted(apiKey) && pw) {
+      try {
+        effectiveKey = await crypto.decryptSecret(apiKey, pw);
+      } catch {
+        console.error("Discovery: Decryption failed.");
+        return;
+      }
+    } else if (crypto.isEncrypted(apiKey)) {
+      // Locked
+      return;
+    }
 
     setIsModelLoading(true);
     try {
       const response = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models?key=${apiKey}`,
+        `https://generativelanguage.googleapis.com/v1beta/models`,
+        {
+          headers: {
+            "x-goog-api-key": effectiveKey,
+          },
+        },
       );
 
       if (!response.ok) throw new Error("Failed to fetch models");
@@ -214,15 +250,36 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({
     } finally {
       setIsModelLoading(false);
     }
-  }, []);
+  }, [getMasterPassword]);
 
-  // Sync settings to localStorage
+  // Sync settings to localStorage (with encryption for PAT)
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEYS.SETTINGS, JSON.stringify(settings));
-    if (typeof document !== "undefined" && document.body) {
-      document.body.className = `mode-${settings.themeMode} accent-${settings.themeAccent}`;
-    }
-  }, [settings]);
+    const sync = async () => {
+      const pw = getMasterPassword();
+      const settingsToSave = { ...settings };
+
+      if (
+        pw &&
+        settings.githubToken &&
+        !crypto.isEncrypted(settings.githubToken)
+      ) {
+        const encrypted = await crypto.encryptSecret(settings.githubToken, pw);
+        settingsToSave.githubToken = encrypted;
+      }
+
+      localStorage.setItem(
+        STORAGE_KEYS.SETTINGS,
+        JSON.stringify(settingsToSave),
+      );
+
+      if (typeof document !== "undefined" && document.body) {
+        document.body.className = `mode-${settings.themeMode} accent-${settings.themeAccent}`;
+      }
+    };
+
+    sync();
+  }, [settings, getMasterPassword]);
+
 
   // Initial Discovery and Refresh on API Key change
   useEffect(() => {

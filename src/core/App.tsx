@@ -33,8 +33,10 @@ const App: React.FC = () => {
     apiKey,
     isAuthenticated,
     isVerifying,
+    isLocked,
     authError,
     login,
+    unlock,
     logout,
     checkAuth,
   } = useAuth();
@@ -161,12 +163,14 @@ const App: React.FC = () => {
     input.click();
   }, [sessionManager]);
 
-  if (!isAuthenticated) {
+  if (!isAuthenticated || isLocked) {
     return (
       <>
         <LoginScreen
           onLogin={login}
+          onUnlock={unlock}
           isVerifying={isVerifying}
+          isLocked={isLocked}
           authError={authError}
           onOpenFieldManual={() => setIsManualOpen(true)}
         />

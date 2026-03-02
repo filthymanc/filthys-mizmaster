@@ -373,7 +373,10 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                               GitHub repositories without hitting
                               unauthenticated rate limits.
                             </p>
-                            <div className="flex gap-2">
+                            <form
+                              onSubmit={(e) => e.preventDefault()}
+                              className="flex gap-2"
+                            >
                               <input
                                 id="shared-settings-github-token-input"
                                 data-testid="shared-settings-github-token-input"
@@ -390,6 +393,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                               <button
                                 id="shared-settings-github-token-save"
                                 data-testid="shared-settings-github-token-save"
+                                type="button"
                                 onClick={async () => {
                                   setTokenError(null);
                                   if (!tempGithubToken.trim()) {
@@ -428,7 +432,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                                 )}
                                 {isValidatingToken ? "Verifying..." : "Save"}
                               </button>
-                            </div>
+                            </form>
                             {tokenError && (
                               <p className="text-red-500 text-[10px] font-bold animate-pulse">
                                 {tokenError}
