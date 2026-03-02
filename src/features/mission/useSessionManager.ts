@@ -185,6 +185,22 @@ export const useSessionManager = () => {
 
   // Handler for importing sessions (merging logic)
   const mergeSessions = useCallback((newSessions: Session[]) => {
+    // Validate that incoming data is actually a Session array
+    if (!Array.isArray(newSessions)) {
+      console.warn("[SessionManager] Import failed: Data is not an array.");
+      return;
+    }
+
+    const isValid = newSessions.every(
+      (s) => s && typeof s === "object" && s.id,
+    );
+    if (!isValid) {
+      console.warn(
+        "[SessionManager] Import failed: Array contains invalid session objects.",
+      );
+      return;
+    }
+
     setSessions((prev) => {
       const incomingIds = new Set(newSessions.map((s) => s.id));
       const existing = prev.filter((s) => !incomingIds.has(s.id));
