@@ -253,7 +253,10 @@ export const useChatEngine = ({
       setApiStatus("idle");
     } catch (error: unknown) {
       clearTimeout(timeoutId);
-      console.error("[ChatEngine] Error:", error);
+      console.error(
+        "[ChatEngine] Error:",
+        error instanceof Error ? error.message : error,
+      );
 
       let cleanError = "An unexpected system error occurred.";
       const errString = String(error);

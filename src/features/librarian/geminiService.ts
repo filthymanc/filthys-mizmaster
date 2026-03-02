@@ -209,7 +209,10 @@ export async function* sendMessageStream(
     try {
       stream = await chatSession.sendMessageStream(inputPayload);
     } catch (e: unknown) {
-      console.error("Gemini API Stream Error:", e);
+      console.error(
+        "Gemini API Stream Error:",
+        e instanceof Error ? e.message : e,
+      );
 
       let errorHint = "";
       const errStr = String(e);

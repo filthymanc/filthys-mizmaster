@@ -47,7 +47,11 @@ export const validateLuaSyntax = (code: string): LuaValidationResult => {
     const lowerLine = line.toLowerCase();
 
     for (const lib of PROHIBITED_LUA_LIBS) {
-      if (lowerLine.includes(lib)) {
+      // Improved check: detect both dot notation (os.exit) and bracket notation (os["exit"])
+      const escapedLib = lib.replace(".", "");
+      const bracketPattern = new RegExp(`${escapedLib}\\s*\\[`, "i");
+
+      if (lowerLine.includes(lib) || bracketPattern.test(lowerLine)) {
         return {
           isValid: false,
           error: `Restricted Library Detected: '${lib}'`,

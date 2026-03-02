@@ -45,13 +45,18 @@ const validateSession = (s: any): Session | null => {
 const validateMessage = (m: any): Message | null => {
   if (!m || typeof m !== "object") return null;
   return {
-    ...m, // Keep other properties like modelUsed, tokenUsage, etc.
     id: m.id || Date.now().toString(),
     role: m.role === "user" || m.role === "model" ? m.role : "model",
     text: typeof m.text === "string" ? m.text : "",
     timestamp: safeDate(m.timestamp),
+    modelUsed: typeof m.modelUsed === "string" ? m.modelUsed : undefined,
+    verifiedModel:
+      typeof m.verifiedModel === "string" ? m.verifiedModel : undefined,
+    tokenUsage: m.tokenUsage,
+    timingMs: typeof m.timingMs === "number" ? m.timingMs : undefined,
+    librarianStatus:
+      typeof m.librarianStatus === "string" ? m.librarianStatus : undefined,
     // CRITICAL: Always reset streaming state on load.
-    // If the app was closed while streaming, this prevents it from getting stuck in "thinking" state.
     isStreaming: false,
   };
 };
