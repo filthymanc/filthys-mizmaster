@@ -1,6 +1,12 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+### [1.8.2](https://github.com/filthymanc/filthys-mizmaster/compare/v1.8.1...v1.8.2) (2026-03-02)
+
+
+### Bug Fixes
+
+* resolve CSP frame-ancestors warning, PWA icon 404s, and session data restoration bugs ([a8debfe](https://github.com/filthymanc/filthys-mizmaster/commit/a8debfe63e8da4b7bac167dd3cc61fa12501f0c1))
 
 ### [1.8.1](https://github.com/filthymanc/filthys-mizmaster/compare/v1.8.0...v1.8.1) (2026-03-02)
 
