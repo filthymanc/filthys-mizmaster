@@ -377,6 +377,18 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                               onSubmit={(e) => e.preventDefault()}
                               className="flex gap-2"
                             >
+                              {/* Hidden username field for accessibility/password managers */}
+                              <input
+                                id="auth-settings-github-username-hidden"
+                                data-testid="auth-settings-github-username-hidden"
+                                type="text"
+                                name="username"
+                                defaultValue="GitHub PAT"
+                                readOnly
+                                autoComplete="username"
+                                className="hidden"
+                                aria-hidden="true"
+                              />
                               <input
                                 id="shared-settings-github-token-input"
                                 data-testid="shared-settings-github-token-input"

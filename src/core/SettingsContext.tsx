@@ -72,7 +72,11 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({
   // Handle Token Decryption when master password becomes available
   useEffect(() => {
     const pw = getMasterPassword();
-    if (pw && settings.githubToken && crypto.isEncrypted(settings.githubToken)) {
+    if (
+      pw &&
+      settings.githubToken &&
+      crypto.isEncrypted(settings.githubToken)
+    ) {
       crypto
         .decryptSecret(settings.githubToken, pw)
         .then((decrypted) => {
@@ -85,7 +89,6 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({
   }, [getMasterPassword, settings.githubToken]);
 
   const refreshModels = useCallback(async () => {
-
     const apiKey = localStorage.getItem(STORAGE_KEYS.API_KEY);
     if (!apiKey) return;
 
@@ -279,7 +282,6 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({
 
     sync();
   }, [settings, getMasterPassword]);
-
 
   // Initial Discovery and Refresh on API Key change
   useEffect(() => {

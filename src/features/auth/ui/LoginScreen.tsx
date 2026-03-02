@@ -81,6 +81,18 @@ const LoginScreen: React.FC<LoginScreenProps> = ({
 
           {/* Login Form */}
           <form onSubmit={handleSubmit} className="space-y-4">
+            {/* Hidden username field for accessibility/password managers */}
+            <input
+              id="auth-login-username-hidden"
+              data-testid="auth-login-username-hidden"
+              type="text"
+              name="username"
+              defaultValue="MizMaster Vault"
+              readOnly
+              autoComplete="username"
+              className="hidden"
+              aria-hidden="true"
+            />
             {!isLocked && (
               <div className="space-y-2">
                 <div className="flex justify-between items-center px-1">

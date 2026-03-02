@@ -1,12 +1,12 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
-## [1.9.0](https://github.com/filthymanc/filthys-mizmaster/compare/v1.8.2...v1.9.0) (2026-03-02)
 
+## [1.9.0](https://github.com/filthymanc/filthys-mizmaster/compare/v1.8.2...v1.9.0) (2026-03-02)
 
 ### Features
 
-* implement AES-GCM encrypted vault for API keys and tokens ([3bf216b](https://github.com/filthymanc/filthys-mizmaster/commit/3bf216ba39604595f059d4b414edec1dd66a078f))
+- implement AES-GCM encrypted vault for API keys and tokens ([3bf216b](https://github.com/filthymanc/filthys-mizmaster/commit/3bf216ba39604595f059d4b414edec1dd66a078f))
 
 ### [1.8.2](https://github.com/filthymanc/filthys-mizmaster/compare/v1.8.1...v1.8.2) (2026-03-02)
 
