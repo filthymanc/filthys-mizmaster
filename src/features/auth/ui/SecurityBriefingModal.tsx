@@ -73,13 +73,19 @@ const SecurityBriefingModal: React.FC<SecurityBriefingModalProps> = ({
           <section className="space-y-3">
             <div className="flex items-center gap-2 text-app-primary font-bold text-base">
               <ShieldIcon className="h-5 w-5 text-green-500" />
-              <h3>Data Privacy & Storage</h3>
+              <h3>Secure Secret Vault</h3>
             </div>
             <p>
-              <strong>Your key never leaves your browser.</strong> It is stored
-              locally using IndexedDB and LocalStorage. We do not have backend
-              servers, and we never see or store your key. You maintain complete
-              control over your credentials.
+              <strong>Your keys are protected by an encrypted vault.</strong>{" "}
+              MizMaster uses the native **Web Crypto API** to encrypt your
+              Gemini API Key and GitHub PAT using **AES-GCM (256-bit)** before
+              they are saved locally.
+            </p>
+            <p>
+              This vault is unlocked using your **Master Password**, which is
+              used to derive a temporary encryption key via **PBKDF2**. Both
+              your password and the derived key reside strictly in **volatile
+              memory** and are never written to disk.
             </p>
           </section>
 

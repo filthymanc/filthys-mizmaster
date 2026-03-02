@@ -25,8 +25,8 @@ export const MANUAL_CONTENT = {
         iconType: "device",
       },
       {
-        title: "Data Sovereignty",
-        text: "Your mission ideas, API keys, and chat logs are stored locally in your browser. With no backend database, your intellectual property remains entirely under your control while the AI assists with the engineering.",
+        title: "Encrypted Vault",
+        text: "Your mission ideas, API keys, and tokens are protected by a secure vault. Secrets are encrypted using AES-GCM (256-bit) before being stored locally, ensuring your credentials remain private even if the device storage is inspected.",
         iconType: "lock",
       },
     ],
@@ -278,8 +278,8 @@ export const MANUAL_CONTENT = {
           text: "This application runs entirely in your browser. We cannot see your API keys or scripts.",
         },
         {
-          label: "API Key:",
-          text: "Stored in `localStorage`. Sent directly to Google APIs only.",
+          label: "API Key & PAT:",
+          text: "Stored as encrypted base64 bundles in `localStorage`. Decrypted only in memory using your Master Password.",
         },
         {
           label: "AI Processing:",

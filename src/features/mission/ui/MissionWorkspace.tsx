@@ -21,6 +21,8 @@ import {
   TrashIcon,
   MenuIcon,
   EllipsisVerticalIcon,
+  ShieldIcon,
+  RefreshIcon,
 } from "../../../shared/ui/Icons";
 import { AVAILABLE_MODELS } from "../../../core/constants";
 import { APP_VERSION } from "../../../core/version";
@@ -146,6 +148,11 @@ const MissionWorkspace: React.FC<MissionWorkspaceProps> = ({
                   | PROCESSING
                 </span>
               )}
+              {settings.isDesanitized && (
+                <span className="text-red-500 flex items-center gap-1">
+                  | <ShieldIcon className="h-3 w-3" /> UNSAFE
+                </span>
+              )}
             </div>
           </div>
         </div>
@@ -209,6 +216,24 @@ const MissionWorkspace: React.FC<MissionWorkspaceProps> = ({
                       >
                         <TrashIcon className="mr-3 h-4 w-4 opacity-70 group-hover:opacity-100" />
                         Delete Mission
+                      </button>
+                    )}
+                  </Menu.Item>
+                  <div className="border-t border-app-border/50 my-1"></div>
+                  <Menu.Item>
+                    {({ active }) => (
+                      <button
+                        id="workspace-header-actions-reload"
+                        data-testid="workspace-header-actions-reload"
+                        onClick={() => window.location.reload()}
+                        className={`${
+                          active
+                            ? "bg-app-highlight text-app-primary"
+                            : "text-app-secondary"
+                        } group flex w-full items-center px-4 py-3 text-sm font-bold transition-colors`}
+                      >
+                        <RefreshIcon className="mr-3 h-4 w-4 text-app-tertiary group-hover:text-app-brand transition-colors" />
+                        Reload Application
                       </button>
                     )}
                   </Menu.Item>

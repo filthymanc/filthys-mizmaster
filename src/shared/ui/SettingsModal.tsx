@@ -498,8 +498,16 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
 
                         {/* Danger Zone */}
                         <div className="space-y-4 pt-4 border-t border-red-500/20">
-                          <h4 className="text-sm font-bold text-red-500 uppercase tracking-wider">
+                          <h4 className="text-sm font-bold text-red-500 uppercase tracking-wider flex justify-between items-center">
                             Danger Zone
+                            <button
+                              id="shared-settings-reload-trigger"
+                              onClick={() => window.location.reload()}
+                              className="flex items-center gap-1.5 px-2 py-1 rounded text-[10px] font-bold bg-app-surface text-app-tertiary hover:text-app-primary border border-app-border transition-colors uppercase"
+                            >
+                              <RefreshIcon className="h-3 w-3" />
+                              Reload App
+                            </button>
                           </h4>
                           <div className="space-y-3">
                             <button

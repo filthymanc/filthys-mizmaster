@@ -91,7 +91,7 @@ const OnboardingModal: React.FC<OnboardingModalProps> = ({
                 will refuse to generate file-system code unless you explicitly
                 enable{" "}
                 <span className="text-red-400 font-bold">UNSAFE MODE</span> in
-                the top toolbar.
+                the <strong>System Configuration</strong>.
               </p>
             </div>
           </div>
@@ -109,6 +109,7 @@ const OnboardingModal: React.FC<OnboardingModalProps> = ({
                 DCS scripting engines (MOOSE/DCS API) are strict. To prevent
                 crashes, the AI is programmed to{" "}
                 <strong>Verify before Writing</strong>.
+                <br />
                 <br />
                 If it cannot find a documented method (e.g., in the MOOSE docs),
                 it will fallback to standard Lua math rather than guessing.
@@ -129,8 +130,9 @@ const OnboardingModal: React.FC<OnboardingModalProps> = ({
                 The Mission Editor's "DO SCRIPT" box does <strong>NOT</strong>{" "}
                 auto-save.
                 <br />
+                <br />
                 After pasting generated code, you MUST press{" "}
-                <kbd className="bg-app-canvas px-1 rounded border border-app-border">
+                <kbd className="bg-app-canvas px-1 rounded border border-app-border text-xs">
                   Ctrl+S
                 </kbd>{" "}
                 (File &gt; Save) in the Mission Editor, or your changes will
@@ -142,7 +144,7 @@ const OnboardingModal: React.FC<OnboardingModalProps> = ({
           <div className="bg-app-canvas p-4 rounded-xl border border-app-border flex items-start gap-3">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 text-app-brand mt-0.5"
+              className="h-5 w-5 text-app-brand mt-0.5 shrink-0"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -156,16 +158,12 @@ const OnboardingModal: React.FC<OnboardingModalProps> = ({
             </svg>
             <div className="text-xs text-app-tertiary">
               <strong className="text-app-secondary block mb-1">
-                Data Sovereignty & Privacy
+                Hardware-Accelerated Vault
               </strong>
-              Your API Key and Chat History are stored <strong>locally</strong>{" "}
-              in your browser. Nothing is sent to the app host (GitHub Pages).
-              <br />
-              <br />
-              <span className="opacity-75">
-                However, your prompts are processed by the{" "}
-                <strong>Google Gemini API</strong>.
-              </span>
+              Your API Key and tokens are <strong>encrypted</strong> using
+              AES-GCM. Your decryption key resides in memory only; you must
+              unlock your session with your master password to access mission
+              tools.
             </div>
           </div>
         </div>

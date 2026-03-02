@@ -1,12 +1,12 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
-### [1.9.2](https://github.com/filthymanc/filthys-mizmaster/compare/v1.9.1...v1.9.2) (2026-03-02)
 
+### [1.9.2](https://github.com/filthymanc/filthys-mizmaster/compare/v1.9.1...v1.9.2) (2026-03-02)
 
 ### Bug Fixes
 
-* add autocomplete attributes to token inputs for accessibility ([5fc871f](https://github.com/filthymanc/filthys-mizmaster/commit/5fc871fa72af0b518f0435899cb08bcbb8ae84e3))
+- add autocomplete attributes to token inputs for accessibility ([5fc871f](https://github.com/filthymanc/filthys-mizmaster/commit/5fc871fa72af0b518f0435899cb08bcbb8ae84e3))
 
 ### [1.9.1](https://github.com/filthymanc/filthys-mizmaster/compare/v1.9.0...v1.9.1) (2026-03-02)
 
