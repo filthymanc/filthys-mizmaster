@@ -1,6 +1,12 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+### [1.10.1](https://github.com/filthymanc/filthys-mizmaster/compare/v1.10.0...v1.10.1) (2026-03-03)
+
+
+### Bug Fixes
+
+* **ui:** open settings modal to data tab from librarian panel ([4e0218e](https://github.com/filthymanc/filthys-mizmaster/commit/4e0218ef1d8a99a3c4cd71e73f7650be0c92db30))
 
 ## [1.10.0](https://github.com/filthymanc/filthys-mizmaster/compare/v1.9.4...v1.10.0) (2026-03-03)
 
