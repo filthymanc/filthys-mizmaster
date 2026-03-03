@@ -25,7 +25,7 @@ interface DashboardProps {
   onImportData: () => void;
   onPrompt: (text: string) => void;
   onUpdateSettings: (updates: Partial<AppSettings>) => void;
-  onOpenSettings: () => void;
+  onOpenSettings: (tab?: number) => void;
 }
 
 const Dashboard: React.FC<DashboardProps> = ({
@@ -126,7 +126,7 @@ const Dashboard: React.FC<DashboardProps> = ({
         </div>
 
         <div
-          className={`p-4 rounded-xl flex items-center gap-4 shadow-sm border ${settings.isDesanitized ? "bg-red-500/10 text-red-500 border-red-500/20" : "bg-blue-500/10 text-blue-500 border-blue-500/20"}`}
+          className={`p-4 rounded-xl flex items-center gap-4 shadow-sm border ${settings.isDesanitized ? "bg-red-500/10 text-red-500 border-red-500/20" : "bg-blue-500/10 text-blue-500 border-red-500/20"}`}
         >
           <div className="p-2.5 rounded-lg bg-app-canvas shadow-sm">
             <svg
@@ -326,7 +326,7 @@ const Dashboard: React.FC<DashboardProps> = ({
               <button
                 id="dashboard-github-token-trigger"
                 data-testid="dashboard-github-token-trigger"
-                onClick={onOpenSettings}
+                onClick={() => onOpenSettings(2)}
                 className="w-full py-2 bg-app-surface border border-app-border hover:border-app-highlight hover:text-app-primary text-app-secondary rounded text-xs font-bold transition-colors"
               >
                 {settings.githubToken ? "UPDATE TOKEN" : "CONFIGURE TOKEN"}

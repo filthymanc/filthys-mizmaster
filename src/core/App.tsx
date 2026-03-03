@@ -47,10 +47,16 @@ const App: React.FC = () => {
   const [isOnboardingOpen, setIsOnboardingOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [settingsTab, setSettingsTab] = useState(0);
   const [isArmoryOpen, setIsArmoryOpen] = useState(false);
 
   // Viewport Height Fix for Mobile Browsers
   const [appHeight, setAppHeight] = useState("100dvh");
+
+  const handleOpenSettings = useCallback((tab: number = 0) => {
+    setSettingsTab(tab);
+    setIsSettingsOpen(true);
+  }, []);
 
   useEffect(() => {
     checkAuth();
@@ -83,14 +89,14 @@ const App: React.FC = () => {
       if ((e.ctrlKey || e.metaKey) && e.key === ",") {
         e.preventDefault();
         if (isAuthenticated) {
-          setIsSettingsOpen((prev) => !prev);
+          handleOpenSettings(0);
         }
       }
     };
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isAuthenticated]);
+  }, [isAuthenticated, handleOpenSettings]);
 
   useSwipeGesture({
     onSwipeRight: () => {
@@ -215,6 +221,7 @@ const App: React.FC = () => {
 
         <SettingsModal
           isOpen={isSettingsOpen}
+          initialTab={settingsTab}
           onClose={() => setIsSettingsOpen(false)}
           onImportData={handleImportDataTrigger}
           onExportData={handleExportData}
@@ -237,7 +244,7 @@ const App: React.FC = () => {
           onRenameSession={sessionManager.renameSession}
           isOpen={isSidebarOpen}
           onClose={() => setIsSidebarOpen(false)}
-          onOpenSettings={() => setIsSettingsOpen(true)}
+          onOpenSettings={() => handleOpenSettings(0)}
           onOpenFieldManual={() => setIsManualOpen(true)}
           onOpenArmory={() => setIsArmoryOpen(true)}
           isLoading={!sessionManager.isReady}
@@ -257,7 +264,7 @@ const App: React.FC = () => {
             apiKey={apiKey}
             touchSession={sessionManager.touchSession}
             onOpenSidebar={() => setIsSidebarOpen(true)}
-            onOpenSettings={() => setIsSettingsOpen(true)}
+            onOpenSettings={handleOpenSettings}
             onDeleteSession={(id) => {
               sessionManager.deleteSession(id);
               // If the active session is deleted, sessionManager automatically handles setting a new active session

@@ -32,6 +32,7 @@ interface SettingsModalProps {
   onImportData: () => void;
   onExportData: () => void;
   onDisconnect: () => void;
+  initialTab?: number;
 }
 
 const SettingsModal: React.FC<SettingsModalProps> = ({
@@ -40,6 +41,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
   onImportData,
   onExportData,
   onDisconnect,
+  initialTab = 0,
 }) => {
   const { settings, updateSettings, refreshModels, isModelLoading } =
     useSettings();
@@ -136,7 +138,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                 </div>
 
                 <div className="flex-1 overflow-y-auto p-6 scroll-smooth custom-scrollbar">
-                  <Tab.Group>
+                  <Tab.Group defaultIndex={initialTab}>
                     <Tab.List className="flex space-x-1 rounded-xl bg-app-canvas p-1 border border-app-border mb-6 shrink-0">
                       {["Engine", "Interface", "Data & Identity"].map(
                         (category) => (

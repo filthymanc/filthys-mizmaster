@@ -41,7 +41,7 @@ interface MissionWorkspaceProps {
   apiKey: string;
   touchSession: (id: string) => void;
   onOpenSidebar: () => void;
-  onOpenSettings: () => void;
+  onOpenSettings: (tab?: number) => void;
   onDeleteSession: (id: string) => void;
 }
 

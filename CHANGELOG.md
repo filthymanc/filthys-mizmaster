@@ -1,12 +1,12 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
-## [1.10.0](https://github.com/filthymanc/filthys-mizmaster/compare/v1.9.4...v1.10.0) (2026-03-03)
 
+## [1.10.0](https://github.com/filthymanc/filthys-mizmaster/compare/v1.9.4...v1.10.0) (2026-03-03)
 
 ### Features
 
-* **librarian:** improve github token validation and dashboard settings trigger ([1337389](https://github.com/filthymanc/filthys-mizmaster/commit/13373896eb1d7f330da968d718610e9894dbf252))
+- **librarian:** improve github token validation and dashboard settings trigger ([1337389](https://github.com/filthymanc/filthys-mizmaster/commit/13373896eb1d7f330da968d718610e9894dbf252))
 
 ### [1.9.4](https://github.com/filthymanc/filthys-mizmaster/compare/v1.9.3...v1.9.4) (2026-03-02)
 
