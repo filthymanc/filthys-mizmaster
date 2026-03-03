@@ -367,7 +367,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                             GitHub Integration
                           </h4>
                           <div className="p-4 rounded-xl border border-app-border bg-app-surface space-y-3">
-                            <p className="text-xs text-app-tertiary">
+                            <p className="text-xs text-app-primary">
                               Provide a Personal Access Token (PAT) to enable
                               the Librarian to read raw files directly from
                               GitHub repositories without hitting
@@ -401,7 +401,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                                   setTokenError(null);
                                 }}
                                 placeholder="ghp_..."
-                                className="flex-1 bg-app-canvas border border-app-border rounded p-2 text-sm font-mono focus:outline-none focus:border-app-brand"
+                                className="flex-1 bg-app-canvas border border-app-border rounded p-2 text-sm font-mono text-app-primary placeholder:text-app-tertiary focus:outline-none focus:border-app-brand"
                               />
                               <button
                                 id="shared-settings-github-token-save"

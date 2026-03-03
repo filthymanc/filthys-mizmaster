@@ -175,13 +175,14 @@ const findFileInTree = (
 };
 
 /**
- * Validates a GitHub Personal Access Token by attempting to fetch the authenticated user.
+ * Validates a GitHub Personal Access Token by pinging the rate_limit endpoint.
+ * This guarantees proper validation even for highly restrictive fine-grained tokens.
  */
 export const validateGitHubToken = async (token: string): Promise<boolean> => {
   if (!token || token.trim() === "") return true;
 
   try {
-    const response = await fetch("https://api.github.com/user", {
+    const response = await fetch("https://api.github.com/rate_limit", {
       headers: getAuthHeaders(token),
     });
     return response.ok;

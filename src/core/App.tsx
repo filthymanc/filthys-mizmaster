@@ -257,6 +257,7 @@ const App: React.FC = () => {
             apiKey={apiKey}
             touchSession={sessionManager.touchSession}
             onOpenSidebar={() => setIsSidebarOpen(true)}
+            onOpenSettings={() => setIsSettingsOpen(true)}
             onDeleteSession={(id) => {
               sessionManager.deleteSession(id);
               // If the active session is deleted, sessionManager automatically handles setting a new active session

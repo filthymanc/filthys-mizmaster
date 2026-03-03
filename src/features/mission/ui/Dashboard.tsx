@@ -9,7 +9,7 @@
  * You should have received a copy of the GNU General Public License along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React, { useState } from "react";
+import React from "react";
 import { AppSettings, ApiStatus, Session } from "../../../core/types";
 import { SUGGESTED_QUERIES, AVAILABLE_MODELS } from "../../../core/constants";
 import { GithubIcon, PlusIcon, UploadIcon } from "../../../shared/ui/Icons";
@@ -25,6 +25,7 @@ interface DashboardProps {
   onImportData: () => void;
   onPrompt: (text: string) => void;
   onUpdateSettings: (updates: Partial<AppSettings>) => void;
+  onOpenSettings: () => void;
 }
 
 const Dashboard: React.FC<DashboardProps> = ({
@@ -36,11 +37,8 @@ const Dashboard: React.FC<DashboardProps> = ({
   onCreateSession,
   onImportData,
   onPrompt,
-  onUpdateSettings,
+  onOpenSettings,
 }) => {
-  const [showTokenInput, setShowTokenInput] = useState(false);
-  const [tempToken, setTempToken] = useState(settings.githubToken || "");
-
   const recentSessions = sessions
     .filter((s) => s.id !== activeSessionId)
     .sort(
@@ -70,11 +68,6 @@ const Dashboard: React.FC<DashboardProps> = ({
     if (apiStatus === "error") return "text-red-500";
     if (apiStatus === "offline") return "text-app-tertiary";
     return "text-app-brand";
-  };
-
-  const handleSaveToken = () => {
-    onUpdateSettings({ githubToken: tempToken });
-    setShowTokenInput(false);
   };
 
   const currentModel = (
@@ -330,77 +323,14 @@ const Dashboard: React.FC<DashboardProps> = ({
                   : "Anonymous access. Rate limit: 60/hr. Search operations may fail under load."}
               </p>
 
-              {!showTokenInput ? (
-                <button
-                  id="dashboard-github-token-trigger"
-                  data-testid="dashboard-github-token-trigger"
-                  onClick={() => setShowTokenInput(true)}
-                  className="w-full py-2 bg-app-surface border border-app-border hover:border-app-highlight hover:text-app-primary text-app-secondary rounded text-xs font-bold transition-colors"
-                >
-                  {settings.githubToken ? "UPDATE TOKEN" : "CONFIGURE TOKEN"}
-                </button>
-              ) : (
-                <form
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    handleSaveToken();
-                  }}
-                  className="space-y-3 animate-fadeIn"
-                >
-                  {/* Hidden username field for accessibility/password managers */}
-                  <input
-                    id="dashboard-github-username-hidden"
-                    data-testid="dashboard-github-username-hidden"
-                    type="text"
-                    name="username"
-                    defaultValue="GitHub PAT"
-                    readOnly
-                    autoComplete="username"
-                    className="hidden"
-                    aria-hidden="true"
-                  />
-                  <input
-                    id="dashboard-github-token-input"
-                    data-testid="dashboard-github-token-input"
-                    name="github_token"
-                    type="password"
-                    autoComplete="current-password"
-                    value={tempToken}
-                    onChange={(e) => setTempToken(e.target.value)}
-                    placeholder="ghp_..."
-                    className="w-full bg-app-surface border border-app-border rounded p-2 text-xs font-mono focus:border-app-brand outline-none"
-                  />
-                  <div className="flex gap-2">
-                    <button
-                      id="dashboard-github-token-save"
-                      data-testid="dashboard-github-token-save"
-                      type="submit"
-                      className="flex-1 py-2 bg-app-brand text-white rounded text-xs font-bold hover:bg-app-brand/90 transition-colors"
-                    >
-                      SAVE
-                    </button>
-                    <button
-                      id="dashboard-github-token-cancel"
-                      data-testid="dashboard-github-token-cancel"
-                      type="button"
-                      onClick={() => setShowTokenInput(false)}
-                      className="px-3 py-2 bg-app-surface border border-app-border text-app-tertiary rounded text-xs font-bold hover:text-app-primary transition-colors"
-                    >
-                      CANCEL
-                    </button>
-                  </div>
-                  <a
-                    id="dashboard-github-token-create-link"
-                    data-testid="dashboard-github-token-create-link"
-                    href="https://github.com/settings/tokens?type=beta"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block text-center text-[10px] text-app-brand hover:underline pt-2"
-                  >
-                    Create Read-Only Token
-                  </a>
-                </form>
-              )}
+              <button
+                id="dashboard-github-token-trigger"
+                data-testid="dashboard-github-token-trigger"
+                onClick={onOpenSettings}
+                className="w-full py-2 bg-app-surface border border-app-border hover:border-app-highlight hover:text-app-primary text-app-secondary rounded text-xs font-bold transition-colors"
+              >
+                {settings.githubToken ? "UPDATE TOKEN" : "CONFIGURE TOKEN"}
+              </button>
             </div>
           </div>
 

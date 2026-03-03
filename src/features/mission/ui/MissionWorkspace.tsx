@@ -41,6 +41,7 @@ interface MissionWorkspaceProps {
   apiKey: string;
   touchSession: (id: string) => void;
   onOpenSidebar: () => void;
+  onOpenSettings: () => void;
   onDeleteSession: (id: string) => void;
 }
 
@@ -56,6 +57,7 @@ const MissionWorkspace: React.FC<MissionWorkspaceProps> = ({
   apiKey,
   touchSession,
   onOpenSidebar,
+  onOpenSettings,
   onDeleteSession,
 }) => {
   const { messages, setMessages, clearMessages, isLoadingData } =
@@ -259,6 +261,7 @@ const MissionWorkspace: React.FC<MissionWorkspaceProps> = ({
                 onImportData={onImportData}
                 onPrompt={handleSendMessage}
                 onUpdateSettings={onUpdateSettings}
+                onOpenSettings={onOpenSettings}
               />
             </div>
           </div>
