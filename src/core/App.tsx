@@ -27,6 +27,15 @@ import { useSwipeGesture } from "../shared/hooks/useSwipeGesture";
 import * as storage from "../shared/services/storageService";
 import { validateImportData } from "../shared/services/migrationService";
 
+type ManualTabId =
+  | "briefing"
+  | "systems"
+  | "controls"
+  | "tactics"
+  | "developer"
+  | "intel"
+  | "legal";
+
 const App: React.FC = () => {
   const { settings, apiStatus, updateSettings } = useSettings();
   const {
@@ -44,6 +53,7 @@ const App: React.FC = () => {
 
   // Modal States
   const [isManualOpen, setIsManualOpen] = useState(false);
+  const [manualTab, setManualTab] = useState<ManualTabId>("briefing");
   const [isOnboardingOpen, setIsOnboardingOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
@@ -56,6 +66,11 @@ const App: React.FC = () => {
   const handleOpenSettings = useCallback((tab: number = 0) => {
     setSettingsTab(tab);
     setIsSettingsOpen(true);
+  }, []);
+
+  const handleOpenFieldManual = useCallback((tab: ManualTabId = "briefing") => {
+    setManualTab(tab);
+    setIsManualOpen(true);
   }, []);
 
   useEffect(() => {
@@ -178,11 +193,12 @@ const App: React.FC = () => {
           isVerifying={isVerifying}
           isLocked={isLocked}
           authError={authError}
-          onOpenFieldManual={() => setIsManualOpen(true)}
+          onOpenFieldManual={() => handleOpenFieldManual("briefing")}
         />
         {isManualOpen && (
           <FieldManual
             isOpen={isManualOpen}
+            initialTab={manualTab}
             onClose={() => setIsManualOpen(false)}
           />
         )}
@@ -202,6 +218,7 @@ const App: React.FC = () => {
         {isManualOpen && (
           <FieldManual
             isOpen={isManualOpen}
+            initialTab={manualTab}
             onClose={() => setIsManualOpen(false)}
           />
         )}
@@ -226,6 +243,7 @@ const App: React.FC = () => {
           onImportData={handleImportDataTrigger}
           onExportData={handleExportData}
           onDisconnect={logout}
+          onOpenFieldManual={handleOpenFieldManual}
         />
 
         <Sidebar
@@ -245,7 +263,7 @@ const App: React.FC = () => {
           isOpen={isSidebarOpen}
           onClose={() => setIsSidebarOpen(false)}
           onOpenSettings={() => handleOpenSettings(0)}
-          onOpenFieldManual={() => setIsManualOpen(true)}
+          onOpenFieldManual={() => handleOpenFieldManual("briefing")}
           onOpenArmory={() => setIsArmoryOpen(true)}
           isLoading={!sessionManager.isReady}
         />

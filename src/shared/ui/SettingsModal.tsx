@@ -33,6 +33,16 @@ interface SettingsModalProps {
   onExportData: () => void;
   onDisconnect: () => void;
   initialTab?: number;
+  onOpenFieldManual: (
+    tab:
+      | "briefing"
+      | "systems"
+      | "controls"
+      | "tactics"
+      | "developer"
+      | "intel"
+      | "legal",
+  ) => void;
 }
 
 const SettingsModal: React.FC<SettingsModalProps> = ({
@@ -42,6 +52,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
   onExportData,
   onDisconnect,
   initialTab = 0,
+  onOpenFieldManual,
 }) => {
   const { settings, updateSettings, refreshModels, isModelLoading } =
     useSettings();
@@ -364,10 +375,19 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                       <Tab.Panel className="focus:outline-none space-y-8 animate-fadeIn">
                         {/* GitHub Integration */}
                         <div className="space-y-4">
-                          <h4 className="text-sm font-bold text-app-secondary uppercase tracking-wider flex items-center gap-2">
-                            <GithubIcon className="h-4 w-4" />
-                            GitHub Integration
-                          </h4>
+                          <div className="flex items-center justify-between">
+                            <h4 className="text-sm font-bold text-app-secondary uppercase tracking-wider flex items-center gap-2">
+                              <GithubIcon className="h-4 w-4" />
+                              GitHub Integration
+                            </h4>
+                            <button
+                              id="shared-settings-github-manual-link"
+                              onClick={() => onOpenFieldManual("systems")}
+                              className="text-[10px] font-bold text-app-brand hover:text-app-brand/80 underline tracking-widest uppercase"
+                            >
+                              Setup Guide
+                            </button>
+                          </div>
                           <div className="p-4 rounded-xl border border-app-border bg-app-surface space-y-3">
                             <p className="text-xs text-app-primary">
                               Provide a Personal Access Token (PAT) to enable

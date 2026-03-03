@@ -14,6 +14,7 @@ import { AppSettings, ApiStatus, Session } from "../../../core/types";
 import { SUGGESTED_QUERIES, AVAILABLE_MODELS } from "../../../core/constants";
 import { GithubIcon, PlusIcon, UploadIcon } from "../../../shared/ui/Icons";
 import { safeDate } from "../../../shared/utils/dateUtils";
+import { APP_VERSION } from "../../../core/version";
 
 interface DashboardProps {
   settings: AppSettings;
@@ -78,14 +79,32 @@ const Dashboard: React.FC<DashboardProps> = ({
 
   return (
     <div className="flex-1 flex flex-col gap-6 max-w-5xl mx-auto py-4 md:py-8 animate-fadeIn select-none">
+      {/* 0. BANNER */}
+      <div className="w-full h-40 md:h-48 rounded-2xl overflow-hidden border border-app-border bg-black relative mb-2 shadow-lg">
+        <video
+          src="filthysMizMaster.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover opacity-90"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-app-canvas/80 via-transparent to-transparent"></div>
+      </div>
+
       {/* 1. HEADER */}
-      <div className="mb-2">
-        <h1 className="text-2xl md:text-3xl font-bold text-app-primary tracking-widest uppercase">
-          Mission Control
-        </h1>
-        <p className="text-xs md:text-sm text-app-tertiary font-mono mt-1">
-          Awaiting objective definition. Systems online.
-        </p>
+      <div className="mb-2 flex justify-between items-end">
+        <div>
+          <h2 className="text-lg md:text-xl font-bold text-app-primary tracking-widest uppercase">
+            Mission Control
+          </h2>
+          <p className="text-[10px] md:text-xs text-app-tertiary font-mono mt-1">
+            Awaiting objective definition. Systems online.
+          </p>
+        </div>
+        <div className="text-[10px] font-mono text-app-tertiary uppercase tracking-tighter opacity-50">
+          v{settings.availableModels.length > 0 ? APP_VERSION : "LINKING..."}
+        </div>
       </div>
 
       {/* 2. SYSTEM STATUS PANEL */}

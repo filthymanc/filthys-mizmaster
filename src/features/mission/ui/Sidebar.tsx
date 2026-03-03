@@ -101,8 +101,15 @@ const Sidebar: React.FC<SidebarProps> = ({
         `}
       >
         {/* Header */}
-        <div className="p-4 border-b border-app-border flex items-center justify-between shrink-0 h-16">
-          <h2 className="font-bold text-app-primary tracking-widest text-sm">
+        <div className="p-4 border-b border-app-border flex items-center gap-3 shrink-0 h-16">
+          <div className="w-8 h-8 rounded-lg bg-app-canvas border border-app-brand p-0.5 overflow-hidden">
+            <img
+              src="filthysMM.png"
+              alt="Logo"
+              className="w-full h-full object-contain"
+            />
+          </div>
+          <h2 className="font-bold text-app-primary tracking-widest text-sm flex-1">
             MISSIONS
           </h2>
           <button

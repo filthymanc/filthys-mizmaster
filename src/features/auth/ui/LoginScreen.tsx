@@ -59,174 +59,193 @@ const LoginScreen: React.FC<LoginScreenProps> = ({
         <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-app-brand opacity-5 rounded-full blur-3xl pointer-events-none"></div>
         <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] bg-blue-500/5 rounded-full blur-3xl pointer-events-none"></div>
 
-        <div className="max-w-md w-full bg-app-frame/80 backdrop-blur-xl border border-app-border rounded-2xl p-8 shadow-2xl relative z-10">
-          {/* Logo Area */}
-          <div className="flex flex-col items-center mb-8">
-            <div className="w-16 h-16 rounded-xl bg-app-brand flex items-center justify-center text-white shadow-lg shadow-app-brand/40 mb-4">
-              {isLocked ? (
-                <LockClosedIcon className="h-9 w-9 text-white" />
-              ) : (
-                <ShieldIcon className="h-9 w-9 text-white" />
-              )}
-            </div>
-            <h1 className="text-2xl font-bold text-app-primary tracking-tight uppercase">
-              {isLocked ? "Vault Locked" : APP_NAME}
-            </h1>
-            <p className="text-app-tertiary text-sm mt-1 font-mono">
-              {isLocked
-                ? "Enter Master Password"
-                : `Mission Building Intelligence v${APP_VERSION}`}
-            </p>
+        <div className="max-w-md w-full bg-app-frame/80 backdrop-blur-xl border border-app-border rounded-2xl overflow-hidden shadow-2xl relative z-10">
+          {/* Banner Area */}
+          <div className="w-full h-32 bg-black relative">
+            <video
+              src="filthysMizMaster.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover opacity-80"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-app-frame to-transparent"></div>
           </div>
 
-          {/* Login Form */}
-          <form onSubmit={handleSubmit} className="space-y-4">
-            {/* Hidden username field for accessibility/password managers */}
-            <input
-              id="auth-login-username-hidden"
-              data-testid="auth-login-username-hidden"
-              type="text"
-              name="username"
-              defaultValue="MizMaster Vault"
-              readOnly
-              autoComplete="username"
-              className="hidden"
-              aria-hidden="true"
-            />
-            {!isLocked && (
-              <div className="space-y-2">
-                <div className="flex justify-between items-center px-1">
-                  <label
-                    htmlFor="apiKey"
-                    className="text-[10px] font-bold text-app-secondary uppercase tracking-wider"
-                  >
-                    Gemini API Key
-                  </label>
-                  <a
-                    id="auth-login-api-key-link"
-                    data-testid="auth-login-api-key-link"
-                    href="https://aistudio.google.com/app/apikey"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[10px] text-app-brand hover:text-opacity-80 hover:underline flex items-center gap-1 font-bold"
-                  >
-                    GET FREE KEY
-                  </a>
+          <div className="p-8">
+            {/* Logo Area */}
+            <div className="flex flex-col items-center mb-8 -mt-16 relative z-20">
+              <div className="w-20 h-20 rounded-2xl bg-app-canvas border-2 border-app-brand p-1 shadow-xl mb-4 overflow-hidden">
+                <img
+                  src="filthysMM.png"
+                  alt="MizMaster Logo"
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              <h1 className="text-2xl font-bold text-app-primary tracking-tight uppercase">
+                {isLocked ? "Vault Locked" : APP_NAME}
+              </h1>
+              <p className="text-app-tertiary text-sm mt-1 font-mono">
+                {isLocked
+                  ? "Enter Master Password"
+                  : `Mission Building Intelligence v${APP_VERSION}`}
+              </p>
+            </div>
+
+            {/* Login Form */}
+            <form onSubmit={handleSubmit} className="space-y-4">
+              {/* Hidden username field for accessibility/password managers */}
+              <input
+                id="auth-login-username-hidden"
+                data-testid="auth-login-username-hidden"
+                type="text"
+                name="username"
+                defaultValue="MizMaster Vault"
+                readOnly
+                autoComplete="username"
+                className="hidden"
+                aria-hidden="true"
+              />
+              {!isLocked && (
+                <div className="space-y-2">
+                  <div className="flex justify-between items-center px-1">
+                    <label
+                      htmlFor="apiKey"
+                      className="text-[10px] font-bold text-app-secondary uppercase tracking-wider"
+                    >
+                      Gemini API Key
+                    </label>
+                    <a
+                      id="auth-login-api-key-link"
+                      data-testid="auth-login-api-key-link"
+                      href="https://aistudio.google.com/app/apikey"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[10px] text-app-brand hover:text-opacity-80 hover:underline flex items-center gap-1 font-bold"
+                    >
+                      GET FREE KEY
+                    </a>
+                  </div>
+                  <div className="relative group">
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-app-tertiary group-focus-within:text-app-brand transition-colors">
+                      <KeyIcon className="h-4 w-4" />
+                    </div>
+                    <input
+                      id="apiKey"
+                      data-testid="auth-login-api-key"
+                      name="gemini_api_key"
+                      autoComplete="current-password"
+                      type="password"
+                      placeholder="Paste your key here..."
+                      className="w-full bg-app-canvas border border-app-highlight rounded-lg pl-10 pr-3 py-3 text-app-primary focus:outline-none focus:border-app-brand focus:ring-1 focus:ring-app-brand disabled:opacity-50 transition-all text-sm placeholder-app-tertiary font-mono"
+                      value={tempKey}
+                      onChange={(e) => setTempKey(e.target.value)}
+                      required
+                    />
+                  </div>
                 </div>
+              )}
+
+              <div className="space-y-2">
+                <label
+                  htmlFor="masterPassword"
+                  className="block text-[10px] font-bold text-app-secondary uppercase tracking-widest px-1"
+                >
+                  {isLocked ? "Unlock Password" : "Create Master Password"}
+                </label>
                 <div className="relative group">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-app-tertiary group-focus-within:text-app-brand transition-colors">
-                    <KeyIcon className="h-4 w-4" />
+                    <LockClosedIcon className="h-4 w-4" />
                   </div>
                   <input
-                    id="apiKey"
-                    data-testid="auth-login-api-key"
-                    name="gemini_api_key"
-                    autoComplete="current-password"
-                    type="password"
-                    placeholder="Paste your key here..."
-                    className="w-full bg-app-canvas border border-app-highlight rounded-lg pl-10 pr-3 py-3 text-app-primary focus:outline-none focus:border-app-brand focus:ring-1 focus:ring-app-brand disabled:opacity-50 transition-all text-sm placeholder-app-tertiary font-mono"
-                    value={tempKey}
-                    onChange={(e) => setTempKey(e.target.value)}
+                    id="masterPassword"
+                    data-testid="auth-master-password"
+                    type={showPassword ? "text" : "password"}
+                    value={masterPassword}
+                    onChange={(e) => setMasterPassword(e.target.value)}
+                    placeholder={
+                      isLocked ? "Unlock vault..." : "Min. 8 characters..."
+                    }
+                    autoComplete={
+                      isLocked ? "current-password" : "new-password"
+                    }
+                    className="block w-full pl-10 pr-10 py-3 bg-app-canvas border border-app-highlight rounded-lg text-app-primary placeholder-app-tertiary focus:outline-none focus:ring-1 focus:ring-app-brand focus:border-app-brand transition-all text-sm font-mono"
                     required
+                    minLength={8}
                   />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute inset-y-0 right-0 pr-3 flex items-center text-app-tertiary hover:text-app-secondary transition-colors"
+                  >
+                    <span className="text-[10px] font-bold uppercase">
+                      {showPassword ? "Hide" : "Show"}
+                    </span>
+                  </button>
                 </div>
+                {!isLocked && (
+                  <p className="text-[10px] text-app-tertiary leading-tight italic px-1">
+                    Used to encrypt keys locally. <strong>Never</strong> stored
+                    or sent to any server.
+                  </p>
+                )}
               </div>
-            )}
 
-            <div className="space-y-2">
-              <label
-                htmlFor="masterPassword"
-                className="block text-[10px] font-bold text-app-secondary uppercase tracking-widest px-1"
-              >
-                {isLocked ? "Unlock Password" : "Create Master Password"}
-              </label>
-              <div className="relative group">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-app-tertiary group-focus-within:text-app-brand transition-colors">
-                  <LockClosedIcon className="h-4 w-4" />
+              {authError && (
+                <div className="flex items-center gap-2 text-red-400 text-xs bg-red-900/10 p-2 rounded border border-red-500/20 animate-fadeIn">
+                  <AlertIcon className="h-4 w-4" />
+                  {authError}
                 </div>
-                <input
-                  id="masterPassword"
-                  data-testid="auth-master-password"
-                  type={showPassword ? "text" : "password"}
-                  value={masterPassword}
-                  onChange={(e) => setMasterPassword(e.target.value)}
-                  placeholder={
-                    isLocked ? "Unlock vault..." : "Min. 8 characters..."
-                  }
-                  autoComplete={isLocked ? "current-password" : "new-password"}
-                  className="block w-full pl-10 pr-10 py-3 bg-app-canvas border border-app-highlight rounded-lg text-app-primary placeholder-app-tertiary focus:outline-none focus:ring-1 focus:ring-app-brand focus:border-app-brand transition-all text-sm font-mono"
-                  required
-                  minLength={8}
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-app-tertiary hover:text-app-secondary transition-colors"
-                >
-                  <span className="text-[10px] font-bold uppercase">
-                    {showPassword ? "Hide" : "Show"}
-                  </span>
-                </button>
-              </div>
-              {!isLocked && (
-                <p className="text-[10px] text-app-tertiary leading-tight italic px-1">
-                  Used to encrypt keys locally. <strong>Never</strong> stored or
-                  sent to any server.
-                </p>
               )}
+
+              <button
+                id="auth-login-submit"
+                data-testid="auth-login-submit"
+                type="submit"
+                disabled={
+                  isVerifying ||
+                  (!isLocked && !tempKey.trim()) ||
+                  !masterPassword
+                }
+                className="w-full py-3 bg-app-brand hover:bg-opacity-90 disabled:bg-app-surface disabled:text-app-tertiary text-white font-bold rounded-lg transition-all flex items-center justify-center gap-2 shadow-lg shadow-app-brand/20 disabled:shadow-none uppercase tracking-tighter"
+              >
+                {isVerifying ? (
+                  <>
+                    <SpinnerIcon className="h-5 w-5 text-white animate-spin" />
+                    {isLocked ? "Unlocking..." : "Initializing..."}
+                  </>
+                ) : (
+                  <>{isLocked ? "Unlock System" : "Start Secure Session"}</>
+                )}
+              </button>
+            </form>
+
+            {/* Security Briefing Trigger */}
+            <div className="mt-4 flex justify-center">
+              <button
+                id="auth-login-briefing-trigger"
+                data-testid="auth-login-briefing-trigger"
+                type="button"
+                onClick={() => setIsBriefingOpen(true)}
+                className="text-[10px] font-bold text-app-tertiary hover:text-app-brand flex items-center gap-1 transition-colors uppercase tracking-widest"
+              >
+                <ShieldIcon className="h-3.5 w-3.5 text-green-500/70" />
+                Security Briefing
+              </button>
             </div>
 
-            {authError && (
-              <div className="flex items-center gap-2 text-red-400 text-xs bg-red-900/10 p-2 rounded border border-red-500/20 animate-fadeIn">
-                <AlertIcon className="h-4 w-4" />
-                {authError}
-              </div>
-            )}
-
-            <button
-              id="auth-login-submit"
-              data-testid="auth-login-submit"
-              type="submit"
-              disabled={
-                isVerifying || (!isLocked && !tempKey.trim()) || !masterPassword
-              }
-              className="w-full py-3 bg-app-brand hover:bg-opacity-90 disabled:bg-app-surface disabled:text-app-tertiary text-white font-bold rounded-lg transition-all flex items-center justify-center gap-2 shadow-lg shadow-app-brand/20 disabled:shadow-none uppercase tracking-tighter"
-            >
-              {isVerifying ? (
-                <>
-                  <SpinnerIcon className="h-5 w-5 text-white animate-spin" />
-                  {isLocked ? "Unlocking..." : "Initializing..."}
-                </>
-              ) : (
-                <>{isLocked ? "Unlock System" : "Start Secure Session"}</>
-              )}
-            </button>
-          </form>
-
-          {/* Security Briefing Trigger */}
-          <div className="mt-4 flex justify-center">
-            <button
-              id="auth-login-briefing-trigger"
-              data-testid="auth-login-briefing-trigger"
-              type="button"
-              onClick={() => setIsBriefingOpen(true)}
-              className="text-[10px] font-bold text-app-tertiary hover:text-app-brand flex items-center gap-1 transition-colors uppercase tracking-widest"
-            >
-              <ShieldIcon className="h-3.5 w-3.5 text-green-500/70" />
-              Security Briefing
-            </button>
-          </div>
-
-          <div className="mt-6 pt-6 border-t border-app-border text-center">
-            <button
-              id="auth-login-manual-trigger"
-              data-testid="auth-login-manual-trigger"
-              onClick={onOpenFieldManual}
-              className="px-4 py-2 bg-app-canvas hover:bg-app-surface text-app-secondary hover:text-app-primary rounded-lg text-[10px] font-bold transition-all border border-app-border hover:border-app-highlight flex items-center justify-center gap-2 mx-auto uppercase tracking-widest"
-            >
-              <BookIcon className="h-4 w-4" />
-              READ FIELD MANUAL
-            </button>
+            <div className="mt-6 pt-6 border-t border-app-border text-center">
+              <button
+                id="auth-login-manual-trigger"
+                data-testid="auth-login-manual-trigger"
+                onClick={onOpenFieldManual}
+                className="px-4 py-2 bg-app-canvas hover:bg-app-surface text-app-secondary hover:text-app-primary rounded-lg text-[10px] font-bold transition-all border border-app-border hover:border-app-highlight flex items-center justify-center gap-2 mx-auto uppercase tracking-widest"
+              >
+                <BookIcon className="h-4 w-4" />
+                READ FIELD MANUAL
+              </button>
+            </div>
           </div>
         </div>
 

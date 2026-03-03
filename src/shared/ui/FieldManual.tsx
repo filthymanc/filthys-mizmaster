@@ -25,6 +25,7 @@ interface FieldManualProps {
   inline?: boolean;
   isOpen: boolean;
   onClose: () => void;
+  initialTab?: TabId;
 }
 
 type TabId =
@@ -79,8 +80,16 @@ const FieldManual: React.FC<FieldManualProps> = ({
   isOpen,
   onClose,
   inline = false,
+  initialTab = "briefing",
 }) => {
-  const [activeTab, setActiveTab] = useState<TabId>("briefing");
+  const [activeTab, setActiveTab] = useState<TabId>(initialTab);
+
+  // Sync state if initialTab changes while open (optional, but good for deep linking)
+  React.useEffect(() => {
+    if (isOpen) {
+      setActiveTab(initialTab);
+    }
+  }, [initialTab, isOpen]);
 
   if (inline) {
     return (

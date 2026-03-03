@@ -30,14 +30,14 @@ export default defineConfig({
         scope: "/filthys-mizmaster/",
         icons: [
           {
-            src: "icon.svg",
+            src: "filthysMM.png",
             sizes: "192x192",
-            type: "image/svg+xml",
+            type: "image/png",
           },
           {
-            src: "icon.svg",
+            src: "filthysMM.png",
             sizes: "512x512",
-            type: "image/svg+xml",
+            type: "image/png",
           },
         ],
       },
