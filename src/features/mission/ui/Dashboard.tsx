@@ -12,7 +12,12 @@
 import React from "react";
 import { AppSettings, ApiStatus, Session } from "../../../core/types";
 import { SUGGESTED_QUERIES, AVAILABLE_MODELS } from "../../../core/constants";
-import { GithubIcon, PlusIcon, UploadIcon } from "../../../shared/ui/Icons";
+import {
+  GithubIcon,
+  PlusIcon,
+  UploadIcon,
+  DiscordIcon,
+} from "../../../shared/ui/Icons";
 import { safeDate } from "../../../shared/utils/dateUtils";
 import { APP_VERSION } from "../../../core/version";
 
@@ -353,6 +358,31 @@ const Dashboard: React.FC<DashboardProps> = ({
             </div>
           </div>
 
+          {/* Discord Community */}
+          <div className="bg-[#5865F2]/5 border border-[#5865F2]/20 rounded-xl p-5 md:p-6 shadow-sm">
+            <h2 className="text-xs font-bold text-[#5865F2] uppercase tracking-widest mb-4 flex items-center gap-2">
+              <DiscordIcon className="h-4 w-4" />
+              Community Hub
+            </h2>
+            <div className="bg-app-canvas border border-app-border rounded-lg p-4 transition-all duration-300">
+              <p className="text-[10px] text-app-tertiary mb-4 leading-relaxed font-mono">
+                Join the official Discord to share missions, get support, and
+                collab with other DCS designers.
+              </p>
+
+              <a
+                id="dashboard-discord-link"
+                data-testid="dashboard-discord-link"
+                href="https://discord.gg/hhP9pHWk"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-2 bg-[#5865F2] hover:bg-[#4752C4] text-white rounded text-xs font-bold transition-colors flex items-center justify-center gap-2 shadow-lg shadow-[#5865F2]/20"
+              >
+                JOIN THE DISCORD
+              </a>
+            </div>
+          </div>
+
           {/* Recent Files */}
           <div className="bg-app-surface/50 border border-app-border rounded-xl p-5 md:p-6 shadow-sm flex-1 flex flex-col">
             <h2 className="text-xs font-bold text-app-secondary uppercase tracking-widest mb-4 flex items-center gap-2">
@@ -405,7 +435,7 @@ const Dashboard: React.FC<DashboardProps> = ({
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={1.5}
-                    d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"
+                    d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2 2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"
                   />
                 </svg>
                 <p className="text-xs font-mono">No recent missions</p>

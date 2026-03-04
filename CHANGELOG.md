@@ -1,12 +1,12 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
-## [1.11.0](https://github.com/filthymanc/filthys-mizmaster/compare/v1.10.1...v1.11.0) (2026-03-03)
 
+## [1.11.0](https://github.com/filthymanc/filthys-mizmaster/compare/v1.10.1...v1.11.0) (2026-03-03)
 
 ### Features
 
-* **ui:** modernize visual identity with MP4 banner and sync PWA manifest icons ([fb7bf74](https://github.com/filthymanc/filthys-mizmaster/commit/fb7bf74cf32b596a962666cd26ec1bb1be644eb7))
+- **ui:** modernize visual identity with MP4 banner and sync PWA manifest icons ([fb7bf74](https://github.com/filthymanc/filthys-mizmaster/commit/fb7bf74cf32b596a962666cd26ec1bb1be644eb7))
 
 ### [1.10.1](https://github.com/filthymanc/filthys-mizmaster/compare/v1.10.0...v1.10.1) (2026-03-03)
 

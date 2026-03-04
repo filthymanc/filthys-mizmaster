@@ -15,6 +15,7 @@ import {
   AlertIcon,
   GithubIcon,
   CogIcon,
+  DiscordIcon,
 } from "../../../shared/ui/Icons";
 import { APP_VERSION, AUTHOR_CREDIT } from "../../../core/version";
 
@@ -84,6 +85,17 @@ const SidebarFooter: React.FC<SidebarFooterProps> = ({
       {/* Secondary Actions / Info Group */}
       <div className="space-y-3 pt-2 border-t border-app-border/50">
         <div className="flex justify-center gap-6">
+          <a
+            id="sidebar-footer-discord"
+            data-testid="sidebar-footer-discord"
+            href="https://discord.gg/hhP9pHWk"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-app-tertiary hover:text-[#5865F2] transition-colors hover:scale-110 transform"
+            title="Join Discord Community"
+          >
+            <DiscordIcon className="h-4 w-4" />
+          </a>
           <a
             id="sidebar-footer-github"
             data-testid="sidebar-footer-github"
