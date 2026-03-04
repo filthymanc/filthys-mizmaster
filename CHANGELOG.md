@@ -1,6 +1,17 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+## [1.12.0](https://github.com/filthymanc/filthys-mizmaster/compare/v1.11.0...v1.12.0) (2026-03-04)
+
+
+### Features
+
+* **ui:** integrate Discord Community Hub and audit sidebar navigation ([5bc872e](https://github.com/filthymanc/filthys-mizmaster/commit/5bc872e744e04544d94a1cec61adec91e2b991fd))
+
+
+### Documentation
+
+* professionalize README with logo, features, and quickstart guide ([ac2297e](https://github.com/filthymanc/filthys-mizmaster/commit/ac2297eaec0b6a8fadd8bdca21b0c97459359b71))
 
 ## [1.11.0](https://github.com/filthymanc/filthys-mizmaster/compare/v1.10.1...v1.11.0) (2026-03-03)
 
