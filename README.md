@@ -64,7 +64,7 @@ Access the production version immediately at:
 - **Framework:** React 19 (TypeScript)
 - **Build Tool:** Vite 5
 - **Styling:** Tailwind CSS
-- **Intelligence:** Google GenAI SDK (`gemini-1.5-pro` / `gemini-1.5-flash`)
+- **Intelligence:** Google GenAI SDK (`gemini-3.1-pro-preview` / `gemini-3-flash-pro-preview`)
 - **Storage:** IndexedDB (for mission history) & LocalStorage (for encrypted vault)
 
 ### Local Setup
