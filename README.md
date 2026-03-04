@@ -1,67 +1,100 @@
-# filthy's MizMaster
+# <img src="public/filthysMM.png" width="48" height="48" align="center" /> filthy's MizMaster
 
-> **"filthy's MizMaster: Your personal AI co-pilot for DCS World mission scripting. Whether you're new to coding or a veteran, this tool simplifies MOOSE and DML logic, validates syntax, and manages snippets. Developed by 'the filthymanc' for the entire DCS community. Make your mission ideas fly."**
+> **"Your personal AI co-pilot for DCS World mission scripting. Whether you're new to coding or a veteran, MizMaster simplifies MOOSE and DML logic, validates syntax, and manages your mission intelligence."**
 
-![Deployment Status](https://img.shields.io/github/deployments/filthymanc/filthys-mizmaster/github-pages?label=Deployment)
-![License](https://img.shields.io/github/license/filthymanc/filthys-mizmaster)
+[![Deployment Status](https://img.shields.io/github/deployments/filthymanc/filthys-mizmaster/github-pages?label=Deployment&logo=github)](https://filthymanc.github.io/filthys-mizmaster/)
+[![Version](https://img.shields.io/github/v/release/filthymanc/filthys-mizmaster?logo=git)](https://github.com/filthymanc/filthys-mizmaster/releases)
+[![License](https://img.shields.io/github/license/filthymanc/filthys-mizmaster?color=blue)](LICENSE.md)
+[![PWA](https://img.shields.io/badge/PWA-Installable-brightgreen?logo=pwa)](https://web.dev/progressive-web-apps/)
+
+---
 
 ## 🚀 Overview
 
-**filthy's MizMaster** is a progressive web application (PWA) designed to act as an intelligent "Force Multiplier" for DCS Mission Designers. It integrates the latest Google Gemini models with a specialized "Librarian" toolset to fetch, analyze, and implement scripts from the **MOOSE** and **DML** frameworks.
+**filthy's MizMaster** is a cutting-edge Progressive Web Application (PWA) designed as an intelligent "Force Multiplier" for DCS World Mission Designers. By integrating Google's Gemini Pro/Flash models with a specialized **Librarian** engine, MizMaster bridges the gap between complex scripting frameworks and your creative vision.
 
-### Key Capabilities
+### Why MizMaster?
 
-- **Context-Aware Chat:** Understands the difference between a `GROUP:FindByName()` and a generic Lua function.
-- **The Librarian:** Can browse the GitHub file trees of MOOSE and DML in real-time to fetch the latest source code for context.
-- **Syntax Safety:** Automatically sanitizes output to prevent usage of banned DCS Lua environments (`os`, `io`, `lfs`).
-- **Mobile Optimized:** Designed for use on a secondary tablet or laptop while you work in the Mission Editor.
-
----
-
-## 🛠️ Installation (Local Development)
-
-This repository is the **Local Edition** (GPL Source).
-
-1. **Clone:**
-
-   ```bash
-   git clone https://github.com/filthymanc/filthys-mizmaster.git
-   cd filthys-mizmaster
-   ```
-
-2. **Install Dependencies:**
-
-   ```bash
-   npm install
-   ```
-
-3. **Run Dev Server:**
-
-   ```bash
-   npm run dev
-   ```
-
-4. **Build for Production:**
-   ```bash
-   npm run build
-   ```
+*   **Framework Fluency:** Deep understanding of **MOOSE** (Mission Object Oriented Scripting Environment) and **DML** (Digital Mission Laboratory).
+*   **The Librarian:** Dynamically fetches and analyzes real-time source code from GitHub repositories to provide the most accurate implementation advice.
+*   **Security First:** A proprietary **Secure Vault** protects your API keys using hardware-accelerated encryption—data never leaves your device.
+*   **Mission Ready:** Optimized for tablets and secondary displays, providing a distraction-free co-pilot while you work in the DCS Mission Editor.
 
 ---
 
-## 📜 Legal & Compliance
+## ✨ Core Features
+
+### 📚 The Librarian Engine
+MizMaster doesn't just guess; it researches. The Librarian can browse the entire file trees of the MOOSE and DML frameworks on GitHub, fetching specific class definitions or documentation to provide context-aware scripting solutions.
+
+### 🛡️ Secure Vault Architecture
+Your privacy is non-negotiable. MizMaster uses the **Web Crypto API** (AES-GCM 256-bit) to encrypt sensitive credentials (Gemini API Keys, GitHub PATs) locally. Your Master Password is never stored, and your keys are only decrypted in volatile memory during active sessions.
+
+### ⚡ Smart Lua Sanitization
+Built-in safety heuristics automatically scan AI-generated code to identify and sanitize potentially "unsafe" DCS Lua environments (like `os`, `io`, or `lfs`), ensuring your scripts are mission-ready and server-safe.
+
+### 📱 Full PWA Support
+Install MizMaster directly to your Windows desktop, iPad, or Android tablet. Enjoy offline history access, fast loading via service workers, and a native-app feel without the bloat.
+
+---
+
+## 🛠️ Getting Started
+
+### 1. Launch the Application
+Access the production version immediately at:
+👉 **[https://filthymanc.github.io/filthys-mizmaster/](https://filthymanc.github.io/filthys-mizmaster/)**
+
+### 2. Configure Your Co-Pilot
+1.  **Get a Gemini API Key:** Obtain a free key from the [Google AI Studio](https://aistudio.google.com/app/apikey).
+2.  **Initialize the Vault:** When you first launch MizMaster, you'll be asked to create a **Master Password**. This password is the only way to unlock your encrypted keys.
+3.  **Connect the Librarian (Optional):** Add a GitHub Personal Access Token in the **Data & Identity** settings to increase the Librarian's rate limits for deep repository searches.
+
+---
+
+## 💻 Developer Guide
+
+### Tech Stack
+*   **Framework:** React 19 (TypeScript)
+*   **Build Tool:** Vite 5
+*   **Styling:** Tailwind CSS
+*   **Intelligence:** Google GenAI SDK (`gemini-1.5-pro` / `gemini-1.5-flash`)
+*   **Storage:** IndexedDB (for mission history) & LocalStorage (for encrypted vault)
+
+### Local Setup
+1.  **Clone the Repository:**
+    ```bash
+    git clone https://github.com/filthymanc/filthys-mizmaster.git
+    cd filthys-mizmaster
+    ```
+2.  **Install Dependencies:**
+    ```bash
+    npm install
+    ```
+3.  **Run Development Server:**
+    ```bash
+    npm run dev
+    ```
+4.  **Build Production Bundle:**
+    ```bash
+    npm run build
+    ```
+
+---
+
+## ⚖️ Legal & Compliance
 
 ### License
+This project is licensed under the **GNU General Public License v3.0**. See the [LICENSE](LICENSE.md) file for details.
 
-This project is licensed under the **GNU General Public License v3.0**.
-See [LICENSE](LICENSE) for details.
+### Trademark & Attribution
+*   **filthy's MizMaster** is a trademark of "the filthymanc". Per GPL v3 Section 7(e), forks intended for public distribution **must** be renamed to avoid trademark confusion.
+*   **DCS World** is a trademark of Eagle Dynamics SA.
+*   **MOOSE** is the intellectual property of FlightControl-Master.
+*   **DML** is the intellectual property of csofranz.
 
-### Trademark Notice
+MizMaster is a community tool and is not officially affiliated with or endorsed by Eagle Dynamics, the MOOSE team, or the DML team.
 
-"filthy's MizMaster" is a trademark of the filthymanc.
-While the source code is free to modify under GPL, you **must rename your fork** if you intend to distribute it publicly, as per Section 7(e) of the GPL v3.
-
-### Third-Party Rights
-
-- **DCS World** is a trademark of Eagle Dynamics SA. This project is not endorsed by or affiliated with Eagle Dynamics.
-- **MOOSE** is the intellectual property of FlightControl-Master. This project is not endorsed by or affiliated with FlightControl-Master.
-- **DML** is the intellectual property of csofranz. This project is not endorsed by or affiliated with csofranz.
+---
+<p align="center">
+  Developed with ❤️ by <b>the filthymanc</b> for the DCS World Community.
+</p>
