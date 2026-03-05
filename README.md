@@ -97,7 +97,6 @@ This project is licensed under the **GNU General Public License v3.0**. See the 
 
 ### Trademark & Attribution
 
-- **filthy's MizMaster** is a trademark of "the filthymanc". Per GPL v3 Section 7(e), forks intended for public distribution **must** be renamed to avoid trademark confusion.
 - **DCS World** is a trademark of Eagle Dynamics SA.
 - **MOOSE** is the intellectual property of FlightControl-Master.
 - **DML** is the intellectual property of csofranz.
