@@ -93,7 +93,7 @@ Access the production version immediately at:
 
 ### License
 
-This project is licensed under the **GNU General Public License v3.0**. See the [LICENSE](LICENSE.md) file for details.
+This project is licensed under the **GNU General Public License v3.0**. See the [LICENSE](LICENSE) file for details.
 
 ### Trademark & Attribution
 
