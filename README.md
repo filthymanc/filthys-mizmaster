@@ -4,7 +4,7 @@
 
 [![Deployment Status](https://img.shields.io/github/deployments/filthymanc/filthys-mizmaster/github-pages?label=Deployment&logo=github)](https://filthymanc.github.io/filthys-mizmaster/)
 [![Version](https://img.shields.io/github/v/release/filthymanc/filthys-mizmaster?logo=git)](https://github.com/filthymanc/filthys-mizmaster/releases)
-[![License](https://img.shields.io/github/license/filthymanc/filthys-mizmaster?color=blue)](https://github.com/filthymanc/filthys-mizmaster/blob/main/LICENSE.md)
+[![License](https://img.shields.io/github/license/filthymanc/filthys-mizmaster?color=blue)](https://github.com/filthymanc/filthys-mizmaster/blob/main/LICENSE)
 [![PWA](https://img.shields.io/badge/PWA-Installable-brightgreen?logo=pwa)](https://web.dev/progressive-web-apps/)
 
 ---
