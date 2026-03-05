@@ -1,17 +1,17 @@
 # <img src="public/filthysMM.png" width="48" height="48" align="center" /> filthy's MizMaster
 
-> **"Your personal AI co-pilot for DCS World mission scripting. Whether you're new to coding or a veteran, MizMaster simplifies MOOSE and DML logic, validates syntax, and manages your mission intellig[...]**
+> **"Your personal AI co-pilot for DCS World mission scripting. Whether you're new to coding or a veteran, MizMaster simplifies MOOSE and DML logic, validates syntax, and manages your mission intelligence."**
 
 [![Deployment Status](https://img.shields.io/github/deployments/filthymanc/filthys-mizmaster/github-pages?label=Deployment&logo=github)](https://filthymanc.github.io/filthys-mizmaster/)
 [![Version](https://img.shields.io/github/v/release/filthymanc/filthys-mizmaster?logo=git)](https://github.com/filthymanc/filthys-mizmaster/releases)
-[![License](https://img.shields.io/github/license/filthymanc/filthys-mizmaster?color=blue)](https://github.com/filthymanc/filthys-mizmaster/blob/main/LICENSE)
+[![License](https://img.shields.io/github/license/filthymanc/filthys-mizmaster?color=blue)](LICENSE.md)
 [![PWA](https://img.shields.io/badge/PWA-Installable-brightgreen?logo=pwa)](https://web.dev/progressive-web-apps/)
 
 ---
 
 ## 🚀 Overview
 
-**filthy's MizMaster** is a cutting-edge Progressive Web Application (PWA) designed as an intelligent "Force Multiplier" for DCS World Mission Designers. By integrating Google's Gemini Pro/Flash model[...] 
+**filthy's MizMaster** is a cutting-edge Progressive Web Application (PWA) designed as an intelligent "Force Multiplier" for DCS World Mission Designers. By integrating Google's Gemini Pro/Flash models with a specialized **Librarian** engine, MizMaster bridges the gap between complex scripting frameworks and your creative vision.
 
 ### Why MizMaster?
 
@@ -26,15 +26,15 @@
 
 ### 📚 The Librarian Engine
 
-MizMaster doesn't just guess; it researches. The Librarian can browse the entire file trees of the MOOSE and DML frameworks on GitHub, fetching specific class definitions or documentation to provide c[...] 
+MizMaster doesn't just guess; it researches. The Librarian can browse the entire file trees of the MOOSE and DML frameworks on GitHub, fetching specific class definitions or documentation to provide context-aware scripting solutions.
 
 ### 🛡️ Secure Vault Architecture
 
-Your privacy is non-negotiable. MizMaster uses the **Web Crypto API** (AES-GCM 256-bit) to encrypt sensitive credentials (Gemini API Keys, GitHub PATs) locally. Your Master Password is never stored, a[...] 
+Your privacy is non-negotiable. MizMaster uses the **Web Crypto API** (AES-GCM 256-bit) to encrypt sensitive credentials (Gemini API Keys, GitHub PATs) locally. Your Master Password is never stored, and your keys are only decrypted in volatile memory during active sessions.
 
 ### ⚡ Smart Lua Sanitization
 
-Built-in safety heuristics automatically scan AI-generated code to identify and sanitize potentially "unsafe" DCS Lua environments (like `os`, `io`, or `lfs`), ensuring your scripts are mission-ready [...] 
+Built-in safety heuristics automatically scan AI-generated code to identify and sanitize potentially "unsafe" DCS Lua environments (like `os`, `io`, or `lfs`), ensuring your scripts are mission-ready and server-safe.
 
 ### 📱 Full PWA Support
 
@@ -93,10 +93,11 @@ Access the production version immediately at:
 
 ### License
 
-This project is licensed under the **GNU General Public License v3.0**. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the **GNU General Public License v3.0**. See the [LICENSE](LICENSE.md) file for details.
 
 ### Trademark & Attribution
 
+- **filthy's MizMaster** is a trademark of "the filthymanc". Per GPL v3 Section 7(e), forks intended for public distribution **must** be renamed to avoid trademark confusion.
 - **DCS World** is a trademark of Eagle Dynamics SA.
 - **MOOSE** is the intellectual property of FlightControl-Master.
 - **DML** is the intellectual property of csofranz.
