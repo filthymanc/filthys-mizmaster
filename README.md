@@ -4,7 +4,7 @@
 
 [![Deployment Status](https://img.shields.io/github/deployments/filthymanc/filthys-mizmaster/github-pages?label=Deployment&logo=github)](https://filthymanc.github.io/filthys-mizmaster/)
 [![Version](https://img.shields.io/github/v/release/filthymanc/filthys-mizmaster?logo=git)](https://github.com/filthymanc/filthys-mizmaster/releases)
-[![License](https://img.shields.io/github/license/filthymanc/filthys-mizmaster?color=blue)](LICENSE.md)
+[![License](https://img.shields.io/github/license/filthymanc/filthys-mizmaster?color=blue)](LICENSE)
 [![PWA](https://img.shields.io/badge/PWA-Installable-brightgreen?logo=pwa)](https://web.dev/progressive-web-apps/)
 
 ---
@@ -93,7 +93,7 @@ Access the production version immediately at:
 
 ### License
 
-This project is licensed under the **GNU General Public License v3.0**. See the [LICENSE](LICENSE.md) file for details.
+This project is licensed under the **GNU General Public License v3.0**. See the [LICENSE](LICENSE) file for details.
 
 ### Trademark & Attribution
 
