@@ -1,6 +1,12 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+### [1.13.1](https://github.com/filthymanc/filthys-mizmaster/compare/v1.13.0...v1.13.1) (2026-03-07)
+
+
+### Miscellaneous Chores
+
+* implement automated backup for system instructions ([c2e3df1](https://github.com/filthymanc/filthys-mizmaster/commit/c2e3df1d47520ba3423cf938a08656201c2584f0))
 
 ## [1.13.0](https://github.com/filthymanc/filthys-mizmaster/compare/v1.12.1...v1.13.0) (2026-03-07)
 
