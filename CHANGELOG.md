@@ -1,12 +1,12 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
-## [1.13.0](https://github.com/filthymanc/filthys-mizmaster/compare/v1.12.1...v1.13.0) (2026-03-07)
 
+## [1.13.0](https://github.com/filthymanc/filthys-mizmaster/compare/v1.12.1...v1.13.0) (2026-03-07)
 
 ### Features
 
-* centralize discord links and initialize documentation shadow repo ([378e1c0](https://github.com/filthymanc/filthys-mizmaster/commit/378e1c08a43140662d123e42936ef1c3775b5fc2))
+- centralize discord links and initialize documentation shadow repo ([378e1c0](https://github.com/filthymanc/filthys-mizmaster/commit/378e1c08a43140662d123e42936ef1c3775b5fc2))
 
 ### [1.12.1](https://github.com/filthymanc/filthys-mizmaster/compare/v1.12.0...v1.12.1) (2026-03-06)
 
