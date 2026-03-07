@@ -249,7 +249,7 @@ export const MANUAL_CONTENT = {
         author: "Community",
         description:
           "The primary hub for real-time help with MOOSE, MIST, and DML. It's where the authors of these frameworks hang out.",
-        url: "https://discord.gg/gj68fm969S",
+        url: "https://discord.gg/uzpE6x7qpN",
         type: "discord",
       },
       {

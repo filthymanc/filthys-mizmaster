@@ -1,17 +1,16 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
-### [1.12.1](https://github.com/filthymanc/filthys-mizmaster/compare/v1.12.0...v1.12.1) (2026-03-06)
 
+### [1.12.1](https://github.com/filthymanc/filthys-mizmaster/compare/v1.12.0...v1.12.1) (2026-03-06)
 
 ### Bug Fixes
 
-* **pwa:** synchronize manifest and fix taskbar icon rendering ([28b9f9d](https://github.com/filthymanc/filthys-mizmaster/commit/28b9f9d5a3c1da59e4be4a0633a2686fd787cc19))
-
+- **pwa:** synchronize manifest and fix taskbar icon rendering ([28b9f9d](https://github.com/filthymanc/filthys-mizmaster/commit/28b9f9d5a3c1da59e4be4a0633a2686fd787cc19))
 
 ### Documentation
 
-* **readme:** update gemini models to gemini-3.1-pro-preview and gemini-3-flash-pro-preview ([7997b94](https://github.com/filthymanc/filthys-mizmaster/commit/7997b94fd3f84bfa0c952ac21dd45578c86dacd0))
+- **readme:** update gemini models to gemini-3.1-pro-preview and gemini-3-flash-pro-preview ([7997b94](https://github.com/filthymanc/filthys-mizmaster/commit/7997b94fd3f84bfa0c952ac21dd45578c86dacd0))
 
 ## [1.12.0](https://github.com/filthymanc/filthys-mizmaster/compare/v1.11.0...v1.12.0) (2026-03-04)
 

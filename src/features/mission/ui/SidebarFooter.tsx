@@ -18,6 +18,7 @@ import {
   DiscordIcon,
 } from "../../../shared/ui/Icons";
 import { APP_VERSION, AUTHOR_CREDIT } from "../../../core/version";
+import { DISCORD_LINKS } from "../../../core/constants";
 
 interface SidebarFooterProps {
   onOpenFieldManual: () => void;
@@ -88,7 +89,7 @@ const SidebarFooter: React.FC<SidebarFooterProps> = ({
           <a
             id="sidebar-footer-discord"
             data-testid="sidebar-footer-discord"
-            href="https://discord.gg/hhP9pHWk"
+            href={DISCORD_LINKS.COMMUNITY}
             target="_blank"
             rel="noopener noreferrer"
             className="text-app-tertiary hover:text-[#5865F2] transition-colors hover:scale-110 transform"

@@ -118,3 +118,7 @@ dist
 
 # Vite PWA plugin development distribution
 dev-dist/
+
+# Gemini CLI
+.gemini/
+.gemini_security/

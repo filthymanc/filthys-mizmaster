@@ -63,6 +63,11 @@ export const CONTEXT_LIMITS = {
   PROTECT_FIRST_MSG: true,
 };
 
+export const DISCORD_LINKS = {
+  COMMUNITY: "https://discord.gg/VsYRpDT5CW", // Instant member rights
+  MANUAL: "https://discord.gg/uzpE6x7qpN", // No member rights, for Field Manual
+};
+
 export const WELCOME_MESSAGE_TEXT =
   "**FILTHY'S MIZMASTER ONLINE - FORCE MULTIPLIER**\n\nSafety Protocols: **ACTIVE**\nReady to assist with MOOSE scripting, DML attributes, and standard SSE logic. Strict Anti-Hallucination rules enabled.\n\nPlease define your mission objective.";
 export const SUGGESTED_QUERIES = [

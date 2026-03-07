@@ -11,7 +11,11 @@
 
 import React from "react";
 import { AppSettings, ApiStatus, Session } from "../../../core/types";
-import { SUGGESTED_QUERIES, AVAILABLE_MODELS } from "../../../core/constants";
+import {
+  SUGGESTED_QUERIES,
+  AVAILABLE_MODELS,
+  DISCORD_LINKS,
+} from "../../../core/constants";
 import {
   GithubIcon,
   PlusIcon,
@@ -373,7 +377,7 @@ const Dashboard: React.FC<DashboardProps> = ({
               <a
                 id="dashboard-discord-link"
                 data-testid="dashboard-discord-link"
-                href="https://discord.gg/hhP9pHWk"
+                href={DISCORD_LINKS.COMMUNITY}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full py-2 bg-[#5865F2] hover:bg-[#4752C4] text-white rounded text-xs font-bold transition-colors flex items-center justify-center gap-2 shadow-lg shadow-[#5865F2]/20"
