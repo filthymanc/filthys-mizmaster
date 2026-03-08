@@ -19,11 +19,7 @@ import {
   AccentRole,
   AccentIntensity,
 } from "./types";
-import {
-  STORAGE_KEYS,
-  DEFAULT_MODEL_ID,
-  AVAILABLE_MODELS,
-} from "./constants";
+import { STORAGE_KEYS, DEFAULT_MODEL_ID, AVAILABLE_MODELS } from "./constants";
 import { SettingsContext } from "./SettingsContextDefinition";
 import * as crypto from "../shared/services/cryptoService";
 import { useAuth } from "../features/auth/useAuth";
@@ -74,7 +70,8 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({
         let themeSet: ThemeSet = parsed.themeSet || "mono";
         let themeBrightness: BrightnessLevel = parsed.themeBrightness || "L2";
         let themeAccentRole: AccentRole = parsed.themeAccentRole || "ready";
-        const themeIntensity: AccentIntensity = parsed.themeIntensity || "vivid";
+        const themeIntensity: AccentIntensity =
+          parsed.themeIntensity || "vivid";
         let missionProfile: string = parsed.missionProfile || "standard-issue";
 
         // Migration logic for legacy users
