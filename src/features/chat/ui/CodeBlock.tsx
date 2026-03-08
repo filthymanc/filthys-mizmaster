@@ -33,7 +33,10 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
   const [saveTitle, setSaveTitle] = useState("");
 
   const { saveToArmory } = useSnippetSaver();
-  const instanceId = useMemo(() => Math.random().toString(36).substring(2, 9), []);
+  const instanceId = useMemo(
+    () => Math.random().toString(36).substring(2, 9),
+    [],
+  );
 
   // Extract language from className (format: "language-lua")
   const match = /language-(\w+)/.exec(className || "");
