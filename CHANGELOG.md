@@ -1,12 +1,18 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
-### [1.13.1](https://github.com/filthymanc/filthys-mizmaster/compare/v1.13.0...v1.13.1) (2026-03-07)
+### [1.13.2](https://github.com/filthymanc/filthys-mizmaster/compare/v1.13.1...v1.13.2) (2026-03-08)
 
+
+### Bug Fixes
+
+* **chat:** preserve soft-wrap state and harden event propagation for mobile/tablet ([18a2076](https://github.com/filthymanc/filthys-mizmaster/commit/18a20766a1f0312dc356f86a0cc8b3e5952436f2))
+
+### [1.13.1](https://github.com/filthymanc/filthys-mizmaster/compare/v1.13.0...v1.13.1) (2026-03-07)
 
 ### Miscellaneous Chores
 
-* implement automated backup for system instructions ([c2e3df1](https://github.com/filthymanc/filthys-mizmaster/commit/c2e3df1d47520ba3423cf938a08656201c2584f0))
+- implement automated backup for system instructions ([c2e3df1](https://github.com/filthymanc/filthys-mizmaster/commit/c2e3df1d47520ba3423cf938a08656201c2584f0))
 
 ## [1.13.0](https://github.com/filthymanc/filthys-mizmaster/compare/v1.12.1...v1.13.0) (2026-03-07)
 
