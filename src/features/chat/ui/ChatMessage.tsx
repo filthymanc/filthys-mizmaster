@@ -53,6 +53,29 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ message }) => {
     return null;
   };
 
+  const markdownComponents = React.useMemo(
+    () => ({
+      pre: ({ children }: { children: React.ReactNode }) => <>{children}</>,
+      code({
+        inline,
+        className,
+        children,
+        ...props
+      }: {
+        inline?: boolean;
+        className?: string;
+        children: React.ReactNode;
+      }) {
+        return (
+          <CodeBlock inline={inline} className={className} {...props}>
+            {children}
+          </CodeBlock>
+        );
+      },
+    }),
+    [],
+  );
+
   return (
     <div
       className={`flex w-full mb-6 ${isModel ? "justify-start" : "justify-end"}`}
@@ -102,19 +125,11 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ message }) => {
         >
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
-            components={{
-              pre: ({ children }) => <>{children}</>,
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              code(componentProps: any) {
-                const { inline, className, children, ...props } =
-                  componentProps;
-                return (
-                  <CodeBlock inline={inline} className={className} {...props}>
-                    {children}
-                  </CodeBlock>
-                );
-              },
-            }}
+            components={
+              markdownComponents as React.ComponentProps<
+                typeof ReactMarkdown
+              >["components"]
+            }
           >
             {cleanStreamedContent(message.text, message.isStreaming)}
           </ReactMarkdown>

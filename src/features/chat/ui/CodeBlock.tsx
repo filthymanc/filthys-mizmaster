@@ -33,6 +33,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
   const [saveTitle, setSaveTitle] = useState("");
 
   const { saveToArmory } = useSnippetSaver();
+  const instanceId = useMemo(() => Math.random().toString(36).substring(2, 9), []);
 
   // Extract language from className (format: "language-lua")
   const match = /language-(\w+)/.exec(className || "");
@@ -71,7 +72,8 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
   const isInline =
     inline || (!match && !codeText.includes("\n") && codeText.length < 100);
 
-  const handleCopy = async () => {
+  const handleCopy = async (e: React.MouseEvent) => {
+    e.stopPropagation();
     try {
       await navigator.clipboard.writeText(codeText);
       setCopied(true);
@@ -83,7 +85,8 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
     }
   };
 
-  const handleDownload = () => {
+  const handleDownload = (e: React.MouseEvent) => {
+    e.stopPropagation();
     const blob = new Blob([codeText], { type: "text/plain" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
@@ -97,19 +100,31 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
     toast.info(`Script saved as .${ext}`);
   };
 
-  const handleSaveToArmory = () => {
+  const handleSaveToArmory = (e: React.MouseEvent) => {
+    e.stopPropagation();
     if (!saveTitle) {
       setSaveTitle(`Snippet ${new Date().toLocaleTimeString()}`);
     }
     setShowSaveDialog(true);
   };
 
-  const confirmSave = async () => {
+  const confirmSave = async (e: React.MouseEvent) => {
+    e.stopPropagation();
     const success = await saveToArmory(codeText, language, saveTitle);
     if (success) {
       setShowSaveDialog(false);
       setSaveTitle("");
     }
+  };
+
+  const toggleWrap = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsSoftWrap(!isSoftWrap);
+  };
+
+  const toggleExpand = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsExpanded(!isExpanded);
   };
 
   if (isInline) {
@@ -129,6 +144,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
             relative rounded-xl overflow-hidden border border-app-border bg-app-frame shadow-xl not-prose
             ${isModal ? "fixed inset-4 z-[100] flex flex-col m-0 max-h-none animate-scaleIn" : "my-4"}
         `}
+      onClick={(e) => e.stopPropagation()}
     >
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-2 bg-app-canvas/50 border-b border-app-border backdrop-blur-sm shrink-0">
@@ -160,7 +176,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
         <div className="flex items-center gap-1">
           {/* Save Button */}
           <button
-            id="chat-code-save-trigger"
+            id={`chat-code-save-${instanceId}-${isModal ? "modal" : "base"}`}
             data-testid="chat-code-save-trigger"
             onClick={handleSaveToArmory}
             className="p-2 text-app-tertiary hover:text-amber-400 hover:bg-amber-500/10 rounded-lg transition-colors"
@@ -184,9 +200,9 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
 
           {/* Wrap Toggle */}
           <button
-            id="chat-code-wrap-toggle"
+            id={`chat-code-wrap-${instanceId}-${isModal ? "modal" : "base"}`}
             data-testid="chat-code-wrap-toggle"
-            onClick={() => setIsSoftWrap(!isSoftWrap)}
+            onClick={toggleWrap}
             className={`p-2 rounded-lg transition-colors ${
               isSoftWrap
                 ? "bg-app-brand/20 text-app-brand"
@@ -212,9 +228,9 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
 
           {/* Expand/Collapse */}
           <button
-            id="chat-code-expand-toggle"
+            id={`chat-code-expand-${instanceId}-${isModal ? "modal" : "base"}`}
             data-testid="chat-code-expand-toggle"
-            onClick={() => setIsExpanded(!isExpanded)}
+            onClick={toggleExpand}
             className="p-2 text-app-tertiary hover:text-app-primary hover:bg-app-surface rounded-lg transition-colors"
             title={isModal ? "Collapse View" : "Expand View"}
           >
@@ -253,7 +269,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
 
           {/* Download */}
           <button
-            id="chat-code-download"
+            id={`chat-code-download-${instanceId}-${isModal ? "modal" : "base"}`}
             data-testid="chat-code-download"
             onClick={handleDownload}
             className="p-2 text-app-tertiary hover:text-app-primary hover:bg-app-surface rounded-lg transition-colors"
@@ -277,7 +293,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
 
           {/* Copy */}
           <button
-            id="chat-code-copy"
+            id={`chat-code-copy-${instanceId}-${isModal ? "modal" : "base"}`}
             data-testid="chat-code-copy"
             onClick={handleCopy}
             className="p-2 text-app-tertiary hover:text-app-primary hover:bg-app-surface rounded-lg transition-colors"
@@ -336,7 +352,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
               Save to Armory
             </h3>
             <input
-              id="chat-code-save-title"
+              id={`chat-code-save-title-${instanceId}`}
               data-testid="chat-code-save-title"
               name="snippet_title"
               type="text"
@@ -348,15 +364,18 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
             />
             <div className="flex gap-2 justify-end">
               <button
-                id="chat-code-save-cancel"
+                id={`chat-code-save-cancel-${instanceId}`}
                 data-testid="chat-code-save-cancel"
-                onClick={() => setShowSaveDialog(false)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setShowSaveDialog(false);
+                }}
                 className="px-3 py-1.5 text-xs font-bold text-app-tertiary hover:text-app-primary transition-colors"
               >
                 CANCEL
               </button>
               <button
-                id="chat-code-save-confirm"
+                id={`chat-code-save-confirm-${instanceId}`}
                 data-testid="chat-code-save-confirm"
                 onClick={confirmSave}
                 disabled={!saveTitle.trim()}
@@ -373,9 +392,12 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
 
   return (
     <>
-      {renderContent(false)}
+      {!isExpanded && renderContent(false)}
       {isExpanded && (
-        <div className="fixed inset-0 z-[90] bg-app-overlay/80 backdrop-blur-md flex items-center justify-center animate-fadeIn">
+        <div
+          className="fixed inset-0 z-[90] bg-app-overlay/80 backdrop-blur-md flex items-center justify-center animate-fadeIn"
+          onClick={toggleExpand}
+        >
           {renderContent(true)}
         </div>
       )}

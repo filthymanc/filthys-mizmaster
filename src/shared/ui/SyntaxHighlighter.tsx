@@ -30,7 +30,7 @@ const SyntaxHighlighter: React.FC<SyntaxHighlighterProps> = ({
 }) => {
   useEffect(() => {
     Prism.highlightAll();
-  }, [code, language]);
+  }, [code, language, wrap]);
 
   return (
     <div className={`relative group ${className}`}>
