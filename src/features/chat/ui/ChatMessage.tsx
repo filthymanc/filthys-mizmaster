@@ -72,6 +72,52 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ message }) => {
           </CodeBlock>
         );
       },
+      p: ({ children }: { children: React.ReactNode }) => (
+        <p className="mb-4 last:mb-0 leading-relaxed">{children}</p>
+      ),
+      ul: ({ children }: { children: React.ReactNode }) => (
+        <ul className="list-disc pl-6 mb-4">{children}</ul>
+      ),
+      ol: ({ children }: { children: React.ReactNode }) => (
+        <ol className="list-decimal pl-6 mb-4">{children}</ol>
+      ),
+      li: ({ children }: { children: React.ReactNode }) => (
+        <li className="mb-1">{children}</li>
+      ),
+      h1: ({ children }: { children: React.ReactNode }) => (
+        <h1 className="text-xl font-bold text-app-brand mt-6 mb-2">
+          {children}
+        </h1>
+      ),
+      h2: ({ children }: { children: React.ReactNode }) => (
+        <h2 className="text-lg font-bold text-app-brand mt-5 mb-2">
+          {children}
+        </h2>
+      ),
+      h3: ({ children }: { children: React.ReactNode }) => (
+        <h3 className="text-base font-bold text-app-brand mt-4 mb-2">
+          {children}
+        </h3>
+      ),
+      strong: ({ children }: { children: React.ReactNode }) => (
+        <strong className="font-bold text-app-brand">{children}</strong>
+      ),
+      a: ({ children, href }: { children: React.ReactNode; href?: string }) => (
+        <a
+          data-testid="chat-message-link"
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-app-brand hover:underline underline-offset-4 decoration-2"
+        >
+          {children}
+        </a>
+      ),
+      blockquote: ({ children }: { children: React.ReactNode }) => (
+        <blockquote className="border-l-4 border-app-brand/30 pl-4 italic my-4 text-app-secondary">
+          {children}
+        </blockquote>
+      ),
     }),
     [],
   );
@@ -121,7 +167,7 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ message }) => {
         )}
 
         <div
-          className={`text-sm md:text-base leading-relaxed ${isModel ? "markdown-body" : "whitespace-pre-wrap"}`}
+          className={`text-sm md:text-base leading-relaxed ${!isModel ? "whitespace-pre-wrap" : ""}`}
         >
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}

@@ -1,21 +1,20 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+
 ### [1.13.4](https://github.com/filthymanc/filthys-mizmaster/compare/v1.13.3...v1.13.4) (2026-03-08)
 
 ### [1.13.3](https://github.com/filthymanc/filthys-mizmaster/compare/v1.13.2...v1.13.3) (2026-03-08)
 
-
 ### Styles
 
-* format code block component ([018bc62](https://github.com/filthymanc/filthys-mizmaster/commit/018bc62669628632f561ec44c859d6c75f36b5cc))
+- format code block component ([018bc62](https://github.com/filthymanc/filthys-mizmaster/commit/018bc62669628632f561ec44c859d6c75f36b5cc))
 
 ### [1.13.2](https://github.com/filthymanc/filthys-mizmaster/compare/v1.13.1...v1.13.2) (2026-03-08)
 
-
 ### Bug Fixes
 
-* **chat:** preserve soft-wrap state and harden event propagation for mobile/tablet ([18a2076](https://github.com/filthymanc/filthys-mizmaster/commit/18a20766a1f0312dc356f86a0cc8b3e5952436f2))
+- **chat:** preserve soft-wrap state and harden event propagation for mobile/tablet ([18a2076](https://github.com/filthymanc/filthys-mizmaster/commit/18a20766a1f0312dc356f86a0cc8b3e5952436f2))
 
 ### [1.13.1](https://github.com/filthymanc/filthys-mizmaster/compare/v1.13.0...v1.13.1) (2026-03-07)
 
