@@ -1,0 +1,32 @@
+name: Deploy Theme V2 Preview (Firebase)
+
+on:
+  push:
+    branches: ["feat/theme-system-v2"]
+  workflow_dispatch:
+
+jobs:
+  build_and_preview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
+
+      - name: Deploy to Firebase Hosting
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_FIREBASE_488415 }}"
+          projectId: firebase-488415
+          channelId: theme-v2-preview
