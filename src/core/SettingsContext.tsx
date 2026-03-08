@@ -10,8 +10,20 @@
  */
 
 import React, { useState, useEffect, useCallback } from "react";
-import { ApiStatus, AppSettings, ModelDefinition } from "./types";
-import { STORAGE_KEYS, DEFAULT_MODEL_ID, AVAILABLE_MODELS } from "./constants";
+import {
+  ApiStatus,
+  AppSettings,
+  ModelDefinition,
+  ThemeSet,
+  BrightnessLevel,
+  AccentRole,
+  AccentIntensity,
+} from "./types";
+import {
+  STORAGE_KEYS,
+  DEFAULT_MODEL_ID,
+  AVAILABLE_MODELS,
+} from "./constants";
 import { SettingsContext } from "./SettingsContextDefinition";
 import * as crypto from "../shared/services/cryptoService";
 import { useAuth } from "../features/auth/useAuth";
@@ -40,6 +52,12 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({
       isDesanitized: false,
       themeMode: "standard",
       themeAccent: "emerald",
+      // Theme V2 Defaults
+      themeSet: "mono",
+      themeBrightness: "L2",
+      themeAccentRole: "ready",
+      themeIntensity: "vivid",
+      missionProfile: "standard-issue",
       githubToken: "",
     };
 
@@ -52,6 +70,72 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({
           ? new Date(parsed.lastModelRefresh)
           : undefined;
 
+        // V2 Theme Initialization / Migration
+        let themeSet: ThemeSet = parsed.themeSet || "mono";
+        let themeBrightness: BrightnessLevel = parsed.themeBrightness || "L2";
+        let themeAccentRole: AccentRole = parsed.themeAccentRole || "ready";
+        const themeIntensity: AccentIntensity = parsed.themeIntensity || "vivid";
+        let missionProfile: string = parsed.missionProfile || "standard-issue";
+
+        // Migration logic for legacy users
+        if (!parsed.themeSet) {
+          const mode = parsed.themeMode || "standard";
+          const accent = parsed.themeAccent || "emerald";
+
+          // Set/Brightness mapping
+          switch (mode) {
+            case "oled":
+              themeSet = "mono";
+              themeBrightness = "L1";
+              break;
+            case "standard":
+              themeSet = "mono";
+              themeBrightness = "L2";
+              break;
+            case "carbon":
+              themeSet = "mono";
+              themeBrightness = "L2";
+              break;
+            case "paper":
+              themeSet = "mono";
+              themeBrightness = "L5";
+              break;
+            case "green-camo":
+              themeSet = "nvg";
+              themeBrightness = "L2";
+              break;
+            case "desert-camo":
+              themeSet = "coyote";
+              themeBrightness = "L2";
+              break;
+            case "supercarrier":
+              themeSet = "deck";
+              themeBrightness = "L2";
+              break;
+          }
+
+          // Accent mapping
+          switch (accent) {
+            case "emerald":
+              themeAccentRole = "ready";
+              break;
+            case "cyan":
+              themeAccentRole = "nav";
+              break;
+            case "amber":
+              themeAccentRole = "alert";
+              break;
+            case "rose":
+              themeAccentRole = "danger";
+              break;
+            case "violet":
+              themeAccentRole = "intel";
+              break;
+          }
+
+          missionProfile = "custom"; // Mark as custom if migrated from legacy
+        }
+
         return {
           model: parsed.model || DEFAULT_MODEL_ID,
           availableModels: parsed.availableModels || AVAILABLE_MODELS,
@@ -59,6 +143,11 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({
           isDesanitized: parsed.isDesanitized || false,
           themeMode: parsed.themeMode || "standard",
           themeAccent: parsed.themeAccent || "emerald",
+          themeSet,
+          themeBrightness,
+          themeAccentRole,
+          themeIntensity,
+          missionProfile,
           githubToken: parsed.githubToken || "",
         };
       } catch (e) {
@@ -276,7 +365,7 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({
       );
 
       if (typeof document !== "undefined" && document.body) {
-        document.body.className = `mode-${settings.themeMode} accent-${settings.themeAccent}`;
+        document.body.className = `mode-${settings.themeMode} accent-${settings.themeAccent} set-${settings.themeSet} brightness-${settings.themeBrightness} accent-role-${settings.themeAccentRole} intensity-${settings.themeIntensity}`;
       }
     };
 

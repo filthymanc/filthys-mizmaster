@@ -10,9 +10,15 @@
  */
 
 import React, { useState, Fragment } from "react";
-import { Dialog, Transition, Tab } from "@headlessui/react";
+import { Dialog, Transition, Tab, Switch } from "@headlessui/react";
 import { useSettings } from "../../core/useSettings";
-import { ThemeMode, ThemeAccent } from "../../core/types";
+import {
+  ThemeSet,
+  BrightnessLevel,
+  AccentRole,
+  ThemeMode,
+} from "../../core/types";
+import { MISSION_PROFILES } from "../../core/constants";
 import { clearAllData } from "../services/storageService";
 import { validateGitHubToken } from "../../features/librarian/githubService";
 import {
@@ -24,6 +30,7 @@ import {
   ExportIcon,
   LogoutIcon,
   SpinnerIcon,
+  ShieldIcon,
 } from "./Icons";
 
 interface SettingsModalProps {
@@ -65,6 +72,9 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
   const [tokenError, setTokenError] = useState<string | null>(null);
   const [isResetConfirming, setIsResetConfirming] = useState(false);
   const [isDisconnectConfirming, setIsDisconnectConfirming] = useState(false);
+  const [showAdvancedTheme, setShowAdvancedTheme] = useState(
+    settings.missionProfile === "custom",
+  );
 
   const handleFactoryReset = async () => {
     if (isResetConfirming) {
@@ -86,7 +96,47 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
     }
   };
 
-  const modes: { id: ThemeMode; label: string }[] = [
+  const themeSets: { id: ThemeSet; label: string; bias: string }[] = [
+    { id: "mono", label: "Monochrome", bias: "Neutral" },
+    { id: "soft", label: "Subtle", bias: "Slate Blue" },
+    { id: "nvg", label: "Forest", bias: "NVG Green" },
+    { id: "coyote", label: "Desert", bias: "Coyote Tan" },
+    { id: "deck", label: "Naval", bias: "Steel Deck" },
+  ];
+
+  const brightnessLevels: { id: BrightnessLevel; label: string }[] = [
+    { id: "L1", label: "OLED" },
+    { id: "L2", label: "Dark" },
+    { id: "L3", label: "Medium" },
+    { id: "L4", label: "Light" },
+    { id: "L5", label: "Paper" },
+  ];
+
+  const accentRoles: { id: AccentRole; label: string; color: string }[] = [
+    { id: "ready", label: "Ready", color: "#10b981" },
+    { id: "nav", label: "Nav", color: "#06b6d4" },
+    { id: "alert", label: "Alert", color: "#f59e0b" },
+    { id: "danger", label: "Danger", color: "#f43f5e" },
+    { id: "intel", label: "Intel", color: "#8b5cf6" },
+    { id: "elite", label: "Elite", color: "#facc15" },
+    { id: "stealth", label: "Stealth", color: "#94a3b8" },
+  ];
+
+  const applyProfile = (profileId: string) => {
+    const profile = MISSION_PROFILES.find((p) => p.id === profileId);
+    if (profile) {
+      updateSettings({
+        missionProfile: profile.id,
+        themeSet: profile.themeSet,
+        themeBrightness: profile.brightness,
+        themeAccentRole: profile.accent,
+        themeIntensity: profile.intensity,
+      });
+    }
+  };
+
+  // Keep legacy definitions for transition
+  const legacyModes: { id: ThemeMode; label: string }[] = [
     { id: "standard", label: "Standard" },
     { id: "carbon", label: "Carbon" },
     { id: "oled", label: "OLED Black" },
@@ -94,14 +144,6 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
     { id: "green-camo", label: "Green Camo" },
     { id: "desert-camo", label: "Desert Camo" },
     { id: "supercarrier", label: "Supercarrier" },
-  ];
-
-  const accents: { id: ThemeAccent; color: string }[] = [
-    { id: "emerald", color: "#10b981" },
-    { id: "cyan", color: "#06b6d4" },
-    { id: "amber", color: "#f59e0b" },
-    { id: "rose", color: "#f43f5e" },
-    { id: "violet", color: "#8b5cf6" },
   ];
 
   return (
@@ -318,57 +360,212 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
 
                       {/* INTERFACE SETTINGS */}
                       <Tab.Panel className="focus:outline-none space-y-8 animate-fadeIn">
-                        {/* Theme Mode */}
+                        {/* Mission Profile Selection */}
                         <div className="space-y-4">
-                          <h4 className="text-sm font-bold text-app-secondary uppercase tracking-wider">
-                            Color Theme
-                          </h4>
-                          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                            {modes.map((mode) => (
+                          <div className="flex items-center justify-between">
+                            <h4 className="text-sm font-bold text-app-secondary uppercase tracking-wider">
+                              Mission Profiles
+                            </h4>
+                            <div className="flex items-center gap-2">
+                              <span className="text-[10px] font-bold text-app-tertiary uppercase tracking-widest">
+                                Advanced Builder
+                              </span>
+                              <Switch
+                                checked={showAdvancedTheme}
+                                onChange={setShowAdvancedTheme}
+                                className={`${
+                                  showAdvancedTheme
+                                    ? "bg-app-brand"
+                                    : "bg-app-canvas"
+                                } relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-app-brand focus:ring-offset-2`}
+                              >
+                                <span
+                                  className={`${
+                                    showAdvancedTheme
+                                      ? "translate-x-4"
+                                      : "translate-x-0"
+                                  } pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out`}
+                                />
+                              </Switch>
+                            </div>
+                          </div>
+
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            {MISSION_PROFILES.map((profile) => (
                               <button
-                                key={mode.id}
-                                id={`shared-settings-theme-${mode.id}`}
-                                data-testid={`shared-settings-theme-${mode.id}`}
-                                onClick={() =>
-                                  updateSettings({ themeMode: mode.id })
-                                }
-                                className={`p-4 rounded-xl border text-xs font-bold uppercase transition-all flex items-center justify-center text-center ${
-                                  settings.themeMode === mode.id
-                                    ? "bg-app-brand/10 border-app-brand text-app-brand"
-                                    : "bg-app-surface border-app-border text-app-tertiary hover:text-app-primary hover:border-app-highlight"
+                                key={profile.id}
+                                id={`shared-settings-profile-${profile.id}`}
+                                data-testid={`shared-settings-profile-${profile.id}`}
+                                onClick={() => applyProfile(profile.id)}
+                                className={`p-4 rounded-xl border text-left transition-all ${
+                                  settings.missionProfile === profile.id
+                                    ? "bg-app-brand/10 border-app-brand ring-1 ring-app-brand/30"
+                                    : "bg-app-surface border-app-border hover:border-app-highlight"
                                 }`}
                               >
-                                {mode.label}
+                                <div
+                                  className={`text-xs font-bold uppercase ${
+                                    settings.missionProfile === profile.id
+                                      ? "text-app-brand"
+                                      : "text-app-primary"
+                                  }`}
+                                >
+                                  {profile.label}
+                                </div>
+                                <div className="text-[9px] text-app-tertiary mt-1 font-mono uppercase tracking-tighter">
+                                  {profile.themeSet} / {profile.brightness} /{" "}
+                                  {profile.accent}
+                                </div>
                               </button>
                             ))}
                           </div>
                         </div>
 
-                        {/* Theme Accent */}
-                        <div className="space-y-4">
-                          <h4 className="text-sm font-bold text-app-secondary uppercase tracking-wider">
-                            Command Accent
-                          </h4>
-                          <div className="flex gap-4 p-4 bg-app-surface rounded-xl border border-app-border">
-                            {accents.map((accent) => (
+                        {/* Advanced Theme Builder */}
+                        {showAdvancedTheme && (
+                          <div className="space-y-6 pt-6 border-t border-app-border/50 animate-fadeIn">
+                            <div className="flex items-center gap-2 text-app-brand">
+                              <ShieldIcon className="h-4 w-4" />
+                              <h4 className="text-[10px] font-bold uppercase tracking-widest">
+                                Tactical Theme Builder (Custom)
+                              </h4>
+                            </div>
+
+                            {/* Set Selection */}
+                            <div className="space-y-3">
+                              <label className="text-[10px] font-bold text-app-tertiary uppercase tracking-wider">
+                                1. Environment Palette
+                              </label>
+                              <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
+                                {themeSets.map((set) => (
+                                  <button
+                                    key={set.id}
+                                    onClick={() =>
+                                      updateSettings({
+                                        themeSet: set.id,
+                                        missionProfile: "custom",
+                                      })
+                                    }
+                                    className={`p-2 rounded-lg border text-[10px] font-bold transition-all ${
+                                      settings.themeSet === set.id
+                                        ? "bg-app-brand text-white border-app-brand"
+                                        : "bg-app-canvas border-app-border text-app-secondary hover:text-app-primary"
+                                    }`}
+                                  >
+                                    {set.label}
+                                  </button>
+                                ))}
+                              </div>
+                            </div>
+
+                            {/* Brightness Selection */}
+                            <div className="space-y-3">
+                              <label className="text-[10px] font-bold text-app-tertiary uppercase tracking-wider">
+                                2. Luminance Level
+                              </label>
+                              <div className="grid grid-cols-5 gap-2">
+                                {brightnessLevels.map((lvl) => (
+                                  <button
+                                    key={lvl.id}
+                                    onClick={() =>
+                                      updateSettings({
+                                        themeBrightness: lvl.id,
+                                        missionProfile: "custom",
+                                      })
+                                    }
+                                    className={`p-2 rounded-lg border text-[10px] font-bold transition-all ${
+                                      settings.themeBrightness === lvl.id
+                                        ? "bg-app-brand text-white border-app-brand"
+                                        : "bg-app-canvas border-app-border text-app-secondary hover:text-app-primary"
+                                    }`}
+                                  >
+                                    {lvl.label}
+                                  </button>
+                                ))}
+                              </div>
+                            </div>
+
+                            {/* Accent Selection */}
+                            <div className="space-y-3">
+                              <label className="text-[10px] font-bold text-app-tertiary uppercase tracking-wider">
+                                3. Command Accent
+                              </label>
+                              <div className="flex flex-wrap gap-2">
+                                {accentRoles.map((role) => (
+                                  <button
+                                    key={role.id}
+                                    onClick={() =>
+                                      updateSettings({
+                                        themeAccentRole: role.id,
+                                        missionProfile: "custom",
+                                      })
+                                    }
+                                    className={`w-8 h-8 rounded-full border-2 transition-all ${
+                                      settings.themeAccentRole === role.id
+                                        ? "border-white scale-110 shadow-lg"
+                                        : "border-transparent opacity-60 hover:opacity-100"
+                                    }`}
+                                    style={{ backgroundColor: role.color }}
+                                    title={role.label}
+                                  />
+                                ))}
+                              </div>
+                            </div>
+
+                            {/* Intensity Toggle */}
+                            <div className="p-4 rounded-xl border border-app-border bg-app-surface flex items-center justify-between">
+                              <div>
+                                <div className="text-xs font-bold text-app-primary">
+                                  Accent Intensity
+                                </div>
+                                <div className="text-[10px] text-app-tertiary">
+                                  Vivid (High Contrast) vs. Tactical (Matte)
+                                </div>
+                              </div>
                               <button
-                                key={accent.id}
-                                id={`shared-settings-accent-${accent.id}`}
-                                data-testid={`shared-settings-accent-${accent.id}`}
                                 onClick={() =>
-                                  updateSettings({ themeAccent: accent.id })
+                                  updateSettings({
+                                    themeIntensity:
+                                      settings.themeIntensity === "vivid"
+                                        ? "tactical"
+                                        : "vivid",
+                                    missionProfile: "custom",
+                                  })
                                 }
-                                className={`w-10 h-10 rounded-full transition-transform border-4 border-app-canvas ${
-                                  settings.themeAccent === accent.id
-                                    ? "scale-110 shadow-lg"
-                                    : "hover:scale-105 opacity-80"
+                                className={`px-3 py-1 rounded-lg border text-[10px] font-bold transition-all ${
+                                  settings.themeIntensity === "vivid"
+                                    ? "bg-orange-500/10 border-orange-500 text-orange-500"
+                                    : "bg-app-brand/10 border-app-brand text-app-brand"
                                 }`}
-                                style={{ backgroundColor: accent.color }}
-                                aria-label={`Set Accent ${accent.id}`}
-                              />
-                            ))}
+                              >
+                                {settings.themeIntensity.toUpperCase()}
+                              </button>
+                            </div>
                           </div>
-                        </div>
+                        )}
+
+                        {/* Legacy Settings (Hidden when advanced builder is active) */}
+                        {!showAdvancedTheme && (
+                          <div className="space-y-6 pt-6 border-t border-app-border/50 opacity-50 grayscale pointer-events-none">
+                            <h4 className="text-[10px] font-bold uppercase tracking-widest">
+                              Legacy Identifiers (Internal Only)
+                            </h4>
+                            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                              {legacyModes.map((mode) => (
+                                <button
+                                  key={mode.id}
+                                  className={`p-2 rounded-lg border text-[10px] font-bold ${
+                                    settings.themeMode === mode.id
+                                      ? "bg-app-surface border-app-brand"
+                                      : "border-app-border"
+                                  }`}
+                                >
+                                  {mode.label}
+                                </button>
+                              ))}
+                            </div>
+                          </div>
+                        )}
                       </Tab.Panel>
 
                       {/* DATA & IDENTITY SETTINGS */}

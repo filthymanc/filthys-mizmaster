@@ -78,6 +78,35 @@ export type ApiStatus =
   | "streaming"
   | "offline";
 
+/**
+ * THEME SYSTEM V2
+ */
+
+export type ThemeSet = "mono" | "soft" | "nvg" | "coyote" | "deck";
+export type BrightnessLevel = "L1" | "L2" | "L3" | "L4" | "L5";
+export type AccentRole =
+  | "ready"
+  | "nav"
+  | "alert"
+  | "danger"
+  | "intel"
+  | "elite"
+  | "stealth";
+export type AccentIntensity = "vivid" | "tactical";
+
+export interface MissionProfile {
+  id: string;
+  label: string;
+  themeSet: ThemeSet;
+  brightness: BrightnessLevel;
+  accent: AccentRole;
+  intensity: AccentIntensity;
+  isCustom?: boolean;
+}
+
+/**
+ * @deprecated Legacy theme types maintained for migration logic
+ */
 export type ThemeMode =
   | "standard"
   | "carbon"
@@ -87,6 +116,9 @@ export type ThemeMode =
   | "desert-camo"
   | "supercarrier";
 
+/**
+ * @deprecated Legacy accent types maintained for migration logic
+ */
 export type ThemeAccent = "emerald" | "cyan" | "amber" | "rose" | "violet";
 
 export interface AppSettings {
@@ -94,6 +126,13 @@ export interface AppSettings {
   availableModels: ModelDefinition[];
   lastModelRefresh?: Date;
   isDesanitized: boolean;
+  // Theme V2
+  themeSet: ThemeSet;
+  themeBrightness: BrightnessLevel;
+  themeAccentRole: AccentRole;
+  themeIntensity: AccentIntensity;
+  missionProfile: string; // ID of the active profile or 'custom'
+  // Legacy fields for backward compatibility during transition
   themeMode: ThemeMode;
   themeAccent: ThemeAccent;
   githubToken?: string;

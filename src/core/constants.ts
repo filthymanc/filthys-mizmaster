@@ -10,6 +10,7 @@
  */
 
 import { STORAGE_VERSION_TAG } from "./version";
+import { MissionProfile } from "./types";
 
 // --- SYSTEM CONSTANTS ---
 
@@ -75,4 +76,49 @@ export const SUGGESTED_QUERIES = [
   "How do I use DML to clone units?",
   "How do I avoid script errors in loops?",
   "How do I check available Group functions?",
+];
+
+// --- THEME V2: MISSION PROFILES ---
+
+export const MISSION_PROFILES: MissionProfile[] = [
+  {
+    id: "standard-issue",
+    label: "Standard Issue",
+    themeSet: "mono",
+    brightness: "L2",
+    accent: "ready",
+    intensity: "vivid",
+  },
+  {
+    id: "night-sortie",
+    label: "Night Sortie",
+    themeSet: "nvg",
+    brightness: "L1",
+    accent: "ready",
+    intensity: "tactical",
+  },
+  {
+    id: "carrier-deck",
+    label: "Carrier Deck",
+    themeSet: "deck",
+    brightness: "L2",
+    accent: "nav",
+    intensity: "vivid",
+  },
+  {
+    id: "desert-strike",
+    label: "Desert Strike",
+    themeSet: "coyote",
+    brightness: "L2",
+    accent: "alert",
+    intensity: "vivid",
+  },
+  {
+    id: "office-admin",
+    label: "Office Admin",
+    themeSet: "mono",
+    brightness: "L5",
+    accent: "stealth",
+    intensity: "tactical",
+  },
 ];

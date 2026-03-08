@@ -85,7 +85,8 @@ const FieldManual: React.FC<FieldManualProps> = ({
 }) => {
   const [activeTab, setActiveTab] = useState<TabId>(initialTab);
   const { settings } = useSettings();
-  const isLightMode = settings.themeMode === "paper";
+  const isLightMode =
+    settings.themeBrightness === "L4" || settings.themeBrightness === "L5";
 
   // Sync state if initialTab changes while open (optional, but good for deep linking)
   React.useEffect(() => {
