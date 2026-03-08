@@ -250,7 +250,7 @@ const MissionWorkspace: React.FC<MissionWorkspaceProps> = ({
       <div className="flex-1 overflow-hidden relative">
         {isInitialState ? (
           <div className="absolute inset-0 overflow-y-auto p-4 md:p-6 custom-scrollbar">
-            <div className="max-w-4xl mx-auto min-h-full flex flex-col">
+            <div className="max-w-6xl mx-auto min-h-full flex flex-col">
               <Dashboard
                 settings={settings}
                 apiStatus={apiStatus}
@@ -274,7 +274,7 @@ const MissionWorkspace: React.FC<MissionWorkspaceProps> = ({
             followOutput="smooth"
             className="custom-scrollbar"
             itemContent={(_index, msg) => (
-              <div className="px-4 md:px-6 py-2 max-w-4xl mx-auto w-full">
+              <div className="px-4 md:px-6 py-2 max-w-6xl mx-auto w-full">
                 <ErrorBoundary key={msg.id} scope="message">
                   <ChatMessage message={msg} />
                 </ErrorBoundary>
@@ -297,7 +297,7 @@ const MissionWorkspace: React.FC<MissionWorkspaceProps> = ({
           isGenerating={isGenerating}
           isDesanitized={settings.isDesanitized}
         />
-        <div className="max-w-4xl mx-auto mt-2 flex justify-center text-[10px] text-app-tertiary font-mono tracking-widest gap-4 opacity-50">
+        <div className="max-w-6xl mx-auto mt-2 flex justify-center text-[10px] text-app-tertiary font-mono tracking-widest gap-4 opacity-50">
           <span>
             {AVAILABLE_MODELS.find((m) => m.id === settings.model)
               ?.shortLabel || settings.model}

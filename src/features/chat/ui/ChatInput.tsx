@@ -82,7 +82,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
   };
 
   return (
-    <div className="max-w-4xl mx-auto relative px-2 sm:px-0">
+    <div className="max-w-6xl mx-auto relative px-2 sm:px-0">
       {/* Librarian Intelligence Overlay */}
       {isVisible && !isGenerating && (
         <div className="absolute bottom-full left-0 mb-2 ml-4 flex flex-col gap-1 z-10 animate-scaleIn origin-bottom-left">

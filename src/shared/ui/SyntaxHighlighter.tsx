@@ -45,10 +45,10 @@ const SyntaxHighlighter: React.FC<SyntaxHighlighterProps> = ({
         Injected via style tag to ensure specificity over Prism's defaults 
       */}
       <style>{`
-        /* Token Colors - Optimized for Dark Mode */
+        /* Token Colors - Theme Aware */
         code[class*="language-"],
         pre[class*="language-"] {
-          color: #e2e8f0; /* slate-200 */
+          color: rgb(var(--text-primary));
           text-shadow: none;
           font-family: "JetBrains Mono", monospace;
           direction: ltr;
@@ -61,18 +61,18 @@ const SyntaxHighlighter: React.FC<SyntaxHighlighterProps> = ({
           hyphens: none;
         }
 
-        /* Comments */
+        /* Comments - Muted via Tertiary Text Variable */
         .token.comment,
         .token.prolog,
         .token.doctype,
         .token.cdata {
-          color: #64748b; /* slate-500 */
+          color: rgb(var(--text-tertiary));
           font-style: italic;
         }
 
-        /* Punctuation */
+        /* Punctuation - Muted via Secondary Text Variable */
         .token.punctuation {
-          color: #94a3b8; /* slate-400 */
+          color: rgb(var(--text-secondary));
         }
 
         /* Properties / Attributes */
@@ -83,7 +83,7 @@ const SyntaxHighlighter: React.FC<SyntaxHighlighterProps> = ({
         .token.constant,
         .token.symbol,
         .token.deleted {
-          color: #f472b6; /* pink-400 */
+          color: #f472b6; /* pink-400 - Remains vibrant */
         }
 
         /* Selectors / Strings */
@@ -93,7 +93,7 @@ const SyntaxHighlighter: React.FC<SyntaxHighlighterProps> = ({
         .token.char,
         .token.builtin,
         .token.inserted {
-          color: #34d399; /* emerald-400 */
+          color: #34d399; /* emerald-400 - Matches default Brand */
         }
 
         /* Operators / Variables */

@@ -1,12 +1,12 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
-## [1.14.0](https://github.com/filthymanc/filthys-mizmaster/compare/v1.13.4...v1.14.0) (2026-03-08)
 
+## [1.14.0](https://github.com/filthymanc/filthys-mizmaster/compare/v1.13.4...v1.14.0) (2026-03-08)
 
 ### Features
 
-* **chat:** implement tactical markdown formatting and standardize link identifiers ([9bb7bea](https://github.com/filthymanc/filthys-mizmaster/commit/9bb7bea04ae1d426fe88ca24701bb0f38f7bb425))
+- **chat:** implement tactical markdown formatting and standardize link identifiers ([9bb7bea](https://github.com/filthymanc/filthys-mizmaster/commit/9bb7bea04ae1d426fe88ca24701bb0f38f7bb425))
 
 ### [1.13.4](https://github.com/filthymanc/filthys-mizmaster/compare/v1.13.3...v1.13.4) (2026-03-08)
 

@@ -55,6 +55,7 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ message }) => {
 
   const markdownComponents = React.useMemo(
     () => ({
+      // Handle the wrapping of code blocks (handled by CodeBlock.tsx)
       pre: ({ children }: { children: React.ReactNode }) => <>{children}</>,
       code({
         inline,
@@ -72,18 +73,52 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ message }) => {
           </CodeBlock>
         );
       },
+
+      /**
+       * PARAGRAPHS
+       * mb-4: Bottom margin between paragraphs.
+       * last:mb-0: Removes margin from the very last paragraph to keep bubble tight.
+       * leading-relaxed: Line spacing (Options: leading-tight, leading-normal, leading-loose).
+       */
       p: ({ children }: { children: React.ReactNode }) => (
         <p className="mb-4 last:mb-0 leading-relaxed">{children}</p>
       ),
+
+      /**
+       * UNORDERED LISTS (Bullets)
+       * list-disc: Bullet style.
+       * pl-6: Indentation from the left.
+       * mb-4: Space after the list ends.
+       */
       ul: ({ children }: { children: React.ReactNode }) => (
         <ul className="list-disc pl-6 mb-4">{children}</ul>
       ),
+
+      /**
+       * ORDERED LISTS (Numbers)
+       * list-decimal: Numbering style.
+       * pl-6: Indentation from the left.
+       * mb-4: Space after the list ends.
+       */
       ol: ({ children }: { children: React.ReactNode }) => (
         <ol className="list-decimal pl-6 mb-4">{children}</ol>
       ),
+
+      /**
+       * LIST ITEMS
+       * mb-1: Subtle spacing between individual items in a list.
+       */
       li: ({ children }: { children: React.ReactNode }) => (
         <li className="mb-1">{children}</li>
       ),
+
+      /**
+       * HEADERS (h1, h2, h3)
+       * text-xl/lg/base: Font size.
+       * font-bold: Weight.
+       * text-app-brand: Uses your accent color (Emerald/Cyan/etc).
+       * mt-6/5/4: Top margin to separate from previous text.
+       */
       h1: ({ children }: { children: React.ReactNode }) => (
         <h1 className="text-xl font-bold text-app-brand mt-6 mb-2">
           {children}
@@ -99,9 +134,21 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ message }) => {
           {children}
         </h3>
       ),
+
+      /**
+       * BOLD TEXT
+       * text-app-brand: Makes bold text pop using the theme's accent color.
+       * Remove 'text-app-brand' to use standard white/gray text for bold.
+       */
       strong: ({ children }: { children: React.ReactNode }) => (
         <strong className="font-bold text-app-brand">{children}</strong>
       ),
+
+      /**
+       * LINKS
+       * text-app-brand: Link color.
+       * hover:underline: Underline link on hover.
+       */
       a: ({ children, href }: { children: React.ReactNode; href?: string }) => (
         <a
           data-testid="chat-message-link"
@@ -113,6 +160,14 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ message }) => {
           {children}
         </a>
       ),
+
+      /**
+       * QUOTES
+       * border-l-4: Tactical vertical line on the left.
+       * border-app-brand/30: Line color with 30% transparency.
+       * pl-4: Padding between the line and the text.
+       * italic: Slanted text style.
+       */
       blockquote: ({ children }: { children: React.ReactNode }) => (
         <blockquote className="border-l-4 border-app-brand/30 pl-4 italic my-4 text-app-secondary">
           {children}
@@ -127,7 +182,7 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ message }) => {
       className={`flex w-full mb-6 ${isModel ? "justify-start" : "justify-end"}`}
     >
       <div
-        className={`max-w-[95%] md:max-w-[85%] lg:max-w-[75%] rounded-2xl p-4 lg:p-5 shadow-lg select-text transition-colors duration-300 ${isModel ? "bg-app-surface border border-app-border text-app-primary" : "bg-app-brand text-white rounded-br-sm"}`}
+        className={`max-w-[95%] md:max-w-[85%] lg:max-w-[85%] rounded-2xl p-4 lg:p-5 shadow-lg select-text transition-colors duration-300 ${isModel ? "bg-app-surface border border-app-border text-app-primary" : "bg-app-brand text-white rounded-br-sm"}`}
       >
         <div className="flex flex-wrap items-center gap-2 mb-3 opacity-50 text-xs font-bold tracking-wider uppercase select-none">
           {isModel ? (

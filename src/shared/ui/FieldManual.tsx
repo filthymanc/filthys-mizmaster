@@ -20,6 +20,7 @@ import {
 } from "./Icons";
 import { APP_VERSION } from "../../core/version";
 import { MANUAL_CONTENT } from "../../data/manualContent";
+import { useSettings } from "../../core/useSettings";
 
 interface FieldManualProps {
   inline?: boolean;
@@ -83,6 +84,8 @@ const FieldManual: React.FC<FieldManualProps> = ({
   initialTab = "briefing",
 }) => {
   const [activeTab, setActiveTab] = useState<TabId>(initialTab);
+  const { settings } = useSettings();
+  const isLightMode = settings.themeMode === "paper";
 
   // Sync state if initialTab changes while open (optional, but good for deep linking)
   React.useEffect(() => {
@@ -479,7 +482,11 @@ const FieldManual: React.FC<FieldManualProps> = ({
                                       className="p-4 flex flex-col sm:flex-row gap-2 sm:gap-4"
                                     >
                                       <span
-                                        className={`font-mono text-${item.color}-400 text-xs w-28 shrink-0 font-bold bg-${item.color}-500/10 px-2 py-1 rounded w-max sm:w-24 text-center h-fit`}
+                                        className={`font-mono text-xs w-28 shrink-0 font-bold px-2 py-1 rounded w-max sm:w-24 text-center h-fit ${
+                                          isLightMode
+                                            ? `text-${item.color}-700 bg-${item.color}-600/10`
+                                            : `text-${item.color}-400 bg-${item.color}-500/10`
+                                        }`}
                                       >
                                         {item.label}
                                       </span>
