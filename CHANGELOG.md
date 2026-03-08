@@ -1,6 +1,12 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+## [1.15.0](https://github.com/filthymanc/filthys-mizmaster/compare/v1.14.0...v1.15.0) (2026-03-08)
+
+
+### Features
+
+* **ui:** widen responsive layout, enhance theme-aware syntax highlighting, and fix manual contrast ([6b25d60](https://github.com/filthymanc/filthys-mizmaster/commit/6b25d6052e6277f74c9e47128d49fdb1c60613b1))
 
 ## [1.14.0](https://github.com/filthymanc/filthys-mizmaster/compare/v1.13.4...v1.14.0) (2026-03-08)
 
