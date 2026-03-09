@@ -68,16 +68,16 @@ const Dashboard: React.FC<DashboardProps> = ({
 
   const getStatusColor = () => {
     if (apiStatus === "error")
-      return "bg-red-500/10 text-red-500 border-red-500/20";
+      return "bg-app-status-danger/10 text-app-status-danger border-app-status-danger/20";
     if (apiStatus === "offline")
       return "bg-app-surface text-app-tertiary border-app-border";
-    return "bg-app-brand/10 text-app-brand border-app-brand/20";
+    return "bg-app-status-ready/10 text-app-status-ready border-app-status-ready/20";
   };
 
   const getStatusTextColor = () => {
-    if (apiStatus === "error") return "text-red-500";
+    if (apiStatus === "error") return "text-app-status-danger";
     if (apiStatus === "offline") return "text-app-tertiary";
-    return "text-app-brand";
+    return "text-app-status-ready";
   };
 
   const currentModel = (
@@ -154,7 +154,7 @@ const Dashboard: React.FC<DashboardProps> = ({
         </div>
 
         <div
-          className={`p-4 rounded-xl flex items-center gap-4 shadow-sm border ${settings.isDesanitized ? "bg-red-500/10 text-red-500 border-red-500/20" : "bg-blue-500/10 text-blue-500 border-red-500/20"}`}
+          className={`p-4 rounded-xl flex items-center gap-4 shadow-sm border ${settings.isDesanitized ? "bg-app-status-danger/10 text-app-status-danger border-app-status-danger/20" : "bg-app-status-nav/10 text-app-status-nav border-app-status-nav/20"}`}
         >
           <div className="p-2.5 rounded-lg bg-app-canvas shadow-sm">
             <svg
@@ -182,7 +182,7 @@ const Dashboard: React.FC<DashboardProps> = ({
           </div>
         </div>
 
-        <div className="p-4 rounded-xl flex items-center gap-4 shadow-sm border bg-purple-500/10 text-purple-500 border-purple-500/20">
+        <div className="p-4 rounded-xl flex items-center gap-4 shadow-sm border bg-app-status-intel/10 text-app-status-intel border-app-status-intel/20">
           <div className="p-2.5 rounded-lg bg-app-canvas shadow-sm">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -258,11 +258,11 @@ const Dashboard: React.FC<DashboardProps> = ({
                 id="dashboard-import-backup"
                 data-testid="dashboard-import-backup"
                 onClick={onImportData}
-                className="p-4 bg-app-canvas border border-app-border hover:border-purple-500/50 hover:shadow-md hover:shadow-purple-500/10 rounded-xl transition-all text-left group"
+                className="p-4 bg-app-canvas border border-app-border hover:border-app-status-intel/50 hover:shadow-md hover:shadow-app-status-intel/10 rounded-xl transition-all text-left group"
                 aria-label="Import Backup File"
               >
                 <div className="flex items-center gap-3 mb-2">
-                  <div className="p-2 bg-purple-500/10 rounded-lg text-purple-500 group-hover:bg-purple-500 group-hover:text-white transition-colors">
+                  <div className="p-2 bg-app-status-intel/10 rounded-lg text-app-status-intel group-hover:bg-app-status-intel group-hover:text-white transition-colors">
                     <UploadIcon className="h-5 w-5" />
                   </div>
                   <span className="font-bold text-app-primary uppercase tracking-wide">
@@ -339,7 +339,7 @@ const Dashboard: React.FC<DashboardProps> = ({
             <div className="bg-app-canvas border border-app-border rounded-lg p-4 transition-all duration-300">
               <div className="flex items-center gap-3 mb-3">
                 <div
-                  className={`w-2 h-2 rounded-full ${settings.githubToken ? "bg-emerald-500 animate-pulse" : "bg-app-tertiary"}`}
+                  className={`w-2 h-2 rounded-full ${settings.githubToken ? "bg-app-status-ready animate-pulse" : "bg-app-tertiary"}`}
                 />
                 <h3 className="text-xs font-bold text-app-primary uppercase tracking-wider">
                   {settings.githubToken ? "Authorized" : "Guest Mode"}

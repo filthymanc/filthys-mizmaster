@@ -96,7 +96,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
       // Compact fallback for individual messages
       if (this.props.scope === "message") {
         return (
-          <div className="p-3 bg-red-900/10 border border-red-500/20 rounded text-sm text-red-300 font-mono">
+          <div className="p-3 bg-app-status-danger/10 border border-app-status-danger/20 rounded text-sm text-app-status-danger font-mono">
             <div className="flex items-center gap-2 mb-1 font-bold text-xs uppercase tracking-wider opacity-70">
               <AlertIcon className="h-4 w-4" />
               Rendering Error
@@ -104,14 +104,14 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
             <p className="opacity-80">
               This message contains content that could not be displayed.
             </p>
-            <div className="mt-2 text-[10px] bg-slate-950 p-2 rounded overflow-auto max-h-20 opacity-60">
+            <div className="mt-2 text-[10px] bg-app-canvas p-2 rounded overflow-auto max-h-20 opacity-60">
               {this.state.error?.toString()}
             </div>
             <button
               id="shared-error-retry"
               data-testid="shared-error-retry"
               onClick={this.handleSoftReset}
-              className="mt-2 text-[10px] font-bold text-red-400 hover:text-red-300 underline uppercase"
+              className="mt-2 text-[10px] font-bold text-app-status-danger hover:opacity-80 underline uppercase"
             >
               Retry Render
             </button>
@@ -121,18 +121,18 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
 
       // Full App Fallback
       return (
-        <div className="flex flex-col items-center justify-center h-full min-h-[400px] p-6 text-center bg-slate-900 text-slate-200">
-          <div className="max-w-md w-full bg-slate-950 border border-slate-800 p-8 rounded-2xl shadow-2xl">
-            <div className="w-16 h-16 bg-red-900/20 rounded-full flex items-center justify-center mx-auto mb-6 text-red-500">
+        <div className="flex flex-col items-center justify-center h-full min-h-[400px] p-6 text-center bg-app-canvas text-app-primary">
+          <div className="max-w-md w-full bg-app-surface border border-app-border p-8 rounded-2xl shadow-2xl">
+            <div className="w-16 h-16 bg-app-status-danger/20 rounded-full flex items-center justify-center mx-auto mb-6 text-app-status-danger">
               <AlertIcon className="h-8 w-8" />
             </div>
-            <h2 className="text-xl font-bold text-white mb-2">
+            <h2 className="text-xl font-bold text-app-primary mb-2">
               Critical System Error
             </h2>
-            <p className="text-slate-400 mb-6 text-sm">
+            <p className="text-app-secondary mb-6 text-sm">
               The MizMaster encountered an unexpected crash.
             </p>
-            <div className="bg-slate-900 p-3 rounded text-left text-xs font-mono text-red-300 overflow-auto max-h-32 mb-6 border border-slate-800">
+            <div className="bg-app-canvas p-3 rounded text-left text-xs font-mono text-app-status-danger overflow-auto max-h-32 mb-6 border border-app-border">
               {this.state.error?.toString()}
             </div>
 
@@ -144,29 +144,29 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
                     data-testid="shared-error-restore"
                     type="button"
                     onClick={this.handleSoftReset}
-                    className="w-full px-4 py-3 bg-red-600 hover:bg-red-500 text-white rounded-lg font-bold transition-colors text-sm uppercase tracking-wide shadow-lg shadow-red-900/20"
+                    className="w-full px-4 py-3 bg-app-status-danger hover:bg-opacity-90 text-white rounded-lg font-bold transition-colors text-sm uppercase tracking-wide shadow-lg shadow-app-status-danger/20"
                   >
                     Restore System
                   </button>
 
-                  <div className="pt-2 border-t border-slate-800">
+                  <div className="pt-2 border-t border-app-border">
                     <button
                       id="shared-error-factory-reset-trigger"
                       data-testid="shared-error-factory-reset-trigger"
                       type="button"
                       onClick={this.toggleResetConfirmation}
-                      className="text-xs text-slate-600 hover:text-red-500 transition-colors"
+                      className="text-xs text-app-tertiary hover:text-app-status-danger transition-colors"
                     >
                       Perform Factory Reset (Clear Data)
                     </button>
                   </div>
                 </>
               ) : (
-                <div className="bg-red-900/10 border border-red-500/20 p-4 rounded-lg animate-fadeIn">
-                  <p className="text-red-300 font-bold text-sm mb-1">
+                <div className="bg-app-status-danger/10 border border-app-status-danger/20 p-4 rounded-lg animate-fadeIn">
+                  <p className="text-app-status-danger font-bold text-sm mb-1">
                     WARNING: Permanent Data Loss
                   </p>
-                  <p className="text-slate-400 text-xs mb-4">
+                  <p className="text-app-secondary text-xs mb-4">
                     This will wipe your API Key, Sessions, and Settings. You
                     will need to log in again.
                   </p>
@@ -175,7 +175,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
                       id="shared-error-factory-reset-confirm"
                       data-testid="shared-error-factory-reset-confirm"
                       onClick={this.executeHardReset}
-                      className="flex-1 px-3 py-2 bg-red-600 hover:bg-red-500 text-white rounded font-bold text-xs"
+                      className="flex-1 px-3 py-2 bg-app-status-danger hover:bg-opacity-90 text-white rounded font-bold text-xs"
                     >
                       YES, DELETE ALL
                     </button>
@@ -183,7 +183,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
                       id="shared-error-factory-reset-cancel"
                       data-testid="shared-error-factory-reset-cancel"
                       onClick={this.toggleResetConfirmation}
-                      className="flex-1 px-3 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded font-bold text-xs"
+                      className="flex-1 px-3 py-2 bg-app-surface border border-app-border hover:bg-app-frame text-app-primary rounded font-bold text-xs"
                     >
                       CANCEL
                     </button>

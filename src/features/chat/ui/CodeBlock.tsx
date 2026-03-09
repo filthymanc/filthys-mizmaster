@@ -159,16 +159,16 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
             <div
               className={`flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider ${
                 validation.safe
-                  ? "bg-emerald-500/10 text-emerald-500"
-                  : "bg-red-500/10 text-red-500"
+                  ? "bg-app-status-ready/10 text-app-status-ready"
+                  : "bg-app-status-danger/10 text-app-status-danger"
               }`}
               title={validation.message}
             >
               <div
                 className={`w-1.5 h-1.5 rounded-full ${
                   validation.safe
-                    ? "bg-emerald-500 animate-pulse"
-                    : "bg-red-500"
+                    ? "bg-app-status-ready animate-pulse"
+                    : "bg-app-status-danger"
                 }`}
               />
               {validation.message}
@@ -182,7 +182,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
             id={`chat-code-save-${instanceId}-${isModal ? "modal" : "base"}`}
             data-testid="chat-code-save-trigger"
             onClick={handleSaveToArmory}
-            className="p-2 text-app-tertiary hover:text-amber-400 hover:bg-amber-500/10 rounded-lg transition-colors"
+            className="p-2 text-app-tertiary hover:text-app-status-alert hover:bg-app-status-alert/10 rounded-lg transition-colors"
             title="Save to Armory"
           >
             <svg
@@ -305,7 +305,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
             {copied ? (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-4 w-4 text-emerald-500"
+                className="h-4 w-4 text-app-status-ready"
                 viewBox="0 0 20 20"
                 fill="currentColor"
               >

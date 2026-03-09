@@ -102,10 +102,10 @@ const ChatInput: React.FC<ChatInputProps> = ({
                 w-1.5 h-8 rounded-full shrink-0
                 ${
                   s.framework === "MOOSE"
-                    ? "bg-indigo-500"
+                    ? "bg-app-status-intel"
                     : s.framework === "DML"
-                      ? "bg-amber-500"
-                      : "bg-emerald-500"
+                      ? "bg-app-status-alert"
+                      : "bg-app-status-ready"
                 }
               `}
               />
@@ -132,13 +132,13 @@ const ChatInput: React.FC<ChatInputProps> = ({
             relative w-full bg-app-surface border rounded-2xl shadow-2xl transition-all duration-500 overflow-hidden
             ${
               isDesanitized
-                ? "border-red-500/50 ring-1 ring-red-500/20 shadow-red-900/10"
+                ? "border-app-status-danger/50 ring-1 ring-app-status-danger/20 shadow-app-status-danger/10"
                 : "border-app-border focus-within:ring-1 focus-within:ring-app-brand focus-within:border-app-brand shadow-black/40"
             }
         `}
       >
         {isDesanitized && (
-          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-red-500/50 to-transparent animate-pulse" />
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-app-status-danger/50 to-transparent animate-pulse" />
         )}
 
         <textarea
@@ -167,7 +167,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
               id="chat-input-stop"
               data-testid="chat-input-stop"
               onClick={onStop}
-              className="p-3 lg:p-2.5 bg-red-500/10 text-red-500 rounded-xl hover:bg-red-500 hover:text-white transition-all active:scale-[0.95]"
+              className="p-3 lg:p-2.5 bg-app-status-danger/10 text-app-status-danger rounded-xl hover:bg-app-status-danger hover:text-white transition-all active:scale-[0.95]"
               title="Stop Generation"
             >
               <div className="w-5 h-5 lg:w-4 lg:h-4 rounded-sm bg-current" />

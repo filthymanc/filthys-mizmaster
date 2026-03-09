@@ -137,7 +137,7 @@ const MissionWorkspace: React.FC<MissionWorkspaceProps> = ({
               <span
                 className={
                   chatApiStatus === "error" || chatApiStatus === "offline"
-                    ? "text-red-500"
+                    ? "text-app-status-danger"
                     : "text-app-brand"
                 }
               >
@@ -151,7 +151,7 @@ const MissionWorkspace: React.FC<MissionWorkspaceProps> = ({
                 </span>
               )}
               {settings.isDesanitized && (
-                <span className="text-red-500 flex items-center gap-1">
+                <span className="text-app-status-danger flex items-center gap-1">
                   | <ShieldIcon className="h-3 w-3" /> UNSAFE
                 </span>
               )}
@@ -196,7 +196,7 @@ const MissionWorkspace: React.FC<MissionWorkspaceProps> = ({
                             : "text-app-secondary"
                         } group flex w-full items-center px-4 py-3 text-sm font-bold transition-colors`}
                       >
-                        <TrashIcon className="mr-3 h-4 w-4 text-app-tertiary group-hover:text-red-400 transition-colors" />
+                        <TrashIcon className="mr-3 h-4 w-4 text-app-tertiary group-hover:text-app-status-danger transition-colors" />
                         Clear Chat History
                       </button>
                     )}
@@ -212,7 +212,7 @@ const MissionWorkspace: React.FC<MissionWorkspaceProps> = ({
                         }}
                         className={`${
                           active
-                            ? "bg-red-500/10 text-red-500"
+                            ? "bg-app-status-danger/10 text-app-status-danger"
                             : "text-app-tertiary"
                         } group flex w-full items-center px-4 py-3 text-sm font-bold transition-colors`}
                       >

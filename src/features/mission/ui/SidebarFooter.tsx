@@ -114,7 +114,7 @@ const SidebarFooter: React.FC<SidebarFooterProps> = ({
             href="https://github.com/filthymanc/filthys-mizmaster/issues"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-app-tertiary hover:text-red-400 transition-colors hover:scale-110 transform"
+            className="text-app-tertiary hover:text-app-status-danger transition-colors hover:scale-110 transform"
             title="Report Issue / Contact Developer"
           >
             <AlertIcon className="h-4 w-4" />

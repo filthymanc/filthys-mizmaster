@@ -31,6 +31,15 @@ export default {
           highlight: "rgb(var(--border-highlight) / <alpha-value>)",
           brand: "rgb(var(--color-brand) / <alpha-value>)",
           "brand-dim": "rgb(var(--color-brand-dim) / <alpha-value>)",
+          status: {
+            ready: "rgb(var(--color-status-ready) / <alpha-value>)",
+            nav: "rgb(var(--color-status-nav) / <alpha-value>)",
+            alert: "rgb(var(--color-status-warning) / <alpha-value>)",
+            danger: "rgb(var(--color-status-critical) / <alpha-value>)",
+            intel: "rgb(var(--color-status-intel) / <alpha-value>)",
+            elite: "rgb(var(--color-status-elite) / <alpha-value>)",
+            stealth: "rgb(var(--color-status-stealth) / <alpha-value>)",
+          },
         },
       },
       animation: {

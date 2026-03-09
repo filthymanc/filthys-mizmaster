@@ -83,7 +83,7 @@ const SyntaxHighlighter: React.FC<SyntaxHighlighterProps> = ({
         .token.constant,
         .token.symbol,
         .token.deleted {
-          color: #f472b6; /* pink-400 - Remains vibrant */
+          color: rgb(var(--color-status-critical)); /* critical - Remains vibrant */
         }
 
         /* Selectors / Strings */
@@ -93,7 +93,7 @@ const SyntaxHighlighter: React.FC<SyntaxHighlighterProps> = ({
         .token.char,
         .token.builtin,
         .token.inserted {
-          color: #34d399; /* emerald-400 - Matches default Brand */
+          color: rgb(var(--color-status-ready)); /* ready - Matches default Brand */
         }
 
         /* Operators / Variables */
@@ -102,25 +102,25 @@ const SyntaxHighlighter: React.FC<SyntaxHighlighterProps> = ({
         .token.url,
         .language-css .token.string,
         .style .token.string {
-          color: #a78bfa; /* violet-400 */
+          color: rgb(var(--color-status-intel)); /* intel */
         }
 
         /* Functions / Keywords */
         .token.atrule,
         .token.attr-value,
         .token.keyword {
-          color: #60a5fa; /* blue-400 */
+          color: rgb(var(--color-status-nav)); /* nav */
         }
         
         .token.function,
         .token.class-name {
-          color: #fbbf24; /* amber-400 */
+          color: rgb(var(--color-status-elite)); /* elite */
         }
 
         .token.regex,
         .token.important,
         .token.variable {
-          color: #fb923c; /* orange-400 */
+          color: rgb(var(--color-status-warning)); /* warning */
         }
       `}</style>
     </div>

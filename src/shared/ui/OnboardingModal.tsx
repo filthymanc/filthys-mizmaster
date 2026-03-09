@@ -72,7 +72,7 @@ const OnboardingModal: React.FC<OnboardingModalProps> = ({
         <div className="flex-1 overflow-y-auto p-6 space-y-6 custom-scrollbar">
           {/* 1. The Environment Law */}
           <div className="flex gap-4">
-            <div className="flex-none w-8 h-8 rounded-full bg-blue-900/30 text-blue-400 flex items-center justify-center font-bold border border-blue-500/30">
+            <div className="flex-none w-8 h-8 rounded-full bg-app-status-nav/20 text-app-status-nav flex items-center justify-center font-bold border border-app-status-nav/30">
               1
             </div>
             <div>
@@ -81,24 +81,26 @@ const OnboardingModal: React.FC<OnboardingModalProps> = ({
               </h3>
               <p className="text-sm text-app-secondary leading-relaxed">
                 By default, DCS disables{" "}
-                <code className="text-blue-300">os</code>,{" "}
-                <code className="text-blue-300">io</code>, and{" "}
-                <code className="text-blue-300">lfs</code> libraries to prevent
-                malicious code execution.
+                <code className="text-app-status-nav">os</code>,{" "}
+                <code className="text-app-status-nav">io</code>, and{" "}
+                <code className="text-app-status-nav">lfs</code> libraries to
+                prevent malicious code execution.
                 <br />
                 <br />
                 This AI assumes a <strong>SANITIZED</strong> environment. It
                 will refuse to generate file-system code unless you explicitly
                 enable{" "}
-                <span className="text-red-400 font-bold">UNSAFE MODE</span> in
-                the <strong>System Configuration</strong>.
+                <span className="text-app-status-danger font-bold">
+                  UNSAFE MODE
+                </span>{" "}
+                in the <strong>System Configuration</strong>.
               </p>
             </div>
           </div>
 
           {/* 2. The Verification Law */}
           <div className="flex gap-4">
-            <div className="flex-none w-8 h-8 rounded-full bg-purple-900/30 text-purple-400 flex items-center justify-center font-bold border border-purple-500/30">
+            <div className="flex-none w-8 h-8 rounded-full bg-app-status-intel/20 text-app-status-intel flex items-center justify-center font-bold border border-app-status-intel/30">
               2
             </div>
             <div>
@@ -119,7 +121,7 @@ const OnboardingModal: React.FC<OnboardingModalProps> = ({
 
           {/* 3. The Persistence Law */}
           <div className="flex gap-4">
-            <div className="flex-none w-8 h-8 rounded-full bg-orange-900/30 text-orange-400 flex items-center justify-center font-bold border border-orange-500/30">
+            <div className="flex-none w-8 h-8 rounded-full bg-app-status-alert/20 text-app-status-alert flex items-center justify-center font-bold border border-app-status-alert/30">
               3
             </div>
             <div>

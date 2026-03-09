@@ -327,7 +327,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                                   relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-app-brand focus:ring-offset-2
                                   ${
                                     settings.isDesanitized
-                                      ? "bg-red-500"
+                                      ? "bg-app-status-danger"
                                       : "bg-app-canvas border border-app-border"
                                   }
                                 `}
@@ -346,7 +346,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                             </button>
                           </div>
                           {settings.isDesanitized && (
-                            <div className="p-3 bg-red-500/10 border border-red-500/30 text-red-500 rounded-lg text-xs flex gap-2 items-start">
+                            <div className="p-3 bg-app-status-danger/10 border border-app-status-danger/30 text-app-status-danger rounded-lg text-xs flex gap-2 items-start">
                               <AlertIcon className="h-4 w-4 shrink-0 mt-0.5" />
                               <span>
                                 <strong>Warning:</strong> Desanitized mode is
@@ -534,7 +534,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                                 }
                                 className={`px-3 py-1 rounded-lg border text-[10px] font-bold transition-all ${
                                   settings.themeIntensity === "vivid"
-                                    ? "bg-orange-500/10 border-orange-500 text-orange-500"
+                                    ? "bg-app-status-alert/10 border-app-status-alert text-app-status-alert"
                                     : "bg-app-brand/10 border-app-brand text-app-brand"
                                 }`}
                               >
@@ -666,12 +666,12 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                               </button>
                             </form>
                             {tokenError && (
-                              <p className="text-red-500 text-[10px] font-bold animate-pulse">
+                              <p className="text-app-status-danger text-[10px] font-bold animate-pulse">
                                 {tokenError}
                               </p>
                             )}
                             {settings.githubToken && !tokenError && (
-                              <p className="text-emerald-500 text-xs font-bold flex items-center gap-1">
+                              <p className="text-app-status-ready text-xs font-bold flex items-center gap-1">
                                 ✓ Token Active
                               </p>
                             )}
@@ -691,7 +691,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                                 onImportData();
                                 onClose();
                               }}
-                              className="p-4 bg-app-surface border border-app-border rounded-xl text-app-secondary hover:text-purple-400 hover:border-purple-500/50 transition-colors flex flex-col items-center justify-center gap-2 group"
+                              className="p-4 bg-app-surface border border-app-border rounded-xl text-app-secondary hover:text-app-status-intel hover:border-app-status-intel/50 transition-colors flex flex-col items-center justify-center gap-2 group"
                             >
                               <UploadIcon className="h-6 w-6 group-hover:scale-110 transition-transform" />
                               <span className="font-bold text-sm">
@@ -716,8 +716,8 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                         </div>
 
                         {/* Danger Zone */}
-                        <div className="space-y-4 pt-4 border-t border-red-500/20">
-                          <h4 className="text-sm font-bold text-red-500 uppercase tracking-wider flex justify-between items-center">
+                        <div className="space-y-4 pt-4 border-t border-app-status-danger/20">
+                          <h4 className="text-sm font-bold text-app-status-danger uppercase tracking-wider flex justify-between items-center">
                             Danger Zone
                             <button
                               id="shared-settings-reload-trigger"
@@ -737,8 +737,8 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                                   w-full p-3 border rounded-xl text-sm font-bold transition-all flex items-center justify-center gap-2
                                   ${
                                     isDisconnectConfirming
-                                      ? "bg-orange-600 text-white border-orange-500 animate-pulse"
-                                      : "bg-app-surface border-app-border hover:border-orange-500/50 text-app-secondary hover:text-orange-500"
+                                      ? "bg-app-status-alert text-white border-app-status-alert animate-pulse"
+                                      : "bg-app-surface border-app-border hover:border-app-status-alert/50 text-app-secondary hover:text-app-status-alert"
                                   }
                               `}
                             >
@@ -763,8 +763,8 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                                   w-full p-3 border rounded-xl text-sm font-bold transition-all flex items-center justify-center gap-2
                                   ${
                                     isResetConfirming
-                                      ? "bg-red-600 text-white border-red-500 animate-pulse shadow-red-900/50 shadow-lg"
-                                      : "bg-app-surface border-app-border hover:border-red-500/50 text-app-secondary hover:text-red-500"
+                                      ? "bg-app-status-danger text-white border-app-status-danger animate-pulse shadow-app-status-danger/50 shadow-lg"
+                                      : "bg-app-surface border-app-border hover:border-app-status-danger/50 text-app-secondary hover:text-app-status-danger"
                                   }
                               `}
                             >

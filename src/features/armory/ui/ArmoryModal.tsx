@@ -124,11 +124,11 @@ const ArmoryModal: React.FC<ArmoryModalProps> = ({ isOpen, onClose }) => {
                       id={`armory-snippet-${snippet.id}-copy`}
                       data-testid="armory-snippet-copy"
                       onClick={() => handleCopy(snippet.id, snippet.code)}
-                      className="p-1.5 text-app-tertiary hover:text-emerald-400 hover:bg-emerald-500/10 rounded-lg transition-colors"
+                      className="p-1.5 text-app-tertiary hover:text-app-status-ready hover:bg-app-status-ready/10 rounded-lg transition-colors"
                       title="Copy to Clipboard"
                     >
                       {copiedId === snippet.id ? (
-                        <span className="text-xs font-bold text-emerald-500">
+                        <span className="text-xs font-bold text-app-status-ready">
                           COPIED
                         </span>
                       ) : (
@@ -158,7 +158,7 @@ const ArmoryModal: React.FC<ArmoryModalProps> = ({ isOpen, onClose }) => {
                           removeSnippet(snippet.id);
                         }
                       }}
-                      className="p-1.5 text-app-tertiary hover:text-red-400 hover:bg-red-500/10 rounded-lg transition-colors"
+                      className="p-1.5 text-app-tertiary hover:text-app-status-danger hover:bg-app-status-danger/10 rounded-lg transition-colors"
                       title="Delete Snippet"
                     >
                       <TrashIcon className="h-4 w-4" />

@@ -57,7 +57,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({
       <div className="flex flex-col h-screen bg-app-canvas text-app-primary items-center justify-center p-6 select-none relative overflow-hidden">
         {/* Background Decor */}
         <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-app-brand opacity-5 rounded-full blur-3xl pointer-events-none"></div>
-        <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] bg-blue-500/5 rounded-full blur-3xl pointer-events-none"></div>
+        <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] bg-app-status-nav/5 rounded-full blur-3xl pointer-events-none"></div>
 
         <div className="max-w-md w-full bg-app-frame/80 backdrop-blur-xl border border-app-border rounded-2xl overflow-hidden shadow-2xl relative z-10">
           {/* Banner Area */}
@@ -193,7 +193,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({
               </div>
 
               {authError && (
-                <div className="flex items-center gap-2 text-red-400 text-xs bg-red-900/10 p-2 rounded border border-red-500/20 animate-fadeIn">
+                <div className="flex items-center gap-2 text-app-status-danger text-xs bg-app-status-danger/10 p-2 rounded border border-app-status-danger/20 animate-fadeIn">
                   <AlertIcon className="h-4 w-4" />
                   {authError}
                 </div>
@@ -230,7 +230,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({
                 onClick={() => setIsBriefingOpen(true)}
                 className="text-[10px] font-bold text-app-tertiary hover:text-app-brand flex items-center gap-1 transition-colors uppercase tracking-widest"
               >
-                <ShieldIcon className="h-3.5 w-3.5 text-green-500/70" />
+                <ShieldIcon className="h-3.5 w-3.5 text-app-status-ready/70" />
                 Security Briefing
               </button>
             </div>

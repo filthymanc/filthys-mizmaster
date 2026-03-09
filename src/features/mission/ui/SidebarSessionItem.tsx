@@ -134,7 +134,7 @@ const SidebarSessionItem: React.FC<SidebarSessionItemProps> = ({
                   e.stopPropagation();
                   onConfirmDelete(session.id);
                 }}
-                className="p-3 bg-red-500/20 text-red-400 hover:bg-red-500 hover:text-white rounded-lg transition-colors"
+                className="p-3 bg-app-status-danger/20 text-app-status-danger hover:bg-app-status-danger hover:text-white rounded-lg transition-colors"
                 title="Confirm Delete"
                 aria-label="Confirm Delete"
               >
@@ -165,7 +165,7 @@ const SidebarSessionItem: React.FC<SidebarSessionItemProps> = ({
                   e.stopPropagation();
                   if (!isLoading) onStartEdit(session.id);
                 }}
-                className="p-3 hover:bg-app-canvas rounded-lg text-app-tertiary hover:text-blue-400"
+                className="p-3 hover:bg-app-canvas rounded-lg text-app-tertiary hover:text-app-status-nav"
                 title="Rename"
                 aria-label="Rename Mission"
               >
@@ -178,7 +178,7 @@ const SidebarSessionItem: React.FC<SidebarSessionItemProps> = ({
                   e.stopPropagation();
                   if (!isLoading) onStartDelete(session.id);
                 }}
-                className="p-3 hover:bg-app-canvas rounded-lg text-app-tertiary hover:text-red-400"
+                className="p-3 hover:bg-app-canvas rounded-lg text-app-tertiary hover:text-app-status-danger"
                 title="Delete"
                 aria-label="Delete Mission"
               >

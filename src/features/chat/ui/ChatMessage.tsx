@@ -45,7 +45,7 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ message }) => {
     }
     if (model.includes("pro")) {
       return (
-        <span className="ml-2 px-1.5 py-0.5 rounded border border-blue-500/30 text-[10px] font-mono text-blue-400 font-bold bg-blue-500/10 flex items-center whitespace-nowrap">
+        <span className="ml-2 px-1.5 py-0.5 rounded border border-app-status-nav/30 text-[10px] font-mono text-app-status-nav font-bold bg-app-status-nav/10 flex items-center whitespace-nowrap">
           v3 PRO {isVerified && "✓"}
         </span>
       );

@@ -20,7 +20,6 @@ import {
 } from "./Icons";
 import { APP_VERSION } from "../../core/version";
 import { MANUAL_CONTENT } from "../../data/manualContent";
-import { useSettings } from "../../core/useSettings";
 
 interface FieldManualProps {
   inline?: boolean;
@@ -84,9 +83,6 @@ const FieldManual: React.FC<FieldManualProps> = ({
   initialTab = "briefing",
 }) => {
   const [activeTab, setActiveTab] = useState<TabId>(initialTab);
-  const { settings } = useSettings();
-  const isLightMode =
-    settings.themeBrightness === "L4" || settings.themeBrightness === "L5";
 
   // Sync state if initialTab changes while open (optional, but good for deep linking)
   React.useEffect(() => {
@@ -407,7 +403,7 @@ const FieldManual: React.FC<FieldManualProps> = ({
                             <h4 className="font-bold text-app-primary mb-2 flex items-center gap-2 text-sm uppercase tracking-wide">
                               {feature.iconType === "device" && (
                                 <svg
-                                  className="h-4 w-4 text-blue-400"
+                                  className="h-4 w-4 text-app-status-nav"
                                   fill="none"
                                   viewBox="0 0 24 24"
                                   stroke="currentColor"
@@ -459,7 +455,7 @@ const FieldManual: React.FC<FieldManualProps> = ({
                   {activeTab === "systems" && (
                     <div className="space-y-8 animate-fadeIn">
                       <div>
-                        <h3 className="text-blue-500 font-bold text-xs uppercase tracking-widest mb-4">
+                        <h3 className="text-app-status-nav font-bold text-xs uppercase tracking-widest mb-4">
                           {content.systems.interface.subtitle}
                         </h3>
 
@@ -471,31 +467,37 @@ const FieldManual: React.FC<FieldManualProps> = ({
                                 className="bg-app-canvas border border-app-border rounded-xl overflow-hidden shadow-sm"
                               >
                                 <div className="px-4 py-3 bg-app-surface/80 border-b border-app-border font-bold text-app-primary text-xs uppercase tracking-wider flex items-center gap-2">
-                                  <span className="flex-none w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center text-[10px]">
+                                  <span className="flex-none w-6 h-6 rounded-full bg-app-status-nav/20 text-app-status-nav flex items-center justify-center text-[10px]">
                                     {idx + 1}
                                   </span>
                                   {section.title}
                                 </div>
                                 <div className="divide-y divide-app-border/50">
-                                  {section.items.map((item, i) => (
-                                    <div
-                                      key={i}
-                                      className="p-4 flex flex-col sm:flex-row gap-2 sm:gap-4"
-                                    >
-                                      <span
-                                        className={`font-mono text-xs w-28 shrink-0 font-bold px-2 py-1 rounded w-max sm:w-24 text-center h-fit ${
-                                          isLightMode
-                                            ? `text-${item.color}-700 bg-${item.color}-600/10`
-                                            : `text-${item.color}-400 bg-${item.color}-500/10`
-                                        }`}
+                                  {section.items.map((item, i) => {
+                                    const roleMap: Record<string, string> = {
+                                      emerald: "ready",
+                                      amber: "alert",
+                                      blue: "nav",
+                                      rose: "danger",
+                                      violet: "intel",
+                                    };
+                                    const role = roleMap[item.color] || "ready";
+                                    return (
+                                      <div
+                                        key={i}
+                                        className="p-4 flex flex-col sm:flex-row gap-2 sm:gap-4"
                                       >
-                                        {item.label}
-                                      </span>
-                                      <p className="text-app-secondary text-sm leading-relaxed flex-1 mt-1 sm:mt-0">
-                                        {renderText(item.text)}
-                                      </p>
-                                    </div>
-                                  ))}
+                                        <span
+                                          className={`font-mono text-xs w-28 shrink-0 font-bold px-2 py-1 rounded w-max sm:w-24 text-center h-fit border border-app-status-${role}/30 text-app-status-${role} bg-app-status-${role}/10`}
+                                        >
+                                          {item.label}
+                                        </span>
+                                        <p className="text-app-secondary text-sm leading-relaxed flex-1 mt-1 sm:mt-0">
+                                          {renderText(item.text)}
+                                        </p>
+                                      </div>
+                                    );
+                                  })}
                                 </div>
                               </div>
                             ),
@@ -504,17 +506,17 @@ const FieldManual: React.FC<FieldManualProps> = ({
                       </div>
 
                       <div className="mt-10">
-                        <h3 className="text-blue-500 font-bold text-xs uppercase tracking-widest mb-4">
+                        <h3 className="text-app-status-nav font-bold text-xs uppercase tracking-widest mb-4">
                           {content.systems.librarian.subtitle}
                         </h3>
                         <p className="text-app-primary leading-relaxed text-sm mb-6 bg-app-canvas p-4 rounded-xl border border-app-border">
                           {renderText(content.systems.librarian.text)}
                         </p>
 
-                        <div className="p-5 md:p-6 bg-emerald-500/5 border border-emerald-500/20 rounded-xl">
+                        <div className="p-5 md:p-6 bg-app-status-ready/5 border border-app-status-ready/20 rounded-xl">
                           <h4 className="font-bold text-app-primary mb-3 flex items-center gap-2 text-sm uppercase tracking-wider">
                             <svg
-                              className="h-5 w-5 text-emerald-500"
+                              className="h-5 w-5 text-app-status-ready"
                               fill="currentColor"
                               viewBox="0 0 24 24"
                             >
@@ -529,7 +531,7 @@ const FieldManual: React.FC<FieldManualProps> = ({
                             {content.systems.librarian.auth.instructions.map(
                               (step, i) => (
                                 <div key={i} className="flex gap-3">
-                                  <span className="text-emerald-500 font-mono text-xs">
+                                  <span className="text-app-status-ready font-mono text-xs">
                                     {i + 1}.
                                   </span>
                                   <p className="text-xs md:text-sm text-app-primary font-mono leading-relaxed">
@@ -581,7 +583,7 @@ const FieldManual: React.FC<FieldManualProps> = ({
 
                         {/* Editor */}
                         <div className="bg-app-canvas p-5 rounded-xl border border-app-border">
-                          <h3 className="text-xs font-bold text-blue-500 uppercase tracking-widest mb-4 flex items-center gap-2">
+                          <h3 className="text-xs font-bold text-app-status-nav uppercase tracking-widest mb-4 flex items-center gap-2">
                             <svg
                               className="h-4 w-4"
                               fill="none"
@@ -610,7 +612,7 @@ const FieldManual: React.FC<FieldManualProps> = ({
 
                         {/* System */}
                         <div className="bg-app-canvas p-5 rounded-xl border border-app-border md:col-span-2">
-                          <h3 className="text-xs font-bold text-red-500 uppercase tracking-widest mb-4 flex items-center gap-2">
+                          <h3 className="text-xs font-bold text-app-status-danger uppercase tracking-widest mb-4 flex items-center gap-2">
                             <svg
                               className="h-4 w-4"
                               fill="none"
@@ -644,17 +646,17 @@ const FieldManual: React.FC<FieldManualProps> = ({
                   {activeTab === "tactics" && (
                     <div className="space-y-10 animate-fadeIn">
                       <div>
-                        <h3 className="text-purple-500 font-bold text-xs uppercase tracking-widest mb-4">
+                        <h3 className="text-app-status-intel font-bold text-xs uppercase tracking-widest mb-4">
                           {content.tactics.prompt.subtitle}
                         </h3>
                         <div className="space-y-4">
                           {content.tactics.prompt.cards.map((card, idx) => (
                             <div
                               key={idx}
-                              className={`p-5 bg-app-canvas border border-app-border rounded-xl border-l-4 shadow-sm ${card.type === "trap" ? "border-l-red-500" : "border-l-app-brand"}`}
+                              className={`p-5 bg-app-canvas border border-app-border rounded-xl border-l-4 shadow-sm ${card.type === "trap" ? "border-l-app-status-danger" : "border-l-app-brand"}`}
                             >
                               <strong
-                                className={`${card.type === "trap" ? "text-red-400" : "text-app-brand"} text-xs uppercase tracking-wider block mb-2`}
+                                className={`${card.type === "trap" ? "text-app-status-danger" : "text-app-brand"} text-xs uppercase tracking-wider block mb-2`}
                               >
                                 {card.title}
                               </strong>
@@ -673,43 +675,27 @@ const FieldManual: React.FC<FieldManualProps> = ({
                       </div>
 
                       <div className="pt-6 border-t border-app-border">
-                        <h3 className="text-purple-500 font-bold text-xs uppercase tracking-widest mb-4">
+                        <h3 className="text-app-status-intel font-bold text-xs uppercase tracking-widest mb-4">
                           {content.tactics.errors.subtitle}
                         </h3>
                         <div className="space-y-4">
                           {content.tactics.errors.items.map((item, idx) => {
-                            const styles = [
-                              {
-                                border: "border-l-orange-500",
-                                bg: "bg-orange-500/10",
-                                title: "text-orange-400",
-                              },
-                              {
-                                border: "border-l-blue-500",
-                                bg: "bg-blue-500/10",
-                                title: "text-blue-400",
-                              },
-                              {
-                                border: "border-l-pink-500",
-                                bg: "bg-pink-500/10",
-                                title: "text-pink-400",
-                              },
-                            ];
-                            const style = styles[idx % styles.length];
+                            const roles = ["alert", "nav", "intel"];
+                            const role = roles[idx % roles.length];
 
                             return (
                               <div
                                 key={idx}
-                                className={`p-5 bg-app-canvas border border-app-border rounded-xl border-l-4 ${style.border} shadow-sm`}
+                                className={`p-5 bg-app-canvas border border-app-border rounded-xl border-l-4 border-l-app-status-${role} shadow-sm`}
                               >
                                 <div className="flex items-center gap-3 mb-2">
                                   <span
-                                    className={`flex-none w-6 h-6 rounded-full ${style.bg} ${style.title} flex items-center justify-center font-bold text-xs border border-current/20`}
+                                    className={`flex-none w-6 h-6 rounded-full bg-app-status-${role}/10 text-app-status-${role} flex items-center justify-center font-bold text-xs border border-current/20`}
                                   >
                                     !
                                   </span>
                                   <strong
-                                    className={`${style.title} font-bold text-sm tracking-wide uppercase`}
+                                    className={`text-app-status-${role} font-bold text-sm tracking-wide uppercase`}
                                   >
                                     {item.label}
                                   </strong>
@@ -808,7 +794,7 @@ const FieldManual: React.FC<FieldManualProps> = ({
                   {/* --- TAB: RESOURCES (Orange) --- */}
                   {activeTab === "intel" && (
                     <div className="space-y-6 animate-fadeIn">
-                      <h3 className="text-orange-500 font-bold text-xs uppercase tracking-widest mb-4">
+                      <h3 className="text-app-status-alert font-bold text-xs uppercase tracking-widest mb-4">
                         {content.intel.subtitle}
                       </h3>
 
@@ -837,16 +823,16 @@ const FieldManual: React.FC<FieldManualProps> = ({
                               href={link.url}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="flex flex-col p-5 bg-app-canvas border border-app-border hover:border-orange-500/50 hover:bg-app-surface hover:shadow-lg rounded-xl transition-all group border-l-4 border-l-orange-500"
+                              className="flex flex-col p-5 bg-app-canvas border border-app-border hover:border-app-status-alert/50 hover:bg-app-surface hover:shadow-lg rounded-xl transition-all group border-l-4 border-l-app-status-alert"
                             >
                               <div className="flex items-start justify-between mb-3">
                                 <div>
-                                  <h4 className="font-bold text-app-primary group-hover:text-orange-400 transition-colors flex items-center gap-2 text-sm">
+                                  <h4 className="font-bold text-app-primary group-hover:text-app-status-alert transition-colors flex items-center gap-2 text-sm">
                                     {type === "github" && (
                                       <GithubIcon className="h-4 w-4" />
                                     )}
                                     {type === "youtube" && (
-                                      <YoutubeIcon className="h-4 w-4 text-red-500" />
+                                      <YoutubeIcon className="h-4 w-4 text-app-status-danger" />
                                     )}
                                     {type === "discord" && (
                                       <DiscordIcon className="h-4 w-4 text-[#5865F2]" />
@@ -864,7 +850,7 @@ const FieldManual: React.FC<FieldManualProps> = ({
                                   </p>
                                 </div>
                                 <svg
-                                  className="h-4 w-4 text-app-border group-hover:text-orange-400 transition-colors transform group-hover:-translate-y-1 group-hover:translate-x-1"
+                                  className="h-4 w-4 text-app-border group-hover:text-app-status-alert transition-colors transform group-hover:-translate-y-1 group-hover:translate-x-1"
                                   fill="none"
                                   viewBox="0 0 24 24"
                                   stroke="currentColor"
@@ -890,8 +876,8 @@ const FieldManual: React.FC<FieldManualProps> = ({
                   {/* --- TAB: LEGAL (Red) --- */}
                   {activeTab === "legal" && (
                     <div className="space-y-10 animate-fadeIn">
-                      <div className="p-6 bg-red-500/5 border border-red-500/20 rounded-xl">
-                        <h3 className="text-red-500 font-bold text-xs uppercase tracking-widest mb-4 flex items-center gap-2">
+                      <div className="p-6 bg-app-status-danger/5 border border-app-status-danger/20 rounded-xl">
+                        <h3 className="text-app-status-danger font-bold text-xs uppercase tracking-widest mb-4 flex items-center gap-2">
                           <svg
                             className="h-5 w-5"
                             fill="none"
@@ -910,7 +896,7 @@ const FieldManual: React.FC<FieldManualProps> = ({
                         <div className="space-y-4">
                           {content.legal.sovereignty.items.map((item, idx) => (
                             <div key={idx} className="flex gap-4">
-                              <span className="flex-none w-6 h-6 rounded-full bg-red-500/20 text-red-500 flex items-center justify-center font-bold text-xs border border-red-500/30">
+                              <span className="flex-none w-6 h-6 rounded-full bg-app-status-danger/20 text-app-status-danger flex items-center justify-center font-bold text-xs border border-app-status-danger/30">
                                 {idx + 1}
                               </span>
                               <div>

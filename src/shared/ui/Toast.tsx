@@ -58,7 +58,8 @@ const ToastItem: React.FC<ToastItemProps> = ({
 }) => {
   const bgColors = {
     success: "bg-app-brand/90 border-app-brand shadow-app-brand/20",
-    error: "bg-red-600/90 border-red-500 shadow-red-900/20",
+    error:
+      "bg-app-status-danger/90 border-app-status-danger shadow-app-status-danger/20",
     info: "bg-app-surface/90 border-app-border shadow-app-overlay/20",
   };
 
