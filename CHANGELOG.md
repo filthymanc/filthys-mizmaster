@@ -1,6 +1,18 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+## [2.0.0](https://github.com/filthymanc/filthys-mizmaster/compare/v1.19.1...v2.0.0) (2026-03-09)
+
+
+### Features
+
+* professionalize welcome message and suggested queries ([2f0b3a1](https://github.com/filthymanc/filthys-mizmaster/commit/2f0b3a1845ce8469135f910875c96b53b620d046))
+
+
+### Bug Fixes
+
+* **ui:** resolve expanded codeblock scrolling issues ([36ad694](https://github.com/filthymanc/filthys-mizmaster/commit/36ad694afaa04529bc975531528c8f7b5f32055e))
+
 ### [1.19.1](https://github.com/filthymanc/filthys-mizmaster/compare/v1.18.0...v1.19.1) (2026-03-09)
 
 
