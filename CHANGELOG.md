@@ -1,6 +1,18 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+## [1.19.0](https://github.com/filthymanc/filthys-mizmaster/compare/v1.17.2...v1.19.0) (2026-03-09)
+
+
+### Features
+
+* synchronize codebase with field manual and enhance tactical navigation ([b4d000d](https://github.com/filthymanc/filthys-mizmaster/commit/b4d000d51a914216b721d5c6342e68a5c213d7ef))
+
+
+### Miscellaneous Chores
+
+* **release:** 1.18.0 ([c37b6f5](https://github.com/filthymanc/filthys-mizmaster/commit/c37b6f5f08d373a0e2972ccdf17a959e5d855f23))
+
 ## [1.18.0](https://github.com/filthymanc/filthys-mizmaster/compare/v1.17.2...v1.18.0) (2026-03-09)
 
 
