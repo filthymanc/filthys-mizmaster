@@ -3,14 +3,21 @@
 > **"Your personal AI co-pilot for DCS World mission scripting. Whether you're new to coding or a veteran, MizMaster simplifies MOOSE and DML logic, validates syntax, and manages your mission intelligence."**
 
 [![Deployment Status](https://img.shields.io/github/deployments/filthymanc/filthys-mizmaster/github-pages?label=Deployment&logo=github)](https://filthymanc.github.io/filthys-mizmaster/)
+
 [![Build Status](https://img.shields.io/github/actions/workflow/status/filthymanc/filthys-mizmaster/deploy.yml?branch=main&label=Build&logo=github)](https://github.com/filthymanc/filthys-mizmaster/actions)
+
 [![Version](https://img.shields.io/github/v/release/filthymanc/filthys-mizmaster?label=Version&logo=git)](https://github.com/filthymanc/filthys-mizmaster/releases)
+
 [![License](https://img.shields.io/github/license/filthymanc/filthys-mizmaster?label=License&color=blue)](LICENSE)
+
 [![PWA](https://img.shields.io/badge/PWA-Installable-brightgreen?logo=pwa)](https://web.dev/progressive-web-apps/)
 
 ![GitHub top language](https://img.shields.io/github/languages/top/filthymanc/filthys-mizmaster?logo=typescript&color=blue)
+
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/filthymanc/filthys-mizmaster?logo=github)
+
 ![React](https://img.shields.io/badge/Frontend-React_19-61DAFB?logo=react)
+
 ![Vite](https://img.shields.io/badge/Build-Vite-646CFF?logo=vite)
 
 ---
