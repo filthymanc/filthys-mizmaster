@@ -53,9 +53,10 @@ const TREE_CACHE_TTL = 24 * 60 * 60 * 1000; // 24 Hours
 const CONTENT_CACHE_TTL = 7 * 24 * 60 * 60 * 1000; // 7 Days (longer than tree)
 
 /**
- * Helper to get authorization headers if a token is provided
+ * Helper to get authorization headers for GitHub API requests.
+ * NOT for raw.githubusercontent.com (CORS restriction).
  */
-const getAuthHeaders = (token?: string): HeadersInit => {
+const getApiHeaders = (token?: string): HeadersInit => {
   const headers: HeadersInit = {
     Accept: "application/vnd.github.v3+json",
   };
@@ -94,7 +95,7 @@ const fetchRepoTree = async (
   const url = `https://api.github.com/repos/${config.owner}/${config.repo}/git/trees/${config.branch}?recursive=1`;
 
   const response = await fetch(url, {
-    headers: getAuthHeaders(token),
+    headers: getApiHeaders(token),
   });
 
   if (response.status === 401) {
@@ -107,8 +108,8 @@ const fetchRepoTree = async (
     const isTokenUsed = token && token.trim() !== "";
     throw new Error(
       isTokenUsed
-        ? "GitHub API Rate Limit Exceeded even with Token. This shouldn't happen often."
-        : "GitHub API Rate Limit Exceeded (60/hr). Add a Personal Access Token in Settings to increase this to 5000/hr.",
+        ? "GitHub Rate Limit reached even with Token. Please wait a moment or check your token permissions in Settings."
+        : "GitHub Rate Limit reached (60/hr). Add a free Personal Access Token in Settings to increase this to 5000/hr and continue deep-searching frameworks.",
     );
   }
 
@@ -176,14 +177,13 @@ const findFileInTree = (
 
 /**
  * Validates a GitHub Personal Access Token by pinging the rate_limit endpoint.
- * This guarantees proper validation even for highly restrictive fine-grained tokens.
  */
 export const validateGitHubToken = async (token: string): Promise<boolean> => {
   if (!token || token.trim() === "") return true;
 
   try {
     const response = await fetch("https://api.github.com/rate_limit", {
-      headers: getAuthHeaders(token),
+      headers: getApiHeaders(token),
     });
     return response.ok;
   } catch (error) {
@@ -203,7 +203,6 @@ export const getFrameworkDocs = async (
 ): Promise<string> => {
   try {
     // 1. Opportunistic Cleanup
-    // We run this async without awaiting to not block the request
     pruneCache(CONTENT_CACHE_TTL).catch((e) =>
       console.warn("[Librarian] Cache prune failed:", e),
     );
@@ -238,16 +237,32 @@ export const getFrameworkDocs = async (
       return `ERROR: Module '${moduleName}' not found in ${config.repo}. Did you mean: ${suggestions.join(", ")}?`;
     }
 
-    // 3. Check Content Cache (IndexedDB)
-    const rawUrl = `https://raw.githubusercontent.com/${config.owner}/${config.repo}/${config.branch}/${file.path}`;
+    // 3. Resolve Content Source (CORS-Safe Strategy)
+    // - No Token: Fetch directly from raw.githubusercontent.com (No headers, avoiding preflight)
+    // - With Token: Fetch via api.github.com/contents/ (Proper CORS support for authenticated requests)
+    let contentUrl: string;
+    let fetchOptions: RequestInit = {};
 
+    if (githubToken && githubToken.trim() !== "") {
+      // Authenticated Fetch via API
+      contentUrl = `https://api.github.com/repos/${config.owner}/${config.repo}/contents/${file.path}?ref=${config.branch}`;
+      fetchOptions = {
+        headers: {
+          ...getApiHeaders(githubToken),
+          Accept: "application/vnd.github.v3.raw", // Direct raw content from API
+        },
+      };
+    } else {
+      // Anonymous Fetch directly from Raw CDN
+      contentUrl = `https://raw.githubusercontent.com/${config.owner}/${config.repo}/${config.branch}/${file.path}`;
+      // No headers added to prevent CORS preflight blocks on the Raw CDN
+    }
+
+    // 4. Check Content Cache (IndexedDB)
     try {
-      const cachedEntry = await getCachedFile(rawUrl);
+      const cachedEntry = await getCachedFile(contentUrl);
       if (cachedEntry) {
-        // Cache Hit!
-        // We use a shorter TTL check here if we want strict freshness, but for now relies on Pruning
-        const ageHours =
-          (Date.now() - cachedEntry.timestamp) / (1000 * 60 * 60);
+        const ageHours = (Date.now() - cachedEntry.timestamp) / (1000 * 60 * 60);
         console.log(
           `[Librarian] Cache Hit: ${file.path} (Age: ${ageHours.toFixed(1)}h)`,
         );
@@ -257,7 +272,7 @@ Repo: ${config.owner}/${config.repo}
 Branch: ${config.branch}
 File: ${file.path}
 Source: Local Cache (IDB)
-Raw URL: ${rawUrl}
+URL: ${contentUrl}
 --------------------------------------------------
 `;
         return metadata + cachedEntry.content;
@@ -266,14 +281,12 @@ Raw URL: ${rawUrl}
       console.warn("[Librarian] IDB Read Failed:", dbError);
     }
 
-    // 4. Cache Miss -> Network Fetch
-    console.log(`[Librarian] Fetching Raw Source: ${rawUrl}`);
+    // 5. Cache Miss -> Network Fetch
+    console.log(`[Librarian] Fetching Raw Source: ${contentUrl}`);
 
-    const response = await fetch(rawUrl, {
-      headers: getAuthHeaders(githubToken),
-    });
+    const response = await fetch(contentUrl, fetchOptions);
     if (!response.ok) {
-      return `ERROR: Failed to download source file: ${rawUrl}`;
+      return `ERROR: Failed to download source file: ${contentUrl} (${response.status})`;
     }
 
     let content = await response.text();
@@ -282,14 +295,12 @@ Raw URL: ${rawUrl}
     const COMPRESSION_THRESHOLD = 10000;
 
     if (file.path.endsWith(".lua") && fileSize > COMPRESSION_THRESHOLD) {
-      console.log(
-        `[Librarian] Compressing ${file.path} (${fileSize} bytes)...`,
-      );
+      console.log(`[Librarian] Compressing ${file.path} (${fileSize} bytes)...`);
       content = parseLuaSource(content);
     }
 
-    // 5. Write to Cache (Async)
-    cacheFile(rawUrl, content).catch((e) =>
+    // 6. Write to Cache (Async)
+    cacheFile(contentUrl, content).catch((e) =>
       console.warn("[Librarian] Failed to cache file:", e),
     );
 
@@ -298,7 +309,7 @@ Repo: ${config.owner}/${config.repo}
 Branch: ${config.branch}
 File: ${file.path}
 Original Size: ${fileSize} bytes
-Raw URL: ${rawUrl}
+URL: ${contentUrl}
 --------------------------------------------------
 `;
 
