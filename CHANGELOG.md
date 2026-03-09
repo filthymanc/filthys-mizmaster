@@ -1,20 +1,24 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
-## [1.16.0](https://github.com/filthymanc/filthys-mizmaster/compare/v1.15.0...v1.16.0) (2026-03-08)
+### [1.16.3](https://github.com/filthymanc/filthys-mizmaster/compare/v1.16.0...v1.16.3) (2026-03-09)
 
+### [1.16.2](https://github.com/filthymanc/filthys-mizmaster/compare/v1.16.0...v1.16.2) (2026-03-09)
+
+### [1.16.1](https://github.com/filthymanc/filthys-mizmaster/compare/v1.16.0...v1.16.1) (2026-03-09)
+
+## [1.16.0](https://github.com/filthymanc/filthys-mizmaster/compare/v1.15.0...v1.16.0) (2026-03-08)
 
 ### Features
 
-* **theme:** implement doctrine-compliant theme engine v2.1 ([90e7679](https://github.com/filthymanc/filthys-mizmaster/commit/90e7679979a29039767f688bef67d11a4fe73e16))
-* **ui:** implement doctrine-compliant theme engine v2.1 ([9650591](https://github.com/filthymanc/filthys-mizmaster/commit/9650591eb45984413d6d16dda79a10a0261d869d))
-* **ui:** implement doctrine-compliant theme system v2.1 and cleanup ([f603122](https://github.com/filthymanc/filthys-mizmaster/commit/f60312226b6c7d738c5e48763afbe9b36161f0b7))
-
+- **theme:** implement doctrine-compliant theme engine v2.1 ([90e7679](https://github.com/filthymanc/filthys-mizmaster/commit/90e7679979a29039767f688bef67d11a4fe73e16))
+- **ui:** implement doctrine-compliant theme engine v2.1 ([9650591](https://github.com/filthymanc/filthys-mizmaster/commit/9650591eb45984413d6d16dda79a10a0261d869d))
+- **ui:** implement doctrine-compliant theme system v2.1 and cleanup ([f603122](https://github.com/filthymanc/filthys-mizmaster/commit/f60312226b6c7d738c5e48763afbe9b36161f0b7))
 
 ### Miscellaneous Chores
 
-* **deploy:** set up firebase hosting preview channel ([92eb9e8](https://github.com/filthymanc/filthys-mizmaster/commit/92eb9e892c98d00f446b2367ff3d44cb1a5b6f6d))
-* trigger theme v2 preview build ([b6236dc](https://github.com/filthymanc/filthys-mizmaster/commit/b6236dcd371b9f775ec6701b07f08131183cbe8f))
+- **deploy:** set up firebase hosting preview channel ([92eb9e8](https://github.com/filthymanc/filthys-mizmaster/commit/92eb9e892c98d00f446b2367ff3d44cb1a5b6f6d))
+- trigger theme v2 preview build ([b6236dc](https://github.com/filthymanc/filthys-mizmaster/commit/b6236dcd371b9f775ec6701b07f08131183cbe8f))
 
 ## [1.15.0](https://github.com/filthymanc/filthys-mizmaster/compare/v1.14.0...v1.15.0) (2026-03-08)
 
