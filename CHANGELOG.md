@@ -1,6 +1,8 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+### [1.16.4](https://github.com/filthymanc/filthys-mizmaster/compare/v1.16.3...v1.16.4) (2026-03-09)
+
 ### [1.16.3](https://github.com/filthymanc/filthys-mizmaster/compare/v1.16.0...v1.16.3) (2026-03-09)
 
 ### [1.16.2](https://github.com/filthymanc/filthys-mizmaster/compare/v1.16.0...v1.16.2) (2026-03-09)
