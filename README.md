@@ -3,22 +3,21 @@
 > **"Your personal AI co-pilot for DCS World mission scripting. Whether you're new to coding or a veteran, MizMaster simplifies MOOSE and DML logic, validates syntax, and manages your mission intelligence."**
 
 [![Deployment Status](https://img.shields.io/github/deployments/filthymanc/filthys-mizmaster/github-pages?label=Deployment&logo=github)](https://filthymanc.github.io/filthys-mizmaster/)
-[![Version](https://img.shields.io/github/v/release/filthymanc/filthys-mizmaster?logo=git)](https://github.com/filthymanc/filthys-mizmaster/releases)
-[![License](https://img.shields.io/github/license/filthymanc/filthys-mizmaster?color=blue)](LICENSE)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/filthymanc/filthys-mizmaster/deploy.yml?branch=main&label=Build&logo=github)](https://github.com/filthymanc/filthys-mizmaster/actions)
+[![Version](https://img.shields.io/github/v/release/filthymanc/filthys-mizmaster?label=Version&logo=git)](https://github.com/filthymanc/filthys-mizmaster/releases)
+[![License](https://img.shields.io/github/license/filthymanc/filthys-mizmaster?label=License&color=blue)](LICENSE)
 [![PWA](https://img.shields.io/badge/PWA-Installable-brightgreen?logo=pwa)](https://web.dev/progressive-web-apps/)
+
+![GitHub top language](https://img.shields.io/github/languages/top/filthymanc/filthys-mizmaster?logo=typescript&color=blue)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/filthymanc/filthys-mizmaster?logo=github)
+![React](https://img.shields.io/badge/Frontend-React_19-61DAFB?logo=react)
+![Vite](https://img.shields.io/badge/Build-Vite-646CFF?logo=vite)
 
 ---
 
 ## 🚀 Overview
 
 **filthy's MizMaster** is a cutting-edge Progressive Web Application (PWA) designed as an intelligent "Force Multiplier" for DCS World Mission Designers. By integrating Google's Gemini Pro/Flash models with a specialized **Librarian** engine, MizMaster bridges the gap between complex scripting frameworks and your creative vision.
-
-### Why MizMaster?
-
-- **Framework Fluency:** Deep understanding of **MOOSE** (Mission Object Oriented Scripting Environment) and **DML** (Digital Mission Laboratory).
-- **The Librarian:** Dynamically fetches and analyzes real-time source code from GitHub repositories to provide the most accurate implementation advice.
-- **Security First:** A proprietary **Secure Vault** protects your API keys using hardware-accelerated encryption—data never leaves your device.
-- **Mission Ready:** Optimized for tablets and secondary displays, providing a distraction-free co-pilot while you work in the DCS Mission Editor.
 
 ---
 
@@ -42,6 +41,21 @@ Install MizMaster directly to your Windows desktop, iPad, or Android tablet. Enj
 
 ---
 
+## ⌨️ Tactical Navigation (Shortcuts)
+
+Optimized for high-speed mission building:
+
+| Shortcut      | Action                        |
+| :------------ | :---------------------------- |
+| **Ctrl + ,**  | Open System Settings          |
+| **Ctrl + B**  | Toggle Sidebar (Mission List) |
+| **Alt + N**   | Create New Mission            |
+| **Alt + ←/→** | Cycle Previous/Next Mission   |
+| **/**         | Focus Chat Input              |
+| **Esc**       | Stop Generation / Close Menus |
+
+---
+
 ## 🛠️ Getting Started
 
 ### 1. Launch the Application
@@ -57,6 +71,13 @@ Access the production version immediately at:
 
 ---
 
+## 🤝 Join the Community
+
+Connect with other mission designers, share your scripts, and get direct support:
+🎮 **[Official Discord Server](https://discord.gg/VsYRpDT5CW)**
+
+---
+
 ## 💻 Developer Guide
 
 ### Tech Stack
@@ -64,7 +85,7 @@ Access the production version immediately at:
 - **Framework:** React 19 (TypeScript)
 - **Build Tool:** Vite 5
 - **Styling:** Tailwind CSS
-- **Intelligence:** Google GenAI SDK (`gemini-3.1-pro-preview` / `gemini-3-flash-pro-preview`)
+- **Intelligence:** Google GenAI SDK (`gemini-3.1-pro-preview` / `gemini-3-flash-preview`)
 - **Storage:** IndexedDB (for mission history) & LocalStorage (for encrypted vault)
 
 ### Local Setup

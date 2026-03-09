@@ -101,17 +101,81 @@ const App: React.FC = () => {
   // Keyboard Shortcuts
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      // 1. Settings Shortcut (Ctrl + ,)
       if ((e.ctrlKey || e.metaKey) && e.key === ",") {
         e.preventDefault();
         if (isAuthenticated) {
           handleOpenSettings(0);
         }
       }
+
+      // 2. Toggle Sidebar (Ctrl + B)
+      if ((e.ctrlKey || e.metaKey) && (e.key === "b" || e.key === "B")) {
+        e.preventDefault();
+        if (isAuthenticated) {
+          setIsSidebarOpen((prev) => !prev);
+        }
+      }
+
+      // 3. New Mission (Alt + N)
+      if (e.altKey && (e.key === "n" || e.key === "N")) {
+        e.preventDefault();
+        if (isAuthenticated && sessionManager.isReady) {
+          sessionManager.createSession();
+        }
+      }
+
+      // 4. Cycle Missions (Alt + Left/Right)
+      if (e.altKey && (e.key === "ArrowLeft" || e.key === "ArrowRight")) {
+        e.preventDefault();
+        if (isAuthenticated && sessionManager.sessions.length > 1) {
+          const currentIndex = sessionManager.sessions.findIndex(
+            (s) => s.id === sessionManager.activeSessionId,
+          );
+          if (currentIndex !== -1) {
+            let nextIndex =
+              e.key === "ArrowLeft" ? currentIndex - 1 : currentIndex + 1;
+            // Wrap around
+            if (nextIndex < 0) nextIndex = sessionManager.sessions.length - 1;
+            if (nextIndex >= sessionManager.sessions.length) nextIndex = 0;
+
+            sessionManager.setActiveSessionId(
+              sessionManager.sessions[nextIndex].id,
+            );
+          }
+        }
+      }
+
+      // 5. Focus Input (Forward Slash)
+      if (
+        e.key === "/" &&
+        !["INPUT", "TEXTAREA"].includes((e.target as HTMLElement).tagName)
+      ) {
+        e.preventDefault();
+        const textarea = document.getElementById("chat-input-textarea");
+        if (textarea) textarea.focus();
+      }
+
+      // 6. Escape Protocol (Stop Generation + Close Modals)
+      if (e.key === "Escape") {
+        // Stop any active AI generation via custom event
+        window.dispatchEvent(new CustomEvent("stop-generation"));
+
+        // Close UI Overlays
+        setIsManualOpen(false);
+        setIsSettingsOpen(false);
+        setIsArmoryOpen(false);
+        setIsOnboardingOpen(false);
+      }
     };
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isAuthenticated, handleOpenSettings]);
+  }, [
+    isAuthenticated,
+    handleOpenSettings,
+    sessionManager,
+  ]);
 
   useSwipeGesture({
     onSwipeRight: () => {

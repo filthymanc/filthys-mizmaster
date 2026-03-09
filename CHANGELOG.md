@@ -1,21 +1,20 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
-### [1.17.2](https://github.com/filthymanc/filthys-mizmaster/compare/v1.17.1...v1.17.2) (2026-03-09)
 
+### [1.17.2](https://github.com/filthymanc/filthys-mizmaster/compare/v1.17.1...v1.17.2) (2026-03-09)
 
 ### Bug Fixes
 
-* **ui:** resolve CSS conflict and lint warnings in FieldManual ([ddf87ae](https://github.com/filthymanc/filthys-mizmaster/commit/ddf87ae38f79f64fc855ddf08e18bd4f7bfc8018))
+- **ui:** resolve CSS conflict and lint warnings in FieldManual ([ddf87ae](https://github.com/filthymanc/filthys-mizmaster/commit/ddf87ae38f79f64fc855ddf08e18bd4f7bfc8018))
 
 ### [1.17.1](https://github.com/filthymanc/filthys-mizmaster/compare/v1.17.0...v1.17.1) (2026-03-09)
 
 ## [1.17.0](https://github.com/filthymanc/filthys-mizmaster/compare/v1.16.4...v1.17.0) (2026-03-09)
 
-
 ### Features
 
-* **ui:** synchronize theme engine and cleanup hardcoded colors ([8372931](https://github.com/filthymanc/filthys-mizmaster/commit/837293179eadbce9094d6089418972b9ddecbe31))
+- **ui:** synchronize theme engine and cleanup hardcoded colors ([8372931](https://github.com/filthymanc/filthys-mizmaster/commit/837293179eadbce9094d6089418972b9ddecbe31))
 
 ### [1.16.4](https://github.com/filthymanc/filthys-mizmaster/compare/v1.16.3...v1.16.4) (2026-03-09)
 

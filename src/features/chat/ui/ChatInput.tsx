@@ -36,6 +36,16 @@ const ChatInput: React.FC<ChatInputProps> = ({
   const { suggestions, isVisible } = useLibrarian(input);
 
   useEffect(() => {
+    const handleStop = () => {
+      if (isGenerating) {
+        onStop();
+      }
+    };
+    window.addEventListener("stop-generation", handleStop);
+    return () => window.removeEventListener("stop-generation", handleStop);
+  }, [isGenerating, onStop]);
+
+  useEffect(() => {
     if (textareaRef.current) {
       textareaRef.current.style.height = "auto";
       textareaRef.current.style.height = `${Math.min(textareaRef.current.scrollHeight, 200)}px`;

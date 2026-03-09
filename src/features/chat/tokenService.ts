@@ -30,7 +30,7 @@ export const getMessageTokenCount = (message: Message): number => {
 /**
  * Prunes the message history to fit within the defined Token Budget.
  * Always preserves the most recent messages.
- * Optionally protects the very first message (if it contains critical context).
+ * Optionally protects the first USER message (Initial Briefing).
  */
 export const pruneHistoryByTokens = (messages: Message[]): Message[] => {
   // 1. Filter out ephemeral streaming messages
@@ -41,16 +41,21 @@ export const pruneHistoryByTokens = (messages: Message[]): Message[] => {
   const maxTokens = CONTEXT_LIMITS.MAX_TOKENS || 30000;
   const maxMessages = CONTEXT_LIMITS.MAX_MESSAGES || 50;
 
-  // 2. Identify Protected Message (First User Message)
+  // 2. Identify Protected Message (First User Message / Initial Briefing)
   let protectedMsg: Message | null = null;
   let protectedTokens = 0;
-  const candidates = [...stableMessages];
+  const candidatePool = [...stableMessages];
 
-  if (CONTEXT_LIMITS.PROTECT_FIRST_MSG && candidates.length > 0) {
-    protectedMsg = candidates[0];
-    protectedTokens = getMessageTokenCount(protectedMsg);
-    // Remove it from the candidate pool for now
-    candidates.shift();
+  if (CONTEXT_LIMITS.PROTECT_FIRST_MSG) {
+    // Find the first message with role "user"
+    const firstUserMsgIndex = candidatePool.findIndex((m) => m.role === "user");
+
+    if (firstUserMsgIndex !== -1) {
+      protectedMsg = candidatePool[firstUserMsgIndex];
+      protectedTokens = getMessageTokenCount(protectedMsg);
+      // Remove it from the candidate pool to avoid double-counting
+      candidatePool.splice(firstUserMsgIndex, 1);
+    }
   }
 
   // 3. Reverse iterate to accumulate most recent messages first
@@ -58,8 +63,8 @@ export const pruneHistoryByTokens = (messages: Message[]): Message[] => {
   const keptMessages: Message[] = [];
 
   // Iterate from end (most recent) to start
-  for (let i = candidates.length - 1; i >= 0; i--) {
-    const msg = candidates[i];
+  for (let i = candidatePool.length - 1; i >= 0; i--) {
+    const msg = candidatePool[i];
     const tokens = getMessageTokenCount(msg);
 
     // Check Budget
@@ -84,6 +89,9 @@ export const pruneHistoryByTokens = (messages: Message[]): Message[] => {
 
   // 4. Reassemble
   if (protectedMsg) {
+    // We need to find the correct insertion point or just put it at the start
+    // Usually, the first user message is the second message (after Welcome),
+    // but for context-first logic, we put it at the very top of the pruned list.
     return [protectedMsg, ...keptMessages];
   }
 
