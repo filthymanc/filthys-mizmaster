@@ -1,6 +1,24 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+### [1.19.1](https://github.com/filthymanc/filthys-mizmaster/compare/v1.18.0...v1.19.1) (2026-03-09)
+
+
+### Bug Fixes
+
+* **librarian:** resolve CORS preflight errors on raw cdn and improve rate-limit messaging ([fb1b9a2](https://github.com/filthymanc/filthys-mizmaster/commit/fb1b9a2369b98f8bc44fc67449de31f68926fc98))
+
+
+### Miscellaneous Chores
+
+* **release:** 1.18.0 ([afc15f7](https://github.com/filthymanc/filthys-mizmaster/commit/afc15f7eac188c543c904f414a68b74e1afdb9cc))
+* **release:** 1.19.0 ([9653d08](https://github.com/filthymanc/filthys-mizmaster/commit/9653d0809809fb04745f80d16f33a8620bd923be))
+
+
+### Documentation
+
+* minor formatting in readme badges ([89164c2](https://github.com/filthymanc/filthys-mizmaster/commit/89164c2f3767e70a72646d87bc61761acac8ec57))
+
 ## [1.19.0](https://github.com/filthymanc/filthys-mizmaster/compare/v1.17.2...v1.19.0) (2026-03-09)
 
 

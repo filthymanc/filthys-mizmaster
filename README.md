@@ -81,7 +81,7 @@ Access the production version immediately at:
 ## 🤝 Join the Community
 
 Connect with other mission designers, share your scripts, and get direct support:
-🎮 **[Official Discord Server](https://discord.gg/VsYRpDT5CW)**
+🎮 **[Official Discord Server](https://discord.gg/uzpE6x7qpN)**
 
 ---
 
