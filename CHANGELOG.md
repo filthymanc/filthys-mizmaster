@@ -1,56 +1,49 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+
 ### [2.0.1](https://github.com/filthymanc/filthys-mizmaster/compare/v2.0.0...v2.0.1) (2026-03-09)
 
 ## [2.0.0](https://github.com/filthymanc/filthys-mizmaster/compare/v1.19.1...v2.0.0) (2026-03-09)
 
-
 ### Features
 
-* professionalize welcome message and suggested queries ([2f0b3a1](https://github.com/filthymanc/filthys-mizmaster/commit/2f0b3a1845ce8469135f910875c96b53b620d046))
-
+- professionalize welcome message and suggested queries ([2f0b3a1](https://github.com/filthymanc/filthys-mizmaster/commit/2f0b3a1845ce8469135f910875c96b53b620d046))
 
 ### Bug Fixes
 
-* **ui:** resolve expanded codeblock scrolling issues ([36ad694](https://github.com/filthymanc/filthys-mizmaster/commit/36ad694afaa04529bc975531528c8f7b5f32055e))
+- **ui:** resolve expanded codeblock scrolling issues ([36ad694](https://github.com/filthymanc/filthys-mizmaster/commit/36ad694afaa04529bc975531528c8f7b5f32055e))
 
 ### [1.19.1](https://github.com/filthymanc/filthys-mizmaster/compare/v1.18.0...v1.19.1) (2026-03-09)
 
-
 ### Bug Fixes
 
-* **librarian:** resolve CORS preflight errors on raw cdn and improve rate-limit messaging ([fb1b9a2](https://github.com/filthymanc/filthys-mizmaster/commit/fb1b9a2369b98f8bc44fc67449de31f68926fc98))
-
+- **librarian:** resolve CORS preflight errors on raw cdn and improve rate-limit messaging ([fb1b9a2](https://github.com/filthymanc/filthys-mizmaster/commit/fb1b9a2369b98f8bc44fc67449de31f68926fc98))
 
 ### Miscellaneous Chores
 
-* **release:** 1.18.0 ([afc15f7](https://github.com/filthymanc/filthys-mizmaster/commit/afc15f7eac188c543c904f414a68b74e1afdb9cc))
-* **release:** 1.19.0 ([9653d08](https://github.com/filthymanc/filthys-mizmaster/commit/9653d0809809fb04745f80d16f33a8620bd923be))
-
+- **release:** 1.18.0 ([afc15f7](https://github.com/filthymanc/filthys-mizmaster/commit/afc15f7eac188c543c904f414a68b74e1afdb9cc))
+- **release:** 1.19.0 ([9653d08](https://github.com/filthymanc/filthys-mizmaster/commit/9653d0809809fb04745f80d16f33a8620bd923be))
 
 ### Documentation
 
-* minor formatting in readme badges ([89164c2](https://github.com/filthymanc/filthys-mizmaster/commit/89164c2f3767e70a72646d87bc61761acac8ec57))
+- minor formatting in readme badges ([89164c2](https://github.com/filthymanc/filthys-mizmaster/commit/89164c2f3767e70a72646d87bc61761acac8ec57))
 
 ## [1.19.0](https://github.com/filthymanc/filthys-mizmaster/compare/v1.17.2...v1.19.0) (2026-03-09)
 
-
 ### Features
 
-* synchronize codebase with field manual and enhance tactical navigation ([b4d000d](https://github.com/filthymanc/filthys-mizmaster/commit/b4d000d51a914216b721d5c6342e68a5c213d7ef))
-
+- synchronize codebase with field manual and enhance tactical navigation ([b4d000d](https://github.com/filthymanc/filthys-mizmaster/commit/b4d000d51a914216b721d5c6342e68a5c213d7ef))
 
 ### Miscellaneous Chores
 
-* **release:** 1.18.0 ([c37b6f5](https://github.com/filthymanc/filthys-mizmaster/commit/c37b6f5f08d373a0e2972ccdf17a959e5d855f23))
+- **release:** 1.18.0 ([c37b6f5](https://github.com/filthymanc/filthys-mizmaster/commit/c37b6f5f08d373a0e2972ccdf17a959e5d855f23))
 
 ## [1.18.0](https://github.com/filthymanc/filthys-mizmaster/compare/v1.17.2...v1.18.0) (2026-03-09)
 
-
 ### Features
 
-* synchronize codebase with field manual and enhance tactical navigation ([b4d000d](https://github.com/filthymanc/filthys-mizmaster/commit/b4d000d51a914216b721d5c6342e68a5c213d7ef))
+- synchronize codebase with field manual and enhance tactical navigation ([b4d000d](https://github.com/filthymanc/filthys-mizmaster/commit/b4d000d51a914216b721d5c6342e68a5c213d7ef))
 
 ### [1.17.2](https://github.com/filthymanc/filthys-mizmaster/compare/v1.17.1...v1.17.2) (2026-03-09)
 

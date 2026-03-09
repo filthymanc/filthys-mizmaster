@@ -262,7 +262,8 @@ export const getFrameworkDocs = async (
     try {
       const cachedEntry = await getCachedFile(contentUrl);
       if (cachedEntry) {
-        const ageHours = (Date.now() - cachedEntry.timestamp) / (1000 * 60 * 60);
+        const ageHours =
+          (Date.now() - cachedEntry.timestamp) / (1000 * 60 * 60);
         console.log(
           `[Librarian] Cache Hit: ${file.path} (Age: ${ageHours.toFixed(1)}h)`,
         );
@@ -295,7 +296,9 @@ URL: ${contentUrl}
     const COMPRESSION_THRESHOLD = 10000;
 
     if (file.path.endsWith(".lua") && fileSize > COMPRESSION_THRESHOLD) {
-      console.log(`[Librarian] Compressing ${file.path} (${fileSize} bytes)...`);
+      console.log(
+        `[Librarian] Compressing ${file.path} (${fileSize} bytes)...`,
+      );
       content = parseLuaSource(content);
     }
 

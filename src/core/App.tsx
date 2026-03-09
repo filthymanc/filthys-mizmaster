@@ -171,11 +171,7 @@ const App: React.FC = () => {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [
-    isAuthenticated,
-    handleOpenSettings,
-    sessionManager,
-  ]);
+  }, [isAuthenticated, handleOpenSettings, sessionManager]);
 
   useSwipeGesture({
     onSwipeRight: () => {

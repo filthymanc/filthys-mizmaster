@@ -28,8 +28,7 @@ jobs:
           # Cache removed because package-lock.json does not exist on tablet/web edits
 
       - name: Install dependencies
-        # 'npm install' generates the lockfile on the fly, unlike 'npm ci'
-        run: npm install
+        run: npm ci
 
       - name: Build
         run: npm run build
