@@ -488,7 +488,7 @@ const FieldManual: React.FC<FieldManualProps> = ({
                                         className="p-4 flex flex-col sm:flex-row gap-2 sm:gap-4"
                                       >
                                         <span
-                                          className={`font-mono text-xs w-28 shrink-0 font-bold px-2 py-1 rounded w-max sm:w-24 text-center h-fit border border-app-status-${role}/30 text-app-status-${role} bg-app-status-${role}/10`}
+                                          className={`font-mono text-xs w-28 sm:w-24 shrink-0 font-bold px-2 py-1 rounded text-center h-fit border border-app-status-${role}/30 text-app-status-${role} bg-app-status-${role}/10`}
                                         >
                                           {item.label}
                                         </span>
