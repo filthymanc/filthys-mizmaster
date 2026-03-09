@@ -21,4 +21,4 @@ If you distribute a modified version of this software, you **must rename it** (e
 
 ## Asset Usage
 
-The icon assets located in `public/` (specifically `icon.svg` and derived PNGs) are considered part of the "filthy's MizMaster" brand identity. While included in the repository for build purposes, they should be replaced in any fork to avoid trademark confusion.
+The icon assets located in `public/` (specifically `filthysMM.png` and derived PNGs, mp4s) are considered part of the "filthy's MizMaster" brand identity. While included in the repository for build purposes, they should be replaced in any fork to avoid trademark confusion.
