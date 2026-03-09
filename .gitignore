@@ -122,3 +122,4 @@ dev-dist/
 # Gemini CLI
 .gemini/
 .gemini_security/
+gha-creds-*.json
