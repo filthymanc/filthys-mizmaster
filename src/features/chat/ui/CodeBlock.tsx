@@ -144,8 +144,8 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
   const renderContent = (isModal: boolean) => (
     <div
       className={`
-            relative rounded-xl overflow-hidden border border-app-border bg-app-frame shadow-xl not-prose
-            ${isModal ? "fixed inset-4 z-[100] flex flex-col m-0 max-h-none animate-scaleIn" : "my-4"}
+            relative rounded-xl overflow-hidden border border-app-border bg-app-frame shadow-xl not-prose flex flex-col
+            ${isModal ? "w-full max-w-[95vw] h-full max-h-[90vh] m-0 animate-scaleIn" : "my-4 max-h-[500px]"}
         `}
       onClick={(e) => e.stopPropagation()}
     >
@@ -336,9 +336,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
       </div>
 
       {/* Code Body */}
-      <div
-        className={`overflow-auto custom-scrollbar ${isModal ? "flex-1" : "max-h-[500px]"}`}
-      >
+      <div className="flex-1 min-h-0 overflow-auto custom-scrollbar">
         <SyntaxHighlighter
           code={codeText}
           language={language}
