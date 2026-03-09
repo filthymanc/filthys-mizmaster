@@ -70,12 +70,12 @@ export const DISCORD_LINKS = {
 };
 
 export const WELCOME_MESSAGE_TEXT =
-  "**FILTHY'S MIZMASTER ONLINE - FORCE MULTIPLIER**\n\nSafety Protocols: **ACTIVE**\nReady to assist with MOOSE scripting, DML attributes, and standard SSE logic. Strict Anti-Hallucination rules enabled.\n\nPlease define your mission objective.";
+  "**filthy's MizMaster ONLINE**\n\nWelcome to filthy's MizMaster.\n\nReady to assist with MOOSE scripting, DML attributes, and standard SSE logic. Strict Anti-Hallucination rules enabled.\n\nPlease define your mission objective.";
 export const SUGGESTED_QUERIES = [
-  "How do I add MOOSE or DML to my missions",
-  "How do I use DML to clone units?",
-  "How do I avoid script errors in loops?",
-  "How do I check available Group functions?",
+  "How do I add MOOSE to my missions",
+  "How do I add DML to my missions",
+  "Show me a simple MOOSE script using the SPAWN class",
+  "Show me a simple DML module to clone a unit",
 ];
 
 // --- THEME V2: MISSION PROFILES ---
