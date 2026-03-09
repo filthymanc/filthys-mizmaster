@@ -1,6 +1,13 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+## [1.17.0](https://github.com/filthymanc/filthys-mizmaster/compare/v1.16.4...v1.17.0) (2026-03-09)
+
+
+### Features
+
+* **ui:** synchronize theme engine and cleanup hardcoded colors ([8372931](https://github.com/filthymanc/filthys-mizmaster/commit/837293179eadbce9094d6089418972b9ddecbe31))
+
 ### [1.16.4](https://github.com/filthymanc/filthys-mizmaster/compare/v1.16.3...v1.16.4) (2026-03-09)
 
 ### [1.16.3](https://github.com/filthymanc/filthys-mizmaster/compare/v1.16.0...v1.16.3) (2026-03-09)
