@@ -1,6 +1,18 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+## [2.1.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.0.3...v2.1.0) (2026-03-10)
+
+
+### Features
+
+* implement PWA fullscreen immersive mode ([5c2ed4b](https://github.com/filthymanc/filthys-mizmaster/commit/5c2ed4b600642782ae39f76320266681d542fb8e))
+
+
+### Miscellaneous Chores
+
+* **release:** 2.0.4-dev.0 ([5b48c3b](https://github.com/filthymanc/filthys-mizmaster/commit/5b48c3b291cf6b1eb3910697531d23c1702a6b52))
+
 ### [2.0.4-dev.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.0.3...v2.0.4-dev.0) (2026-03-10)
 
 ### [2.0.3](https://github.com/filthymanc/filthys-mizmaster/compare/v2.0.2...v2.0.3) (2026-03-10)
