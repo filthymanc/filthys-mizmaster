@@ -1,12 +1,12 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
-### [2.0.2](https://github.com/filthymanc/filthys-mizmaster/compare/v2.0.1...v2.0.2) (2026-03-09)
 
+### [2.0.2](https://github.com/filthymanc/filthys-mizmaster/compare/v2.0.1...v2.0.2) (2026-03-09)
 
 ### Bug Fixes
 
-* **security:** establish security policy and harden deployment workflow ([9bb1f78](https://github.com/filthymanc/filthys-mizmaster/commit/9bb1f786bbb5beba855ec10e70eac13cd2da9be6))
+- **security:** establish security policy and harden deployment workflow ([9bb1f78](https://github.com/filthymanc/filthys-mizmaster/commit/9bb1f786bbb5beba855ec10e70eac13cd2da9be6))
 
 ### [2.0.1](https://github.com/filthymanc/filthys-mizmaster/compare/v2.0.0...v2.0.1) (2026-03-09)
 
