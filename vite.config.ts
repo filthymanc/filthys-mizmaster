@@ -25,7 +25,7 @@ export default defineConfig({
           "Your personal AI co-pilot for DCS World mission scripting.",
         theme_color: "#0f172a",
         background_color: "#0f172a",
-        display: "standalone",
+        display: "fullscreen",
         start_url: "/filthys-mizmaster/",
         scope: "/filthys-mizmaster/",
         icons: [
