@@ -1,6 +1,12 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+### [2.0.3](https://github.com/filthymanc/filthys-mizmaster/compare/v2.0.2...v2.0.3) (2026-03-10)
+
+
+### Documentation
+
+* standardize changelog formatting ([b18ec02](https://github.com/filthymanc/filthys-mizmaster/commit/b18ec028398a3b26f77cd54c4f3cc6491969a239))
 
 ### [2.0.2](https://github.com/filthymanc/filthys-mizmaster/compare/v2.0.1...v2.0.2) (2026-03-09)
 
