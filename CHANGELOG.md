@@ -1,12 +1,12 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
-## [2.3.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.2.0...v2.3.0) (2026-03-11)
 
+## [2.3.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.2.0...v2.3.0) (2026-03-11)
 
 ### Features
 
-* refine theme system, codeblocks, and chat message badges ([a148a09](https://github.com/filthymanc/filthys-mizmaster/commit/a148a09e66fc34f4f113986d1c708bf6f308fa97))
+- refine theme system, codeblocks, and chat message badges ([a148a09](https://github.com/filthymanc/filthys-mizmaster/commit/a148a09e66fc34f4f113986d1c708bf6f308fa97))
 
 ## [2.2.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.1.0...v2.2.0) (2026-03-11)
 
