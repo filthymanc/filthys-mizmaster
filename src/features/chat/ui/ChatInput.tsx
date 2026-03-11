@@ -29,7 +29,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
   onStop,
   isGenerating,
   isDesanitized = false,
-  placeholder = "Instruct the Architect... (Ctrl+Enter to send)",
+  placeholder = "Instruct the MizMaster... (Ctrl+Enter to send)",
 }) => {
   const [input, setInput] = useState("");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -162,7 +162,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
           onFocus={handleFocus}
           placeholder={
             isDesanitized
-              ? "UNSAFE MODE ACTIVE: Instruct with caution..."
+              ? "Desanitised mode is active... (Ctrl+Enter to send)"
               : placeholder
           }
           disabled={isGenerating}

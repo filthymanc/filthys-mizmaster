@@ -32,7 +32,7 @@ const SidebarFooter: React.FC<SidebarFooterProps> = ({
   onOpenArmory,
 }) => {
   return (
-    <div className="p-4 border-t border-app-border space-y-3 bg-app-frame flex flex-col justify-between shrink-0 h-48 lg:h-52">
+    <div className="p-4 border-t border-app-border space-y-3 bg-app-frame flex flex-col justify-between shrink-0 h-52 lg:h-52">
       {/* Primary Actions Group */}
       <div className="space-y-2">
         <button
@@ -125,8 +125,8 @@ const SidebarFooter: React.FC<SidebarFooterProps> = ({
           <p className="font-mono tracking-wider text-app-secondary font-bold">
             v{APP_VERSION}
           </p>
-          <p className="opacity-75">{AUTHOR_CREDIT}</p>
-          <p className="opacity-40 text-[8px] leading-tight max-w-[200px]">
+          <p className="">{AUTHOR_CREDIT}</p>
+          <p className="text-[8px] leading-tight max-w-[200px]">
             DCS World is a trademark of Eagle Dynamics SA.
           </p>
         </div>

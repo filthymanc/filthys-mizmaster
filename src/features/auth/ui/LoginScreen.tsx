@@ -56,7 +56,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({
     <>
       <div className="flex flex-col h-screen bg-app-canvas text-app-primary items-center justify-center p-6 select-none relative overflow-hidden">
         {/* Background Decor */}
-        <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-app-brand opacity-5 rounded-full blur-3xl pointer-events-none"></div>
+        <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-app-brand opacity-20 rounded-full blur-3xl pointer-events-none"></div>
         <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] bg-app-status-nav/5 rounded-full blur-3xl pointer-events-none"></div>
 
         <div className="max-w-md w-full bg-app-frame/80 backdrop-blur-xl border border-app-border rounded-2xl overflow-hidden shadow-2xl relative z-10">
@@ -68,7 +68,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({
               loop
               muted
               playsInline
-              className="w-full h-full object-cover opacity-80"
+              className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-app-frame to-transparent"></div>
           </div>
@@ -83,7 +83,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({
                   className="w-full h-full object-contain"
                 />
               </div>
-              <h1 className="text-2xl font-bold text-app-primary tracking-tight uppercase">
+              <h1 className="text-2xl font-bold text-app-primary tracking-tight">
                 {isLocked ? "Vault Locked" : APP_NAME}
               </h1>
               <p className="text-app-tertiary text-sm mt-1 font-mono">
@@ -251,7 +251,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({
 
         <div className="absolute bottom-4 text-[10px] text-app-tertiary font-mono text-center">
           <p className="font-bold text-app-secondary mb-1">{AUTHOR_CREDIT}</p>
-          <p className="opacity-75 uppercase text-[8px]">
+          <p className="font-bold text- uppercase text-[8px]">
             AES-GCM (256-bit) Encrypted Vault • v{APP_VERSION}
           </p>
         </div>

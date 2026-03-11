@@ -144,13 +144,13 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
   const renderContent = (isModal: boolean) => (
     <div
       className={`
-            relative rounded-xl overflow-hidden border border-app-border bg-app-frame shadow-xl not-prose flex flex-col
+            relative rounded-xl overflow-hidden border border-app-border/60 bg-app-canvas shadow-xl not-prose flex flex-col
             ${isModal ? "w-full max-w-[95vw] h-full max-h-[90vh] m-0 animate-scaleIn" : "my-4 max-h-[500px]"}
         `}
       onClick={(e) => e.stopPropagation()}
     >
       {/* Header */}
-      <div className="flex items-center justify-between px-4 py-2 bg-app-canvas/50 border-b border-app-border backdrop-blur-sm shrink-0">
+      <div className="flex items-center justify-between px-4 py-2 bg-app-frame/30 border-b border-app-border/40 backdrop-blur-sm shrink-0">
         <div className="flex items-center gap-3">
           <span className="text-[10px] font-mono text-app-tertiary uppercase tracking-[0.2em] font-bold">
             {language}
@@ -336,7 +336,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
       </div>
 
       {/* Code Body */}
-      <div className="flex-1 min-h-0 overflow-auto custom-scrollbar">
+      <div className="flex-1 min-h-0 overflow-auto custom-scrollbar bg-black/20">
         <SyntaxHighlighter
           code={codeText}
           language={language}

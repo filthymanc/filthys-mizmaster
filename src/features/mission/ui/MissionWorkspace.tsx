@@ -297,7 +297,7 @@ const MissionWorkspace: React.FC<MissionWorkspaceProps> = ({
           isGenerating={isGenerating}
           isDesanitized={settings.isDesanitized}
         />
-        <div className="max-w-6xl mx-auto mt-2 flex justify-center text-[10px] text-app-tertiary font-mono tracking-widest gap-4 opacity-50">
+        <div className="max-w-6xl mx-auto mt-2 flex justify-center text-[10px] text-app-tertiary font-mono tracking-widest gap-4">
           <span>
             {AVAILABLE_MODELS.find((m) => m.id === settings.model)
               ?.shortLabel || settings.model}

@@ -68,10 +68,10 @@ const Dashboard: React.FC<DashboardProps> = ({
 
   const getStatusColor = () => {
     if (apiStatus === "error")
-      return "bg-app-status-danger/10 text-app-status-danger border-app-status-danger/20";
+      return "bg-app-status-danger/15 text-app-status-danger border-app-status-danger/25";
     if (apiStatus === "offline")
       return "bg-app-surface text-app-tertiary border-app-border";
-    return "bg-app-status-ready/10 text-app-status-ready border-app-status-ready/20";
+    return "bg-app-status-ready/15 text-app-status-ready border-app-status-ready/25";
   };
 
   const getStatusTextColor = () => {
@@ -96,7 +96,7 @@ const Dashboard: React.FC<DashboardProps> = ({
           loop
           muted
           playsInline
-          className="w-full h-full object-cover opacity-90"
+          className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-app-canvas/80 via-transparent to-transparent"></div>
       </div>
@@ -111,7 +111,7 @@ const Dashboard: React.FC<DashboardProps> = ({
             Awaiting objective definition. Systems online.
           </p>
         </div>
-        <div className="text-[10px] font-mono text-app-tertiary uppercase tracking-tighter opacity-50">
+        <div className="text-[10px] font-mono text-app-tertiary uppercase tracking-tighter">
           v{settings.availableModels.length > 0 ? APP_VERSION : "LINKING..."}
         </div>
       </div>
@@ -154,7 +154,7 @@ const Dashboard: React.FC<DashboardProps> = ({
         </div>
 
         <div
-          className={`p-4 rounded-xl flex items-center gap-4 shadow-sm border ${settings.isDesanitized ? "bg-app-status-danger/10 text-app-status-danger border-app-status-danger/20" : "bg-app-status-nav/10 text-app-status-nav border-app-status-nav/20"}`}
+          className={`p-4 rounded-xl flex items-center gap-4 shadow-sm border ${settings.isDesanitized ? "bg-app-status-danger/15 text-app-status-danger border-app-status-danger/25" : "bg-app-status-nav/15 text-app-status-nav border-app-status-nav/25"}`}
         >
           <div className="p-2.5 rounded-lg bg-app-canvas shadow-sm">
             <svg
@@ -182,7 +182,7 @@ const Dashboard: React.FC<DashboardProps> = ({
           </div>
         </div>
 
-        <div className="p-4 rounded-xl flex items-center gap-4 shadow-sm border bg-app-status-intel/10 text-app-status-intel border-app-status-intel/20">
+        <div className="p-4 rounded-xl flex items-center gap-4 shadow-sm border bg-app-status-intel/30 text-app-status-intel border-app-status-intel/50">
           <div className="p-2.5 rounded-lg bg-app-canvas shadow-sm">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -200,8 +200,8 @@ const Dashboard: React.FC<DashboardProps> = ({
             </svg>
           </div>
           <div className="min-w-0">
-            <h3 className="text-[10px] font-bold opacity-70 uppercase tracking-widest truncate">
-              Neural Engine
+            <h3 className="text-[10px] font-bold opacity-85 uppercase tracking-widest truncate">
+              Gemini Model
             </h3>
             <p className="font-mono font-bold text-sm tracking-wider truncate">
               {currentModel?.shortLabel || settings.model}
@@ -363,7 +363,7 @@ const Dashboard: React.FC<DashboardProps> = ({
           </div>
 
           {/* Discord Community */}
-          <div className="bg-[#5865F2]/5 border border-[#5865F2]/20 rounded-xl p-5 md:p-6 shadow-sm">
+          <div className="bg-[#5865F2]/15 border border-[#5865F2]/25 rounded-xl p-5 md:p-6 shadow-sm">
             <h2 className="text-xs font-bold text-[#5865F2] uppercase tracking-widest mb-4 flex items-center gap-2">
               <DiscordIcon className="h-4 w-4" />
               Community Hub
@@ -427,7 +427,7 @@ const Dashboard: React.FC<DashboardProps> = ({
                 ))}
               </div>
             ) : (
-              <div className="flex-1 flex flex-col items-center justify-center text-app-tertiary space-y-3 opacity-60 min-h-[150px] bg-app-canvas rounded-lg border border-dashed border-app-border/50">
+              <div className="flex-1 flex flex-col items-center justify-center text-app-tertiary space-y-3 opacity-80 min-h-[150px] bg-app-canvas rounded-lg border border-dashed border-app-border/50">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-8 w-8"

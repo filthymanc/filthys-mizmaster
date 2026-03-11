@@ -50,6 +50,7 @@
     --border-base: 0.25 0.02 250;
     --border-highlight: 0.35 0.03 250;
     --color-brand: var(--color-status-ready);
+    --color-brand-dim: 0.4 0.1 160;
   }
 }
 
@@ -61,27 +62,30 @@ body.set-mono {
   --c: 0;
 }
 body.set-mono.brightness-L1 {
-  --bg-canvas: 0.05 var(--c) var(--h);
-  --bg-frame: 0.1 var(--c) var(--h);
+  --bg-canvas: 0 var(--c) var(--h);
+  --bg-frame: 0.05 var(--c) var(--h);
   --bg-surface: 0.15 var(--c) var(--h);
+  --border-base: 0.35 var(--c) var(--h);
 }
 body.set-mono.brightness-L2 {
   --bg-canvas: 0.15 var(--c) var(--h);
   --bg-frame: 0.2 var(--c) var(--h);
   --bg-surface: 0.25 var(--c) var(--h);
+  --border-base: 0.35 var(--c) var(--h);
 }
 body.set-mono.brightness-L3 {
   --bg-canvas: 0.45 var(--c) var(--h);
   --bg-frame: 0.5 var(--c) var(--h);
   --bg-surface: 0.55 var(--c) var(--h);
+  --text-tertiary: 0.7 0.03 250;
 }
 body.set-mono.brightness-L4 {
-  --bg-canvas: 0.85 var(--c) var(--h);
-  --bg-frame: 0.9 var(--c) var(--h);
-  --bg-surface: 0.95 var(--c) var(--h);
+  --bg-canvas: 0.75 var(--c) var(--h);
+  --bg-frame: 0.8 var(--c) var(--h);
+  --bg-surface: 0.85 var(--c) var(--h);
   --text-primary: 0.15 0.01 250;
   --text-secondary: 0.45 0.02 250;
-  --text-tertiary: 0.65 0.03 250;
+  --text-tertiary: 0.55 0.03 250;
 }
 body.set-mono.brightness-L5 {
   --bg-canvas: 0.98 var(--c) var(--h);
@@ -101,24 +105,27 @@ body.set-soft.brightness-L1 {
   --bg-canvas: 0.05 var(--c) var(--h);
   --bg-frame: 0.1 var(--c) var(--h);
   --bg-surface: 0.15 var(--c) var(--h);
+  --border-base: 0.35 var(--c) var(--h);
 }
 body.set-soft.brightness-L2 {
   --bg-canvas: 0.15 var(--c) var(--h);
   --bg-frame: 0.2 var(--c) var(--h);
   --bg-surface: 0.25 var(--c) var(--h);
+  --border-base: 0.35 var(--c) var(--h);
 }
 body.set-soft.brightness-L3 {
   --bg-canvas: 0.45 var(--c) var(--h);
   --bg-frame: 0.5 var(--c) var(--h);
   --bg-surface: 0.55 var(--c) var(--h);
+  --text-tertiary: 0.7 0.03 250;
 }
 body.set-soft.brightness-L4 {
-  --bg-canvas: 0.85 var(--c) var(--h);
-  --bg-frame: 0.9 var(--c) var(--h);
-  --bg-surface: 0.95 var(--c) var(--h);
-  --text-primary: 0.15 0.01 215;
-  --text-secondary: 0.45 0.02 215;
-  --text-tertiary: 0.65 0.03 215;
+  --bg-canvas: 0.75 var(--c) var(--h);
+  --bg-frame: 0.8 var(--c) var(--h);
+  --bg-surface: 0.85 var(--c) var(--h);
+  --text-primary: 0.15 0.01 250;
+  --text-secondary: 0.45 0.02 250;
+  --text-tertiary: 0.55 0.03 250;
 }
 body.set-soft.brightness-L5 {
   --bg-canvas: 0.98 var(--c) var(--h);
@@ -138,24 +145,27 @@ body.set-nvg.brightness-L1 {
   --bg-canvas: 0.05 var(--c) var(--h);
   --bg-frame: 0.1 var(--c) var(--h);
   --bg-surface: 0.15 var(--c) var(--h);
+  --border-base: 0.35 var(--c) var(--h);
 }
 body.set-nvg.brightness-L2 {
   --bg-canvas: 0.15 var(--c) var(--h);
   --bg-frame: 0.2 var(--c) var(--h);
   --bg-surface: 0.25 var(--c) var(--h);
+  --border-base: 0.35 var(--c) var(--h);
 }
 body.set-nvg.brightness-L3 {
   --bg-canvas: 0.45 var(--c) var(--h);
   --bg-frame: 0.5 var(--c) var(--h);
   --bg-surface: 0.55 var(--c) var(--h);
+  --text-tertiary: 0.7 0.03 250;
 }
 body.set-nvg.brightness-L4 {
-  --bg-canvas: 0.85 var(--c) var(--h);
-  --bg-frame: 0.9 var(--c) var(--h);
-  --bg-surface: 0.95 var(--c) var(--h);
-  --text-primary: 0.15 0.01 145;
-  --text-secondary: 0.45 0.02 145;
-  --text-tertiary: 0.65 0.03 145;
+  --bg-canvas: 0.75 var(--c) var(--h);
+  --bg-frame: 0.8 var(--c) var(--h);
+  --bg-surface: 0.85 var(--c) var(--h);
+  --text-primary: 0.15 0.01 250;
+  --text-secondary: 0.45 0.02 250;
+  --text-tertiary: 0.55 0.03 250;
 }
 body.set-nvg.brightness-L5 {
   --bg-canvas: 0.98 var(--c) var(--h);
@@ -175,24 +185,27 @@ body.set-coyote.brightness-L1 {
   --bg-canvas: 0.05 var(--c) var(--h);
   --bg-frame: 0.1 var(--c) var(--h);
   --bg-surface: 0.15 var(--c) var(--h);
+  --border-base: 0.35 var(--c) var(--h);
 }
 body.set-coyote.brightness-L2 {
   --bg-canvas: 0.15 var(--c) var(--h);
   --bg-frame: 0.2 var(--c) var(--h);
   --bg-surface: 0.25 var(--c) var(--h);
+  --border-base: 0.35 var(--c) var(--h);
 }
 body.set-coyote.brightness-L3 {
   --bg-canvas: 0.45 var(--c) var(--h);
   --bg-frame: 0.5 var(--c) var(--h);
   --bg-surface: 0.55 var(--c) var(--h);
+  --text-tertiary: 0.7 0.03 250;
 }
 body.set-coyote.brightness-L4 {
-  --bg-canvas: 0.85 var(--c) var(--h);
-  --bg-frame: 0.9 var(--c) var(--h);
-  --bg-surface: 0.95 var(--c) var(--h);
-  --text-primary: 0.15 0.01 40;
-  --text-secondary: 0.45 0.02 40;
-  --text-tertiary: 0.65 0.03 40;
+  --bg-canvas: 0.75 var(--c) var(--h);
+  --bg-frame: 0.8 var(--c) var(--h);
+  --bg-surface: 0.85 var(--c) var(--h);
+  --text-primary: 0.15 0.01 250;
+  --text-secondary: 0.45 0.02 250;
+  --text-tertiary: 0.55 0.03 250;
 }
 body.set-coyote.brightness-L5 {
   --bg-canvas: 0.98 var(--c) var(--h);
@@ -212,24 +225,27 @@ body.set-deck.brightness-L1 {
   --bg-canvas: 0.05 var(--c) var(--h);
   --bg-frame: 0.1 var(--c) var(--h);
   --bg-surface: 0.15 var(--c) var(--h);
+  --border-base: 0.35 var(--c) var(--h);
 }
 body.set-deck.brightness-L2 {
   --bg-canvas: 0.15 var(--c) var(--h);
   --bg-frame: 0.2 var(--c) var(--h);
   --bg-surface: 0.25 var(--c) var(--h);
+  --border-base: 0.35 var(--c) var(--h);
 }
 body.set-deck.brightness-L3 {
   --bg-canvas: 0.45 var(--c) var(--h);
   --bg-frame: 0.5 var(--c) var(--h);
   --bg-surface: 0.55 var(--c) var(--h);
+  --text-tertiary: 0.7 0.03 250;
 }
 body.set-deck.brightness-L4 {
-  --bg-canvas: 0.85 var(--c) var(--h);
-  --bg-frame: 0.9 var(--c) var(--h);
-  --bg-surface: 0.95 var(--c) var(--h);
-  --text-primary: 0.15 0.01 230;
-  --text-secondary: 0.45 0.02 230;
-  --text-tertiary: 0.65 0.03 230;
+  --bg-canvas: 0.75 var(--c) var(--h);
+  --bg-frame: 0.8 var(--c) var(--h);
+  --bg-surface: 0.85 var(--c) var(--h);
+  --text-primary: 0.15 0.01 250;
+  --text-secondary: 0.45 0.02 250;
+  --text-tertiary: 0.55 0.03 250;
 }
 body.set-deck.brightness-L5 {
   --bg-canvas: 0.98 var(--c) var(--h);

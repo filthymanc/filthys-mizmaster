@@ -1,12 +1,12 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
-## [2.2.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.1.0...v2.2.0) (2026-03-11)
 
+## [2.2.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.1.0...v2.2.0) (2026-03-11)
 
 ### Features
 
-* implement doctrine-compliant theme system v2.2 with OKLCH ([9665f41](https://github.com/filthymanc/filthys-mizmaster/commit/9665f41103cc7fb2204a737e70ce004cc721926a))
+- implement doctrine-compliant theme system v2.2 with OKLCH ([9665f41](https://github.com/filthymanc/filthys-mizmaster/commit/9665f41103cc7fb2204a737e70ce004cc721926a))
 
 ## [2.1.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.0.3...v2.1.0) (2026-03-10)
 

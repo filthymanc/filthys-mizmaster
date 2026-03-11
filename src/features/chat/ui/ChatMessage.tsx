@@ -30,27 +30,35 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ message }) => {
 
   const getModelBadge = (model?: string, verifiedModel?: string) => {
     if (!model) return null;
-    const isVerified =
-      verifiedModel &&
-      verifiedModel.includes(
-        model.replace("gemini-", "").replace("-preview", ""),
-      );
 
-    if (model.includes("flash")) {
+    // If it's verified, show the checkmark and the model name
+    if (verifiedModel) {
       return (
-        <span className="ml-2 px-1.5 py-0.5 rounded border border-app-brand/30 text-[10px] font-mono text-app-brand font-bold bg-app-brand/10 flex items-center whitespace-nowrap">
-          v3 FLASH {isVerified && "✓"}
+        <span className="ml-2 px-1.5 py-0.5 rounded border border-app-brand/30 text-[10px] font-mono text-app-brand font-bold bg-app-brand/10 flex items-center whitespace-nowrap gap-1">
+          <svg
+            className="w-3 h-3"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2.5}
+              d="M5 13l4 4L19 7"
+            />
+          </svg>
+          {model}
         </span>
       );
     }
-    if (model.includes("pro")) {
-      return (
-        <span className="ml-2 px-1.5 py-0.5 rounded border border-app-status-nav/30 text-[10px] font-mono text-app-status-nav font-bold bg-app-status-nav/10 flex items-center whitespace-nowrap">
-          v3 PRO {isVerified && "✓"}
-        </span>
-      );
-    }
-    return null;
+
+    // Unverified fallback
+    return (
+      <span className="ml-2 px-1.5 py-0.5 rounded border border-app-brand/30 text-[10px] font-mono text-app-brand font-bold bg-app-brand/10 flex items-center whitespace-nowrap">
+        {model}
+      </span>
+    );
   };
 
   const markdownComponents = React.useMemo(

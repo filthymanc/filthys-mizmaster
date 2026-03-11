@@ -203,7 +203,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                               `w-full rounded-lg py-2.5 text-sm font-bold leading-5 ring-white/60 ring-offset-2 ring-offset-app-brand focus:outline-none focus:ring-2
                               ${
                                 selected
-                                  ? "bg-app-surface text-app-brand shadow"
+                                  ? "bg-app-surface text-app-brand ring-1"
                                   : "text-app-tertiary hover:bg-white/[0.05] hover:text-app-secondary"
                               }`
                             }
