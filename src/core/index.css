@@ -29,110 +29,223 @@
   }
 
   /* 
-   * THEME ENGINE V2 (Doctrine Compliant)
+   * THEME ENGINE V2.2 (Doctrine Compliant)
    * Using OKLCH for perceptual uniformity and semantic role mapping.
+   * Format: L C H
    */
   :root {
-    /* Semantic Status Roles (Default: Emerald/Vivid) */
-    --color-status-ready: 16 185 129;
-    --color-status-nav: 34 211 238;
-    --color-status-warning: 251 191 36;
-    --color-status-critical: 251 113 133;
-    --color-status-intel: 167 139 250;
-    --color-status-elite: 250 204 21;
-    --color-status-stealth: 148 163 184;
+    /* Semantic Status Roles (OKLCH Targets) */
+    --color-status-ready: 0.7 0.18 160; /* Emerald */
+    --color-status-nav: 0.75 0.15 210; /* Cyan */
+    --color-status-warning: 0.8 0.15 70; /* Amber */
+    --color-status-critical: 0.65 0.2 20; /* Rose */
+    --color-status-intel: 0.6 0.18 290; /* Violet */
+    --color-status-elite: 0.85 0.15 90; /* Gold */
+    --color-status-stealth: 0.65 0.05 250; /* Slate */
 
-    /* Base Mapping (V1 Compatibility) */
-    --bg-canvas: 1 4 9;
-    --bg-frame: 13 17 23;
-    --bg-surface: 22 27 34;
-    --bg-overlay: 22 27 34;
-    --text-primary: 248 250 252;
-    --text-secondary: 148 163 184;
-    --text-tertiary: 71 85 105;
-    --border-base: 30 41 59;
-    --border-highlight: 51 65 85;
+    /* Default Base Variables (Dark Mode Baseline) */
+    --text-primary: 0.98 0.01 250;
+    --text-secondary: 0.75 0.02 250;
+    --text-tertiary: 0.45 0.03 250;
+    --border-base: 0.25 0.02 250;
+    --border-highlight: 0.35 0.03 250;
     --color-brand: var(--color-status-ready);
   }
 }
 
-/* --- THEME SETS & BRIGHTNESS LEVELS --- */
-
-/* 
-  Mapping Logic:
-  --bg-canvas: OKLCH(L 0.02 H)
-  --bg-frame:  OKLCH(L+0.05 H)
-  --bg-surface: OKLCH(L+0.10 H)
-*/
+/* --- THEME MATRIX (5x5) --- */
 
 /* SET: MONOCHROME (H=0, C=0) */
+body.set-mono {
+  --h: 0;
+  --c: 0;
+}
 body.set-mono.brightness-L1 {
-  --bg-canvas: 0 0 0;
-  --bg-frame: 15 15 15;
-  --bg-surface: 25 25 25;
+  --bg-canvas: 0.05 var(--c) var(--h);
+  --bg-frame: 0.1 var(--c) var(--h);
+  --bg-surface: 0.15 var(--c) var(--h);
 }
 body.set-mono.brightness-L2 {
-  --bg-canvas: 15 15 15;
-  --bg-frame: 30 30 30;
-  --bg-surface: 45 45 45;
+  --bg-canvas: 0.15 var(--c) var(--h);
+  --bg-frame: 0.2 var(--c) var(--h);
+  --bg-surface: 0.25 var(--c) var(--h);
 }
 body.set-mono.brightness-L3 {
-  --bg-canvas: 45 45 45;
-  --bg-frame: 60 60 60;
-  --bg-surface: 75 75 75;
+  --bg-canvas: 0.45 var(--c) var(--h);
+  --bg-frame: 0.5 var(--c) var(--h);
+  --bg-surface: 0.55 var(--c) var(--h);
 }
 body.set-mono.brightness-L4 {
-  --bg-canvas: 220 220 220;
-  --bg-frame: 240 240 240;
-  --bg-surface: 255 255 255;
-  --text-primary: 15 23 42;
-  --text-secondary: 71 85 105;
+  --bg-canvas: 0.85 var(--c) var(--h);
+  --bg-frame: 0.9 var(--c) var(--h);
+  --bg-surface: 0.95 var(--c) var(--h);
+  --text-primary: 0.15 0.01 250;
+  --text-secondary: 0.45 0.02 250;
+  --text-tertiary: 0.65 0.03 250;
 }
 body.set-mono.brightness-L5 {
-  --bg-canvas: 240 240 240;
-  --bg-frame: 255 255 255;
-  --bg-surface: 248 250 252;
-  --text-primary: 15 23 42;
-  --text-secondary: 71 85 105;
+  --bg-canvas: 0.98 var(--c) var(--h);
+  --bg-frame: 1 var(--c) var(--h);
+  --bg-surface: 0.96 var(--c) var(--h);
+  --text-primary: 0.15 0.01 250;
+  --text-secondary: 0.45 0.02 250;
+  --text-tertiary: 0.65 0.03 250;
 }
 
-/* SET: FOREST (H=145, C=0.02) */
+/* SET: SUBTLE (H=215, C=0.03) */
+body.set-soft {
+  --h: 215;
+  --c: 0.03;
+}
+body.set-soft.brightness-L1 {
+  --bg-canvas: 0.05 var(--c) var(--h);
+  --bg-frame: 0.1 var(--c) var(--h);
+  --bg-surface: 0.15 var(--c) var(--h);
+}
+body.set-soft.brightness-L2 {
+  --bg-canvas: 0.15 var(--c) var(--h);
+  --bg-frame: 0.2 var(--c) var(--h);
+  --bg-surface: 0.25 var(--c) var(--h);
+}
+body.set-soft.brightness-L3 {
+  --bg-canvas: 0.45 var(--c) var(--h);
+  --bg-frame: 0.5 var(--c) var(--h);
+  --bg-surface: 0.55 var(--c) var(--h);
+}
+body.set-soft.brightness-L4 {
+  --bg-canvas: 0.85 var(--c) var(--h);
+  --bg-frame: 0.9 var(--c) var(--h);
+  --bg-surface: 0.95 var(--c) var(--h);
+  --text-primary: 0.15 0.01 215;
+  --text-secondary: 0.45 0.02 215;
+  --text-tertiary: 0.65 0.03 215;
+}
+body.set-soft.brightness-L5 {
+  --bg-canvas: 0.98 var(--c) var(--h);
+  --bg-frame: 1 var(--c) var(--h);
+  --bg-surface: 0.96 var(--c) var(--h);
+  --text-primary: 0.15 0.01 215;
+  --text-secondary: 0.45 0.02 215;
+  --text-tertiary: 0.65 0.03 215;
+}
+
+/* SET: FOREST (H=145, C=0.05) */
+body.set-nvg {
+  --h: 145;
+  --c: 0.05;
+}
 body.set-nvg.brightness-L1 {
-  --bg-canvas: 5 8 5;
-  --bg-frame: 15 22 15;
-  --bg-surface: 25 35 25;
+  --bg-canvas: 0.05 var(--c) var(--h);
+  --bg-frame: 0.1 var(--c) var(--h);
+  --bg-surface: 0.15 var(--c) var(--h);
 }
 body.set-nvg.brightness-L2 {
-  --bg-canvas: 20 30 20;
-  --bg-frame: 35 45 35;
-  --bg-surface: 50 60 50;
+  --bg-canvas: 0.15 var(--c) var(--h);
+  --bg-frame: 0.2 var(--c) var(--h);
+  --bg-surface: 0.25 var(--c) var(--h);
+}
+body.set-nvg.brightness-L3 {
+  --bg-canvas: 0.45 var(--c) var(--h);
+  --bg-frame: 0.5 var(--c) var(--h);
+  --bg-surface: 0.55 var(--c) var(--h);
+}
+body.set-nvg.brightness-L4 {
+  --bg-canvas: 0.85 var(--c) var(--h);
+  --bg-frame: 0.9 var(--c) var(--h);
+  --bg-surface: 0.95 var(--c) var(--h);
+  --text-primary: 0.15 0.01 145;
+  --text-secondary: 0.45 0.02 145;
+  --text-tertiary: 0.65 0.03 145;
+}
+body.set-nvg.brightness-L5 {
+  --bg-canvas: 0.98 var(--c) var(--h);
+  --bg-frame: 1 var(--c) var(--h);
+  --bg-surface: 0.96 var(--c) var(--h);
+  --text-primary: 0.15 0.01 145;
+  --text-secondary: 0.45 0.02 145;
+  --text-tertiary: 0.65 0.03 145;
 }
 
-/* SET: DESERT (H=40, C=0.02) */
+/* SET: DESERT (H=40, C=0.05) */
+body.set-coyote {
+  --h: 40;
+  --c: 0.05;
+}
 body.set-coyote.brightness-L1 {
-  --bg-canvas: 10 8 5;
-  --bg-frame: 25 20 15;
-  --bg-surface: 40 35 30;
+  --bg-canvas: 0.05 var(--c) var(--h);
+  --bg-frame: 0.1 var(--c) var(--h);
+  --bg-surface: 0.15 var(--c) var(--h);
 }
 body.set-coyote.brightness-L2 {
-  --bg-canvas: 40 35 30;
-  --bg-frame: 60 55 50;
-  --bg-surface: 80 75 70;
+  --bg-canvas: 0.15 var(--c) var(--h);
+  --bg-frame: 0.2 var(--c) var(--h);
+  --bg-surface: 0.25 var(--c) var(--h);
+}
+body.set-coyote.brightness-L3 {
+  --bg-canvas: 0.45 var(--c) var(--h);
+  --bg-frame: 0.5 var(--c) var(--h);
+  --bg-surface: 0.55 var(--c) var(--h);
+}
+body.set-coyote.brightness-L4 {
+  --bg-canvas: 0.85 var(--c) var(--h);
+  --bg-frame: 0.9 var(--c) var(--h);
+  --bg-surface: 0.95 var(--c) var(--h);
+  --text-primary: 0.15 0.01 40;
+  --text-secondary: 0.45 0.02 40;
+  --text-tertiary: 0.65 0.03 40;
+}
+body.set-coyote.brightness-L5 {
+  --bg-canvas: 0.98 var(--c) var(--h);
+  --bg-frame: 1 var(--c) var(--h);
+  --bg-surface: 0.96 var(--c) var(--h);
+  --text-primary: 0.15 0.01 40;
+  --text-secondary: 0.45 0.02 40;
+  --text-tertiary: 0.65 0.03 40;
 }
 
-/* SET: NAVAL (H=220, C=0.03) */
+/* SET: NAVAL (H=230, C=0.06) */
+body.set-deck {
+  --h: 230;
+  --c: 0.06;
+}
 body.set-deck.brightness-L1 {
-  --bg-canvas: 5 8 15;
-  --bg-frame: 15 20 35;
-  --bg-surface: 25 30 55;
+  --bg-canvas: 0.05 var(--c) var(--h);
+  --bg-frame: 0.1 var(--c) var(--h);
+  --bg-surface: 0.15 var(--c) var(--h);
 }
 body.set-deck.brightness-L2 {
-  --bg-canvas: 20 30 45;
-  --bg-frame: 40 50 65;
-  --bg-surface: 60 70 85;
+  --bg-canvas: 0.15 var(--c) var(--h);
+  --bg-frame: 0.2 var(--c) var(--h);
+  --bg-surface: 0.25 var(--c) var(--h);
+}
+body.set-deck.brightness-L3 {
+  --bg-canvas: 0.45 var(--c) var(--h);
+  --bg-frame: 0.5 var(--c) var(--h);
+  --bg-surface: 0.55 var(--c) var(--h);
+}
+body.set-deck.brightness-L4 {
+  --bg-canvas: 0.85 var(--c) var(--h);
+  --bg-frame: 0.9 var(--c) var(--h);
+  --bg-surface: 0.95 var(--c) var(--h);
+  --text-primary: 0.15 0.01 230;
+  --text-secondary: 0.45 0.02 230;
+  --text-tertiary: 0.65 0.03 230;
+}
+body.set-deck.brightness-L5 {
+  --bg-canvas: 0.98 var(--c) var(--h);
+  --bg-frame: 1 var(--c) var(--h);
+  --bg-surface: 0.96 var(--c) var(--h);
+  --text-primary: 0.15 0.01 230;
+  --text-secondary: 0.45 0.02 230;
+  --text-tertiary: 0.65 0.03 230;
 }
 
-/* --- ACCENT ROLES (V2) --- */
+/* Map bg-overlay to surface by default */
+body {
+  --bg-overlay: var(--bg-surface);
+}
+
+/* --- ACCENT ROLES --- */
 
 body.accent-role-ready {
   --color-brand: var(--color-status-ready);
@@ -182,10 +295,10 @@ body.mode-paper {
     background: transparent;
   }
   .custom-scrollbar::-webkit-scrollbar-thumb {
-    background-color: rgb(var(--border-base));
+    background-color: oklch(var(--border-base));
     border-radius: 3px;
   }
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background-color: rgb(var(--border-highlight));
+    background-color: oklch(var(--border-highlight));
   }
 }

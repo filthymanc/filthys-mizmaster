@@ -48,7 +48,7 @@ const SyntaxHighlighter: React.FC<SyntaxHighlighterProps> = ({
         /* Token Colors - Theme Aware */
         code[class*="language-"],
         pre[class*="language-"] {
-          color: rgb(var(--text-primary));
+          color: oklch(var(--text-primary));
           text-shadow: none;
           font-family: "JetBrains Mono", monospace;
           direction: ltr;
@@ -66,13 +66,13 @@ const SyntaxHighlighter: React.FC<SyntaxHighlighterProps> = ({
         .token.prolog,
         .token.doctype,
         .token.cdata {
-          color: rgb(var(--text-tertiary));
+          color: oklch(var(--text-tertiary));
           font-style: italic;
         }
 
         /* Punctuation - Muted via Secondary Text Variable */
         .token.punctuation {
-          color: rgb(var(--text-secondary));
+          color: oklch(var(--text-secondary));
         }
 
         /* Properties / Attributes */
@@ -83,7 +83,7 @@ const SyntaxHighlighter: React.FC<SyntaxHighlighterProps> = ({
         .token.constant,
         .token.symbol,
         .token.deleted {
-          color: rgb(var(--color-status-critical)); /* critical - Remains vibrant */
+          color: oklch(var(--color-status-critical)); /* critical - Remains vibrant */
         }
 
         /* Selectors / Strings */
@@ -93,7 +93,7 @@ const SyntaxHighlighter: React.FC<SyntaxHighlighterProps> = ({
         .token.char,
         .token.builtin,
         .token.inserted {
-          color: rgb(var(--color-status-ready)); /* ready - Matches default Brand */
+          color: oklch(var(--color-status-ready)); /* ready - Matches default Brand */
         }
 
         /* Operators / Variables */
@@ -102,25 +102,25 @@ const SyntaxHighlighter: React.FC<SyntaxHighlighterProps> = ({
         .token.url,
         .language-css .token.string,
         .style .token.string {
-          color: rgb(var(--color-status-intel)); /* intel */
+          color: oklch(var(--color-status-intel)); /* intel */
         }
 
         /* Functions / Keywords */
         .token.atrule,
         .token.attr-value,
         .token.keyword {
-          color: rgb(var(--color-status-nav)); /* nav */
+          color: oklch(var(--color-status-nav)); /* nav */
         }
         
         .token.function,
         .token.class-name {
-          color: rgb(var(--color-status-elite)); /* elite */
+          color: oklch(var(--color-status-elite)); /* elite */
         }
 
         .token.regex,
         .token.important,
         .token.variable {
-          color: rgb(var(--color-status-warning)); /* warning */
+          color: oklch(var(--color-status-warning)); /* warning */
         }
       `}</style>
     </div>
