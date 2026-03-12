@@ -1,1 +1,1 @@
-npm run lint && cp GEMINI.md docs/GEMI_BKUP.md
+npm run lint && cp ../GEMINI.md ../mizmaster-shadow/GEMI_BKUP.md
