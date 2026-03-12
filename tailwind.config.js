@@ -9,6 +9,9 @@ export default {
     {
       pattern: /^(mode|accent)-.+/,
     },
+    {
+      pattern: /^(text|bg|border)-app-status-.+/,
+    },
   ],
   theme: {
     extend: {
@@ -34,8 +37,8 @@ export default {
           status: {
             ready: "oklch(var(--color-status-ready) / <alpha-value>)",
             nav: "oklch(var(--color-status-nav) / <alpha-value>)",
-            alert: "oklch(var(--color-status-warning) / <alpha-value>)",
-            danger: "oklch(var(--color-status-critical) / <alpha-value>)",
+            alert: "oklch(var(--color-status-alert) / <alpha-value>)",
+            danger: "oklch(var(--color-status-danger) / <alpha-value>)",
             intel: "oklch(var(--color-status-intel) / <alpha-value>)",
             elite: "oklch(var(--color-status-elite) / <alpha-value>)",
             stealth: "oklch(var(--color-status-stealth) / <alpha-value>)",

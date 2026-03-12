@@ -143,7 +143,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
             ${
               isDesanitized
                 ? "border-app-status-danger/50 ring-1 ring-app-status-danger/20 shadow-app-status-danger/10"
-                : "border-app-border focus-within:ring-1 focus-within:ring-app-brand focus-within:border-app-brand shadow-black/40"
+                : "border-app-border focus-within:ring-1 focus-within:ring-app-brand focus-within:border-app-brand shadow-app-overlay/40"
             }
         `}
       >
@@ -177,7 +177,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
               id="chat-input-stop"
               data-testid="chat-input-stop"
               onClick={onStop}
-              className="p-3 lg:p-2.5 bg-app-status-danger/10 text-app-status-danger rounded-xl hover:bg-app-status-danger hover:text-white transition-all active:scale-[0.95]"
+              className="p-3 lg:p-2.5 bg-app-status-danger/10 text-app-status-danger rounded-xl hover:bg-app-status-danger hover:text-app-canvas transition-all active:scale-[0.95]"
               title="Stop Generation"
             >
               <div className="w-5 h-5 lg:w-4 lg:h-4 rounded-sm bg-current" />
@@ -192,7 +192,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
                 p-3 lg:p-2.5 rounded-xl transition-all shadow-lg active:scale-[0.95]
                 ${
                   input.trim()
-                    ? "bg-app-brand text-white shadow-app-brand/20 hover:bg-opacity-90"
+                    ? "bg-app-brand text-app-canvas shadow-app-brand/20 hover:bg-opacity-90"
                     : "bg-app-highlight text-app-tertiary cursor-not-allowed shadow-none"
                 }
               `}

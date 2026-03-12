@@ -89,7 +89,7 @@ const Dashboard: React.FC<DashboardProps> = ({
   return (
     <div className="flex-1 flex flex-col gap-6 max-w-5xl mx-auto py-4 md:py-8 animate-fadeIn select-none">
       {/* 0. BANNER */}
-      <div className="w-full h-40 md:h-48 rounded-2xl overflow-hidden border border-app-border bg-black relative mb-2 shadow-lg">
+      <div className="w-full h-40 md:h-48 rounded-2xl overflow-hidden border border-app-border bg-app-canvas relative mb-2 shadow-lg">
         <video
           src="filthysMizMaster.mp4"
           autoPlay
@@ -111,7 +111,7 @@ const Dashboard: React.FC<DashboardProps> = ({
             Awaiting objective definition. Systems online.
           </p>
         </div>
-        <div className="text-[10px] font-mono text-app-tertiary uppercase tracking-tighter">
+        <div className="text-[10px] font-mono text-app-tertiary uppercase tracking-tighter text-app-tertiary">
           v{settings.availableModels.length > 0 ? APP_VERSION : "LINKING..."}
         </div>
       </div>
@@ -142,7 +142,7 @@ const Dashboard: React.FC<DashboardProps> = ({
             </svg>
           </div>
           <div>
-            <h3 className="text-[10px] font-bold opacity-70 uppercase tracking-widest">
+            <h3 className="text-[10px] font-bold opacity-70 uppercase tracking-widest text-app-primary">
               Connection
             </h3>
             <p
@@ -215,7 +215,7 @@ const Dashboard: React.FC<DashboardProps> = ({
         {/* LEFT COLUMN: Actions & Suggestions */}
         <div className="lg:col-span-2 flex flex-col gap-6">
           {/* Command Deck */}
-          <div className="bg-app-surface/50 border border-app-border rounded-xl p-5 md:p-6 shadow-sm">
+          <div className="bg-app-surface border border-app-border rounded-xl p-5 md:p-6 shadow-sm">
             <h2 className="text-xs font-bold text-app-secondary uppercase tracking-widest mb-4 flex items-center gap-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -242,7 +242,7 @@ const Dashboard: React.FC<DashboardProps> = ({
                 aria-label="Create New Mission"
               >
                 <div className="flex items-center gap-3 mb-2">
-                  <div className="p-2 bg-app-brand/10 rounded-lg text-app-brand group-hover:bg-app-brand group-hover:text-white transition-colors">
+                  <div className="p-2 bg-app-brand/10 rounded-lg text-app-brand group-hover:bg-app-brand group-hover:text-app-canvas transition-colors">
                     <PlusIcon className="h-5 w-5" />
                   </div>
                   <span className="font-bold text-app-primary uppercase tracking-wide">
@@ -262,7 +262,7 @@ const Dashboard: React.FC<DashboardProps> = ({
                 aria-label="Import Backup File"
               >
                 <div className="flex items-center gap-3 mb-2">
-                  <div className="p-2 bg-app-status-intel/10 rounded-lg text-app-status-intel group-hover:bg-app-status-intel group-hover:text-white transition-colors">
+                  <div className="p-2 bg-app-status-intel/10 rounded-lg text-app-status-intel group-hover:bg-app-status-intel group-hover:text-app-canvas transition-colors">
                     <UploadIcon className="h-5 w-5" />
                   </div>
                   <span className="font-bold text-app-primary uppercase tracking-wide">
@@ -277,7 +277,7 @@ const Dashboard: React.FC<DashboardProps> = ({
           </div>
 
           {/* Suggested Parameters */}
-          <div className="bg-app-surface/50 border border-app-border rounded-xl p-5 md:p-6 shadow-sm">
+          <div className="bg-app-surface border border-app-border rounded-xl p-5 md:p-6 shadow-sm">
             <h2 className="text-xs font-bold text-app-secondary uppercase tracking-widest mb-4 flex items-center gap-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -331,7 +331,7 @@ const Dashboard: React.FC<DashboardProps> = ({
         {/* RIGHT COLUMN: Librarian & History */}
         <div className="lg:col-span-1 flex flex-col gap-6">
           {/* GitHub Token (Librarian) */}
-          <div className="bg-app-surface/50 border border-app-border rounded-xl p-5 md:p-6 shadow-sm">
+          <div className="bg-app-surface border border-app-border rounded-xl p-5 md:p-6 shadow-sm">
             <h2 className="text-xs font-bold text-app-secondary uppercase tracking-widest mb-4 flex items-center gap-2">
               <GithubIcon className="h-4 w-4 text-app-secondary" />
               Librarian Link
@@ -363,8 +363,8 @@ const Dashboard: React.FC<DashboardProps> = ({
           </div>
 
           {/* Discord Community */}
-          <div className="bg-[#5865F2]/15 border border-[#5865F2]/25 rounded-xl p-5 md:p-6 shadow-sm">
-            <h2 className="text-xs font-bold text-[#5865F2] uppercase tracking-widest mb-4 flex items-center gap-2">
+          <div className="bg-app-status-nav/15 border border-app-status-nav/25 rounded-xl p-5 md:p-6 shadow-sm">
+            <h2 className="text-xs font-bold text-app-status-nav uppercase tracking-widest mb-4 flex items-center gap-2">
               <DiscordIcon className="h-4 w-4" />
               Community Hub
             </h2>
@@ -380,7 +380,7 @@ const Dashboard: React.FC<DashboardProps> = ({
                 href={DISCORD_LINKS.COMMUNITY}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-2 bg-[#5865F2] hover:bg-[#4752C4] text-white rounded text-xs font-bold transition-colors flex items-center justify-center gap-2 shadow-lg shadow-[#5865F2]/20"
+                className="w-full py-2 bg-app-status-nav hover:bg-opacity-90 text-app-canvas rounded text-xs font-bold transition-colors flex items-center justify-center gap-2 shadow-lg shadow-app-status-nav/20"
               >
                 JOIN THE DISCORD
               </a>
@@ -388,7 +388,7 @@ const Dashboard: React.FC<DashboardProps> = ({
           </div>
 
           {/* Recent Files */}
-          <div className="bg-app-surface/50 border border-app-border rounded-xl p-5 md:p-6 shadow-sm flex-1 flex flex-col">
+          <div className="bg-app-surface border border-app-border rounded-xl p-5 md:p-6 shadow-sm flex-1 flex flex-col">
             <h2 className="text-xs font-bold text-app-secondary uppercase tracking-widest mb-4 flex items-center gap-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -400,7 +400,7 @@ const Dashboard: React.FC<DashboardProps> = ({
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  strokeWidth={2}
+                  strokeWidth={1.5}
                   d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                 />
               </svg>

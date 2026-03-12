@@ -85,7 +85,7 @@ const SidebarSessionItem: React.FC<SidebarSessionItemProps> = ({
         ${
           isActive
             ? "bg-app-surface border-app-border shadow-sm"
-            : "bg-transparent border-transparent hover:bg-app-canvas hover:border-app-border text-app-secondary hover:text-app-primary"
+            : "border-transparent hover:bg-app-canvas hover:border-app-border text-app-secondary hover:text-app-primary"
         }
         mb-1.5
       `}
@@ -134,7 +134,7 @@ const SidebarSessionItem: React.FC<SidebarSessionItemProps> = ({
                   e.stopPropagation();
                   onConfirmDelete(session.id);
                 }}
-                className="p-3 bg-app-status-danger/20 text-app-status-danger hover:bg-app-status-danger hover:text-white rounded-lg transition-colors"
+                className="p-3 bg-app-status-danger/20 text-app-status-danger hover:bg-app-status-danger hover:text-app-canvas rounded-lg transition-colors"
                 title="Confirm Delete"
                 aria-label="Confirm Delete"
               >

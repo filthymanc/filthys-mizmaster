@@ -44,17 +44,17 @@ export const MANUAL_CONTENT = {
           items: [
             {
               label: "NEW MISSION",
-              color: "emerald",
+              color: "elite",
               text: "Starts a fresh session context. Use this when moving to a new task to ensure the AI remains focused on the specific logic at hand.",
             },
             {
               label: "IMPORT / EXPORT",
-              color: "purple",
+              color: "elite",
               text: "Found in System Settings. Enables you to back up your database to a JSON file, making it easy to transfer your design sessions between your PC and tablet.",
             },
             {
               label: "SYSTEM SETTINGS",
-              color: "pink",
+              color: "elite",
               text: "Access via the gear icon in the sidebar (or Ctrl+,). Configure your AI engine, UI theme, GitHub integration, and data management options.",
             },
           ],
@@ -64,12 +64,12 @@ export const MANUAL_CONTENT = {
           items: [
             {
               label: "ELLIPSIS MENU",
-              color: "emerald",
+              color: "alert",
               text: "Found in the top right of the workspace. Provides context-specific actions such as clearing the chat history or deleting the current mission.",
             },
             {
               label: "SAFE / UNSAFE",
-              color: "red",
+              color: "alert",
               text: 'Found in System Settings. Toggles the "Hard Deck". In Safe mode, the AI avoids generating code that interacts with your operating system. Unsafe mode allows for advanced scripting requiring desanitised DCS environments.',
             },
           ],
@@ -79,17 +79,17 @@ export const MANUAL_CONTENT = {
           items: [
             {
               label: "THE ARMORY",
-              color: "amber",
+              color: "nav",
               text: 'A persistent snippet library. Save useful code blocks from the chat stream by clicking the "Star" icon on any code block. Access your saved snippets via the Armory button in the sidebar footer.',
             },
             {
               label: "FIELD MODE",
-              color: "cyan",
+              color: "nav",
               text: 'Click the "Expand" icon on any code block to view it in full-screen mode. This is optimised for reading complex scripts on tablets or secondary monitors.',
             },
             {
               label: "SEARCH",
-              color: "blue",
+              color: "nav",
               text: "Use the search bar at the top of the mission list to quickly filter your sessions by name or date.",
             },
           ],

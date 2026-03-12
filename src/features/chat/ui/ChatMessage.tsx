@@ -190,7 +190,7 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ message }) => {
       className={`flex w-full mb-6 ${isModel ? "justify-start" : "justify-end"}`}
     >
       <div
-        className={`max-w-[95%] md:max-w-[85%] lg:max-w-[85%] rounded-2xl p-4 lg:p-5 shadow-lg select-text transition-colors duration-300 ${isModel ? "bg-app-surface border border-app-border text-app-primary" : "bg-app-brand text-white rounded-br-sm"}`}
+        className={`max-w-[95%] md:max-w-[85%] lg:max-w-[85%] rounded-2xl p-4 lg:p-5 shadow-lg select-text transition-colors duration-300 ${isModel ? "bg-app-surface border border-app-border text-app-primary" : "bg-app-brand text-app-canvas rounded-br-sm"}`}
       >
         <div className="flex flex-wrap items-center gap-2 mb-3 opacity-50 text-xs font-bold tracking-wider uppercase select-none">
           {isModel ? (

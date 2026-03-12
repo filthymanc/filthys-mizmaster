@@ -336,7 +336,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
       </div>
 
       {/* Code Body */}
-      <div className="flex-1 min-h-0 overflow-auto custom-scrollbar bg-black/20">
+      <div className="flex-1 min-h-0 overflow-auto custom-scrollbar bg-app-canvas/40">
         <SyntaxHighlighter
           code={codeText}
           language={language}
@@ -380,7 +380,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
                 data-testid="chat-code-save-confirm"
                 onClick={confirmSave}
                 disabled={!saveTitle.trim()}
-                className="px-3 py-1.5 bg-app-brand text-white text-xs font-bold rounded hover:bg-opacity-90 transition-colors disabled:opacity-50"
+                className="px-3 py-1.5 bg-app-brand text-app-canvas text-xs font-bold rounded hover:bg-opacity-90 transition-colors disabled:opacity-50"
               >
                 CONFIRM SAVE
               </button>

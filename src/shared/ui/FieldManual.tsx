@@ -9,7 +9,7 @@
  * You should have received a copy of the GNU General Public License along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React, { useState, Fragment } from "react";
+import React, { useState, Fragment, useEffect } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import {
   GithubIcon,
@@ -84,8 +84,8 @@ const FieldManual: React.FC<FieldManualProps> = ({
 }) => {
   const [activeTab, setActiveTab] = useState<TabId>(initialTab);
 
-  // Sync state if initialTab changes while open (optional, but good for deep linking)
-  React.useEffect(() => {
+  // Sync state if initialTab changes while open
+  useEffect(() => {
     if (isOpen) {
       setActiveTab(initialTab);
     }
@@ -95,21 +95,21 @@ const FieldManual: React.FC<FieldManualProps> = ({
     return (
       <div className="flex h-full w-full bg-app-canvas overflow-hidden flex-col">
         <div className="p-4 border-b border-app-border bg-app-surface flex items-center justify-between shrink-0">
-          <h2 className="text-sm font-bold tracking-widest uppercase">
+          <h2 className="text-sm font-bold tracking-widest uppercase text-app-primary">
             Field Manual
           </h2>
           <button
             id="shared-manual-close-inline"
             data-testid="shared-manual-close-inline"
             onClick={onClose}
-            className="p-2 hover:bg-app-canvas rounded"
+            className="p-2 hover:bg-app-canvas rounded text-app-tertiary transition-colors"
           >
             <XIcon className="h-4 w-4" />
           </button>
         </div>
         <div className="flex-1 overflow-y-auto p-8 custom-scrollbar relative flex flex-col items-center justify-center opacity-50 space-y-4">
           <svg
-            className="h-12 w-12 mx-auto"
+            className="h-12 w-12 mx-auto text-app-tertiary"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -121,7 +121,7 @@ const FieldManual: React.FC<FieldManualProps> = ({
               d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
             />
           </svg>
-          <p className="font-mono text-xs uppercase tracking-widest text-center">
+          <p className="font-mono text-xs uppercase tracking-widest text-center text-app-tertiary">
             Manual Opened in Desktop Mode
           </p>
         </div>
@@ -250,7 +250,7 @@ const FieldManual: React.FC<FieldManualProps> = ({
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 bg-black/80 backdrop-blur-md" />
+          <div className="fixed inset-0 bg-app-canvas/80 backdrop-blur-md" />
         </Transition.Child>
 
         <div className="fixed inset-0 overflow-hidden flex items-center justify-center p-0 md:p-6">
@@ -287,7 +287,7 @@ const FieldManual: React.FC<FieldManualProps> = ({
                       onClick={() => setActiveTab(tab.id)}
                       className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold transition-all focus:outline-none focus:ring-2 focus:ring-app-brand ${
                         activeTab === tab.id
-                          ? "bg-app-brand text-white shadow-lg shadow-app-brand/20"
+                          ? "bg-app-brand text-app-canvas shadow-lg shadow-app-brand/20"
                           : "text-app-secondary hover:text-app-primary hover:bg-app-canvas"
                       }`}
                     >
@@ -355,7 +355,7 @@ const FieldManual: React.FC<FieldManualProps> = ({
                       onClick={() => setActiveTab(tab.id)}
                       className={`flex flex-col items-center justify-center shrink-0 min-w-[72px] p-2 rounded-xl transition-all focus:outline-none focus:ring-2 focus:ring-app-brand ${
                         activeTab === tab.id
-                          ? "bg-app-brand text-white shadow-md shadow-app-brand/20"
+                          ? "bg-app-brand text-app-canvas shadow-md shadow-app-brand/20"
                           : "bg-app-canvas text-app-secondary border border-app-border hover:text-app-primary"
                       }`}
                     >
@@ -377,9 +377,9 @@ const FieldManual: React.FC<FieldManualProps> = ({
               </div>
 
               {/* --- CONTENT AREA --- */}
-              <div className="flex-1 overflow-y-auto bg-app-frame p-4 md:p-10 custom-scrollbar scroll-smooth relative">
+              <div className="flex-1 overflow-y-auto bg-app-frame p-4 md:p-10 custom-scrollbar scroll-smooth relative text-app-primary">
                 <div className="max-w-3xl mx-auto pb-12">
-                  {/* --- TAB: BRIEFING (Brand Color) --- */}
+                  {/* --- TAB: BRIEFING --- */}
                   {activeTab === "briefing" && (
                     <div className="space-y-8 animate-fadeIn">
                       <div>
@@ -451,7 +451,7 @@ const FieldManual: React.FC<FieldManualProps> = ({
                     </div>
                   )}
 
-                  {/* --- TAB: SYSTEMS (Blue) --- */}
+                  {/* --- TAB: SYSTEMS --- */}
                   {activeTab === "systems" && (
                     <div className="space-y-8 animate-fadeIn">
                       <div>
@@ -475,20 +475,36 @@ const FieldManual: React.FC<FieldManualProps> = ({
                                 <div className="divide-y divide-app-border/50">
                                   {section.items.map((item, i) => {
                                     const roleMap: Record<string, string> = {
-                                      emerald: "ready",
-                                      amber: "alert",
+                                      ready: "ready",
+                                      nav: "nav",
+                                      alert: "alert",
+                                      danger: "danger",
+                                      intel: "intel",
+                                      elite: "elite",
+                                      stealth: "stealth",
+                                      // Common alias fallbacks
+                                      green: "ready",
                                       blue: "nav",
-                                      rose: "danger",
-                                      violet: "intel",
+                                      cyan: "nav",
+                                      yellow: "alert",
+                                      amber: "alert",
+                                      red: "danger",
+                                      purple: "intel",
                                     };
-                                    const role = roleMap[item.color] || "ready";
+                                    const role = item.color
+                                      ? roleMap[item.color] || "stealth"
+                                      : "";
                                     return (
                                       <div
                                         key={i}
                                         className="p-4 flex flex-col sm:flex-row gap-2 sm:gap-4"
                                       >
                                         <span
-                                          className={`font-mono text-xs w-28 sm:w-24 shrink-0 font-bold px-2 py-1 rounded text-center h-fit border border-app-status-${role}/30 text-app-status-${role} bg-app-status-${role}/10`}
+                                          className={`font-mono text-xs w-28 sm:w-24 shrink-0 font-bold px-2 py-1 rounded text-center h-fit border ${
+                                            role
+                                              ? `border-app-status-${role}/30 text-app-status-${role} bg-app-status-${role}/10`
+                                              : "border-app-border text-app-secondary bg-app-surface/50"
+                                          }`}
                                         >
                                           {item.label}
                                         </span>
@@ -546,7 +562,7 @@ const FieldManual: React.FC<FieldManualProps> = ({
                     </div>
                   )}
 
-                  {/* --- TAB: CONTROLS (Yellow/Purple) --- */}
+                  {/* --- TAB: CONTROLS --- */}
                   {activeTab === "controls" && (
                     <div className="animate-fadeIn">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
@@ -642,7 +658,7 @@ const FieldManual: React.FC<FieldManualProps> = ({
                     </div>
                   )}
 
-                  {/* --- TAB: COMMS (Tactics) (Purple) --- */}
+                  {/* --- TAB: TACTICS --- */}
                   {activeTab === "tactics" && (
                     <div className="space-y-10 animate-fadeIn">
                       <div>
@@ -653,10 +669,18 @@ const FieldManual: React.FC<FieldManualProps> = ({
                           {content.tactics.prompt.cards.map((card, idx) => (
                             <div
                               key={idx}
-                              className={`p-5 bg-app-canvas border border-app-border rounded-xl border-l-4 shadow-sm ${card.type === "trap" ? "border-l-app-status-danger" : "border-l-app-brand"}`}
+                              className={`p-5 bg-app-canvas border border-app-border rounded-xl border-l-4 shadow-sm ${
+                                card.type === "trap"
+                                  ? "border-l-app-status-danger"
+                                  : "border-l-app-brand"
+                              }`}
                             >
                               <strong
-                                className={`${card.type === "trap" ? "text-app-status-danger" : "text-app-brand"} text-xs uppercase tracking-wider block mb-2`}
+                                className={`${
+                                  card.type === "trap"
+                                    ? "text-app-status-danger"
+                                    : "text-app-brand"
+                                } text-xs uppercase tracking-wider block mb-2`}
                               >
                                 {card.title}
                               </strong>
@@ -711,7 +735,7 @@ const FieldManual: React.FC<FieldManualProps> = ({
                     </div>
                   )}
 
-                  {/* --- TAB: DEV (Slate) --- */}
+                  {/* --- TAB: DEVELOPER --- */}
                   {activeTab === "developer" && (
                     <div className="space-y-10 animate-fadeIn">
                       <div className="p-6 bg-app-canvas rounded-xl border border-app-border shadow-sm">
@@ -791,7 +815,7 @@ const FieldManual: React.FC<FieldManualProps> = ({
                     </div>
                   )}
 
-                  {/* --- TAB: RESOURCES (Orange) --- */}
+                  {/* --- TAB: INTEL --- */}
                   {activeTab === "intel" && (
                     <div className="space-y-6 animate-fadeIn">
                       <h3 className="text-app-status-alert font-bold text-xs uppercase tracking-widest mb-4">
@@ -829,19 +853,19 @@ const FieldManual: React.FC<FieldManualProps> = ({
                                 <div>
                                   <h4 className="font-bold text-app-primary group-hover:text-app-status-alert transition-colors flex items-center gap-2 text-sm">
                                     {type === "github" && (
-                                      <GithubIcon className="h-4 w-4" />
+                                      <GithubIcon className="h-4 w-4 text-app-primary" />
                                     )}
                                     {type === "youtube" && (
                                       <YoutubeIcon className="h-4 w-4 text-app-status-danger" />
                                     )}
                                     {type === "discord" && (
-                                      <DiscordIcon className="h-4 w-4 text-[#5865F2]" />
+                                      <DiscordIcon className="h-4 w-4 text-app-status-nav" />
                                     )}
                                     {type === "web" && (
-                                      <GlobeIcon className="h-4 w-4" />
+                                      <GlobeIcon className="h-4 w-4 text-app-primary" />
                                     )}
                                     {type === "default" && (
-                                      <GlobeIcon className="h-4 w-4" />
+                                      <GlobeIcon className="h-4 w-4 text-app-primary" />
                                     )}
                                     {link.title}
                                   </h4>
@@ -873,7 +897,7 @@ const FieldManual: React.FC<FieldManualProps> = ({
                     </div>
                   )}
 
-                  {/* --- TAB: LEGAL (Red) --- */}
+                  {/* --- TAB: LEGAL --- */}
                   {activeTab === "legal" && (
                     <div className="space-y-10 animate-fadeIn">
                       <div className="p-6 bg-app-status-danger/5 border border-app-status-danger/20 rounded-xl">
@@ -955,7 +979,7 @@ const FieldManual: React.FC<FieldManualProps> = ({
                             {content.legal.license.subtitle}
                           </h3>
                         </div>
-                        <div className="p-5 overflow-auto h-64 custom-scrollbar bg-[#0d1117] text-[#c9d1d9]">
+                        <div className="p-5 overflow-auto h-64 custom-scrollbar bg-app-canvas text-app-primary">
                           <pre className="text-[10px] font-mono whitespace-pre-wrap leading-relaxed">
                             {content.legal.license.text}
                           </pre>

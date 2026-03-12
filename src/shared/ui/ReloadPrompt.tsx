@@ -43,7 +43,7 @@ const ReloadPrompt: React.FC = () => {
             id="shared-reload-confirm"
             data-testid="shared-reload-confirm"
             onClick={() => updateServiceWorker(true)}
-            className="px-4 py-2 bg-app-brand text-white rounded-md text-sm font-medium hover:opacity-90 transition-opacity"
+            className="px-4 py-2 bg-app-brand text-app-canvas rounded-md text-sm font-medium hover:opacity-90 transition-opacity"
           >
             Reload
           </button>

@@ -35,22 +35,109 @@
    */
   :root {
     /* Semantic Status Roles (OKLCH Targets) */
-    --color-status-ready: 0.7 0.18 160; /* Emerald */
-    --color-status-nav: 0.75 0.15 210; /* Cyan */
-    --color-status-warning: 0.8 0.15 70; /* Amber */
-    --color-status-critical: 0.65 0.2 20; /* Rose */
-    --color-status-intel: 0.6 0.18 290; /* Violet */
-    --color-status-elite: 0.85 0.15 90; /* Gold */
-    --color-status-stealth: 0.65 0.05 250; /* Slate */
+    /* Vivid (Luminant) Variants */
+    --color-status-ready: 0.7 0.18 160; /* Glow Emerald */
+    --color-status-nav: 0.75 0.15 210; /* Electric Cyan */
+    --color-status-alert: 0.8 0.15 70; /* Safety Amber */
+    --color-status-danger: 0.65 0.2 20; /* Combat Red */
+    --color-status-intel: 0.6 0.18 290; /* Intelligence Violet */
+    --color-status-elite: 0.85 0.15 90; /* elite */
+    --color-status-stealth: 0.65 0.05 250; /* Silver */
+
+    /* Tactical (Matte) Variants */
+    --color-status-ready-dim: 0.45 0.1 160; /* Forest Matte */
+    --color-status-nav-dim: 0.4 0.08 210; /* Deep Sea */
+    --color-status-alert-dim: 0.5 0.08 70; /* Ochre / Clay */
+    --color-status-danger-dim: 0.4 0.1 20; /* Blood / Oxide */
+    --color-status-intel-dim: 0.35 0.1 290; /* Deep Plum */
+    --color-status-elite-dim: 0.5 0.1 90; /* Brass / Bronze */
+    --color-status-stealth-dim: 0.4 0.03 250; /* Slate / Charcoal */
+
+    --color-white: 0.98 0.01 250; /* White */
+    --color-black: 0.01 0.01 0; /* Black */
+    --color-blue: 0.4 0.05 240; /* Blue */
+    --color-red: 0.6 0.05 0; /* Red */
+    --color-green: 0.5 0.05 120; /* Green */
+    --color-yellow: 0.8 0.05 60; /* Yellow */
+    --color-orange: 0.8 0.05 30; /* Orange */
+    --color-purple: 0.5 0.05 270; /* Purple */
+    --color-pink: 0.8 0.05 330; /* Pink */
+    --color-brown: 0.5 0.05 30; /* Brown */
+    --color-gray: 0.5 0.05 210; /* Gray */
+    --color-teal: 0.5 0.05 180; /* Teal */
+    --color-lime: 0.8 0.05 100; /* Lime */
+    --color-magenta: 0.8 0.05 300; /* Magenta */
+    --color-aqua: 0.5 0.05 150; /* Aqua */
+    --color-lavender: 0.5 0.05 220; /* Lavender */
+    --color-olive: 0.5 0.05 140; /* Olive */
+    --color-beige: 0.8 0.05 40; /* Beige */
+    --color-tan: 0.8 0.05 30; /* Tan */
 
     /* Default Base Variables (Dark Mode Baseline) */
+    --border-base: 0.25 0.02 250;
+    --border-highlight: 0 0 0 / 0;
+    --bg-canvas: 0 0 0;
+    --bg-frame: 0 0 0;
+    --bg-overlay: 0 0 0 / 0;
+    --bg-surface: 0 0 0;
     --text-primary: 0.98 0.01 250;
     --text-secondary: 0.75 0.02 250;
     --text-tertiary: 0.45 0.03 250;
-    --border-base: 0.25 0.02 250;
-    --border-highlight: 0.35 0.03 250;
-    --color-brand: var(--color-status-ready);
-    --color-brand-dim: 0.4 0.1 160;
+
+    /* L1 variables */
+    --bb1: 0.5; /* var(--bb1) */
+    --bh1: 0 0 0 / 0; /* var(--bh1) */
+    --bgc1: 0.2; /* var(--bgc1) */
+    --bgf1: 0.25; /* var(--bgf1) */
+    --bgo1: 0 0 0 / 0; /* var(--bgo1) */
+    --bgs1: 0.15; /* var(--bgs1) */
+    --tp1: 0.98 0.01 250; /* var(--tp1) */
+    --ts1: 0.75 0.02 250; /* var(--ts1) */
+    --tt1: 0.65 0.03 250; /* var(--tt1) */
+
+    /* L2 variables */
+    --bb2: 0.55; /* var(--bb2) */
+    --bh2: 0 0 0 / 0; /* var(--bh2) */
+    --bgc2: 0.3; /* var(--bgc2) */
+    --bgf2: 0.35; /* var(--bgf2) */
+    --bgo2: 0 0 0 / 0; /* var(--bgo2) */
+    --bgs2: 0.25; /* var(--bgs2) */
+    --tp2: 0.98 0.01 250; /* var(--tp2) */
+    --ts2: 0.75 0.02 250; /* var(--ts2) */
+    --tt2: 0.7 0.03 250; /* var(--tt2) */
+
+    /* L3 variables */
+    --bb3: 0.6; /* var(--bb3) */
+    --bh3: 0 0 0 / 0; /* var(--bh3) */
+    --bgc3: 0.35; /* var(--bgc3) */
+    --bgf3: 0.45; /* var(--bgf3) */
+    --bgo3: 0 0 0 / 0; /* var(--bgo3) */
+    --bgs3: 0.35; /* var(--bgs3) */
+    --tp3: 0.98 0.01 250; /* var(--tp3) */
+    --ts3: 0.8 0.02 250; /* var(--ts3) */
+    --tt3: 0.75 0.03 250; /* var(--tt3) */
+
+    /* L4 variables */
+    --bb4: 0.65; /* var(--bb4) */
+    --bh4: 0 0 0 / 0; /* var(--bh4) */
+    --bgc4: 0.45; /* var(--bgc4) */
+    --bgf4: 0.55; /* var(--bgf4) */
+    --bgo4: 0 0 0 / 0; /* var(--bgo4) */
+    --bgs4: 0.45; /* var(--bgs4) */
+    --tp4: 0.98 0.01 250; /* var(--tp4) */
+    --ts4: 0.85 0.02 250; /* var(--ts4) */
+    --tt4: 0 0.1 250; /* var(--tt4) */
+
+    /* L5 variables */
+    --bb5: 0.75; /* var(--bb5) */
+    --bh5: 0 0 0 / 0; /* var(--bh5) */
+    --bgc5: 0.55; /* var(--bgc5) */
+    --bgf5: 0.65; /* var(--bgf5) */
+    --bgo5: 0 0 0 / 0; /* var(--bgo5) */
+    --bgs5: 0.55; /* var(--bgs5) */
+    --tp5: 0.98 0.01 250; /* var(--tp5) */
+    --ts5: 0.85 0.02 250; /* var(--ts5) */
+    --tt5: 0 0.1 250; /* var(--tt5) */
   }
 }
 
@@ -58,42 +145,73 @@
 
 /* SET: MONOCHROME (H=0, C=0) */
 body.set-mono {
-  --h: 0;
-  --c: 0;
+  --h: 0; /* var(--h) */
+  --c: 0; /* var(--c) */
 }
 body.set-mono.brightness-L1 {
-  --bg-canvas: 0 var(--c) var(--h);
-  --bg-frame: 0.05 var(--c) var(--h);
-  --bg-surface: 0.15 var(--c) var(--h);
-  --border-base: 0.35 var(--c) var(--h);
+  --border-base: var(--bb1) var(--c) var(--h);
+  --border-highlight: var(--bh1);
+  --bg-canvas: var(--bgc1) var(--c) var(--h);
+  --bg-frame: var(--bgf1) var(--c) var(--h);
+  --bg-overlay: var(--bgo1);
+  --bg-surface: var(--bgs1) var(--c) var(--h);
+  --text-primary: var(--tp1);
+  --text-secondary: var(--ts1);
+  --text-tertiary: var(--tt1);
+  /* --- ACCENT OVERRIDES --- */
+  /* --color-status-ready: 0.7 0.18 160; */
 }
 body.set-mono.brightness-L2 {
-  --bg-canvas: 0.15 var(--c) var(--h);
-  --bg-frame: 0.2 var(--c) var(--h);
-  --bg-surface: 0.25 var(--c) var(--h);
-  --border-base: 0.35 var(--c) var(--h);
+  --border-base: var(--bb2) var(--c) var(--h);
+  --border-highlight: var(--bh2);
+  --bg-canvas: var(--bgc2) var(--c) var(--h);
+  --bg-frame: var(--bgf2) var(--c) var(--h);
+  --bg-overlay: var(--bgo2);
+  --bg-surface: var(--bgs2) var(--c) var(--h);
+  --text-primary: var(--tp2);
+  --text-secondary: var(--ts2);
+  --text-tertiary: var(--tt2);
+  /* --- ACCENT OVERRIDES --- */
+  /* --color-status-ready: 0.7 0.18 160; */
 }
 body.set-mono.brightness-L3 {
-  --bg-canvas: 0.45 var(--c) var(--h);
-  --bg-frame: 0.5 var(--c) var(--h);
-  --bg-surface: 0.55 var(--c) var(--h);
-  --text-tertiary: 0.7 0.03 250;
+  --border-base: var(--bb3) var(--c) var(--h);
+  --border-highlight: var(--bh3);
+  --bg-canvas: var(--bgc3) var(--c) var(--h);
+  --bg-frame: var(--bgf3) var(--c) var(--h);
+  --bg-overlay: var(--bgo3);
+  --bg-surface: var(--bgs3) var(--c) var(--h);
+  --text-primary: var(--tp3);
+  --text-secondary: var(--ts3);
+  --text-tertiary: var(--tt3);
+  /* --- ACCENT OVERRIDES --- */
+  /* --color-status-ready: 0.7 0.18 160; */
 }
 body.set-mono.brightness-L4 {
-  --bg-canvas: 0.75 var(--c) var(--h);
-  --bg-frame: 0.8 var(--c) var(--h);
-  --bg-surface: 0.85 var(--c) var(--h);
-  --text-primary: 0.15 0.01 250;
-  --text-secondary: 0.45 0.02 250;
-  --text-tertiary: 0.55 0.03 250;
+  --border-base: var(--bb4) var(--c) var(--h);
+  --border-highlight: var(--bh4);
+  --bg-canvas: var(--bgc4) var(--c) var(--h);
+  --bg-frame: var(--bgf4) var(--c) var(--h);
+  --bg-overlay: var(--bgo4);
+  --bg-surface: var(--bgs4) var(--c) var(--h);
+  --text-primary: var(--tp4);
+  --text-secondary: var(--ts4);
+  --text-tertiary: var(--tt4);
+  /* --- ACCENT OVERRIDES --- */
+  /* --color-status-ready: 0.7 0.18 160; */
 }
 body.set-mono.brightness-L5 {
-  --bg-canvas: 0.98 var(--c) var(--h);
-  --bg-frame: 1 var(--c) var(--h);
-  --bg-surface: 0.96 var(--c) var(--h);
-  --text-primary: 0.15 0.01 250;
-  --text-secondary: 0.45 0.02 250;
-  --text-tertiary: 0.65 0.03 250;
+  --border-base: var(--bb5) var(--c) var(--h);
+  --border-highlight: var(--bh5);
+  --bg-canvas: var(--bgc5) var(--c) var(--h);
+  --bg-frame: var(--bgf5) var(--c) var(--h);
+  --bg-overlay: var(--bgo5);
+  --bg-surface: var(--bgs5) var(--c) var(--h);
+  --text-primary: var(--tp5);
+  --text-secondary: var(--ts5);
+  --text-tertiary: var(--tt5);
+  /* --- ACCENT OVERRIDES --- */
+  /* --color-status-ready: 0.7 0.18 160; */
 }
 
 /* SET: SUBTLE (H=215, C=0.03) */
@@ -102,38 +220,69 @@ body.set-soft {
   --c: 0.03;
 }
 body.set-soft.brightness-L1 {
-  --bg-canvas: 0.05 var(--c) var(--h);
-  --bg-frame: 0.1 var(--c) var(--h);
-  --bg-surface: 0.15 var(--c) var(--h);
-  --border-base: 0.35 var(--c) var(--h);
+  --border-base: var(--bb1) var(--c) var(--h);
+  --border-highlight: var(--bh1);
+  --bg-canvas: var(--bgc1) var(--c) var(--h);
+  --bg-frame: var(--bgf1) var(--c) var(--h);
+  --bg-overlay: var(--bgo1);
+  --bg-surface: var(--bgs1) var(--c) var(--h);
+  --text-primary: var(--tp1);
+  --text-secondary: var(--ts1);
+  --text-tertiary: var(--tt1);
+  /* --- ACCENT OVERRIDES --- */
+  /* --color-status-ready: 0.7 0.18 160; */
 }
 body.set-soft.brightness-L2 {
-  --bg-canvas: 0.15 var(--c) var(--h);
-  --bg-frame: 0.2 var(--c) var(--h);
-  --bg-surface: 0.25 var(--c) var(--h);
-  --border-base: 0.35 var(--c) var(--h);
+  --border-base: var(--bb2) var(--c) var(--h);
+  --border-highlight: var(--bh2);
+  --bg-canvas: var(--bgc2) var(--c) var(--h);
+  --bg-frame: var(--bgf2) var(--c) var(--h);
+  --bg-overlay: var(--bgo2);
+  --bg-surface: var(--bgs2) var(--c) var(--h);
+  --text-primary: var(--tp2);
+  --text-secondary: var(--ts2);
+  --text-tertiary: var(--tt2);
+  /* --- ACCENT OVERRIDES --- */
+  /* --color-status-ready: 0.7 0.18 160; */
 }
 body.set-soft.brightness-L3 {
-  --bg-canvas: 0.45 var(--c) var(--h);
-  --bg-frame: 0.5 var(--c) var(--h);
-  --bg-surface: 0.55 var(--c) var(--h);
-  --text-tertiary: 0.7 0.03 250;
+  --border-base: var(--bb3) var(--c) var(--h);
+  --border-highlight: var(--bh3);
+  --bg-canvas: var(--bgc3) var(--c) var(--h);
+  --bg-frame: var(--bgf3) var(--c) var(--h);
+  --bg-overlay: var(--bgo3);
+  --bg-surface: var(--bgs3) var(--c) var(--h);
+  --text-primary: var(--tp3);
+  --text-secondary: var(--ts3);
+  --text-tertiary: var(--tt3);
+  /* --- ACCENT OVERRIDES --- */
+  /* --color-status-ready: 0.7 0.18 160; */
 }
 body.set-soft.brightness-L4 {
-  --bg-canvas: 0.75 var(--c) var(--h);
-  --bg-frame: 0.8 var(--c) var(--h);
-  --bg-surface: 0.85 var(--c) var(--h);
-  --text-primary: 0.15 0.01 250;
-  --text-secondary: 0.45 0.02 250;
-  --text-tertiary: 0.55 0.03 250;
+  --border-base: var(--bb4) var(--c) var(--h);
+  --border-highlight: var(--bh4);
+  --bg-canvas: var(--bgc4) var(--c) var(--h);
+  --bg-frame: var(--bgf4) var(--c) var(--h);
+  --bg-overlay: var(--bgo4);
+  --bg-surface: var(--bgs4) var(--c) var(--h);
+  --text-primary: var(--tp4);
+  --text-secondary: var(--ts4);
+  --text-tertiary: var(--tt4);
+  /* --- ACCENT OVERRIDES --- */
+  /* --color-status-ready: 0.7 0.18 160; */
 }
 body.set-soft.brightness-L5 {
-  --bg-canvas: 0.98 var(--c) var(--h);
-  --bg-frame: 1 var(--c) var(--h);
-  --bg-surface: 0.96 var(--c) var(--h);
-  --text-primary: 0.15 0.01 215;
-  --text-secondary: 0.45 0.02 215;
-  --text-tertiary: 0.65 0.03 215;
+  --border-base: var(--bb5) var(--c) var(--h);
+  --border-highlight: var(--bh5);
+  --bg-canvas: var(--bgc5) var(--c) var(--h);
+  --bg-frame: var(--bgf5) var(--c) var(--h);
+  --bg-overlay: var(--bgo5);
+  --bg-surface: var(--bgs5) var(--c) var(--h);
+  --text-primary: var(--tp5);
+  --text-secondary: var(--ts5);
+  --text-tertiary: var(--tt5);
+  /* --- ACCENT OVERRIDES --- */
+  /* --color-status-ready: 0.7 0.18 160; */
 }
 
 /* SET: FOREST (H=145, C=0.05) */
@@ -142,38 +291,69 @@ body.set-nvg {
   --c: 0.05;
 }
 body.set-nvg.brightness-L1 {
-  --bg-canvas: 0.05 var(--c) var(--h);
-  --bg-frame: 0.1 var(--c) var(--h);
-  --bg-surface: 0.15 var(--c) var(--h);
-  --border-base: 0.35 var(--c) var(--h);
+  --border-base: var(--bb1) var(--c) var(--h);
+  --border-highlight: var(--bh1);
+  --bg-canvas: var(--bgc1) var(--c) var(--h);
+  --bg-frame: var(--bgf1) var(--c) var(--h);
+  --bg-overlay: var(--bgo1);
+  --bg-surface: var(--bgs1) var(--c) var(--h);
+  --text-primary: var(--tp1);
+  --text-secondary: var(--ts1);
+  --text-tertiary: var(--tt1);
+  /* --- ACCENT OVERRIDES --- */
+  /* --color-status-ready: 0.7 0.18 160; */
 }
 body.set-nvg.brightness-L2 {
-  --bg-canvas: 0.15 var(--c) var(--h);
-  --bg-frame: 0.2 var(--c) var(--h);
-  --bg-surface: 0.25 var(--c) var(--h);
-  --border-base: 0.35 var(--c) var(--h);
+  --border-base: var(--bb2) var(--c) var(--h);
+  --border-highlight: var(--bh2);
+  --bg-canvas: var(--bgc2) var(--c) var(--h);
+  --bg-frame: var(--bgf2) var(--c) var(--h);
+  --bg-overlay: var(--bgo2);
+  --bg-surface: var(--bgs2) var(--c) var(--h);
+  --text-primary: var(--tp2);
+  --text-secondary: var(--ts2);
+  --text-tertiary: var(--tt2);
+  /* --- ACCENT OVERRIDES --- */
+  /* --color-status-ready: 0.7 0.18 160; */
 }
 body.set-nvg.brightness-L3 {
-  --bg-canvas: 0.45 var(--c) var(--h);
-  --bg-frame: 0.5 var(--c) var(--h);
-  --bg-surface: 0.55 var(--c) var(--h);
-  --text-tertiary: 0.7 0.03 250;
+  --border-base: var(--bb3) var(--c) var(--h);
+  --border-highlight: var(--bh3);
+  --bg-canvas: var(--bgc3) var(--c) var(--h);
+  --bg-frame: var(--bgf3) var(--c) var(--h);
+  --bg-overlay: var(--bgo3);
+  --bg-surface: var(--bgs3) var(--c) var(--h);
+  --text-primary: var(--tp3);
+  --text-secondary: var(--ts3);
+  --text-tertiary: var(--tt3);
+  /* --- ACCENT OVERRIDES --- */
+  /* --color-status-ready: 0.7 0.18 160; */
 }
 body.set-nvg.brightness-L4 {
-  --bg-canvas: 0.75 var(--c) var(--h);
-  --bg-frame: 0.8 var(--c) var(--h);
-  --bg-surface: 0.85 var(--c) var(--h);
-  --text-primary: 0.15 0.01 250;
-  --text-secondary: 0.45 0.02 250;
-  --text-tertiary: 0.55 0.03 250;
+  --border-base: var(--bb4) var(--c) var(--h);
+  --border-highlight: var(--bh4);
+  --bg-canvas: var(--bgc4) var(--c) var(--h);
+  --bg-frame: var(--bgf4) var(--c) var(--h);
+  --bg-overlay: var(--bgo4);
+  --bg-surface: var(--bgs4) var(--c) var(--h);
+  --text-primary: var(--tp4);
+  --text-secondary: var(--ts4);
+  --text-tertiary: var(--tt4);
+  /* --- ACCENT OVERRIDES --- */
+  /* --color-status-ready: 0.7 0.18 160; */
 }
 body.set-nvg.brightness-L5 {
-  --bg-canvas: 0.98 var(--c) var(--h);
-  --bg-frame: 1 var(--c) var(--h);
-  --bg-surface: 0.96 var(--c) var(--h);
-  --text-primary: 0.15 0.01 145;
-  --text-secondary: 0.45 0.02 145;
-  --text-tertiary: 0.65 0.03 145;
+  --border-base: var(--bb5) var(--c) var(--h);
+  --border-highlight: var(--bh5);
+  --bg-canvas: var(--bgc5) var(--c) var(--h);
+  --bg-frame: var(--bgf5) var(--c) var(--h);
+  --bg-overlay: var(--bgo5);
+  --bg-surface: var(--bgs5) var(--c) var(--h);
+  --text-primary: var(--tp5);
+  --text-secondary: var(--ts5);
+  --text-tertiary: var(--tt5);
+  /* --- ACCENT OVERRIDES --- */
+  /* --color-status-ready: 0.7 0.18 160; */
 }
 
 /* SET: DESERT (H=40, C=0.05) */
@@ -182,38 +362,69 @@ body.set-coyote {
   --c: 0.05;
 }
 body.set-coyote.brightness-L1 {
-  --bg-canvas: 0.05 var(--c) var(--h);
-  --bg-frame: 0.1 var(--c) var(--h);
-  --bg-surface: 0.15 var(--c) var(--h);
-  --border-base: 0.35 var(--c) var(--h);
+  --border-base: var(--bb1) var(--c) var(--h);
+  --border-highlight: var(--bh1);
+  --bg-canvas: var(--bgc1) var(--c) var(--h);
+  --bg-frame: var(--bgf1) var(--c) var(--h);
+  --bg-overlay: var(--bgo1);
+  --bg-surface: var(--bgs1) var(--c) var(--h);
+  --text-primary: var(--tp1);
+  --text-secondary: var(--ts1);
+  --text-tertiary: var(--tt1);
+  /* --- ACCENT OVERRIDES --- */
+  /* --color-status-ready: 0.7 0.18 160; */
 }
 body.set-coyote.brightness-L2 {
-  --bg-canvas: 0.15 var(--c) var(--h);
-  --bg-frame: 0.2 var(--c) var(--h);
-  --bg-surface: 0.25 var(--c) var(--h);
-  --border-base: 0.35 var(--c) var(--h);
+  --border-base: var(--bb2) var(--c) var(--h);
+  --border-highlight: var(--bh2);
+  --bg-canvas: var(--bgc2) var(--c) var(--h);
+  --bg-frame: var(--bgf2) var(--c) var(--h);
+  --bg-overlay: var(--bgo2);
+  --bg-surface: var(--bgs2) var(--c) var(--h);
+  --text-primary: var(--tp2);
+  --text-secondary: var(--ts2);
+  --text-tertiary: var(--tt2);
+  /* --- ACCENT OVERRIDES --- */
+  /* --color-status-ready: 0.7 0.18 160; */
 }
 body.set-coyote.brightness-L3 {
-  --bg-canvas: 0.45 var(--c) var(--h);
-  --bg-frame: 0.5 var(--c) var(--h);
-  --bg-surface: 0.55 var(--c) var(--h);
-  --text-tertiary: 0.7 0.03 250;
+  --border-base: var(--bb3) var(--c) var(--h);
+  --border-highlight: var(--bh3);
+  --bg-canvas: var(--bgc3) var(--c) var(--h);
+  --bg-frame: var(--bgf3) var(--c) var(--h);
+  --bg-overlay: var(--bgo3);
+  --bg-surface: var(--bgs3) var(--c) var(--h);
+  --text-primary: var(--tp3);
+  --text-secondary: var(--ts3);
+  --text-tertiary: var(--tt3);
+  /* --- ACCENT OVERRIDES --- */
+  /* --color-status-ready: 0.7 0.18 160; */
 }
 body.set-coyote.brightness-L4 {
-  --bg-canvas: 0.75 var(--c) var(--h);
-  --bg-frame: 0.8 var(--c) var(--h);
-  --bg-surface: 0.85 var(--c) var(--h);
-  --text-primary: 0.15 0.01 250;
-  --text-secondary: 0.45 0.02 250;
-  --text-tertiary: 0.55 0.03 250;
+  --border-base: var(--bb4) var(--c) var(--h);
+  --border-highlight: var(--bh4);
+  --bg-canvas: var(--bgc4) var(--c) var(--h);
+  --bg-frame: var(--bgf4) var(--c) var(--h);
+  --bg-overlay: var(--bgo4);
+  --bg-surface: var(--bgs4) var(--c) var(--h);
+  --text-primary: var(--tp4);
+  --text-secondary: var(--ts4);
+  --text-tertiary: var(--tt4);
+  /* --- ACCENT OVERRIDES --- */
+  /* --color-status-ready: 0.7 0.18 160; */
 }
 body.set-coyote.brightness-L5 {
-  --bg-canvas: 0.98 var(--c) var(--h);
-  --bg-frame: 1 var(--c) var(--h);
-  --bg-surface: 0.96 var(--c) var(--h);
-  --text-primary: 0.15 0.01 40;
-  --text-secondary: 0.45 0.02 40;
-  --text-tertiary: 0.65 0.03 40;
+  --border-base: var(--bb5) var(--c) var(--h);
+  --border-highlight: var(--bh5);
+  --bg-canvas: var(--bgc5) var(--c) var(--h);
+  --bg-frame: var(--bgf5) var(--c) var(--h);
+  --bg-overlay: var(--bgo5);
+  --bg-surface: var(--bgs5) var(--c) var(--h);
+  --text-primary: var(--tp5);
+  --text-secondary: var(--ts5);
+  --text-tertiary: var(--tt5);
+  /* --- ACCENT OVERRIDES --- */
+  /* --color-status-ready: 0.7 0.18 160; */
 }
 
 /* SET: NAVAL (H=230, C=0.06) */
@@ -222,67 +433,105 @@ body.set-deck {
   --c: 0.06;
 }
 body.set-deck.brightness-L1 {
-  --bg-canvas: 0.05 var(--c) var(--h);
-  --bg-frame: 0.1 var(--c) var(--h);
-  --bg-surface: 0.15 var(--c) var(--h);
-  --border-base: 0.35 var(--c) var(--h);
+  --border-base: var(--bb1) var(--c) var(--h);
+  --border-highlight: var(--bh1);
+  --bg-canvas: var(--bgc1) var(--c) var(--h);
+  --bg-frame: var(--bgf1) var(--c) var(--h);
+  --bg-overlay: var(--bgo1);
+  --bg-surface: var(--bgs1) var(--c) var(--h);
+  --text-primary: var(--tp1);
+  --text-secondary: var(--ts1);
+  --text-tertiary: var(--tt1);
+  /* --- ACCENT OVERRIDES --- */
+  /* --color-status-ready: 0.7 0.18 160; */
 }
 body.set-deck.brightness-L2 {
-  --bg-canvas: 0.15 var(--c) var(--h);
-  --bg-frame: 0.2 var(--c) var(--h);
-  --bg-surface: 0.25 var(--c) var(--h);
-  --border-base: 0.35 var(--c) var(--h);
+  --border-base: var(--bb2) var(--c) var(--h);
+  --border-highlight: var(--bh2);
+  --bg-canvas: var(--bgc2) var(--c) var(--h);
+  --bg-frame: var(--bgf2) var(--c) var(--h);
+  --bg-overlay: var(--bgo2);
+  --bg-surface: var(--bgs2) var(--c) var(--h);
+  --text-primary: var(--tp2);
+  --text-secondary: var(--ts2);
+  --text-tertiary: var(--tt2);
+  /* --- ACCENT OVERRIDES --- */
+  /* --color-status-ready: 0.7 0.18 160; */
 }
 body.set-deck.brightness-L3 {
-  --bg-canvas: 0.45 var(--c) var(--h);
-  --bg-frame: 0.5 var(--c) var(--h);
-  --bg-surface: 0.55 var(--c) var(--h);
-  --text-tertiary: 0.7 0.03 250;
+  --border-base: var(--bb3) var(--c) var(--h);
+  --border-highlight: var(--bh3);
+  --bg-canvas: var(--bgc3) var(--c) var(--h);
+  --bg-frame: var(--bgf3) var(--c) var(--h);
+  --bg-overlay: var(--bgo3);
+  --bg-surface: var(--bgs3) var(--c) var(--h);
+  --text-primary: var(--tp3);
+  --text-secondary: var(--ts3);
+  --text-tertiary: var(--tt3);
+  /* --- ACCENT OVERRIDES --- */
+  /* --color-status-ready: 0.7 0.18 160; */
 }
 body.set-deck.brightness-L4 {
-  --bg-canvas: 0.75 var(--c) var(--h);
-  --bg-frame: 0.8 var(--c) var(--h);
-  --bg-surface: 0.85 var(--c) var(--h);
-  --text-primary: 0.15 0.01 250;
-  --text-secondary: 0.45 0.02 250;
-  --text-tertiary: 0.55 0.03 250;
+  --border-base: var(--bb4) var(--c) var(--h);
+  --border-highlight: var(--bh4);
+  --bg-canvas: var(--bgc4) var(--c) var(--h);
+  --bg-frame: var(--bgf4) var(--c) var(--h);
+  --bg-overlay: var(--bgo4);
+  --bg-surface: var(--bgs4) var(--c) var(--h);
+  --text-primary: var(--tp4);
+  --text-secondary: var(--ts4);
+  --text-tertiary: var(--tt4);
+  /* --- ACCENT OVERRIDES --- */
+  /* --color-status-ready: 0.7 0.18 160; */
 }
 body.set-deck.brightness-L5 {
-  --bg-canvas: 0.98 var(--c) var(--h);
-  --bg-frame: 1 var(--c) var(--h);
-  --bg-surface: 0.96 var(--c) var(--h);
-  --text-primary: 0.15 0.01 230;
-  --text-secondary: 0.45 0.02 230;
-  --text-tertiary: 0.65 0.03 230;
+  --border-base: var(--bb5) var(--c) var(--h);
+  --border-highlight: var(--bh5);
+  --bg-canvas: var(--bgc5) var(--c) var(--h);
+  --bg-frame: var(--bgf5) var(--c) var(--h);
+  --bg-overlay: var(--bgo5);
+  --bg-surface: var(--bgs5) var(--c) var(--h);
+  --text-primary: var(--tp5);
+  --text-secondary: var(--ts5);
+  --text-tertiary: var(--tt5);
+  /* --- ACCENT OVERRIDES --- */
+  /* --color-status-ready: 0.7 0.18 160; */
 }
 
-/* Map bg-overlay to surface by default */
+/* Map bg-overlay to surface by default 
 body {
   --bg-overlay: var(--bg-surface);
 }
-
+*/
 /* --- ACCENT ROLES --- */
 
 body.accent-role-ready {
   --color-brand: var(--color-status-ready);
+  --color-brand-dim: var(--color-status-ready-dim);
 }
 body.accent-role-nav {
   --color-brand: var(--color-status-nav);
+  --color-brand-dim: var(--color-status-nav-dim);
 }
 body.accent-role-alert {
-  --color-brand: var(--color-status-warning);
+  --color-brand: var(--color-status-alert);
+  --color-brand-dim: var(--color-status-alert-dim);
 }
 body.accent-role-danger {
-  --color-brand: var(--color-status-critical);
+  --color-brand: var(--color-status-danger);
+  --color-brand-dim: var(--color-status-danger-dim);
 }
 body.accent-role-intel {
   --color-brand: var(--color-status-intel);
+  --color-brand-dim: var(--color-status-intel-dim);
 }
 body.accent-role-elite {
   --color-brand: var(--color-status-elite);
+  --color-brand-dim: var(--color-status-elite-dim);
 }
 body.accent-role-stealth {
   --color-brand: var(--color-status-stealth);
+  --color-brand-dim: var(--color-status-stealth-dim);
 }
 
 /* INTENSITY OVERRIDES */

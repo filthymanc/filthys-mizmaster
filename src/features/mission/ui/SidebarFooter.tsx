@@ -92,7 +92,7 @@ const SidebarFooter: React.FC<SidebarFooterProps> = ({
             href={DISCORD_LINKS.COMMUNITY}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-app-tertiary hover:text-[#5865F2] transition-colors hover:scale-110 transform"
+            className="text-app-tertiary hover:text-app-status-nav transition-colors hover:scale-110 transform"
             title="Join Discord Community"
           >
             <DiscordIcon className="h-4 w-4" />

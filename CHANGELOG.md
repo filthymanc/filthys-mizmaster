@@ -1,12 +1,12 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
-### [2.3.1](https://github.com/filthymanc/filthys-mizmaster/compare/v2.3.0...v2.3.1) (2026-03-11)
 
+### [2.3.1](https://github.com/filthymanc/filthys-mizmaster/compare/v2.3.0...v2.3.1) (2026-03-11)
 
 ### Bug Fixes
 
-* add mobile-web-app-capable meta tag for modern PWA standards ([c1df98f](https://github.com/filthymanc/filthys-mizmaster/commit/c1df98f42aacb4d8512dbdf9b2bbe0207cd5831a))
+- add mobile-web-app-capable meta tag for modern PWA standards ([c1df98f](https://github.com/filthymanc/filthys-mizmaster/commit/c1df98f42aacb4d8512dbdf9b2bbe0207cd5831a))
 
 ## [2.3.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.2.0...v2.3.0) (2026-03-11)
 

@@ -143,7 +143,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                     ${
                       isLoading
                         ? "bg-app-surface text-app-tertiary cursor-not-allowed shadow-none"
-                        : "bg-app-brand hover:bg-opacity-90 text-white shadow-app-brand/20"
+                        : "bg-app-brand hover:bg-opacity-90 text-app-canvas shadow-app-brand/20"
                     }
                 `}
             aria-label="Create New Mission"

@@ -112,14 +112,14 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
     { id: "L5", label: "Paper" },
   ];
 
-  const accentRoles: { id: AccentRole; label: string; color: string }[] = [
-    { id: "ready", label: "Ready", color: "#10b981" },
-    { id: "nav", label: "Nav", color: "#06b6d4" },
-    { id: "alert", label: "Alert", color: "#f59e0b" },
-    { id: "danger", label: "Danger", color: "#f43f5e" },
-    { id: "intel", label: "Intel", color: "#8b5cf6" },
-    { id: "elite", label: "Elite", color: "#facc15" },
-    { id: "stealth", label: "Stealth", color: "#94a3b8" },
+  const accentRoles: { id: AccentRole; label: string }[] = [
+    { id: "ready", label: "Ready" },
+    { id: "nav", label: "Nav" },
+    { id: "alert", label: "Alert" },
+    { id: "danger", label: "Danger" },
+    { id: "intel", label: "Intel" },
+    { id: "elite", label: "elite" },
+    { id: "stealth", label: "Stealth" },
   ];
 
   const applyProfile = (profileId: string) => {
@@ -158,7 +158,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 bg-black/70 backdrop-blur-sm" />
+          <div className="fixed inset-0 bg-app-canvas/70 backdrop-blur-sm" />
         </Transition.Child>
 
         <div className="fixed inset-0 overflow-y-auto">
@@ -200,11 +200,11 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                             id={`shared-settings-tab-${category.toLowerCase().replace(/\s+/g, "-")}`}
                             data-testid={`shared-settings-tab-${category.toLowerCase().replace(/\s+/g, "-")}`}
                             className={({ selected }) =>
-                              `w-full rounded-lg py-2.5 text-sm font-bold leading-5 ring-white/60 ring-offset-2 ring-offset-app-brand focus:outline-none focus:ring-2
+                              `w-full rounded-lg py-2.5 text-sm font-bold leading-5 ring-app-brand/60 ring-offset-2 ring-offset-app-brand focus:outline-none focus:ring-2
                               ${
                                 selected
                                   ? "bg-app-surface text-app-brand ring-1"
-                                  : "text-app-tertiary hover:bg-white/[0.05] hover:text-app-secondary"
+                                  : "text-app-tertiary hover:bg-app-surface/20 hover:text-app-secondary"
                               }`
                             }
                           >
@@ -335,7 +335,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                               <span
                                 aria-hidden="true"
                                 className={`
-                                    pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out
+                                    pointer-events-none inline-block h-5 w-5 transform rounded-full bg-app-canvas shadow ring-0 transition duration-200 ease-in-out
                                     ${
                                       settings.isDesanitized
                                         ? "translate-x-5"
@@ -384,7 +384,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                                     showAdvancedTheme
                                       ? "translate-x-4"
                                       : "translate-x-0"
-                                  } pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out`}
+                                  } pointer-events-none inline-block h-4 w-4 transform rounded-full bg-app-canvas shadow ring-0 transition duration-200 ease-in-out`}
                                 />
                               </Switch>
                             </div>
@@ -448,7 +448,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                                     }
                                     className={`p-2 rounded-lg border text-[10px] font-bold transition-all ${
                                       settings.themeSet === set.id
-                                        ? "bg-app-brand text-white border-app-brand"
+                                        ? "bg-app-brand text-app-canvas border-app-brand"
                                         : "bg-app-canvas border-app-border text-app-secondary hover:text-app-primary"
                                     }`}
                                   >
@@ -475,7 +475,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                                     }
                                     className={`p-2 rounded-lg border text-[10px] font-bold transition-all ${
                                       settings.themeBrightness === lvl.id
-                                        ? "bg-app-brand text-white border-app-brand"
+                                        ? "bg-app-brand text-app-canvas border-app-brand"
                                         : "bg-app-canvas border-app-border text-app-secondary hover:text-app-primary"
                                     }`}
                                   >
@@ -502,10 +502,12 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                                     }
                                     className={`w-8 h-8 rounded-full border-2 transition-all ${
                                       settings.themeAccentRole === role.id
-                                        ? "border-white scale-110 shadow-lg"
+                                        ? "border-app-primary scale-110 shadow-lg"
                                         : "border-transparent opacity-60 hover:opacity-100"
                                     }`}
-                                    style={{ backgroundColor: role.color }}
+                                    style={{
+                                      backgroundColor: `oklch(var(--color-status-${role.id}))`,
+                                    }}
                                     title={role.label}
                                   />
                                 ))}
@@ -657,7 +659,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                                   }
                                 }}
                                 disabled={isValidatingToken}
-                                className="px-4 py-2 bg-app-brand text-white rounded font-bold text-sm hover:bg-app-brand/90 transition-colors disabled:opacity-50 flex items-center gap-2"
+                                className="px-4 py-2 bg-app-brand text-app-canvas rounded font-bold text-sm hover:bg-app-brand/90 transition-colors disabled:opacity-50 flex items-center gap-2"
                               >
                                 {isValidatingToken && (
                                   <SpinnerIcon className="h-4 w-4 animate-spin" />
@@ -737,7 +739,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                                   w-full p-3 border rounded-xl text-sm font-bold transition-all flex items-center justify-center gap-2
                                   ${
                                     isDisconnectConfirming
-                                      ? "bg-app-status-alert text-white border-app-status-alert animate-pulse"
+                                      ? "bg-app-status-alert text-app-canvas border-app-status-alert animate-pulse"
                                       : "bg-app-surface border-app-border hover:border-app-status-alert/50 text-app-secondary hover:text-app-status-alert"
                                   }
                               `}
@@ -763,7 +765,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                                   w-full p-3 border rounded-xl text-sm font-bold transition-all flex items-center justify-center gap-2
                                   ${
                                     isResetConfirming
-                                      ? "bg-app-status-danger text-white border-app-status-danger animate-pulse shadow-app-status-danger/50 shadow-lg"
+                                      ? "bg-app-status-danger text-app-canvas border-app-status-danger animate-pulse shadow-app-status-danger/50 shadow-lg"
                                       : "bg-app-surface border-app-border hover:border-app-status-danger/50 text-app-secondary hover:text-app-status-danger"
                                   }
                               `}

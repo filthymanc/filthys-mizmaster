@@ -83,7 +83,7 @@ const SyntaxHighlighter: React.FC<SyntaxHighlighterProps> = ({
         .token.constant,
         .token.symbol,
         .token.deleted {
-          color: oklch(var(--color-status-critical)); /* critical - Remains vibrant */
+          color: oklch(var(--color-status-danger)); /* danger - Remains vibrant */
         }
 
         /* Selectors / Strings */
@@ -102,7 +102,7 @@ const SyntaxHighlighter: React.FC<SyntaxHighlighterProps> = ({
         .token.url,
         .language-css .token.string,
         .style .token.string {
-          color: oklch(var(--color-status-intel)); /* intel */
+          color: oklch(var(--text-secondary));
         }
 
         /* Functions / Keywords */
@@ -111,7 +111,7 @@ const SyntaxHighlighter: React.FC<SyntaxHighlighterProps> = ({
         .token.keyword {
           color: oklch(var(--color-status-nav)); /* nav */
         }
-        
+
         .token.function,
         .token.class-name {
           color: oklch(var(--color-status-elite)); /* elite */
@@ -120,7 +120,7 @@ const SyntaxHighlighter: React.FC<SyntaxHighlighterProps> = ({
         .token.regex,
         .token.important,
         .token.variable {
-          color: oklch(var(--color-status-warning)); /* warning */
+          color: oklch(var(--color-status-alert)); /* alert */
         }
       `}</style>
     </div>

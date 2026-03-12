@@ -57,10 +57,11 @@ const ToastItem: React.FC<ToastItemProps> = ({
   onClose,
 }) => {
   const bgColors = {
-    success: "bg-app-brand/90 border-app-brand shadow-app-brand/20",
+    success:
+      "bg-app-brand/90 border-app-brand shadow-app-brand/20 text-app-canvas",
     error:
-      "bg-app-status-danger/90 border-app-status-danger shadow-app-status-danger/20",
-    info: "bg-app-surface/90 border-app-border shadow-app-overlay/20",
+      "bg-app-status-danger/90 border-app-status-danger shadow-app-status-danger/20 text-app-canvas",
+    info: "bg-app-surface/90 border-app-border shadow-app-overlay/20 text-app-primary",
   };
 
   return (
@@ -68,7 +69,7 @@ const ToastItem: React.FC<ToastItemProps> = ({
       role="alert"
       id={`shared-toast-${id}`}
       data-testid={`shared-toast-${type}`}
-      className={`pointer-events-auto flex items-center gap-3 px-6 py-3 rounded-lg shadow-2xl backdrop-blur-sm border ${bgColors[type]} text-white animate-bounce`}
+      className={`pointer-events-auto flex items-center gap-3 px-6 py-3 rounded-lg shadow-2xl backdrop-blur-sm border ${bgColors[type]} animate-bounce`}
     >
       {type === "success" && <CheckIcon className="h-5 w-5" />}
       {type === "error" && <AlertIcon className="h-5 w-5" />}

@@ -61,7 +61,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({
 
         <div className="max-w-md w-full bg-app-frame/80 backdrop-blur-xl border border-app-border rounded-2xl overflow-hidden shadow-2xl relative z-10">
           {/* Banner Area */}
-          <div className="w-full h-32 bg-black relative">
+          <div className="w-full h-32 bg-app-canvas relative">
             <video
               src="filthysMizMaster.mp4"
               autoPlay
@@ -208,11 +208,11 @@ const LoginScreen: React.FC<LoginScreenProps> = ({
                   (!isLocked && !tempKey.trim()) ||
                   !masterPassword
                 }
-                className="w-full py-3 bg-app-brand hover:bg-opacity-90 disabled:bg-app-surface disabled:text-app-tertiary text-white font-bold rounded-lg transition-all flex items-center justify-center gap-2 shadow-lg shadow-app-brand/20 disabled:shadow-none uppercase tracking-tighter"
+                className="w-full py-3 bg-app-brand hover:bg-opacity-90 disabled:bg-app-surface disabled:text-app-tertiary text-app-canvas font-bold rounded-lg transition-all flex items-center justify-center gap-2 shadow-lg shadow-app-brand/20 disabled:shadow-none uppercase tracking-tighter"
               >
                 {isVerifying ? (
                   <>
-                    <SpinnerIcon className="h-5 w-5 text-white animate-spin" />
+                    <SpinnerIcon className="h-5 w-5 text-app-canvas animate-spin" />
                     {isLocked ? "Unlocking..." : "Initializing..."}
                   </>
                 ) : (

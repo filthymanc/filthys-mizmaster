@@ -269,7 +269,7 @@ const App: React.FC = () => {
   return (
     <ErrorBoundary scope="app">
       <div
-        className="flex bg-app-canvas text-app-primary overflow-hidden font-sans selection:bg-app-brand selection:text-white"
+        className="flex bg-app-canvas text-app-primary overflow-hidden font-sans selection:bg-app-brand selection:text-app-canvas"
         style={{ height: appHeight }}
       >
         <ToastContainer />

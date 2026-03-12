@@ -22,7 +22,7 @@ const SecurityBriefingModal: React.FC<SecurityBriefingModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-sm transition-opacity">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-app-canvas/60 backdrop-blur-sm transition-opacity">
       <div
         ref={modalRef}
         className="bg-app-frame border border-app-border rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col overflow-hidden animate-slideUp"
@@ -72,7 +72,7 @@ const SecurityBriefingModal: React.FC<SecurityBriefingModalProps> = ({
 
           <section className="space-y-3">
             <div className="flex items-center gap-2 text-app-primary font-bold text-base">
-              <ShieldIcon className="h-5 w-5 text-green-500" />
+              <ShieldIcon className="h-5 w-5 text-app-status-ready" />
               <h3>Secure Secret Vault</h3>
             </div>
             <p>
@@ -91,7 +91,7 @@ const SecurityBriefingModal: React.FC<SecurityBriefingModalProps> = ({
 
           <section className="space-y-3">
             <div className="flex items-center gap-2 text-app-primary font-bold text-base">
-              <CurrencyDollarIcon className="h-5 w-5 text-yellow-500" />
+              <CurrencyDollarIcon className="h-5 w-5 text-app-status-alert" />
               <h3>Cost & Usage Control</h3>
             </div>
             <p>
@@ -149,7 +149,7 @@ const SecurityBriefingModal: React.FC<SecurityBriefingModalProps> = ({
             id="auth-briefing-acknowledge"
             data-testid="auth-briefing-acknowledge"
             onClick={onClose}
-            className="px-6 py-2.5 bg-app-brand hover:bg-opacity-90 text-white font-bold rounded-lg transition-colors shadow-lg shadow-app-brand/20"
+            className="px-6 py-2.5 bg-app-brand hover:bg-opacity-90 text-app-canvas font-bold rounded-lg transition-colors shadow-lg shadow-app-brand/20"
           >
             Acknowledge
           </button>
