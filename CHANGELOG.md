@@ -1,6 +1,12 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+### [2.5.1](https://github.com/filthymanc/filthys-mizmaster/compare/v2.5.0...v2.5.1) (2026-03-13)
+
+
+### Styles
+
+* remove duplicate CSS class in Dashboard version display ([5fc7e81](https://github.com/filthymanc/filthys-mizmaster/commit/5fc7e815b6fe30550b27d7741db38ede11aedd2f))
 
 ## [2.5.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.4.0...v2.5.0) (2026-03-13)
 
