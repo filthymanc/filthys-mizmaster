@@ -192,7 +192,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
                 p-3 lg:p-2.5 rounded-xl transition-all shadow-lg active:scale-[0.95]
                 ${
                   input.trim()
-                    ? "bg-app-brand text-app-canvas shadow-app-brand/20 hover:bg-opacity-90"
+                    ? "bg-app-brand text-app-icon-contrast shadow-app-brand/20 hover:bg-opacity-90"
                     : "bg-app-highlight text-app-tertiary cursor-not-allowed shadow-none"
                 }
               `}

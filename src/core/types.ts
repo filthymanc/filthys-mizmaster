@@ -90,7 +90,7 @@ export type AccentRole =
   | "alert"
   | "danger"
   | "intel"
-  | "elite"
+  | "gold"
   | "stealth";
 export type AccentIntensity = "vivid" | "tactical";
 

@@ -118,7 +118,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
     { id: "alert", label: "Alert" },
     { id: "danger", label: "Danger" },
     { id: "intel", label: "Intel" },
-    { id: "elite", label: "elite" },
+    { id: "gold", label: "gold" },
     { id: "stealth", label: "Stealth" },
   ];
 
@@ -184,7 +184,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                     id="shared-settings-close"
                     data-testid="shared-settings-close"
                     onClick={onClose}
-                    className="text-app-tertiary hover:text-app-primary transition-colors focus:outline-none focus:ring-2 focus:ring-app-brand rounded-full p-1"
+                    className="text-app-icon-tertiary hover:text-app-icon-primary transition-colors focus:outline-none focus:ring-2 focus:ring-app-brand rounded-full p-1"
                   >
                     <XIcon className="h-6 w-6" />
                   </button>
@@ -230,9 +230,9 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                                 className="flex items-center gap-1.5 px-2 py-1 rounded text-[10px] font-bold bg-app-surface text-app-tertiary hover:text-app-secondary transition-colors disabled:opacity-50"
                               >
                                 {isModelLoading ? (
-                                  <SpinnerIcon className="h-3 w-3" />
+                                  <SpinnerIcon className="h-3 w-3 text-app-icon-tertiary animate-spin" />
                                 ) : (
-                                  <RefreshIcon className="h-3 w-3" />
+                                  <RefreshIcon className="h-3 w-3 text-app-icon-tertiary" />
                                 )}
                                 REFRESH
                               </button>

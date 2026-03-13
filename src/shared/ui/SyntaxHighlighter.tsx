@@ -114,7 +114,7 @@ const SyntaxHighlighter: React.FC<SyntaxHighlighterProps> = ({
 
         .token.function,
         .token.class-name {
-          color: oklch(var(--color-status-elite)); /* elite */
+          color: oklch(var(--color-status-gold)); /* gold */
         }
 
         .token.regex,

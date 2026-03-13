@@ -1,12 +1,12 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
-## [2.4.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.3.1...v2.4.0) (2026-03-12)
 
+## [2.4.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.3.1...v2.4.0) (2026-03-12)
 
 ### Features
 
-* refine theme engine v2.2.1 and improve accent color visibility in field manual ([6bc3d1c](https://github.com/filthymanc/filthys-mizmaster/commit/6bc3d1c319694efe2a8b814963dba3aa495e934f))
+- refine theme engine v2.2.1 and improve accent color visibility in field manual ([6bc3d1c](https://github.com/filthymanc/filthys-mizmaster/commit/6bc3d1c319694efe2a8b814963dba3aa495e934f))
 
 ### [2.3.1](https://github.com/filthymanc/filthys-mizmaster/compare/v2.3.0...v2.3.1) (2026-03-11)
 

@@ -9,7 +9,7 @@
  * You should have received a copy of the GNU General Public License along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSettings } from "../core/useSettings";
 import {
   ThemeSet,
@@ -42,6 +42,22 @@ const Swatchboard: React.FC = () => {
   const { settings, updateSettings } = useSettings();
   const [showArmory, setShowArmory] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
+  const syncChannelRef = useRef<BroadcastChannel | null>(null);
+
+  // Initialize Broadcast Channel for Theme Syncing
+  useEffect(() => {
+    syncChannelRef.current = new BroadcastChannel("mizmaster-theme-sync");
+    return () => syncChannelRef.current?.close();
+  }, []);
+
+  // Wrap updateSettings to also broadcast
+  const broadcastUpdate = (u: Partial<AppSettings>) => {
+    updateSettings(u);
+    syncChannelRef.current?.postMessage({
+      type: "UPDATE_THEME",
+      payload: u,
+    });
+  };
 
   const themeSets: ThemeSet[] = ["mono", "soft", "nvg", "coyote", "deck"];
   const brightnessLevels: BrightnessLevel[] = ["L1", "L2", "L3", "L4", "L5"];
@@ -51,7 +67,7 @@ const Swatchboard: React.FC = () => {
     "alert",
     "danger",
     "intel",
-    "elite",
+    "gold",
     "stealth",
   ];
   const intensities: AccentIntensity[] = ["vivid", "tactical"];
@@ -217,7 +233,7 @@ CAP_Logic:SetControllable(CAP_Spawn:Spawn())
 CAP_Logic:Start()`;
 
   // Sync body classes with local state for the swatchboard
-  React.useEffect(() => {
+  useEffect(() => {
     const body = document.body;
     body.className = `set-${settings.themeSet} brightness-${settings.themeBrightness} accent-role-${settings.themeAccentRole} intensity-${settings.themeIntensity}`;
   }, [settings]);
@@ -294,7 +310,7 @@ CAP_Logic:Start()`;
               {themeSets.map((s) => (
                 <button
                   key={s}
-                  onClick={() => updateSettings({ themeSet: s })}
+                  onClick={() => broadcastUpdate({ themeSet: s })}
                   className={`px-3 py-1 rounded-md text-xs font-mono border transition-all ${settings.themeSet === s ? "bg-app-brand text-app-canvas border-app-brand" : "border-app-border hover:border-app-highlight"}`}
                 >
                   {s.toUpperCase()}
@@ -312,7 +328,7 @@ CAP_Logic:Start()`;
               {brightnessLevels.map((l) => (
                 <button
                   key={l}
-                  onClick={() => updateSettings({ themeBrightness: l })}
+                  onClick={() => broadcastUpdate({ themeBrightness: l })}
                   className={`px-3 py-1 rounded-md text-xs font-mono border transition-all ${settings.themeBrightness === l ? "bg-app-brand text-app-canvas border-app-brand" : "border-app-border hover:border-app-highlight"}`}
                 >
                   {l}
@@ -330,7 +346,7 @@ CAP_Logic:Start()`;
               {accentRoles.map((a) => (
                 <button
                   key={a}
-                  onClick={() => updateSettings({ themeAccentRole: a })}
+                  onClick={() => broadcastUpdate({ themeAccentRole: a })}
                   className={`px-3 py-1 rounded-md text-xs font-mono border transition-all ${settings.themeAccentRole === a ? "bg-app-brand text-app-canvas border-app-brand" : "border-app-border hover:border-app-highlight"}`}
                 >
                   {a.toUpperCase()}
@@ -348,7 +364,7 @@ CAP_Logic:Start()`;
               {intensities.map((i) => (
                 <button
                   key={i}
-                  onClick={() => updateSettings({ themeIntensity: i })}
+                  onClick={() => broadcastUpdate({ themeIntensity: i })}
                   className={`px-3 py-1 rounded-md text-xs font-mono border transition-all ${settings.themeIntensity === i ? "bg-app-brand text-app-canvas border-app-brand" : "border-app-border hover:border-app-highlight"}`}
                 >
                   {i.toUpperCase()}

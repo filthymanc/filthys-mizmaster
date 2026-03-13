@@ -480,7 +480,7 @@ const FieldManual: React.FC<FieldManualProps> = ({
                                       alert: "alert",
                                       danger: "danger",
                                       intel: "intel",
-                                      elite: "elite",
+                                      gold: "gold",
                                       stealth: "stealth",
                                       // Common alias fallbacks
                                       green: "ready",

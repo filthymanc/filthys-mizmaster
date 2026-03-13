@@ -174,6 +174,17 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   }, [getMasterPassword, settings.githubToken]);
 
+  // Real-time Theme Sync Listener (BroadcastChannel)
+  useEffect(() => {
+    const syncChannel = new BroadcastChannel("mizmaster-theme-sync");
+    syncChannel.onmessage = (event) => {
+      if (event.data && event.data.type === "UPDATE_THEME") {
+        setSettings((prev) => ({ ...prev, ...event.data.payload }));
+      }
+    };
+    return () => syncChannel.close();
+  }, []);
+
   const refreshModels = useCallback(async () => {
     const apiKey = localStorage.getItem(STORAGE_KEYS.API_KEY);
     if (!apiKey) return;

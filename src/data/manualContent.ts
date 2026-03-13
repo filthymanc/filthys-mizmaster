@@ -44,17 +44,17 @@ export const MANUAL_CONTENT = {
           items: [
             {
               label: "NEW MISSION",
-              color: "elite",
+              color: "gold",
               text: "Starts a fresh session context. Use this when moving to a new task to ensure the AI remains focused on the specific logic at hand.",
             },
             {
               label: "IMPORT / EXPORT",
-              color: "elite",
+              color: "gold",
               text: "Found in System Settings. Enables you to back up your database to a JSON file, making it easy to transfer your design sessions between your PC and tablet.",
             },
             {
               label: "SYSTEM SETTINGS",
-              color: "elite",
+              color: "gold",
               text: "Access via the gear icon in the sidebar (or Ctrl+,). Configure your AI engine, UI theme, GitHub integration, and data management options.",
             },
           ],
@@ -64,12 +64,12 @@ export const MANUAL_CONTENT = {
           items: [
             {
               label: "ELLIPSIS MENU",
-              color: "alert",
+              color: "ready",
               text: "Found in the top right of the workspace. Provides context-specific actions such as clearing the chat history or deleting the current mission.",
             },
             {
               label: "SAFE / UNSAFE",
-              color: "alert",
+              color: "ready",
               text: 'Found in System Settings. Toggles the "Hard Deck". In Safe mode, the AI avoids generating code that interacts with your operating system. Unsafe mode allows for advanced scripting requiring desanitised DCS environments.',
             },
           ],

@@ -42,7 +42,7 @@ const SidebarFooter: React.FC<SidebarFooterProps> = ({
           className="w-full py-2.5 px-3 bg-app-brand/10 border border-app-brand/30 hover:bg-app-brand/20 hover:border-app-brand/50 text-app-brand rounded-lg text-sm font-bold transition-all flex items-center justify-center gap-2 shadow-sm shadow-app-brand/5"
           title="Open System Settings (Ctrl+,)"
         >
-          <CogIcon className="h-5 w-5" />
+          <CogIcon className="h-5 w-5 text-app-icon-brand" />
           SYSTEM SETTINGS
         </button>
 
@@ -54,7 +54,7 @@ const SidebarFooter: React.FC<SidebarFooterProps> = ({
             className="flex-1 py-2.5 px-3 bg-app-surface border border-app-border hover:bg-app-highlight hover:text-app-primary text-app-secondary rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-2 shadow-sm"
             title="Open Field Manual"
           >
-            <BookIcon className="h-4 w-4" />
+            <BookIcon className="h-4 w-4 text-app-icon-secondary" />
             MANUAL
           </button>
           <button
@@ -66,7 +66,7 @@ const SidebarFooter: React.FC<SidebarFooterProps> = ({
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-4 w-4"
+              className="h-4 w-4 text-app-icon-secondary"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -92,7 +92,7 @@ const SidebarFooter: React.FC<SidebarFooterProps> = ({
             href={DISCORD_LINKS.COMMUNITY}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-app-tertiary hover:text-app-status-nav transition-colors hover:scale-110 transform"
+            className="text-app-icon-tertiary hover:text-app-icon-primary transition-colors hover:scale-110 transform"
             title="Join Discord Community"
           >
             <DiscordIcon className="h-4 w-4" />
@@ -103,7 +103,7 @@ const SidebarFooter: React.FC<SidebarFooterProps> = ({
             href="https://github.com/filthymanc/filthys-mizmaster"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-app-tertiary hover:text-app-primary transition-colors hover:scale-110 transform"
+            className="text-app-icon-tertiary hover:text-app-icon-primary transition-colors hover:scale-110 transform"
             title="GitHub Repository"
           >
             <GithubIcon className="h-4 w-4" />
@@ -114,7 +114,7 @@ const SidebarFooter: React.FC<SidebarFooterProps> = ({
             href="https://github.com/filthymanc/filthys-mizmaster/issues"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-app-tertiary hover:text-app-status-danger transition-colors hover:scale-110 transform"
+            className="text-app-icon-tertiary hover:text-app-status-danger transition-colors hover:scale-110 transform"
             title="Report Issue / Contact Developer"
           >
             <AlertIcon className="h-4 w-4" />
