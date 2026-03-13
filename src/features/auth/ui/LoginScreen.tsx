@@ -24,6 +24,7 @@ import SecurityBriefingModal from "./SecurityBriefingModal";
 interface LoginScreenProps {
   onLogin: (apiKey: string, masterPassword?: string) => Promise<boolean>;
   onUnlock?: (password: string) => Promise<boolean>;
+  onLoginAsVisitor: () => void;
   isVerifying: boolean;
   isLocked?: boolean;
   authError: string | null;
@@ -33,6 +34,7 @@ interface LoginScreenProps {
 const LoginScreen: React.FC<LoginScreenProps> = ({
   onLogin,
   onUnlock,
+  onLoginAsVisitor,
   isVerifying,
   isLocked = false,
   authError,
@@ -199,26 +201,40 @@ const LoginScreen: React.FC<LoginScreenProps> = ({
                 </div>
               )}
 
-              <button
-                id="auth-login-submit"
-                data-testid="auth-login-submit"
-                type="submit"
-                disabled={
-                  isVerifying ||
-                  (!isLocked && !tempKey.trim()) ||
-                  !masterPassword
-                }
-                className="w-full py-3 bg-app-brand hover:bg-opacity-90 disabled:bg-app-surface disabled:text-app-tertiary text-app-canvas font-bold rounded-lg transition-all flex items-center justify-center gap-2 shadow-lg shadow-app-brand/20 disabled:shadow-none uppercase tracking-tighter"
-              >
-                {isVerifying ? (
-                  <>
-                    <SpinnerIcon className="h-5 w-5 text-app-canvas animate-spin" />
-                    {isLocked ? "Unlocking..." : "Initializing..."}
-                  </>
-                ) : (
-                  <>{isLocked ? "Unlock System" : "Start Secure Session"}</>
+              <div className="space-y-3">
+                <button
+                  id="auth-login-submit"
+                  data-testid="auth-login-submit"
+                  type="submit"
+                  disabled={
+                    isVerifying ||
+                    (!isLocked && !tempKey.trim()) ||
+                    !masterPassword
+                  }
+                  className="w-full py-3 bg-app-brand hover:bg-opacity-90 disabled:bg-app-surface disabled:text-app-tertiary text-app-canvas font-bold rounded-lg transition-all flex items-center justify-center gap-2 shadow-lg shadow-app-brand/20 disabled:shadow-none uppercase tracking-tighter"
+                >
+                  {isVerifying ? (
+                    <>
+                      <SpinnerIcon className="h-5 w-5 text-app-canvas animate-spin" />
+                      {isLocked ? "Unlocking..." : "Initializing..."}
+                    </>
+                  ) : (
+                    <>{isLocked ? "Unlock System" : "Start Secure Session"}</>
+                  )}
+                </button>
+
+                {!isLocked && (
+                  <button
+                    id="auth-visitor-login"
+                    data-testid="auth-visitor-login"
+                    type="button"
+                    onClick={onLoginAsVisitor}
+                    className="w-full py-2 bg-app-canvas hover:bg-app-surface text-app-secondary hover:text-app-primary border border-app-border rounded-lg text-xs font-bold transition-all uppercase tracking-widest"
+                  >
+                    Continue as Visitor
+                  </button>
                 )}
-              </button>
+              </div>
             </form>
 
             {/* Security Briefing Trigger */}

@@ -39,6 +39,7 @@ interface MissionWorkspaceProps {
   onImportData: () => void;
   onUpdateSettings: (updates: Partial<AppSettings>) => void;
   apiKey: string;
+  isVisitor?: boolean;
   touchSession: (id: string) => void;
   onOpenSidebar: () => void;
   onOpenSettings: (tab?: number) => void;
@@ -55,6 +56,7 @@ const MissionWorkspace: React.FC<MissionWorkspaceProps> = ({
   onImportData,
   onUpdateSettings,
   apiKey,
+  isVisitor = false,
   touchSession,
   onOpenSidebar,
   onOpenSettings,
@@ -70,6 +72,7 @@ const MissionWorkspace: React.FC<MissionWorkspaceProps> = ({
     apiStatus: chatApiStatus,
   } = useChatEngine({
     apiKey,
+    isVisitor,
     model: settings.model,
     isDesanitized: settings.isDesanitized,
     githubToken: settings.githubToken,
@@ -141,9 +144,11 @@ const MissionWorkspace: React.FC<MissionWorkspaceProps> = ({
                     : "text-app-brand"
                 }
               >
-                {chatApiStatus === "idle"
-                  ? "READY"
-                  : chatApiStatus.toUpperCase()}
+                {isVisitor
+                  ? "VISITOR MODE"
+                  : chatApiStatus === "idle"
+                    ? "READY"
+                    : chatApiStatus.toUpperCase()}
               </span>
               {isGenerating && (
                 <span className="text-app-tertiary animate-pulse">

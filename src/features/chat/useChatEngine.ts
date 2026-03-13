@@ -23,6 +23,7 @@ import { pruneHistoryByTokens } from "./tokenService";
 
 interface ChatEngineProps {
   apiKey: string;
+  isVisitor?: boolean;
   model: ModelType;
   isDesanitized: boolean;
   githubToken?: string;
@@ -37,6 +38,7 @@ const CONNECTION_TIMEOUT_MS = 30000; // 30 seconds to establish connection
 
 export const useChatEngine = ({
   apiKey,
+  isVisitor = false,
   model,
   isDesanitized,
   githubToken,
@@ -59,7 +61,7 @@ export const useChatEngine = ({
   } | null>(null);
 
   useEffect(() => {
-    if (!apiKey || isHistoryLoading) {
+    if (!apiKey || isHistoryLoading || isVisitor) {
       chatSessionRef.current = null;
       return;
     }
@@ -93,10 +95,40 @@ export const useChatEngine = ({
         setApiStatus("error");
       }
     }
-  }, [apiKey, model, isDesanitized, sessionId, isHistoryLoading, messages]);
+  }, [
+    apiKey,
+    model,
+    isDesanitized,
+    sessionId,
+    isHistoryLoading,
+    messages,
+    isVisitor,
+  ]);
 
   const sendMessage = async (text: string) => {
-    if (!text.trim() || isLoading || !apiKey) return;
+    if (!text.trim() || isLoading) return;
+    if (!apiKey && !isVisitor) return;
+
+    if (isVisitor) {
+      const userMessage: Message = {
+        id: Date.now().toString(),
+        role: "user",
+        text,
+        timestamp: new Date(),
+      };
+      const modelMessageId = (Date.now() + 1).toString();
+      const modelMessage: Message = {
+        id: modelMessageId,
+        role: "model",
+        text: "**VISITOR MODE ACTIVE**\n\nYou are currently exploring MizMaster in Visitor Mode. To fully utilize the neural engine and autonomous mission building capabilities, you must provide your own Gemini API Key.\n\n**Why do I need a key?**\nMizMaster is a client-side PWA that connects directly to Google's Gemini models. Using your own key ensures your data remains private and you benefit from your own API quotas.\n\n**How do I get one?**\n1. Visit [Google AI Studio](https://aistudio.google.com/app/apikey).\n2. Create a free API Key.\n3. Return here, Logout, and 'Start Secure Session' with your key.\n\nYour current session data will be saved locally in this browser.",
+        timestamp: new Date(),
+        isStreaming: false,
+      };
+
+      setMessages([...messages, userMessage, modelMessage]);
+      if (onActivity) onActivity();
+      return;
+    }
 
     if (!navigator.onLine) {
       const offlineMsg: Message = {

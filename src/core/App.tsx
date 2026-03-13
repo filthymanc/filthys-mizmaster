@@ -40,11 +40,13 @@ const App: React.FC = () => {
   const { settings, apiStatus, updateSettings } = useSettings();
   const {
     apiKey,
+    isVisitor,
     isAuthenticated,
     isVerifying,
     isLocked,
     authError,
     login,
+    loginAsVisitor,
     unlock,
     logout,
     checkAuth,
@@ -250,6 +252,7 @@ const App: React.FC = () => {
         <LoginScreen
           onLogin={login}
           onUnlock={unlock}
+          onLoginAsVisitor={loginAsVisitor}
           isVerifying={isVerifying}
           isLocked={isLocked}
           authError={authError}
@@ -340,6 +343,7 @@ const App: React.FC = () => {
             onImportData={handleImportDataTrigger}
             onUpdateSettings={updateSettings}
             apiKey={apiKey}
+            isVisitor={isVisitor}
             touchSession={sessionManager.touchSession}
             onOpenSidebar={() => setIsSidebarOpen(true)}
             onOpenSettings={handleOpenSettings}

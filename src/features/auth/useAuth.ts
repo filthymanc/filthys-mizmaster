@@ -20,6 +20,7 @@ let memoryMasterPassword: string | null = null;
 export const useAuth = () => {
   const [apiKey, setApiKey] = useState<string>("");
   const [hasApiKey, setHasApiKey] = useState(false);
+  const [isVisitor, setIsVisitor] = useState(false);
   const [isVerifying, setIsVerifying] = useState(false);
   const [authError, setAuthError] = useState<string | null>(null);
   const [isLocked, setIsLocked] = useState(false);
@@ -91,6 +92,7 @@ export const useAuth = () => {
 
         setApiKey(key);
         setHasApiKey(true);
+        setIsVisitor(false);
         setIsLocked(false);
         setIsVerifying(false);
         return true;
@@ -106,6 +108,13 @@ export const useAuth = () => {
     }
   };
 
+  const loginAsVisitor = () => {
+    setIsVisitor(true);
+    setApiKey("");
+    setHasApiKey(false);
+    setIsLocked(false);
+  };
+
   const unlock = async (password: string): Promise<boolean> => {
     const stored = localStorage.getItem(STORAGE_KEYS.API_KEY);
     if (!stored || !crypto.isEncrypted(stored)) return false;
@@ -119,6 +128,7 @@ export const useAuth = () => {
         memoryMasterPassword = password;
         setApiKey(decrypted);
         setHasApiKey(true);
+        setIsVisitor(false);
         setIsLocked(false);
         setIsVerifying(false);
         return true;
@@ -134,6 +144,7 @@ export const useAuth = () => {
   const logout = () => {
     setApiKey("");
     setHasApiKey(false);
+    setIsVisitor(false);
     memoryMasterPassword = null;
     localStorage.removeItem(STORAGE_KEYS.API_KEY);
     // Optional: Reload to clear memory states
@@ -143,11 +154,13 @@ export const useAuth = () => {
   return {
     apiKey,
     hasApiKey,
-    isAuthenticated: hasApiKey,
+    isVisitor,
+    isAuthenticated: hasApiKey || isVisitor,
     isVerifying,
     authError,
     isLocked,
     login,
+    loginAsVisitor,
     unlock,
     logout,
     checkAuth,
