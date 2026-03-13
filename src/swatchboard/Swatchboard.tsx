@@ -17,6 +17,7 @@ import {
   AccentRole,
   AccentIntensity,
   Message,
+  AppSettings,
 } from "../core/types";
 import Dashboard from "../features/mission/ui/Dashboard";
 import ArmoryModal from "../features/armory/ui/ArmoryModal";
@@ -624,6 +625,7 @@ CAP_Logic:Start()`;
             <div className="border border-app-border rounded-2xl overflow-hidden shadow-2xl h-[700px] relative origin-top">
               <LoginScreen
                 onLogin={async () => true}
+                onLoginAsVisitor={() => {}}
                 isVerifying={false}
                 authError={null}
                 onOpenFieldManual={() => {}}
