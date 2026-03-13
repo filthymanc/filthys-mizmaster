@@ -1,12 +1,12 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
-## [2.8.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.7.0...v2.8.0) (2026-03-13)
 
+## [2.8.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.7.0...v2.8.0) (2026-03-13)
 
 ### Features
 
-* rebrand Unsafe Mode to Dev Mode and fix toggle visibility ([ee7088c](https://github.com/filthymanc/filthys-mizmaster/commit/ee7088c4bbf36fc01f4f343d43261386cddea56a))
+- rebrand Unsafe Mode to Dev Mode and fix toggle visibility ([ee7088c](https://github.com/filthymanc/filthys-mizmaster/commit/ee7088c4bbf36fc01f4f343d43261386cddea56a))
 
 ## [2.7.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.6.0...v2.7.0) (2026-03-13)
 

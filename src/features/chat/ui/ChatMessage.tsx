@@ -14,6 +14,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Message } from "../../../core/types";
 import CodeBlock from "./CodeBlock";
+import { WarningIcon, RefreshIcon, CogIcon } from "../../../shared/ui/Icons";
 
 interface ChatMessageProps {
   message: Message;
@@ -185,6 +186,84 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ message }) => {
     [],
   );
 
+  const renderErrorCard = () => {
+    if (!message.errorType) return null;
+
+    const errorConfig = {
+      network: {
+        color: "text-app-status-alert",
+        bg: "bg-app-status-alert/10",
+        border: "border-app-status-alert/30",
+        icon: WarningIcon,
+        label: "Communication Interrupted",
+      },
+      "rate-limit": {
+        color: "text-app-status-gold",
+        bg: "bg-app-status-gold/10",
+        border: "border-app-status-gold/30",
+        icon: CogIcon,
+        label: "API Quota Exhausted",
+      },
+      auth: {
+        color: "text-app-status-danger",
+        bg: "bg-app-status-danger/10",
+        border: "border-app-status-danger/30",
+        icon: WarningIcon,
+        label: "Authentication Failed",
+      },
+      timeout: {
+        color: "text-app-status-alert",
+        bg: "bg-app-status-alert/10",
+        border: "border-app-status-alert/30",
+        icon: WarningIcon,
+        label: "Connection Timeout",
+      },
+      safety: {
+        color: "text-app-status-intel",
+        bg: "bg-app-status-intel/10",
+        border: "border-app-status-intel/30",
+        icon: ShieldIcon,
+        label: "AI Safety Protocol",
+      },
+      generic: {
+        color: "text-app-status-danger",
+        bg: "bg-app-status-danger/10",
+        border: "border-app-status-danger/30",
+        icon: WarningIcon,
+        label: "System Exception",
+      },
+    }[message.errorType || "generic"];
+
+    const Icon = errorConfig.icon;
+
+    return (
+      <div
+        className={`mt-4 p-4 rounded-xl border ${errorConfig.bg} ${errorConfig.border} animate-fadeIn`}
+      >
+        <div className="flex items-center gap-3 mb-2">
+          <Icon className={`h-5 w-5 ${errorConfig.color}`} />
+          <span
+            className={`text-xs font-bold uppercase tracking-widest ${errorConfig.color}`}
+          >
+            {errorConfig.label}
+          </span>
+        </div>
+        <p className="text-sm text-app-secondary leading-relaxed mb-4">
+          {message.text.split("**").pop()?.trim() || message.text}
+        </p>
+        {message.retryAction && (
+          <button
+            onClick={message.retryAction}
+            className={`flex items-center gap-2 px-4 py-2 rounded-lg font-bold text-xs transition-all bg-app-canvas border ${errorConfig.border} ${errorConfig.color} hover:bg-app-surface shadow-sm`}
+          >
+            <RefreshIcon className="h-3.5 w-3.5" />
+            RETRY MISSION REQUEST
+          </button>
+        )}
+      </div>
+    );
+  };
+
   return (
     <div
       className={`flex w-full mb-6 ${isModel ? "justify-start" : "justify-end"}`}
@@ -232,16 +311,20 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ message }) => {
         <div
           className={`text-sm md:text-base leading-relaxed ${!isModel ? "whitespace-pre-wrap" : ""}`}
         >
-          <ReactMarkdown
-            remarkPlugins={[remarkGfm]}
-            components={
-              markdownComponents as React.ComponentProps<
-                typeof ReactMarkdown
-              >["components"]
-            }
-          >
-            {cleanStreamedContent(message.text, message.isStreaming)}
-          </ReactMarkdown>
+          {!message.errorType ? (
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              components={
+                markdownComponents as React.ComponentProps<
+                  typeof ReactMarkdown
+                >["components"]
+              }
+            >
+              {cleanStreamedContent(message.text, message.isStreaming)}
+            </ReactMarkdown>
+          ) : (
+            renderErrorCard()
+          )}
         </div>
 
         {isModel && message.sources && message.sources.length > 0 && (
@@ -258,7 +341,7 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ message }) => {
                   href={source.uri}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 px-2 py-1 bg-app-canvas rounded border border-app-border hover:border-app-brand text-xs truncate max-w-[200px] text-app-secondary hover:text-app-brand transition-colors"
+                  className="flex items-center gap-1.5 px-2 py-1 bg-app-canvas rounded border border-app-border hover:border-app-brand text-xs truncate max-w-[200px] text-app-secondary hover:border-app-brand transition-colors"
                 >
                   <span className="truncate">
                     {source.title || new URL(source.uri).hostname}

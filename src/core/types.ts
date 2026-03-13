@@ -32,6 +32,14 @@ export interface Message {
   tokenUsage?: TokenUsage; // Token counts reported by the API
   timingMs?: number; // Generation duration
   librarianStatus?: string; // Current status of the Librarian tool (e.g., "Fetching SPAWN...")
+  errorType?:
+    | "network"
+    | "rate-limit"
+    | "auth"
+    | "timeout"
+    | "safety"
+    | "generic";
+  retryAction?: () => void;
 }
 
 export interface ChatState {
