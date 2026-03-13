@@ -68,9 +68,9 @@ export const MANUAL_CONTENT = {
               text: "Found in the top right of the workspace. Provides context-specific actions such as clearing the chat history or deleting the current mission.",
             },
             {
-              label: "SAFE / UNSAFE",
+              label: "STANDARD / DEV",
               color: "ready",
-              text: 'Found in System Settings. Toggles the "Hard Deck". In Safe mode, the AI avoids generating code that interacts with your operating system. Unsafe mode allows for advanced scripting requiring desanitised DCS environments.',
+              text: 'Found in System Settings. Toggles the "Hard Deck". In Standard Mode, the AI avoids generating code that interacts with your operating system. Dev Mode allows for advanced scripting requiring desanitised DCS environments and experimental framework access.',
             },
           ],
         },

@@ -213,11 +213,11 @@ export const getFrameworkDocs = async (
 
     if (fwKey === "DML") branchKey = "MAIN";
 
-    // SECURITY CHECK: MOOSE DEVELOP is restricted to UNSAFE MODE
-    if (fwKey === "MOOSE" && branchKey === "DEVELOP" && !isDesanitized) {
-      return `ACCESS DENIED: The MOOSE 'DEVELOP' branch contains experimental or unverified code and is restricted to UNSAFE MODE only. 
+    // SECURITY CHECK: MOOSE DEVELOP is restricted to DEV MODE
+    if (framework === "MOOSE" && branch === "DEVELOP" && !isDesanitized) {
+      return `ACCESS DENIED: The MOOSE 'DEVELOP' branch contains experimental or unverified code and is restricted to DEV MODE only.
 
-To access this documentation, please enable 'Unsafe Mode' in your Settings or request the 'STABLE' branch instead.`;
+    To access this documentation, please enable 'Dev Mode' in your Settings or request the 'STABLE' branch instead. Dev Mode is required for accessing experimental features and advanced scripting capabilities.`;
     }
 
     const config = REPOS[fwKey]?.[branchKey];

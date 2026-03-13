@@ -91,7 +91,7 @@ const OnboardingModal: React.FC<OnboardingModalProps> = ({
                 will refuse to generate file-system code unless you explicitly
                 enable{" "}
                 <span className="text-app-status-danger font-bold">
-                  UNSAFE MODE
+                  DEV MODE
                 </span>{" "}
                 in the <strong>System Configuration</strong>.
               </p>

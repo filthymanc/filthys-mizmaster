@@ -328,14 +328,14 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                                   ${
                                     settings.isDesanitized
                                       ? "bg-app-status-danger"
-                                      : "bg-app-canvas border border-app-border"
+                                      : "bg-app-primary/20 border border-app-border"
                                   }
                                 `}
                             >
                               <span
                                 aria-hidden="true"
                                 className={`
-                                    pointer-events-none inline-block h-5 w-5 transform rounded-full bg-app-canvas shadow ring-0 transition duration-200 ease-in-out
+                                    pointer-events-none inline-block h-5 w-5 transform rounded-full bg-app-primary shadow ring-0 transition duration-200 ease-in-out
                                     ${
                                       settings.isDesanitized
                                         ? "translate-x-5"
@@ -350,11 +350,13 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                               <AlertIcon className="h-4 w-4 shrink-0 mt-0.5" />
                               <div className="flex flex-col gap-1">
                                 <span className="font-bold uppercase tracking-widest text-[10px]">
-                                  Unsafe Mode Active
+                                  Dev Mode Active
                                 </span>
                                 <span>
-                                  The AI may generate unconstrained responses
-                                  and ignore standard protocols.
+                                  Experimental features and advanced scripting
+                                  capabilities are enabled. The AI may generate
+                                  responses that interact with the OS and bypass
+                                  standard safety protocols for development.
                                   <strong>
                                     {" "}
                                     MOOSE Develop branch access is now UNLOCKED.
@@ -368,8 +370,9 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                               <span>
                                 Standard security protocols active. The MOOSE{" "}
                                 <strong>DEVELOP</strong> branch is restricted.
-                                Switch to Unsafe Mode to access experimental
-                                framework documentation.
+                                Switch to Dev Mode to access experimental
+                                framework documentation and advanced scripting
+                                capabilities.
                               </span>
                             </div>
                           )}
@@ -394,7 +397,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                                 className={`${
                                   showAdvancedTheme
                                     ? "bg-app-brand"
-                                    : "bg-app-canvas"
+                                    : "bg-app-primary/20 border border-app-border"
                                 } relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-app-brand focus:ring-offset-2`}
                               >
                                 <span
@@ -402,7 +405,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                                     showAdvancedTheme
                                       ? "translate-x-4"
                                       : "translate-x-0"
-                                  } pointer-events-none inline-block h-4 w-4 transform rounded-full bg-app-canvas shadow ring-0 transition duration-200 ease-in-out`}
+                                  } pointer-events-none inline-block h-4 w-4 transform rounded-full bg-app-primary shadow ring-0 transition duration-200 ease-in-out`}
                                 />
                               </Switch>
                             </div>

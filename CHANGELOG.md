@@ -1,17 +1,16 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
-## [2.7.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.6.0...v2.7.0) (2026-03-13)
 
+## [2.7.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.6.0...v2.7.0) (2026-03-13)
 
 ### Features
 
-* **librarian:** implement MOOSE Develop restriction and fix tool loop ([f10e8ad](https://github.com/filthymanc/filthys-mizmaster/commit/f10e8ad1bce2212a048c4f32debba383ce47120e))
-
+- **librarian:** implement MOOSE Develop restriction and fix tool loop ([f10e8ad](https://github.com/filthymanc/filthys-mizmaster/commit/f10e8ad1bce2212a048c4f32debba383ce47120e))
 
 ### Bug Fixes
 
-* resolve TS errors in swatchboard ([c78cad9](https://github.com/filthymanc/filthys-mizmaster/commit/c78cad9ea9d547407c07c48d9a1deac3254118de))
+- resolve TS errors in swatchboard ([c78cad9](https://github.com/filthymanc/filthys-mizmaster/commit/c78cad9ea9d547407c07c48d9a1deac3254118de))
 
 ## [2.6.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.5.1...v2.6.0) (2026-03-13)
 

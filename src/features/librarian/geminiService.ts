@@ -54,7 +54,7 @@ const mapMessagesToHistory = (messages: Message[]): Content[] => {
 const frameworkDocsTool: FunctionDeclaration = {
   name: "get_framework_docs",
   description:
-    "Fetches RAW LUA SOURCE CODE from the official GitHub repositories (MOOSE or DML). Use this to analyze function definitions and header comments directly. NOTE: The MOOSE 'DEVELOP' branch is restricted and requires 'Unsafe Mode' (Desanitized) to be active. Always check for 'STABLE' if Unsafe Mode is off.",
+    "Fetches RAW LUA SOURCE CODE from the official GitHub repositories (MOOSE or DML). Use this to analyze function definitions and header comments directly. NOTE: The MOOSE 'DEVELOP' branch is restricted and requires 'Dev Mode' (Desanitized) to be active. Always check for 'STABLE' if Dev Mode is off.",
   parameters: {
     type: Type.OBJECT,
     properties: {
@@ -71,7 +71,7 @@ const frameworkDocsTool: FunctionDeclaration = {
       branch: {
         type: Type.STRING,
         description:
-          "Required for MOOSE. 'STABLE' (Master) or 'DEVELOP'. Default is DEVELOP (requires Unsafe Mode).",
+          "Required for MOOSE. 'STABLE' (Master) or 'DEVELOP'. Default is DEVELOP (requires Dev Mode).",
         enum: ["STABLE", "DEVELOP"],
       },
     },
@@ -146,8 +146,8 @@ export const startNewSession = (
   const formattedHistory = mapMessagesToHistory(historyMessages);
 
   const envStatus = isDesanitized
-    ? "ENVIRONMENT STATUS: DESANITIZED (UNSAFE)."
-    : "ENVIRONMENT STATUS: SANITIZED (LOCKED).";
+    ? "ENVIRONMENT STATUS: DESANITIZED (DEV MODE ACTIVE)."
+    : "ENVIRONMENT STATUS: SANITIZED (STANDARD MODE).";
 
   const effectiveSystemInstruction = `${SYSTEM_INSTRUCTION}
 
