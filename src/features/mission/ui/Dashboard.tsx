@@ -111,7 +111,7 @@ const Dashboard: React.FC<DashboardProps> = ({
             Awaiting objective definition. Systems online.
           </p>
         </div>
-        <div className="text-[10px] font-mono text-app-tertiary uppercase tracking-tighter text-app-tertiary">
+        <div className="text-[10px] font-mono text-app-tertiary uppercase tracking-tighter">
           v{settings.availableModels.length > 0 ? APP_VERSION : "LINKING..."}
         </div>
       </div>

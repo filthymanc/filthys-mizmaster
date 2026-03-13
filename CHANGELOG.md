@@ -1,17 +1,16 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
-## [2.5.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.4.0...v2.5.0) (2026-03-13)
 
+## [2.5.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.4.0...v2.5.0) (2026-03-13)
 
 ### Features
 
-* implement theme engine v2.3 (Axis Composition) and Tactical Sync Pipe for swatchboard ([3268589](https://github.com/filthymanc/filthys-mizmaster/commit/32685891240472785493bedcd9203188650af0dd))
-
+- implement theme engine v2.3 (Axis Composition) and Tactical Sync Pipe for swatchboard ([3268589](https://github.com/filthymanc/filthys-mizmaster/commit/32685891240472785493bedcd9203188650af0dd))
 
 ### Bug Fixes
 
-* adjust husky pre-commit path for project structure ([f766ca8](https://github.com/filthymanc/filthys-mizmaster/commit/f766ca8e24bddd103ae4b8c632c57b4f19ab46c4))
+- adjust husky pre-commit path for project structure ([f766ca8](https://github.com/filthymanc/filthys-mizmaster/commit/f766ca8e24bddd103ae4b8c632c57b4f19ab46c4))
 
 ## [2.4.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.3.1...v2.4.0) (2026-03-12)
 
