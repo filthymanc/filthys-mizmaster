@@ -1,12 +1,12 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
-## [2.6.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.5.1...v2.6.0) (2026-03-13)
 
+## [2.6.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.5.1...v2.6.0) (2026-03-13)
 
 ### Features
 
-* implement visitor mode for unauthenticated users ([8f79de9](https://github.com/filthymanc/filthys-mizmaster/commit/8f79de99bf93b220fd90bb712421f93f07680afe))
+- implement visitor mode for unauthenticated users ([8f79de9](https://github.com/filthymanc/filthys-mizmaster/commit/8f79de99bf93b220fd90bb712421f93f07680afe))
 
 ### [2.5.1](https://github.com/filthymanc/filthys-mizmaster/compare/v2.5.0...v2.5.1) (2026-03-13)
 

@@ -54,7 +54,7 @@ const mapMessagesToHistory = (messages: Message[]): Content[] => {
 const frameworkDocsTool: FunctionDeclaration = {
   name: "get_framework_docs",
   description:
-    "Fetches RAW LUA SOURCE CODE from the official GitHub repositories (MOOSE or DML). Use this to analyze function definitions and header comments directly. Semantic Compression is applied to large files.",
+    "Fetches RAW LUA SOURCE CODE from the official GitHub repositories (MOOSE or DML). Use this to analyze function definitions and header comments directly. NOTE: The MOOSE 'DEVELOP' branch is restricted and requires 'Unsafe Mode' (Desanitized) to be active. Always check for 'STABLE' if Unsafe Mode is off.",
   parameters: {
     type: Type.OBJECT,
     properties: {
@@ -71,7 +71,7 @@ const frameworkDocsTool: FunctionDeclaration = {
       branch: {
         type: Type.STRING,
         description:
-          "Required for MOOSE. 'STABLE' (Master) or 'DEVELOP'. Default is DEVELOP.",
+          "Required for MOOSE. 'STABLE' (Master) or 'DEVELOP'. Default is DEVELOP (requires Unsafe Mode).",
         enum: ["STABLE", "DEVELOP"],
       },
     },
@@ -191,6 +191,7 @@ export async function* sendMessageStream(
   chatSession: Chat | null,
   message: string | Part[],
   githubToken?: string,
+  isDesanitized: boolean = false, // Security context
 ): AsyncGenerator<GenerateContentResponse, void, unknown> {
   if (!chatSession) throw new Error("CHAT_NOT_INITIALIZED");
 
@@ -291,15 +292,19 @@ export async function* sendMessageStream(
           const args = call.args as unknown as FrameworkDocsArgs;
           const { framework, module_name, branch } = args;
 
+          // Normalize Branch for Fingerprinting (Prevent looping on default vs explicit)
+          const branchKey =
+            branch ||
+            (framework.toUpperCase() === "MOOSE" ? "DEVELOP" : "MAIN");
           const fingerprint =
-            `${framework}:${module_name}:${branch || ""}`.toUpperCase();
+            `${framework}:${module_name}:${branchKey}`.toUpperCase();
 
           if (toolCallHistory.has(fingerprint)) {
             console.warn(
               `[Librarian] Duplicate tool call blocked: ${fingerprint}`,
             );
             result =
-              "SYSTEM ALERT: You have already fetched this module. Do not fetch it again. Use the data previously provided.";
+              "SYSTEM ALERT: You have already fetched this module. Do not fetch it again. Use the data previously provided in this turn.";
           } else {
             toolCallHistory.add(fingerprint);
             result = await getFrameworkDocs(
@@ -307,6 +312,7 @@ export async function* sendMessageStream(
               module_name,
               branch,
               githubToken,
+              isDesanitized,
             );
           }
         }

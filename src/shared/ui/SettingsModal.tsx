@@ -345,13 +345,31 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                               />
                             </button>
                           </div>
-                          {settings.isDesanitized && (
+                          {settings.isDesanitized ? (
                             <div className="p-3 bg-app-status-danger/10 border border-app-status-danger/30 text-app-status-danger rounded-lg text-xs flex gap-2 items-start">
                               <AlertIcon className="h-4 w-4 shrink-0 mt-0.5" />
+                              <div className="flex flex-col gap-1">
+                                <span className="font-bold uppercase tracking-widest text-[10px]">
+                                  Unsafe Mode Active
+                                </span>
+                                <span>
+                                  The AI may generate unconstrained responses
+                                  and ignore standard protocols.
+                                  <strong>
+                                    {" "}
+                                    MOOSE Develop branch access is now UNLOCKED.
+                                  </strong>
+                                </span>
+                              </div>
+                            </div>
+                          ) : (
+                            <div className="p-3 bg-app-brand/5 border border-app-border rounded-lg text-[10px] text-app-tertiary flex gap-2 items-start">
+                              <ShieldIcon className="h-3.5 w-3.5 shrink-0 mt-0.5" />
                               <span>
-                                <strong>Warning:</strong> Desanitized mode is
-                                active. The AI may generate unconstrained
-                                responses and ignore standard protocols.
+                                Standard security protocols active. The MOOSE{" "}
+                                <strong>DEVELOP</strong> branch is restricted.
+                                Switch to Unsafe Mode to access experimental
+                                framework documentation.
                               </span>
                             </div>
                           )}

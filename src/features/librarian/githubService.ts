@@ -200,6 +200,7 @@ export const getFrameworkDocs = async (
   moduleName: string,
   branch: string = "DEVELOP",
   githubToken?: string, // Token passed from context
+  isDesanitized: boolean = false, // Security context
 ): Promise<string> => {
   try {
     // 1. Opportunistic Cleanup
@@ -211,6 +212,13 @@ export const getFrameworkDocs = async (
     let branchKey = branch.toUpperCase();
 
     if (fwKey === "DML") branchKey = "MAIN";
+
+    // SECURITY CHECK: MOOSE DEVELOP is restricted to UNSAFE MODE
+    if (fwKey === "MOOSE" && branchKey === "DEVELOP" && !isDesanitized) {
+      return `ACCESS DENIED: The MOOSE 'DEVELOP' branch contains experimental or unverified code and is restricted to UNSAFE MODE only. 
+
+To access this documentation, please enable 'Unsafe Mode' in your Settings or request the 'STABLE' branch instead.`;
+    }
 
     const config = REPOS[fwKey]?.[branchKey];
     if (!config) {

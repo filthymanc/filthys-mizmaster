@@ -160,7 +160,9 @@ export const parseLuaSource = (raw: string): string => {
       } else {
         // It's a multi-line function. We want the signature, but not the body.
         // We append a comment indicating hidden logic.
-        output.push(`${line} -- [Implementation Hidden by Semantic Architect]`);
+        output.push(
+          `${line} -- [SYSTEM NOTE: Implementation Body Stripped for Token Efficiency]`,
+        );
         output.push("end"); // Close the block immediately
       }
       continue;
@@ -181,11 +183,13 @@ export const parseLuaSource = (raw: string): string => {
   const compressed = output.join("\n");
   const ratio = ((1 - compressed.length / raw.length) * 100).toFixed(1);
 
-  return `--- [SEMANTIC COMPRESSION ACTIVE]
+  return `--- [SEMANTIC ARCHITECT COMPRESSION ACTIVE]
 --- Original Size: ${raw.length} chars
 --- Compressed Size: ${compressed.length} chars
 --- Compression Ratio: ${ratio}%
---- NOTE: Implementation logic has been stripped. Function signatures are accurate.
+--- NOTE: Implementation logic has been stripped to preserve context window.
+--- If you need logic for a SPECIFIC function, ask the user to provide it manually.
+--- Do NOT attempt to re-fetch the entire module.
 --------------------------------------------------------------------------------
 
 ${compressed}`;

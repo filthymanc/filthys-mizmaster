@@ -203,6 +203,7 @@ export const useChatEngine = ({
         chatSessionRef.current,
         text,
         githubToken,
+        isDesanitized,
       );
 
       // Clear connection timeout as we have established communication
