@@ -1,12 +1,12 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
-## [2.9.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.8.0...v2.9.0) (2026-03-13)
 
+## [2.9.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.8.0...v2.9.0) (2026-03-13)
 
 ### Features
 
-* structured error reporting UI and issue [#6](https://github.com/filthymanc/filthys-mizmaster/issues/6) perception fixes ([e7e686f](https://github.com/filthymanc/filthys-mizmaster/commit/e7e686f8fdc005002f249c66df2960df0d2cebcf))
+- structured error reporting UI and issue [#6](https://github.com/filthymanc/filthys-mizmaster/issues/6) perception fixes ([e7e686f](https://github.com/filthymanc/filthys-mizmaster/commit/e7e686f8fdc005002f249c66df2960df0d2cebcf))
 
 ## [2.8.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.7.0...v2.8.0) (2026-03-13)
 
