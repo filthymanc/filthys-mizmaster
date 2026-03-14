@@ -14,7 +14,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Message } from "../../../core/types";
 import CodeBlock from "./CodeBlock";
-import { WarningIcon, RefreshIcon, CogIcon } from "../../../shared/ui/Icons";
+import { WarningIcon, RefreshIcon, CogIcon, ShieldIcon } from "../../../shared/ui/Icons";
 
 interface ChatMessageProps {
   message: Message;
