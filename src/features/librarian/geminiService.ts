@@ -27,6 +27,7 @@ import { DEFAULT_MODEL_ID } from "../../core/constants";
 import { Message, ModelType } from "../../core/types";
 import { getFrameworkDocs } from "./githubService";
 import { SSE_DEFINITIONS } from "../../data/sse-definitions";
+import { logger } from "../../shared/utils/logger";
 
 // --- Type Definitions for Tool Arguments ---
 
@@ -102,7 +103,6 @@ const architectTools: Tool[] = [
 
 /**
  * Validates the API key with a 10-second timeout.
- * Aligned with the project's native 'models' property access.
  */
 export const validateApiKey = async (apiKey: string): Promise<boolean> => {
   const ai = new GoogleGenAI({ apiKey });
@@ -111,27 +111,18 @@ export const validateApiKey = async (apiKey: string): Promise<boolean> => {
   const timeoutId = setTimeout(() => controller.abort(), 10000);
 
   try {
-    // Correcting to use the established project pattern
-    await (
-      ai as unknown as {
-        models: {
-          generateContent: (args: unknown, opts: unknown) => Promise<unknown>;
-        };
-      }
-    ).models.generateContent(
-      {
-        model: DEFAULT_MODEL_ID,
-        contents: { parts: [{ text: "ping" }] },
-      },
-      { signal: controller.signal },
-    );
+    await ai.models.generateContent({
+      model: DEFAULT_MODEL_ID,
+      contents: [{ parts: [{ text: "ping" }] }],
+      config: { abortSignal: controller.signal },
+    });
 
     clearTimeout(timeoutId);
     return true;
   } catch (error: unknown) {
     clearTimeout(timeoutId);
     const err = error as Error;
-    console.warn("API Validation failed or timed out:", err.message);
+    logger.warn("API Validation failed or timed out:", err.message);
     return false;
   }
 };
@@ -197,20 +188,20 @@ export async function* sendMessageStream(
 
   let currentTurnMessage: string | Part[] = message;
   let turnCount = 0;
-  const maxTurns = 5;
+  const maxTurns = 10; // Increased from 5 to support complex multi-module queries
 
   const toolCallHistory = new Set<string>();
 
   while (turnCount < maxTurns) {
     turnCount++;
 
-    const inputPayload = { message: currentTurnMessage };
-
     let stream;
     try {
-      stream = await chatSession.sendMessageStream(inputPayload);
+      stream = await chatSession.sendMessageStream({
+        message: currentTurnMessage,
+      });
     } catch (e: unknown) {
-      console.error(
+      logger.error(
         "Gemini API Stream Error:",
         e instanceof Error ? e.message : e,
       );
@@ -265,96 +256,129 @@ export async function* sendMessageStream(
       return;
     }
 
-    let toolCalls: FunctionCall[] = [];
+    const toolCalls: FunctionCall[] = [];
 
     for await (const chunk of stream) {
       yield chunk;
+
+      // Aggregation Fix: Accumulate all function calls from the stream instead of overwriting with the last chunk.
       const calls = chunk.candidates?.[0]?.content?.parts
         ?.filter((p) => p.functionCall)
         .map((p) => p.functionCall as FunctionCall);
 
       if (calls && calls.length > 0) {
-        toolCalls = calls;
+        toolCalls.push(...calls);
+      }
+
+      // Usage Transparency: Log metadata if provided in the chunk
+      if (chunk.usageMetadata) {
+        logger.info(
+          `[Librarian] Turn ${turnCount} Usage: Prompt Tokens: ${chunk.usageMetadata.promptTokenCount}, Candidates: ${chunk.usageMetadata.candidatesTokenCount}, Total: ${chunk.usageMetadata.totalTokenCount}`,
+        );
       }
     }
 
     if (toolCalls.length > 0) {
-      console.log(
-        `[Librarian] executing ${toolCalls.length} tools. Turn: ${turnCount}`,
-      );
+      // If we hit the turn limit but still have pending tool calls, it means the model is likely looping or needs too much data.
+      if (turnCount >= maxTurns) {
+        const timeoutMessage =
+          `**LIBRARIAN TIMEOUT:** The model exceeded the maximum number of research steps (${maxTurns}).\n\n` +
+          `This usually happens when a request is too broad (e.g., asking for multiple large frameworks at once). Try asking for a single module or feature first.`;
 
-      const functionResponses: Part[] = [];
-      for (const call of toolCalls) {
-        let result = "";
+        const timeoutResponse: GenerateContentResponse = {
+          candidates: [
+            {
+              content: {
+                parts: [{ text: timeoutMessage }],
+                role: "model",
+              },
+            },
+          ],
+          text: timeoutMessage,
+        } as unknown as GenerateContentResponse;
 
-        // HANDLER: GitHub Docs
-        if (call.name === "get_framework_docs") {
-          const args = call.args as unknown as FrameworkDocsArgs;
-          const { framework, module_name, branch } = args;
-
-          // Normalize Branch for Fingerprinting (Prevent looping on default vs explicit)
-          const branchKey =
-            branch ||
-            (framework.toUpperCase() === "MOOSE" ? "DEVELOP" : "MAIN");
-          const fingerprint =
-            `${framework}:${module_name}:${branchKey}`.toUpperCase();
-
-          if (toolCallHistory.has(fingerprint)) {
-            console.warn(
-              `[Librarian] Duplicate tool call blocked: ${fingerprint}`,
-            );
-            result =
-              "SYSTEM ALERT: You have already fetched this module. Do not fetch it again. Use the data previously provided in this turn.";
-          } else {
-            toolCallHistory.add(fingerprint);
-            result = await getFrameworkDocs(
-              framework,
-              module_name,
-              branch,
-              githubToken,
-              isDesanitized,
-            );
-          }
-        }
-        // HANDLER: SSE Hard Deck
-        else if (call.name === "get_sse_docs") {
-          const args = call.args as unknown as SseDocsArgs;
-          const { category } = args;
-          const fingerprint = `SSE:${category}`;
-
-          if (toolCallHistory.has(fingerprint)) {
-            result =
-              "SYSTEM ALERT: SSE Definitions for this category are already in context.";
-          } else {
-            toolCallHistory.add(fingerprint);
-            if (category === "All") {
-              result = JSON.stringify(SSE_DEFINITIONS, null, 2);
-            } else if (
-              SSE_DEFINITIONS[category as keyof typeof SSE_DEFINITIONS]
-            ) {
-              result = JSON.stringify(
-                SSE_DEFINITIONS[category as keyof typeof SSE_DEFINITIONS],
-                null,
-                2,
-              );
-            } else {
-              result =
-                "ERROR: Category not found in Hard Deck. Available: Group, Unit, timer, trigger, coalition.";
-            }
-          }
-        }
-
-        functionResponses.push({
-          functionResponse: {
-            id: call.id,
-            name: call.name,
-            response: { result: result },
-          },
-        });
+        yield timeoutResponse;
+        return;
       }
 
-      if (functionResponses.length > 0) {
-        currentTurnMessage = functionResponses;
+      logger.info(
+        `[Librarian] executing ${toolCalls.length} tools in PARALLEL. Turn: ${turnCount}`,
+      );
+
+      // POWER TOOL UPGRADE: Execute all tool calls in parallel using Promise.all
+      const responseParts = await Promise.all(
+        toolCalls.map(async (call) => {
+          let result = "";
+
+          // HANDLER: GitHub Docs
+          if (call.name === "get_framework_docs") {
+            const args = call.args as unknown as FrameworkDocsArgs;
+            const { framework, module_name, branch } = args;
+
+            // Normalize Branch for Fingerprinting
+            const branchKey =
+              branch ||
+              (framework.toUpperCase() === "MOOSE" ? "DEVELOP" : "MAIN");
+            const fingerprint =
+              `${framework}:${module_name}:${branchKey}`.toUpperCase();
+
+            if (toolCallHistory.has(fingerprint)) {
+              logger.warn(
+                `[Librarian] Duplicate tool call blocked: ${fingerprint}`,
+              );
+              result =
+                "SYSTEM ALERT: You have already fetched this module. Do not fetch it again. Use the data previously provided in this turn.";
+            } else {
+              toolCallHistory.add(fingerprint);
+              result = await getFrameworkDocs(
+                framework,
+                module_name,
+                branch,
+                githubToken,
+                isDesanitized,
+              );
+            }
+          }
+          // HANDLER: SSE Hard Deck
+          else if (call.name === "get_sse_docs") {
+            const args = call.args as unknown as SseDocsArgs;
+            const { category } = args;
+            const fingerprint = `SSE:${category}`;
+
+            if (toolCallHistory.has(fingerprint)) {
+              result =
+                "SYSTEM ALERT: SSE Definitions for this category are already in context.";
+            } else {
+              toolCallHistory.add(fingerprint);
+              if (category === "All") {
+                result = JSON.stringify(SSE_DEFINITIONS, null, 2);
+              } else if (
+                SSE_DEFINITIONS[category as keyof typeof SSE_DEFINITIONS]
+              ) {
+                result = JSON.stringify(
+                  SSE_DEFINITIONS[category as keyof typeof SSE_DEFINITIONS],
+                  null,
+                  2,
+                );
+              } else {
+                result =
+                  "ERROR: Category not found in Hard Deck. Available: Group, Unit, timer, trigger, coalition.";
+              }
+            }
+          }
+
+          return {
+            functionResponse: {
+              id: call.id,
+              name: call.name,
+              response: { result: result },
+            },
+          } as Part;
+        }),
+      );
+
+      if (responseParts.length > 0) {
+        currentTurnMessage = responseParts;
         continue;
       }
     }

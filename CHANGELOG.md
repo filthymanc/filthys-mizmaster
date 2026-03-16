@@ -1,12 +1,12 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
-### [2.9.1](https://github.com/filthymanc/filthys-mizmaster/compare/v2.9.0...v2.9.1) (2026-03-14)
 
+### [2.9.1](https://github.com/filthymanc/filthys-mizmaster/compare/v2.9.0...v2.9.1) (2026-03-14)
 
 ### Documentation
 
-* synchronize RAF tactical palette v2.0 and codify tail-anchor mandate ([0167daa](https://github.com/filthymanc/filthys-mizmaster/commit/0167daa283cc0aceb9fb405fa06b8d991c413407))
+- synchronize RAF tactical palette v2.0 and codify tail-anchor mandate ([0167daa](https://github.com/filthymanc/filthys-mizmaster/commit/0167daa283cc0aceb9fb405fa06b8d991c413407))
 
 ## [2.9.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.8.0...v2.9.0) (2026-03-13)
 
