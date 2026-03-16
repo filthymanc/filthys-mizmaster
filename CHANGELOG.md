@@ -1,7 +1,7 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
-<<<<<<< HEAD
+
 ## [2.10.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.9.2...v2.10.0) (2026-03-16)
 
 
@@ -10,9 +10,6 @@ All notable changes to this project will be documented in this file.
 * implement doctrine-aligned RAF theme system v2.3 ([994fa6c](https://github.com/filthymanc/filthys-mizmaster/commit/994fa6cfac636d51308d918d07b75fca336030dc))
 
 ### [2.9.2](https://github.com/filthymanc/filthys-mizmaster/compare/v2.9.1...v2.9.2) (2026-03-16)
-=======
-### [2.9.2](https://github.com/filthymanc/filthys-mizmaster/compare/v2.9.1...v2.9.2) (2026-03-16)
->>>>>>> 243fc6972835fc450856815246f4b4370a0fad6e
 
 
 ### Bug Fixes
