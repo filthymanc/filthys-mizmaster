@@ -1,19 +1,30 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
-## [2.10.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.9.1...v2.10.0) (2026-03-16)
+<<<<<<< HEAD
+## [2.10.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.9.2...v2.10.0) (2026-03-16)
 
 
 ### Features
 
 * implement doctrine-aligned RAF theme system v2.3 ([994fa6c](https://github.com/filthymanc/filthys-mizmaster/commit/994fa6cfac636d51308d918d07b75fca336030dc))
 
-### [2.9.1](https://github.com/filthymanc/filthys-mizmaster/compare/v2.9.0...v2.9.1) (2026-03-14)
+### [2.9.2](https://github.com/filthymanc/filthys-mizmaster/compare/v2.9.1...v2.9.2) (2026-03-16)
+=======
+### [2.9.2](https://github.com/filthymanc/filthys-mizmaster/compare/v2.9.1...v2.9.2) (2026-03-16)
+>>>>>>> 243fc6972835fc450856815246f4b4370a0fad6e
 
+
+### Bug Fixes
+
+* resolve ContentUnion error, implement sanitized logger, and upgrade Librarian to Power Tool ([8f031e0](https://github.com/filthymanc/filthys-mizmaster/commit/8f031e0179ce34816e9cd0acc27cc78bac904a73))
+* resolve missing ShieldIcon import in ChatMessage ([5b29abc](https://github.com/filthymanc/filthys-mizmaster/commit/5b29abc04aa08112781bd2bef31341175da470c1))
+
+### [2.9.1](https://github.com/filthymanc/filthys-mizmaster/compare/v2.9.0...v2.9.1) (2026-03-14)
 
 ### Documentation
 
-* synchronize RAF tactical palette v2.0 and codify tail-anchor mandate ([0167daa](https://github.com/filthymanc/filthys-mizmaster/commit/0167daa283cc0aceb9fb405fa06b8d991c413407))
+- synchronize RAF tactical palette v2.0 and codify tail-anchor mandate ([0167daa](https://github.com/filthymanc/filthys-mizmaster/commit/0167daa283cc0aceb9fb405fa06b8d991c413407))
 
 ## [2.9.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.8.0...v2.9.0) (2026-03-13)
 

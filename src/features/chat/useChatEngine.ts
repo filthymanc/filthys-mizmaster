@@ -20,6 +20,7 @@ import {
 } from "../../core/types";
 import { startNewSession, sendMessageStream } from "../librarian/geminiService";
 import { pruneHistoryByTokens } from "./tokenService";
+import { logger } from "../../shared/utils/logger";
 
 interface ChatEngineProps {
   apiKey: string;
@@ -180,7 +181,7 @@ export const useChatEngine = ({
       // Set a timeout for the initial connection phase
       const timeoutId = setTimeout(() => {
         if (apiStatus === "connecting") {
-          console.warn("[ChatEngine] Connection timed out.");
+          logger.warn("[ChatEngine] Connection timed out.");
           controller.abort("CONNECTION_TIMEOUT");
         }
       }, CONNECTION_TIMEOUT_MS);
@@ -272,6 +273,14 @@ export const useChatEngine = ({
           );
         }
 
+        // --- SILENT FAILURE DETECTION ---
+        // If the stream ended but fullText is empty, it means the model failed to generate any visible text.
+        // This can happen if safety filters triggered silently or if the context window was overwhelmed.
+        if (!fullText.trim() && !controller.signal.aborted) {
+          fullText =
+            "**SYSTEM ERROR: SILENT FAILURE**\n\nThe neural engine finished the request but returned no text content. This often occurs if the context window is overwhelmed by large Librarian results or if the model's internal safety protocols blocked the final synthesis. Try rephrasing with a smaller scope.";
+        }
+
         setMessages(
           newHistory.map((msg) =>
             msg.id === modelMessageId
@@ -288,7 +297,7 @@ export const useChatEngine = ({
         setApiStatus("idle");
       } catch (error: unknown) {
         clearTimeout(timeoutId);
-        console.error(
+        logger.error(
           "[ChatEngine] Error:",
           error instanceof Error ? error.message : error,
         );
