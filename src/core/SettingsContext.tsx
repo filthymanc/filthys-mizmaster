@@ -68,6 +68,13 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({
 
         // V2 Theme Initialization / Migration
         let themeSet: ThemeSet = parsed.themeSet || "mono";
+        
+        // Migrate v2.1 sets to v2.3 RAF sets
+        if ((themeSet as string) === "nvg") themeSet = "woodland";
+        if ((themeSet as string) === "coyote") themeSet = "desert";
+        if ((themeSet as string) === "deck") themeSet = "maritime";
+        if ((themeSet as string) === "soft") themeSet = "pru";
+
         let themeBrightness: BrightnessLevel = parsed.themeBrightness || "L2";
         let themeAccentRole: AccentRole = parsed.themeAccentRole || "ready";
         const themeIntensity: AccentIntensity =
@@ -98,15 +105,15 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({
               themeBrightness = "L5";
               break;
             case "green-camo":
-              themeSet = "nvg";
+              themeSet = "woodland";
               themeBrightness = "L2";
               break;
             case "desert-camo":
-              themeSet = "coyote";
+              themeSet = "desert";
               themeBrightness = "L2";
               break;
             case "supercarrier":
-              themeSet = "deck";
+              themeSet = "maritime";
               themeBrightness = "L2";
               break;
           }

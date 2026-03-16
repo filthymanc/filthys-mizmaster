@@ -60,7 +60,7 @@ const Swatchboard: React.FC = () => {
     });
   };
 
-  const themeSets: ThemeSet[] = ["mono", "soft", "nvg", "coyote", "deck"];
+  const themeSets: ThemeSet[] = ["mono", "barley", "woodland", "desert", "maritime", "pru", "mediterranean"];
   const brightnessLevels: BrightnessLevel[] = ["L1", "L2", "L3", "L4", "L5"];
   const accentRoles: AccentRole[] = [
     "ready",

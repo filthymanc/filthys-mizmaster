@@ -90,7 +90,14 @@ export type ApiStatus =
  * THEME SYSTEM V2
  */
 
-export type ThemeSet = "mono" | "soft" | "nvg" | "coyote" | "deck";
+export type ThemeSet =
+  | "mono"
+  | "barley"
+  | "desert"
+  | "maritime"
+  | "woodland"
+  | "pru"
+  | "mediterranean";
 export type BrightnessLevel = "L1" | "L2" | "L3" | "L4" | "L5";
 export type AccentRole =
   | "ready"

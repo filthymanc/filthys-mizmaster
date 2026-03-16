@@ -92,7 +92,7 @@ export const MISSION_PROFILES: MissionProfile[] = [
   {
     id: "night-sortie",
     label: "Night Sortie",
-    themeSet: "nvg",
+    themeSet: "woodland",
     brightness: "L1",
     accent: "ready",
     intensity: "tactical",
@@ -100,7 +100,7 @@ export const MISSION_PROFILES: MissionProfile[] = [
   {
     id: "carrier-deck",
     label: "Carrier Deck",
-    themeSet: "deck",
+    themeSet: "maritime",
     brightness: "L2",
     accent: "nav",
     intensity: "vivid",
@@ -108,7 +108,7 @@ export const MISSION_PROFILES: MissionProfile[] = [
   {
     id: "desert-strike",
     label: "Desert Strike",
-    themeSet: "coyote",
+    themeSet: "desert",
     brightness: "L2",
     accent: "alert",
     intensity: "vivid",

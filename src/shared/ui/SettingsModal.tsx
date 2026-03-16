@@ -98,10 +98,12 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
 
   const themeSets: { id: ThemeSet; label: string; bias: string }[] = [
     { id: "mono", label: "Monochrome", bias: "Neutral" },
-    { id: "soft", label: "Subtle", bias: "Slate Blue" },
-    { id: "nvg", label: "Forest", bias: "NVG Green" },
-    { id: "coyote", label: "Desert", bias: "Coyote Tan" },
-    { id: "deck", label: "Naval", bias: "Steel Deck" },
+    { id: "barley", label: "Barley Grey", bias: "Air Defense" },
+    { id: "woodland", label: "Woodland", bias: "Tactical Green" },
+    { id: "desert", label: "Desert Sand", bias: "Arid" },
+    { id: "maritime", label: "Maritime", bias: "Sea Grey" },
+    { id: "pru", label: "PRU Blue", bias: "Reconnaissance" },
+    { id: "mediterranean", label: "Mediterranean", bias: "Deep Blue" },
   ];
 
   const brightnessLevels: { id: BrightnessLevel; label: string }[] = [
