@@ -1,6 +1,13 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+### [2.9.2](https://github.com/filthymanc/filthys-mizmaster/compare/v2.9.1...v2.9.2) (2026-03-16)
+
+
+### Bug Fixes
+
+* resolve ContentUnion error, implement sanitized logger, and upgrade Librarian to Power Tool ([8f031e0](https://github.com/filthymanc/filthys-mizmaster/commit/8f031e0179ce34816e9cd0acc27cc78bac904a73))
+* resolve missing ShieldIcon import in ChatMessage ([5b29abc](https://github.com/filthymanc/filthys-mizmaster/commit/5b29abc04aa08112781bd2bef31341175da470c1))
 
 ### [2.9.1](https://github.com/filthymanc/filthys-mizmaster/compare/v2.9.0...v2.9.1) (2026-03-14)
 
