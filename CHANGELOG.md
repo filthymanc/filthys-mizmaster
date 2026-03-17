@@ -1,6 +1,30 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+## [2.11.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.10.0...v2.11.0) (2026-03-17)
+
+
+### Features
+
+* synchronize functional accents with official RAF tactical palette (v2.3.2) ([2bc02fb](https://github.com/filthymanc/filthys-mizmaster/commit/2bc02fbed3e9ef0b3e794a9cfc208798a49eb4eb))
+
+
+### Miscellaneous Chores
+
+* resolve merge conflicts in CHANGELOG.md ([ffbfbc6](https://github.com/filthymanc/filthys-mizmaster/commit/ffbfbc6c6785c6b1c5305157a4b37a8fab2454ad))
+
+### [2.9.2](https://github.com/filthymanc/filthys-mizmaster/compare/v2.9.1...v2.9.2) (2026-03-16)
+
+
+### Bug Fixes
+
+* resolve ContentUnion error, implement sanitized logger, and upgrade Librarian to Power Tool ([8f031e0](https://github.com/filthymanc/filthys-mizmaster/commit/8f031e0179ce34816e9cd0acc27cc78bac904a73))
+* resolve missing ShieldIcon import in ChatMessage ([5b29abc](https://github.com/filthymanc/filthys-mizmaster/commit/5b29abc04aa08112781bd2bef31341175da470c1))
+
+
+### Miscellaneous Chores
+
+* **release:** 2.9.2 ([243fc69](https://github.com/filthymanc/filthys-mizmaster/commit/243fc6972835fc450856815246f4b4370a0fad6e))
 
 ## [2.10.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.9.2...v2.10.0) (2026-03-16)
 
