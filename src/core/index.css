@@ -35,22 +35,22 @@
    */
   :root {
     /* Semantic Status Roles (Vivid) */
-    --color-status-ready: 0.7 0.18 160; /* Glow Emerald */
-    --color-status-nav: 0.75 0.15 210; /* Electric Cyan */
-    --color-status-alert: 0.8 0.15 70; /* Safety Amber */
-    --color-status-danger: 0.65 0.2 20; /* Combat Red */
-    --color-status-intel: 0.6 0.18 290; /* Intelligence Violet */
-    --color-status-gold: 0.85 0.15 90; /* Gold */
-    --color-status-stealth: 0.65 0.05 250; /* Silver */
+    --color-status-ready: var(--raf-grass-green); /* Grass Green */
+    --color-status-nav: var(--raf-deep-sky-blue); /* Deep Sky Blue */
+    --color-status-alert: var(--raf-roundel-yellow); /* Roundel Yellow */
+    --color-status-danger: var(--raf-red-arrows); /* Red Arrows Red */
+    --color-status-intel: var(--raf-pru-mauve); /* PRU Mauve */
+    --color-status-gold: var(--raf-middle-stone); /* Middle Stone */
+    --color-status-stealth: var(--raf-medium-sea-grey); /* Medium Sea Grey */
 
     /* Tactical (Matte) Variants */
-    --color-status-ready-dim: 0.45 0.1 160;
-    --color-status-nav-dim: 0.4 0.08 210;
-    --color-status-alert-dim: 0.5 0.08 70;
-    --color-status-danger-dim: 0.4 0.1 20;
-    --color-status-intel-dim: 0.35 0.1 290;
-    --color-status-gold-dim: 0.5 0.1 90;
-    --color-status-stealth-dim: 0.4 0.03 250;
+    --color-status-ready-dim: var(--raf-sky-type-s);
+    --color-status-nav-dim: var(--raf-azure-blue);
+    --color-status-alert-dim: var(--raf-middle-stone);
+    --color-status-danger-dim: var(--raf-dull-roundel-red);
+    --color-status-intel-dim: var(--raf-pru-blue);
+    --color-status-gold-dim: var(--raf-desert-sand);
+    --color-status-stealth-dim: var(--raf-camouflage-grey);
 
     /* Standard Color Reference (OKLCH Format: L C H) */
     --color-white: 0.98 0 0;
