@@ -1,6 +1,13 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+## [2.13.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.12.0...v2.13.0) (2026-03-18)
+
+
+### Features
+
+* implement MOOSE legacy branch support and retired class protocol ([f4969b4](https://github.com/filthymanc/filthys-mizmaster/commit/f4969b4786874582acddf4d96f3f437a7f860b0b))
+
 ## [2.12.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.11.0...v2.12.0) (2026-03-18)
 
 
