@@ -34,7 +34,7 @@ import { logger } from "../../shared/utils/logger";
 interface FrameworkDocsArgs {
   framework: "MOOSE" | "DML";
   module_name: string;
-  branch?: "STABLE" | "DEVELOP";
+  branch?: "STABLE" | "DEVELOP" | "LEGACY";
 }
 
 interface SseDocsArgs {
@@ -55,7 +55,7 @@ const mapMessagesToHistory = (messages: Message[]): Content[] => {
 const frameworkDocsTool: FunctionDeclaration = {
   name: "get_framework_docs",
   description:
-    "Fetches RAW LUA SOURCE CODE from the official GitHub repositories (MOOSE or DML). Use this to analyze function definitions and header comments directly. NOTE: The MOOSE 'DEVELOP' branch is restricted and requires 'Dev Mode' (Desanitized) to be active. Always check for 'STABLE' if Dev Mode is off.",
+    "Fetches RAW LUA SOURCE CODE from the official GitHub repositories (MOOSE or DML). Use this to analyze function definitions and header comments directly. NOTE: The MOOSE 'DEVELOP' branch is restricted and requires 'Dev Mode' (Desanitized) to be active. Use 'LEGACY' for retired MOOSE classes if they are not found in 'STABLE'.",
   parameters: {
     type: Type.OBJECT,
     properties: {
@@ -72,8 +72,8 @@ const frameworkDocsTool: FunctionDeclaration = {
       branch: {
         type: Type.STRING,
         description:
-          "Required for MOOSE. 'STABLE' (master-ng) or 'DEVELOP'. Default is DEVELOP (requires Dev Mode).",
-        enum: ["STABLE", "DEVELOP"],
+          "Required for MOOSE. 'STABLE' (master-ng), 'DEVELOP', or 'LEGACY' (master). Default is DEVELOP (requires Dev Mode).",
+        enum: ["STABLE", "DEVELOP", "LEGACY"],
       },
     },
     required: ["framework", "module_name"],

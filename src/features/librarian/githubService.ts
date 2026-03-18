@@ -46,6 +46,11 @@ const REPOS: Record<string, Record<string, RepoConfig>> = {
       repo: "MOOSE",
       branch: "develop",
     },
+    LEGACY: {
+      owner: "FlightControl-Master",
+      repo: "MOOSE",
+      branch: "master",
+    },
   },
   DML: {
     MAIN: { owner: "csofranz", repo: "DML", branch: "main" },
