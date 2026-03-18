@@ -72,7 +72,7 @@ const frameworkDocsTool: FunctionDeclaration = {
       branch: {
         type: Type.STRING,
         description:
-          "Required for MOOSE. 'STABLE' (Master) or 'DEVELOP'. Default is DEVELOP (requires Dev Mode).",
+          "Required for MOOSE. 'STABLE' (master-ng) or 'DEVELOP'. Default is DEVELOP (requires Dev Mode).",
         enum: ["STABLE", "DEVELOP"],
       },
     },

@@ -245,11 +245,11 @@ export const MANUAL_CONTENT = {
         type: "youtube",
       },
       {
-        title: "DCS World Scripting Discord",
-        author: "Community",
+        title: "MOOSE Official Discord",
+        author: "FlightControl-Master",
         description:
-          "The primary hub for real-time help with MOOSE, MIST, and DML. It's where the authors of these frameworks hang out.",
-        url: "https://discord.gg/uzpE6x7qpN",
+          "The primary hub for real-time help with MOOSE and DCS scripting. It's where the developers and power users of the framework hang out.",
+        url: "https://discord.gg/MaPxxmefY",
         type: "discord",
       },
       {
