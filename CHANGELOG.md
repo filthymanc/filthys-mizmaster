@@ -1,6 +1,13 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+## [2.12.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.11.0...v2.12.0) (2026-03-18)
+
+
+### Features
+
+* update MOOSE stable branch to master-ng and fix community resources link ([d1e36a4](https://github.com/filthymanc/filthys-mizmaster/commit/d1e36a44067432ae6979d28152d3d4637ae262c2))
+
 ## [2.11.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.10.0...v2.11.0) (2026-03-17)
 
 
