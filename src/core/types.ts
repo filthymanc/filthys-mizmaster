@@ -136,11 +136,14 @@ export type ThemeMode =
  */
 export type ThemeAccent = "emerald" | "cyan" | "amber" | "rose" | "violet";
 
+export type MooseBranch = "STABLE" | "DEVELOP" | "LEGACY";
+
 export interface AppSettings {
   model: ModelType;
   availableModels: ModelDefinition[];
   lastModelRefresh?: Date;
   isDesanitized: boolean;
+  targetMooseBranch: MooseBranch;
   // Theme V2
   themeSet: ThemeSet;
   themeBrightness: BrightnessLevel;

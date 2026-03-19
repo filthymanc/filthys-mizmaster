@@ -24,7 +24,7 @@ import {
 } from "@google/genai";
 import { SYSTEM_INSTRUCTION } from "../../core/systemInstruction";
 import { DEFAULT_MODEL_ID } from "../../core/constants";
-import { Message, ModelType } from "../../core/types";
+import { Message, ModelType, MooseBranch } from "../../core/types";
 import { getFrameworkDocs } from "./githubService";
 import { SSE_DEFINITIONS } from "../../data/sse-definitions";
 import { logger } from "../../shared/utils/logger";
@@ -52,10 +52,11 @@ const mapMessagesToHistory = (messages: Message[]): Content[] => {
     }));
 };
 
-const frameworkDocsTool: FunctionDeclaration = {
+const getFrameworkDocsTool = (
+  targetMooseBranch: MooseBranch
+): FunctionDeclaration => ({
   name: "get_framework_docs",
-  description:
-    "Fetches RAW LUA SOURCE CODE from the official GitHub repositories (MOOSE or DML). Use this to analyze function definitions and header comments directly. NOTE: The MOOSE 'DEVELOP' branch is restricted and requires 'Dev Mode' (Desanitized) to be active. Use 'LEGACY' for retired MOOSE classes if they are not found in 'STABLE'.",
+  description: `Fetches RAW LUA SOURCE CODE from the official GitHub repositories (MOOSE or DML). Use this to analyze function definitions and header comments directly. NOTE: You MUST strictly use the branch defined in [SYSTEM CONFIGURATION]. Your currently authorized MOOSE branch is '${targetMooseBranch}'. Use 'LEGACY' only if the class is retired and you have user permission.`,
   parameters: {
     type: Type.OBJECT,
     properties: {
@@ -71,14 +72,13 @@ const frameworkDocsTool: FunctionDeclaration = {
       },
       branch: {
         type: Type.STRING,
-        description:
-          "Required for MOOSE. 'STABLE' (master-ng), 'DEVELOP', or 'LEGACY' (master). Default is DEVELOP (requires Dev Mode).",
+        description: `Required for MOOSE. Choose the branch matching your authorized configuration: '${targetMooseBranch}'.`,
         enum: ["STABLE", "DEVELOP", "LEGACY"],
       },
     },
     required: ["framework", "module_name"],
   },
-};
+});
 
 const sseDocsTool: FunctionDeclaration = {
   name: "get_sse_docs",
@@ -96,10 +96,6 @@ const sseDocsTool: FunctionDeclaration = {
     required: ["category"],
   },
 };
-
-const architectTools: Tool[] = [
-  { functionDeclarations: [frameworkDocsTool, sseDocsTool] },
-];
 
 /**
  * Validates the API key with a 10-second timeout.
@@ -132,6 +128,7 @@ export const startNewSession = (
   historyMessages: Message[],
   model: ModelType = DEFAULT_MODEL_ID,
   isDesanitized: boolean = false,
+  targetMooseBranch: MooseBranch = "STABLE",
 ): Chat => {
   const ai = new GoogleGenAI({ apiKey });
   const formattedHistory = mapMessagesToHistory(historyMessages);
@@ -144,7 +141,17 @@ export const startNewSession = (
 
 [SYSTEM CONFIGURATION]
 CURRENT_MODEL_ID: ${model}
+TARGET_MOOSE_BRANCH: ${targetMooseBranch}
 ${envStatus}`;
+
+  const tools: Tool[] = [
+    {
+      functionDeclarations: [
+        getFrameworkDocsTool(targetMooseBranch),
+        sseDocsTool,
+      ],
+    },
+  ];
 
   return ai.chats.create({
     model: model,
@@ -152,7 +159,7 @@ ${envStatus}`;
     config: {
       systemInstruction: effectiveSystemInstruction,
       temperature: 0.1,
-      tools: architectTools,
+      tools: tools,
       safetySettings: [
         {
           category: HarmCategory.HARM_CATEGORY_HARASSMENT,
@@ -183,6 +190,7 @@ export async function* sendMessageStream(
   message: string | Part[],
   githubToken?: string,
   isDesanitized: boolean = false, // Security context
+  targetMooseBranch: MooseBranch = "STABLE",
 ): AsyncGenerator<GenerateContentResponse, void, unknown> {
   if (!chatSession) throw new Error("CHAT_NOT_INITIALIZED");
 
@@ -315,27 +323,35 @@ export async function* sendMessageStream(
             const args = call.args as unknown as FrameworkDocsArgs;
             const { framework, module_name, branch } = args;
 
-            // Normalize Branch for Fingerprinting
+            // Normalize Module Name (remove extension) for Fingerprinting
+            const cleanModuleName = module_name.toUpperCase().replace(/\.LUA$/, "");
             const branchKey =
               branch ||
-              (framework.toUpperCase() === "MOOSE" ? "DEVELOP" : "MAIN");
+              (framework.toUpperCase() === "MOOSE"
+                ? targetMooseBranch
+                : "MAIN");
             const fingerprint =
-              `${framework}:${module_name}:${branchKey}`.toUpperCase();
+              `${framework}:${cleanModuleName}:${branchKey}`.toUpperCase();
 
             if (toolCallHistory.has(fingerprint)) {
               logger.warn(
                 `[Librarian] Duplicate tool call blocked: ${fingerprint}`,
               );
               result =
-                "SYSTEM ALERT: You have already fetched this module. Do not fetch it again. Use the data previously provided in this turn.";
+                `REFERENCE NOTICE: The source code for module '${module_name}' (${framework} branch ${branchKey}) was already successfully provided in a previous turn of this session. 
+
+To prevent a context-bloating loop, the Librarian has not re-fetched the full file. Please scroll up and reference the existing '[Librarian Source Metadata]' block for '${module_name}'. 
+
+If you believe the previous fetch was incomplete, proceed with the information you have or ask the user for specific logic.`;
             } else {
               toolCallHistory.add(fingerprint);
               result = await getFrameworkDocs(
                 framework,
                 module_name,
-                branch,
+                branch || targetMooseBranch,
                 githubToken,
                 isDesanitized,
+                targetMooseBranch,
               );
             }
           }

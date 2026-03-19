@@ -207,9 +207,10 @@ export const validateGitHubToken = async (token: string): Promise<boolean> => {
 export const getFrameworkDocs = async (
   framework: string,
   moduleName: string,
-  branch: string = "DEVELOP",
+  branch: string = "STABLE",
   githubToken?: string, // Token passed from context
-  isDesanitized: boolean = false // Security context
+  isDesanitized: boolean = false, // Security context
+  authorizedMooseBranch: string = "STABLE" // The user's active setting
 ): Promise<string> => {
   try {
     // 1. Opportunistic Cleanup
@@ -222,11 +223,22 @@ export const getFrameworkDocs = async (
 
     if (fwKey === "DML") branchKey = "MAIN";
 
-    // SECURITY CHECK: MOOSE DEVELOP is restricted to DEV MODE
-    if (framework === "MOOSE" && branch === "DEVELOP" && !isDesanitized) {
-      return `ACCESS DENIED: The MOOSE 'DEVELOP' branch contains experimental or unverified code and is restricted to DEV MODE only.
+    // SECURITY CHECK: Branch Locking for MOOSE
+    if (fwKey === "MOOSE" && branchKey !== authorizedMooseBranch) {
+       // Exception: Allow 'LEGACY' check if STABLE or DEVELOP fails (handled by AI protocol), 
+       // but here we enforce that the tool call itself must match unless it's a specific legacy fallback.
+       if (branchKey !== "LEGACY") {
+          return `ACCESS DENIED: The Librarian is locked to the MOOSE '${authorizedMooseBranch}' branch based on your System Configuration.
 
-    To access this documentation, please enable 'Dev Mode' in your Settings or request the 'STABLE' branch instead. Dev Mode is required for accessing experimental features and advanced scripting capabilities.`;
+To access the '${branchKey}' branch, please change your 'Framework Target' in the Settings (Engine tab) first.`;
+       }
+    }
+
+    // SECURITY CHECK: DEVELOP branch requires Dev Mode (Desanitized)
+    if (fwKey === "MOOSE" && branchKey === "DEVELOP" && !isDesanitized) {
+      return `ACCESS DENIED: The MOOSE 'DEVELOP' branch requires 'Dev Mode' to be active. 
+
+Please enable 'Dev Mode' in your Settings to use experimental framework features and hot-loading capabilities.`;
     }
 
     const config = REPOS[fwKey]?.[branchKey];
@@ -244,6 +256,19 @@ export const getFrameworkDocs = async (
 
     const file = findFileInTree(tree, moduleName);
     if (!file) {
+      // PROACTIVE BRANCH CHECK: If not found in current branch, check others to provide helpful error
+      let locationHint = "";
+      if (authorizedMooseBranch === "STABLE" || authorizedMooseBranch === "DEVELOP") {
+         // Check LEGACY
+         const legacyConfig = REPOS["MOOSE"]["LEGACY"];
+         try {
+            const legacyTree = await fetchRepoTree(legacyConfig, githubToken);
+            if (findFileInTree(legacyTree, moduleName)) {
+               locationHint = `\n\nPROACTIVE HINT: Module '${moduleName}' was found in the 'LEGACY' (master) branch. It may have been retired or replaced in '${branchKey}'.`;
+            }
+         } catch { /* ignore */ }
+      }
+
       const suggestions = tree
         .filter(
           (f) =>
@@ -251,7 +276,8 @@ export const getFrameworkDocs = async (
         )
         .slice(0, 5)
         .map((f) => f.path);
-      return `ERROR: Module '${moduleName}' not found in ${config.repo}. Did you mean: ${suggestions.join(", ")}?`;
+      
+      return `ERROR: Module '${moduleName}' not found in ${config.repo} [${branchKey}].${locationHint}\n\nDid you mean: ${suggestions.join(", ")}?`;
     }
 
     // 3. Resolve Content Source (CORS-Safe Strategy)

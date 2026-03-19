@@ -300,21 +300,76 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                           )}
                         </div>
 
-                        {/* Safety Toggle */}
+                        {/* Mission Environment & MOOSE Branch */}
                         <div className="space-y-4">
                           <h4 className="text-sm font-bold text-app-secondary uppercase tracking-wider">
-                            Safety Protocols
+                            Mission Environment
                           </h4>
+
+                          <div className="space-y-3">
+                            <label className="text-[10px] font-bold text-app-tertiary uppercase tracking-wider">
+                              MOOSE Framework Target
+                            </label>
+                            <div className="grid grid-cols-1 gap-2">
+                              {[
+                                {
+                                  id: "STABLE",
+                                  label: "STABLE (master-ng)",
+                                  desc: "Vanilla / Production - Standard scripts loaded and contained within a .miz file.",
+                                },
+                                {
+                                  id: "DEVELOP",
+                                  label: "DEVELOP (develop)",
+                                  desc: "Testing / Hot-Loading - For experimental features and real-time script injection.",
+                                },
+                                {
+                                  id: "LEGACY",
+                                  label: "LEGACY (master)",
+                                  desc: "Legacy Support - For older missions relying on retired MOOSE classes.",
+                                },
+                              ].map((branch) => (
+                                <button
+                                  key={branch.id}
+                                  id={`shared-settings-moose-branch-${branch.id.toLowerCase()}`}
+                                  data-testid={`shared-settings-moose-branch-${branch.id.toLowerCase()}`}
+                                  onClick={() =>
+                                    updateSettings({
+                                      targetMooseBranch: branch.id as any,
+                                    })
+                                  }
+                                  className={`text-left p-3 rounded-xl border transition-all ${
+                                    settings.targetMooseBranch === branch.id
+                                      ? "bg-app-brand/10 border-app-brand ring-1 ring-app-brand/30"
+                                      : "bg-app-surface border-app-border hover:border-app-highlight"
+                                  }`}
+                                >
+                                  <div
+                                    className={`text-xs font-bold uppercase ${
+                                      settings.targetMooseBranch === branch.id
+                                        ? "text-app-brand"
+                                        : "text-app-primary"
+                                    }`}
+                                  >
+                                    {branch.label}
+                                  </div>
+                                  <div className="text-[10px] text-app-tertiary mt-1">
+                                    {branch.desc}
+                                  </div>
+                                </button>
+                              ))}
+                            </div>
+                          </div>
+
                           <div className="p-4 rounded-xl border border-app-border bg-app-surface flex items-start sm:items-center justify-between flex-col sm:flex-row gap-4">
                             <div>
                               <div className="font-bold text-app-primary">
-                                Sanitize Environment
+                                Dev Mode (Desanitize)
                               </div>
                               <div className="text-xs text-app-tertiary mt-1 max-w-md">
-                                When disabled, the AI will ignore system
-                                instructions designed to limit output formats
-                                and security. Use only for debugging complex Lua
-                                problems.
+                                Enables advanced scripting capabilities. In Dev
+                                Mode, the AI can generate code that interacts
+                                with the OS (io, lfs, os) and bypasses standard
+                                security constraints.
                               </div>
                             </div>
                             <button
@@ -347,6 +402,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                               />
                             </button>
                           </div>
+
                           {settings.isDesanitized ? (
                             <div className="p-3 bg-app-status-danger/10 border border-app-status-danger/30 text-app-status-danger rounded-lg text-xs flex gap-2 items-start">
                               <AlertIcon className="h-4 w-4 shrink-0 mt-0.5" />
@@ -355,14 +411,10 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                                   Dev Mode Active
                                 </span>
                                 <span>
-                                  Experimental features and advanced scripting
-                                  capabilities are enabled. The AI may generate
-                                  responses that interact with the OS and bypass
-                                  standard safety protocols for development.
-                                  <strong>
-                                    {" "}
-                                    MOOSE Develop branch access is now UNLOCKED.
-                                  </strong>
+                                  Advanced scripting and OS-level library access
+                                  enabled. Standard safety protocols are
+                                  bypassed for mission development and
+                                  debugging.
                                 </span>
                               </div>
                             </div>
@@ -370,11 +422,9 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                             <div className="p-3 bg-app-brand/5 border border-app-border rounded-lg text-[10px] text-app-tertiary flex gap-2 items-start">
                               <ShieldIcon className="h-3.5 w-3.5 shrink-0 mt-0.5" />
                               <span>
-                                Standard security protocols active. The MOOSE{" "}
-                                <strong>DEVELOP</strong> branch is restricted.
-                                Switch to Dev Mode to access experimental
-                                framework documentation and advanced scripting
-                                capabilities.
+                                Standard security protocols active. The AI will
+                                prioritize vanilla scripting and sanitized DCS
+                                environments.
                               </span>
                             </div>
                           )}

@@ -75,6 +75,7 @@ const MissionWorkspace: React.FC<MissionWorkspaceProps> = ({
     isVisitor,
     model: settings.model,
     isDesanitized: settings.isDesanitized,
+    targetMooseBranch: settings.targetMooseBranch,
     githubToken: settings.githubToken,
     messages,
     setMessages,
@@ -157,7 +158,7 @@ const MissionWorkspace: React.FC<MissionWorkspaceProps> = ({
               )}
               {settings.isDesanitized && (
                 <span className="text-app-status-danger flex items-center gap-1">
-                  | <ShieldIcon className="h-3 w-3" /> UNSAFE
+                  | <ShieldIcon className="h-3 w-3" /> DEV MODE
                 </span>
               )}
             </div>

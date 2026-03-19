@@ -18,6 +18,7 @@ import {
   BrightnessLevel,
   AccentRole,
   AccentIntensity,
+  MooseBranch,
 } from "./types";
 import { STORAGE_KEYS, DEFAULT_MODEL_ID, AVAILABLE_MODELS } from "./constants";
 import { SettingsContext } from "./SettingsContextDefinition";
@@ -46,6 +47,7 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({
       model: DEFAULT_MODEL_ID,
       availableModels: AVAILABLE_MODELS,
       isDesanitized: false,
+      targetMooseBranch: "STABLE",
       themeMode: "standard",
       themeAccent: "emerald",
       // Theme V2 Defaults
@@ -80,6 +82,9 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({
         const themeIntensity: AccentIntensity =
           parsed.themeIntensity || "vivid";
         let missionProfile: string = parsed.missionProfile || "standard-issue";
+
+        // MOOSE Branch Migration
+        const targetMooseBranch = parsed.targetMooseBranch || "STABLE";
 
         // Migration logic for legacy users
         if (!parsed.themeSet) {
@@ -145,6 +150,7 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({
           availableModels: parsed.availableModels || AVAILABLE_MODELS,
           lastModelRefresh: lastRefresh,
           isDesanitized: parsed.isDesanitized || false,
+          targetMooseBranch: targetMooseBranch as MooseBranch,
           themeMode: parsed.themeMode || "standard",
           themeAccent: parsed.themeAccent || "emerald",
           themeSet,

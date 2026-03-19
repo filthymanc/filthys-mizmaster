@@ -17,6 +17,7 @@ import {
   TokenUsage,
   Source,
   ModelType,
+  MooseBranch,
 } from "../../core/types";
 import { startNewSession, sendMessageStream } from "../librarian/geminiService";
 import { pruneHistoryByTokens } from "./tokenService";
@@ -27,6 +28,7 @@ interface ChatEngineProps {
   isVisitor?: boolean;
   model: ModelType;
   isDesanitized: boolean;
+  targetMooseBranch: MooseBranch;
   githubToken?: string;
   messages: Message[];
   setMessages: (msgs: Message[]) => void;
@@ -42,6 +44,7 @@ export const useChatEngine = ({
   isVisitor = false,
   model,
   isDesanitized,
+  targetMooseBranch,
   githubToken,
   messages,
   setMessages,
@@ -57,6 +60,7 @@ export const useChatEngine = ({
   const sessionConfigRef = useRef<{
     model: string;
     safe: boolean;
+    mooseBranch: MooseBranch;
     sessionId: string | null;
     messageCount: number;
   } | null>(null);
@@ -71,6 +75,7 @@ export const useChatEngine = ({
       !chatSessionRef.current ||
       sessionConfigRef.current?.model !== model ||
       sessionConfigRef.current?.safe !== isDesanitized ||
+      sessionConfigRef.current?.mooseBranch !== targetMooseBranch ||
       sessionConfigRef.current?.sessionId !== sessionId ||
       Math.abs(
         (sessionConfigRef.current?.messageCount || 0) - messages.length,
@@ -85,10 +90,12 @@ export const useChatEngine = ({
           history,
           model,
           isDesanitized,
+          targetMooseBranch,
         );
         sessionConfigRef.current = {
           model,
           safe: isDesanitized,
+          mooseBranch: targetMooseBranch,
           sessionId,
           messageCount: messages.length,
         };
@@ -100,6 +107,7 @@ export const useChatEngine = ({
     apiKey,
     model,
     isDesanitized,
+    targetMooseBranch,
     sessionId,
     isHistoryLoading,
     messages,
@@ -199,6 +207,7 @@ export const useChatEngine = ({
             history,
             model,
             isDesanitized,
+            targetMooseBranch,
           );
         }
 
@@ -207,6 +216,7 @@ export const useChatEngine = ({
           text,
           githubToken,
           isDesanitized,
+          targetMooseBranch,
         );
 
         // Clear connection timeout as we have established communication
@@ -385,6 +395,7 @@ export const useChatEngine = ({
       isVisitor,
       model,
       isDesanitized,
+      targetMooseBranch,
       messages,
       setMessages,
       onActivity,

@@ -10,10 +10,11 @@
  */
 
 import React, { useState, useMemo } from "react";
-import { Session } from "../../../core/types";
+import { Session, AppSettings } from "../../../core/types";
 import { SpinnerIcon, PlusIcon, XIcon } from "../../../shared/ui/Icons";
 import SidebarSessionItem from "./SidebarSessionItem";
 import SidebarFooter from "./SidebarFooter";
+import AssetKit from "./AssetKit";
 import { safeDate } from "../../../shared/utils/dateUtils";
 
 interface SidebarProps {
@@ -29,6 +30,7 @@ interface SidebarProps {
   onOpenFieldManual: () => void;
   onOpenArmory: () => void;
   isLoading: boolean;
+  settings: AppSettings;
 }
 
 const Sidebar: React.FC<SidebarProps> = ({
@@ -44,9 +46,9 @@ const Sidebar: React.FC<SidebarProps> = ({
   onOpenFieldManual,
   onOpenArmory,
   isLoading,
+  settings,
 }) => {
-  // Logic for List Management is still orchestrated here to ensure mutual exclusivity
-  // (e.g., only one row can be edited or deleted at a time)
+  const [activeTab, setActiveTab] = useState<"missions" | "assets">("missions");
   const [editingId, setEditingId] = useState<string | null>(null);
   const [deleteConfirmId, setDeleteConfirmId] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
@@ -101,7 +103,7 @@ const Sidebar: React.FC<SidebarProps> = ({
         `}
       >
         {/* Header */}
-        <div className="p-4 border-b border-app-border flex items-center gap-3 shrink-0 h-16">
+        <div className="p-4 border-b border-app-border flex items-center gap-3 shrink-0 h-16 bg-app-frame/50 backdrop-blur-md">
           <div className="w-8 h-8 rounded-lg bg-app-canvas border border-app-brand p-0.5 overflow-hidden">
             <img
               src="filthysMM.png"
@@ -109,8 +111,8 @@ const Sidebar: React.FC<SidebarProps> = ({
               className="w-full h-full object-contain"
             />
           </div>
-          <h2 className="font-bold text-app-primary tracking-widest text-sm flex-1">
-            MISSIONS
+          <h2 className="font-bold text-app-primary tracking-widest text-xs flex-1 uppercase">
+            MizMaster Ops
           </h2>
           <button
             id="sidebar-close"
@@ -123,113 +125,132 @@ const Sidebar: React.FC<SidebarProps> = ({
           </button>
         </div>
 
-        {/* New Mission Button */}
-        <div className="p-4 pb-2 shrink-0 space-y-3">
-          <button
-            id="sidebar-new-mission"
-            data-testid="sidebar-new-mission"
-            onClick={() => {
-              if (!isLoading) {
-                const newId = onCreateSession();
-                setEditingId(newId);
-                // We do NOT call onClose() here, so the user can see the edit input immediately
-              }
-            }}
-            disabled={isLoading}
-            className={`
-                    w-full flex items-center justify-center gap-2 
-                    py-3 rounded-lg font-bold text-sm transition-all shadow-lg 
-                    active:scale-[0.98]
-                    ${
-                      isLoading
-                        ? "bg-app-surface text-app-tertiary cursor-not-allowed shadow-none"
-                        : "bg-app-brand hover:bg-opacity-90 text-app-canvas shadow-app-brand/20"
-                    }
-                `}
-            aria-label="Create New Mission"
-            aria-busy={isLoading}
-          >
-            {isLoading ? (
-              <SpinnerIcon className="h-4 w-4 text-app-tertiary" />
-            ) : (
-              <PlusIcon className="h-4 w-4" />
-            )}
-            {isLoading ? "GENERATING..." : "NEW MISSION"}
-          </button>
+        {/* Tab Switcher */}
+        <div className="p-2 border-b border-app-border bg-app-canvas flex">
+           <button 
+            onClick={() => setActiveTab("missions")}
+            className={`flex-1 py-2 text-[10px] font-bold tracking-widest uppercase transition-all rounded-md ${activeTab === 'missions' ? 'bg-app-surface text-app-brand shadow-sm ring-1 ring-app-border' : 'text-app-tertiary hover:text-app-secondary'}`}
+           >
+             Missions
+           </button>
+           <button 
+            onClick={() => setActiveTab("assets")}
+            className={`flex-1 py-2 text-[10px] font-bold tracking-widest uppercase transition-all rounded-md ${activeTab === 'assets' ? 'bg-app-surface text-app-brand shadow-sm ring-1 ring-app-border' : 'text-app-tertiary hover:text-app-secondary'}`}
+           >
+             Asset Kit
+           </button>
+        </div>
 
-          {/* Search Input */}
-          <div className="relative">
-            <input
-              id="sidebar-search-input"
-              data-testid="sidebar-search-input"
-              name="sidebar_search"
-              type="text"
-              placeholder="Find Mission..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full bg-app-canvas border border-app-border rounded-lg px-3 py-2 pl-9 text-xs text-app-primary placeholder-app-tertiary focus:outline-none focus:border-app-brand focus:ring-1 focus:ring-app-brand transition-all"
-            />
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="absolute left-2.5 top-2.5 h-3.5 w-3.5 text-app-tertiary"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-              />
-            </svg>
-            {searchTerm && (
+        {activeTab === "missions" ? (
+          <>
+            {/* New Mission Button */}
+            <div className="p-4 pb-2 shrink-0 space-y-3">
               <button
-                id="sidebar-search-clear"
-                data-testid="sidebar-search-clear"
-                onClick={() => setSearchTerm("")}
-                className="absolute right-2 top-2 text-app-tertiary hover:text-app-primary"
+                id="sidebar-new-mission"
+                data-testid="sidebar-new-mission"
+                onClick={() => {
+                  if (!isLoading) {
+                    const newId = onCreateSession();
+                    setEditingId(newId);
+                  }
+                }}
+                disabled={isLoading}
+                className={`
+                        w-full flex items-center justify-center gap-2 
+                        py-3 rounded-lg font-bold text-xs transition-all shadow-lg 
+                        active:scale-[0.98] uppercase tracking-widest
+                        ${
+                          isLoading
+                            ? "bg-app-surface text-app-tertiary cursor-not-allowed shadow-none"
+                            : "bg-app-brand hover:bg-opacity-90 text-app-canvas shadow-app-brand/20"
+                        }
+                    `}
               >
-                <XIcon className="h-4 w-4" />
+                {isLoading ? (
+                  <SpinnerIcon className="h-4 w-4 text-app-tertiary" />
+                ) : (
+                  <PlusIcon className="h-4 w-4" />
+                )}
+                {isLoading ? "GENERATING..." : "NEW MISSION"}
               </button>
-            )}
-          </div>
-        </div>
 
-        {/* Session List */}
-        <div
-          className={`flex-1 overflow-y-auto px-2 pb-4 space-y-1 custom-scrollbar transition-opacity duration-300 ${isLoading ? "opacity-40 pointer-events-none select-none" : "opacity-100"}`}
-        >
-          {filteredSessions.length === 0 && !isLoading ? (
-            <div className="text-center py-8 opacity-50 text-xs font-mono tracking-widest text-app-tertiary">
-              NO MISSIONS FOUND
+              {/* Search Input */}
+              <div className="relative">
+                <input
+                  id="sidebar-search-input"
+                  data-testid="sidebar-search-input"
+                  name="sidebar_search"
+                  type="text"
+                  placeholder="Find Mission..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full bg-app-canvas border border-app-border rounded-lg px-3 py-2 pl-9 text-[11px] text-app-primary placeholder-app-tertiary focus:outline-none focus:border-app-brand focus:ring-1 focus:ring-app-brand transition-all"
+                />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="absolute left-2.5 top-2.5 h-3.5 w-3.5 text-app-tertiary"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  />
+                </svg>
+                {searchTerm && (
+                  <button
+                    id="sidebar-search-clear"
+                    data-testid="sidebar-search-clear"
+                    onClick={() => setSearchTerm("")}
+                    className="absolute right-2 top-2 text-app-tertiary hover:text-app-primary"
+                  >
+                    <XIcon className="h-4 w-4" />
+                  </button>
+                )}
+              </div>
             </div>
-          ) : (
-            filteredSessions.map((session) => (
-              <SidebarSessionItem
-                key={session.id}
-                session={session}
-                isActive={activeSessionId === session.id}
-                isEditing={editingId === session.id}
-                isDeleteConfirming={deleteConfirmId === session.id}
-                isLoading={isLoading}
-                onSelect={(id) => {
-                  onSelectSession(id);
-                  onClose();
-                }}
-                onStartEdit={handleStartEdit}
-                onConfirmEdit={handleConfirmEdit}
-                onCancelEdit={() => setEditingId(null)}
-                onStartDelete={handleStartDelete}
-                onConfirmDelete={(id) => {
-                  onDeleteSession(id);
-                  setDeleteConfirmId(null);
-                }}
-                onCancelDelete={() => setDeleteConfirmId(null)}
-              />
-            ))
-          )}
-        </div>
+
+            {/* Session List */}
+            <div
+              className={`flex-1 overflow-y-auto px-2 pb-4 space-y-1 custom-scrollbar transition-opacity duration-300 ${isLoading ? "opacity-40 pointer-events-none select-none" : "opacity-100"}`}
+            >
+              {filteredSessions.length === 0 && !isLoading ? (
+                <div className="text-center py-8 opacity-50 text-[10px] font-mono tracking-widest text-app-tertiary">
+                  NO MISSIONS FOUND
+                </div>
+              ) : (
+                filteredSessions.map((session) => (
+                  <SidebarSessionItem
+                    key={session.id}
+                    session={session}
+                    isActive={activeSessionId === session.id}
+                    isEditing={editingId === session.id}
+                    isDeleteConfirming={deleteConfirmId === session.id}
+                    isLoading={isLoading}
+                    onSelect={(id) => {
+                      onSelectSession(id);
+                      onClose();
+                    }}
+                    onStartEdit={handleStartEdit}
+                    onConfirmEdit={handleConfirmEdit}
+                    onCancelEdit={() => setEditingId(null)}
+                    onStartDelete={handleStartDelete}
+                    onConfirmDelete={(id) => {
+                      onDeleteSession(id);
+                      setDeleteConfirmId(null);
+                    }}
+                    onCancelDelete={() => setDeleteConfirmId(null)}
+                  />
+                ))
+              )}
+            </div>
+          </>
+        ) : (
+          <AssetKit settings={settings} />
+        )}
 
         {/* Footer info & Actions */}
         <SidebarFooter

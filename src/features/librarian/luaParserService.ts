@@ -132,50 +132,36 @@ export const parseLuaSource = (raw: string): string => {
     const trimmed = line.trim();
 
     // 1. HEADER & DOCUMENTATION PRESERVATION
-    // Keep lines that look like documentation
+    // Keep lines that look like documentation but skip long separators
     if (trimmed.startsWith("---") || trimmed.startsWith("--")) {
-      // Check if it's a "separator" line (e.g., -----------------) -> Skip to save tokens?
-      // Actually, separators often denote sections. Let's keep them but maybe compact them?
-      if (trimmed.match(/^-{10,}$/)) {
-        // It's just a separator line. Skip it to save tokens.
-        continue;
-      }
+      if (trimmed.match(/^-{10,}$/)) continue;
       output.push(line);
       continue;
     }
 
-    // 2. CLASS DEFINITIONS
-    // Matches: Class = BASE:Inherit(...) or Class = {}
-    if (/^[A-Z_0-9]+\s*=\s*[A-Z_0-9.:]+/.test(trimmed)) {
+    // 2. CLASS DEFINITIONS & INSTANTIATION
+    if (/^[A-Z_0-9]+\s*=\s*[A-Z_0-9.:]+/.test(trimmed) || /^[A-Z_0-9]+\s*=\s*\{/.test(trimmed)) {
       output.push(line);
       continue;
     }
 
-    // 3. FUNCTION SIGNATURES
-    // Matches: function Class:Method(args)
+    // 3. FUNCTION SIGNATURES (AGGRESSIVE STRIPPING)
     if (trimmed.startsWith("function")) {
-      // Check for one-liners
+      // One-liners stay as they are
       if (trimmed.endsWith("end")) {
         output.push(line);
       } else {
-        // It's a multi-line function. We want the signature, but not the body.
-        // We append a comment indicating hidden logic.
-        output.push(
-          `${line} -- [SYSTEM NOTE: Implementation Body Stripped for Token Efficiency]`,
-        );
-        output.push("end"); // Close the block immediately
+        // Multi-line function signatures are kept, but we append a note and close immediately
+        output.push(`${line} -- [[BODY STRIPPED]]`);
+        output.push("end");
       }
       continue;
     }
 
-    // 4. PRESERVE SPECIFIC KEYWORDS (Safety Check)
-    // Sometimes critical enums are defined at the top level
-    if (trimmed.startsWith("local") || /^[A-Z_]+\s*=/.test(trimmed)) {
-      // Heuristic: If it's short, keep it.
-      if (trimmed.length < 100) {
-        output.push(line);
-      }
-      continue;
+    // 4. CONSTANTS & ENUMS (Keep significant ones)
+    if (/^[A-Z_0-9]+\.[A-Z_0-9]+\s*=/.test(trimmed)) {
+       output.push(line);
+       continue;
     }
   }
 

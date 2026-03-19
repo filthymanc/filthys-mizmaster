@@ -329,6 +329,7 @@ const App: React.FC = () => {
           onOpenFieldManual={() => handleOpenFieldManual("briefing")}
           onOpenArmory={() => setIsArmoryOpen(true)}
           isLoading={!sessionManager.isReady}
+          settings={settings}
         />
 
         <main className="flex-1 flex flex-col min-w-0 relative">
