@@ -1,6 +1,13 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+## [2.15.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.14.1...v2.15.0) (2026-03-20)
+
+
+### Features
+
+* **librarian:** v2.15.0 - high-density manifests, inheritance & dynamic branch routing ([fda07c4](https://github.com/filthymanc/filthys-mizmaster/commit/fda07c4d22429a1251fd52c82b97369ce6bca52b))
+
 ### [2.14.1](https://github.com/filthymanc/filthys-mizmaster/compare/v2.14.0...v2.14.1) (2026-03-20)
 
 
