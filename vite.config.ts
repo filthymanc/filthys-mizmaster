@@ -70,7 +70,6 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, "index.html"),
-        swatchboard: resolve(__dirname, "swatchboard.html"),
       },
       output: {
         manualChunks(id) {

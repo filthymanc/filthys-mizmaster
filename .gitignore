@@ -123,3 +123,8 @@ dev-dist/
 .gemini/
 .gemini_security/
 gha-creds-*.json
+
+# IDE Privacy
+.vscode/
+*.code-workspace
+.DS_Store
