@@ -15,6 +15,7 @@ import {
   useLibrarian,
   LibrarianSuggestion,
 } from "../../librarian/useLibrarian";
+import { useSettings } from "../../../core/useSettings";
 
 interface ChatInputProps {
   onSend: (message: string) => void;
@@ -33,7 +34,19 @@ const ChatInput: React.FC<ChatInputProps> = ({
 }) => {
   const [input, setInput] = useState("");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const { suggestions, isVisible } = useLibrarian(input);
+  
+  const { settings } = useSettings();
+  const getBranchName = (target: string) => {
+    switch (target) {
+      case "LEGACY": return "master";
+      case "DEVELOP": return "develop";
+      case "STABLE":
+      default: return "master-ng";
+    }
+  };
+  const activeBranch = getBranchName(settings.targetMooseBranch);
+  
+  const { suggestions, isVisible } = useLibrarian(input, activeBranch);
 
   useEffect(() => {
     const handleStop = () => {

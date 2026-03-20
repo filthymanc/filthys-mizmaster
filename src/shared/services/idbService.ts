@@ -18,6 +18,23 @@ export interface LibrarianCacheEntry {
   timestamp: number;
 }
 
+export interface FrameworkManifest {
+  id: string; // framework-branch (e.g. MOOSE-master-ng)
+  version: string;
+  framework: string;
+  branch: string;
+  classes: Record<
+    string,
+    {
+      path: string;
+      parent?: string | null;
+      description?: string;
+      methods?: Record<string, { params?: string[] }>;
+    }
+  >;
+  enums: Record<string, string[]>;
+}
+
 interface MissionArchitectDB extends DBSchema {
   sessions: {
     key: string;
@@ -35,10 +52,14 @@ interface MissionArchitectDB extends DBSchema {
     key: string;
     value: LibrarianCacheEntry;
   };
+  manifests: {
+    key: string; // id: framework-branch
+    value: FrameworkManifest;
+  };
 }
 
 const DB_NAME = "filthys-mizmaster-db";
-const DB_VERSION = 3; // Incremented for Librarian Cache
+const DB_VERSION = 6; // Incremented to flush stale DML manifests
 
 let dbPromise: Promise<IDBPDatabase<MissionArchitectDB>> | null = null;
 
@@ -46,6 +67,7 @@ const getDB = () => {
   if (!dbPromise) {
     dbPromise = openDB<MissionArchitectDB>(DB_NAME, DB_VERSION, {
       upgrade(db, oldVersion, _newVersion, _transaction) {
+        console.log(`[IDB] Upgrading database from v${oldVersion} to v${DB_VERSION}`);
         // Create object stores if they don't exist
         if (!db.objectStoreNames.contains("sessions")) {
           db.createObjectStore("sessions", { keyPath: "id" });
@@ -62,7 +84,28 @@ const getDB = () => {
         ) {
           db.createObjectStore("librarian_cache", { keyPath: "url" });
         }
+        // Fix collision in v5, force flush in v6 to fix DML schema
+        if (oldVersion < 6) {
+          if (db.objectStoreNames.contains("manifests")) {
+            db.deleteObjectStore("manifests");
+          }
+          db.createObjectStore("manifests", { keyPath: "id" });
+        }
       },
+      blocked() {
+        console.warn("[IDB] Database upgrade blocked! Please close other tabs.");
+      },
+      blocking() {
+        console.warn("[IDB] Database version change pending. Closing connection.");
+        if (dbPromise) {
+          dbPromise.then(db => db.close());
+          dbPromise = null;
+        }
+      },
+      terminated() {
+        console.error("[IDB] Database connection terminated.");
+        dbPromise = null;
+      }
     });
   }
   return dbPromise;
@@ -171,6 +214,27 @@ export const pruneCache = async (ttlMs: number): Promise<void> => {
   }
 
   await tx.done;
+};
+
+// --- Manifest Operations ---
+
+export const getManifest = async (
+  framework: string,
+  branch: string,
+): Promise<FrameworkManifest | undefined> => {
+  const db = await getDB();
+  return db.get("manifests", `${framework}-${branch}`);
+};
+
+export const saveManifest = async (
+  manifest: FrameworkManifest,
+): Promise<void> => {
+  const db = await getDB();
+  // Ensure ID is set for v5 schema
+  if (!manifest.id) {
+    manifest.id = `${manifest.framework}-${manifest.branch}`;
+  }
+  await db.put("manifests", manifest);
 };
 
 // --- System Operations ---
