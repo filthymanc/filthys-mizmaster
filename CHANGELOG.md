@@ -1,6 +1,13 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+### [2.14.1](https://github.com/filthymanc/filthys-mizmaster/compare/v2.14.0...v2.14.1) (2026-03-20)
+
+
+### Miscellaneous Chores
+
+* dev-sync v2.14.0 synchronization and environment audit ([0ef7613](https://github.com/filthymanc/filthys-mizmaster/commit/0ef7613584ddae69ed7f1be6a05ac3c6ce008d51))
+
 ## [2.14.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.13.1...v2.14.0) (2026-03-19)
 
 
