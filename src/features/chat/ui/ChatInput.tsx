@@ -85,10 +85,18 @@ const ChatInput: React.FC<ChatInputProps> = ({
   const handleSuggestionClick = (suggestion: LibrarianSuggestion) => {
     const words = input.split(/[\s\n]+/);
     const lastWord = words.pop() || "";
-    // We replace the partially typed word with the full suggestion
+    // We replace the partially typed word with the full suggestion or snippet template
+    let insertText = suggestion.type === "snippet" && suggestion.template ? suggestion.template : suggestion.label;
+
+    // Scrub VS Code snippet tabstops (e.g. ${1:MySpawner} -> MySpawner) before injecting into the plain textarea
+    if (suggestion.type === "snippet") {
+      insertText = insertText.replace(/\$\{\d+:([^}]+)\}/g, "$1");
+      insertText = insertText.replace(/\$\d+/g, ""); // Remove empty tabstops like ${1}
+    }
+
     const newInput =
       input.substring(0, input.length - lastWord.length) +
-      suggestion.label +
+      insertText +
       " ";
     setInput(newInput);
     if (textareaRef.current) textareaRef.current.focus();
@@ -108,9 +116,11 @@ const ChatInput: React.FC<ChatInputProps> = ({
     <div className="max-w-6xl mx-auto relative px-2 sm:px-0">
       {/* Librarian Intelligence Overlay */}
       {isVisible && !isGenerating && (
-        <div className="absolute bottom-full left-0 mb-2 ml-4 flex flex-col gap-1 z-10 animate-scaleIn origin-bottom-left">
-          <div className="text-[10px] font-bold text-app-tertiary uppercase tracking-wider pl-1 mb-1">
-            Librarian Suggestion
+        <div className="absolute bottom-full left-0 mb-4 ml-4 flex flex-col gap-1 z-50 animate-scaleIn origin-bottom-left max-h-[60vh] overflow-y-auto custom-scrollbar pr-3 pb-2 transition-all">
+          <div className="sticky top-0 bg-app-canvas/95 backdrop-blur-sm py-1 z-10 border-b border-app-border/30 mb-1">
+            <div className="text-[10px] font-bold text-app-tertiary uppercase tracking-wider pl-1">
+              Librarian Intelligence (v2.18.0)
+            </div>
           </div>
           {suggestions.map((s, idx) => (
             <button
@@ -118,25 +128,43 @@ const ChatInput: React.FC<ChatInputProps> = ({
               id={`chat-input-suggestion-${idx}`}
               data-testid={`chat-input-suggestion-${idx}`}
               onClick={() => handleSuggestionClick(s)}
-              className="group flex items-center gap-3 bg-app-frame border border-app-border hover:border-app-brand px-3 py-2 rounded-lg shadow-lg hover:bg-app-surface transition-all text-left max-w-xs"
+              className="group flex items-center gap-3 bg-app-frame border border-app-border hover:border-app-brand px-3 py-2 rounded-lg shadow-lg hover:bg-app-surface transition-all text-left max-w-md"
             >
               <div
                 className={`
                 w-1.5 h-8 rounded-full shrink-0
-                ${
-                  s.framework === "MOOSE"
-                    ? "bg-app-status-intel"
-                    : s.framework === "DML"
-                      ? "bg-app-status-alert"
+                \${
+                  s.type === "snippet"
+                    ? "bg-app-brand"
+                    : s.type === "attribute"
+                    ? s.attrType === "trigger" ? "bg-app-status-danger" : s.attrType === "condition" ? "bg-app-status-alert" : "bg-app-status-nav"
+                    : s.framework === "MOOSE"
+                      ? "bg-app-status-intel"
                       : "bg-app-status-ready"
                 }
               `}
               />
-              <div>
-                <div className="font-mono text-xs font-bold text-app-primary group-hover:text-app-brand transition-colors">
-                  {s.label}
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-2">
+                  <div className="font-mono text-xs font-bold text-app-primary group-hover:text-app-brand transition-colors truncate">
+                    {s.label}
+                  </div>
+                  {s.type === "attribute" && (
+                    <span className={`
+                      text-[9px] px-1 rounded uppercase font-bold border
+                      ${
+                        s.attrType === "trigger"
+                          ? "border-app-status-danger text-app-status-danger bg-app-status-danger/10"
+                          : s.attrType === "condition"
+                            ? "border-app-status-alert text-app-status-alert bg-app-status-alert/10"
+                            : "border-app-status-nav text-app-status-nav bg-app-status-nav/10"
+                      }
+                    `}>
+                      {s.attrType}
+                    </span>
+                  )}
                 </div>
-                <div className="text-[10px] text-app-tertiary truncate max-w-[180px]">
+                <div className="text-[10px] text-app-tertiary truncate max-w-[300px]">
                   {s.description}
                 </div>
               </div>

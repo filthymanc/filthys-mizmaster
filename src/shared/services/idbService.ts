@@ -29,7 +29,8 @@ export interface FrameworkManifest {
       path: string;
       parent?: string | null;
       description?: string;
-      methods?: Record<string, { params?: string[] }>;
+      methods?: Record<string, { params?: string[]; description?: string }>;
+      attributes?: Record<string, { name: string; type: 'property' | 'trigger' | 'condition' }>;
     }
   >;
   enums: Record<string, string[]>;
@@ -59,7 +60,7 @@ interface MissionArchitectDB extends DBSchema {
 }
 
 const DB_NAME = "filthys-mizmaster-db";
-const DB_VERSION = 6; // Incremented to flush stale DML manifests
+const DB_VERSION = 7; // Incremented to support attributes and method docs
 
 let dbPromise: Promise<IDBPDatabase<MissionArchitectDB>> | null = null;
 
@@ -84,8 +85,8 @@ const getDB = () => {
         ) {
           db.createObjectStore("librarian_cache", { keyPath: "url" });
         }
-        // Fix collision in v5, force flush in v6 to fix DML schema
-        if (oldVersion < 6) {
+        // Force manifest flush on Version 7 to ensure new attributes/docs are cached
+        if (oldVersion < 7) {
           if (db.objectStoreNames.contains("manifests")) {
             db.deleteObjectStore("manifests");
           }

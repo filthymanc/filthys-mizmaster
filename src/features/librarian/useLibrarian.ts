@@ -11,13 +11,16 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { getManifest, saveManifest, FrameworkManifest } from "../../shared/services/idbService";
+import { LIBRARIAN_SNIPPETS } from "./snippets";
 
 export interface LibrarianSuggestion {
   label: string;
   description: string;
   framework: "MOOSE" | "DML" | "DCS";
-  type: "class" | "method";
+  type: "class" | "method" | "attribute" | "snippet";
   params?: string[];
+  attrType?: "property" | "trigger" | "condition";
+  template?: string;
 }
 
 export const useLibrarian = (input: string, activeBranch: string = "master-ng") => {
@@ -35,14 +38,12 @@ export const useLibrarian = (input: string, activeBranch: string = "master-ng") 
       let data = await getManifest(framework, branch);
       if (!data) {
         console.log(`[Librarian] Manifest miss for ${framework} (${branch}), fetching...`);
-        // Use Vite base path explicitly if needed, but relative usually works if root is right.
-        // Actually, let's use the absolute-from-base path.
         const url = framework === "MOOSE" ? `/filthys-mizmaster/manifests/moose-${branch}.json` : `/filthys-mizmaster/manifests/dml-master.json`;
         const response = await fetch(url);
         if (response.ok) {
           data = await response.json();
           if (data) {
-            data.id = manifestKey; // Ensure v5 ID
+            data.id = manifestKey;
             await saveManifest(data);
           }
         }
@@ -72,52 +73,73 @@ export const useLibrarian = (input: string, activeBranch: string = "master-ng") 
       return;
     }
 
-    const words = input.split(/[\s\n(]+/);
+    // Trim trailing whitespace for word extraction but maintain the original input context
+    const trimmedInput = input.trimEnd();
+    const words = trimmedInput.split(/[\s\n(]+/);
     const lastWord = words[words.length - 1];
 
-    if (lastWord.length < 2) {
+    if (!lastWord || lastWord.length < 2) {
       setSuggestions([]);
       setIsVisible(false);
       return;
     }
 
-    // Determine Framework based on prefix
-    // More robust detection: if it starts with cfx, dml, or includes . it's likely DML
+    // Determine Framework dynamically
     const lowerLast = lastWord.toLowerCase();
-    if (lowerLast.startsWith("cfx") || lowerLast.startsWith("dml") || (lowerLast.includes(".") && !lowerLast.includes(":"))) {
-      activeFramework.current = "DML";
-    } else {
-      activeFramework.current = "MOOSE";
-    }
-
-    const currentManifest = manifests[`${activeFramework.current}-${activeFramework.current === "MOOSE" ? activeBranch : "master"}`];
-    
-    if (!currentManifest) {
-      console.warn(`[Librarian] No manifest for ${activeFramework.current} (${activeBranch})`);
-      return;
-    }
-
-    let matches: LibrarianSuggestion[] = [];
-
-    // Trigger Logic: Check for : or .
     const isMethodTrigger = lastWord.includes(":") || lastWord.includes(".");
     
+    let framework: "MOOSE" | "DML" = "MOOSE"; // Default
+    let className: string | undefined;
+    let methodPrefix = "";
+
+    const mooseManifest = manifests[`MOOSE-${activeBranch}`];
+    const dmlManifest = manifests[`DML-master`];
+
     if (isMethodTrigger) {
       const parts = lastWord.split(/[:.]/);
       const rawClassName = parts[0];
-      const methodPrefix = parts[1]?.toLowerCase() || "";
+      methodPrefix = parts[1]?.toLowerCase() || "";
 
-      // Case-insensitive class lookup
-      const className = Object.keys(currentManifest.classes).find(
-        k => k.toLowerCase() === rawClassName.toLowerCase()
-      );
+      // Try to find class in MOOSE first, then DML
+      const mooseClass = mooseManifest ? Object.keys(mooseManifest.classes).find(k => k.toLowerCase() === rawClassName.toLowerCase()) : null;
+      const dmlClass = dmlManifest ? Object.keys(dmlManifest.classes).find(k => k.toLowerCase() === rawClassName.toLowerCase()) : null;
 
-      const classData = className ? currentManifest.classes[className] : null;
-      
-      if (className && classData) {
-        const availableMethods: Record<string, { params?: string[] }> = {};
+      if (mooseClass) {
+        framework = "MOOSE";
+        className = mooseClass;
+      } else if (dmlClass) {
+        framework = "DML";
+        className = dmlClass;
+      }
+    } else {
+      // Searching for classes/modules
+      // Check if it looks like DML or MOOSE
+      const isExplicitDml = lowerLast.startsWith("cfx") || lowerLast.startsWith("dml");
+      if (isExplicitDml) {
+        framework = "DML";
+      } else {
+        // Peek into DML manifest if MOOSE doesn't have it
+        const mooseMatch = mooseManifest ? Object.keys(mooseManifest.classes).some(k => k.toLowerCase().startsWith(lowerLast)) : false;
+        const dmlMatch = dmlManifest ? Object.keys(dmlManifest.classes).some(k => k.toLowerCase().startsWith(lowerLast)) : false;
+        
+        if (!mooseMatch && dmlMatch) {
+          framework = "DML";
+        }
+      }
+    }
 
-        // Helper to collect methods from hierarchy
+    activeFramework.current = framework;
+    const currentManifest = framework === "MOOSE" ? mooseManifest : dmlManifest;
+    
+    if (!currentManifest) return;
+
+    let matches: LibrarianSuggestion[] = [];
+
+    if (isMethodTrigger && className) {
+      const classData = currentManifest.classes[className];
+      if (classData) {
+        // Collect Methods (with inheritance)
+        const availableMethods: Record<string, { params?: string[]; description?: string }> = {};
         const visited = new Set<string>();
         const collectMethods = (cls: string) => {
           if (visited.has(cls)) return;
@@ -135,35 +157,75 @@ export const useLibrarian = (input: string, activeBranch: string = "master-ng") 
 
         collectMethods(className);
 
-        matches = Object.keys(availableMethods)
-          .filter(name => name.toLowerCase().startsWith(methodPrefix))
-          .sort((a, b) => a.localeCompare(b))
-          .slice(0, 10)
-          .map(name => ({
-            label: `${className}${activeFramework.current === "DML" ? "." : ":"}${name}`,
-            description: `Method of ${className}`,
-            framework: activeFramework.current,
-            type: "method",
-            params: availableMethods[name].params
+        const methodMatches = Object.entries(availableMethods)
+          .filter(([name]) => name.toLowerCase().startsWith(methodPrefix))
+          .map(([name, data]) => ({
+            label: `${className}${framework === "DML" ? "." : ":"}${name}(${data.params?.join(", ") || ""})`,
+            description: data.description || `Method of ${className}`,
+            framework: framework,
+            type: "method" as const,
+            params: data.params
           }));
+
+        // Collect DML Attributes if applicable
+        let attrMatches: LibrarianSuggestion[] = [];
+        if (activeFramework.current === "DML" && classData.attributes) {
+          attrMatches = Object.entries(classData.attributes)
+            .filter(([name]) => name.toLowerCase().startsWith(methodPrefix))
+            .map(([name, data]) => ({
+              label: `${className}.${name}`,
+              description: `DML ${data.type.toUpperCase()}: Configuration property for ${className}`,
+              framework: "DML" as const,
+              type: "attribute" as const,
+              attrType: data.type
+            }));
+        }
+
+        // Prioritize Attributes over Methods for better DML discovery
+        // Within Attributes, strictly rank: Trigger -> Condition -> Property
+        matches = [...attrMatches, ...methodMatches]
+          .sort((a, b) => {
+            if (a.type !== b.type) {
+              if (a.type === "attribute") return -1;
+              if (b.type === "attribute") return 1;
+            }
+
+            // Both are attributes, sort by sub-type priority
+            if (a.type === "attribute" && b.type === "attribute") {
+              const typePriority = { trigger: 1, condition: 2, property: 3 };
+              const priorityA = typePriority[a.attrType as keyof typeof typePriority] || 4;
+              const priorityB = typePriority[b.attrType as keyof typeof typePriority] || 4;
+              if (priorityA !== priorityB) {
+                return priorityA - priorityB;
+              }
+            }
+            
+            return a.label.localeCompare(b.label);
+          });
       }
     } else {
       // Standard Class Suggestion
       const searchPattern = lowerLast;
       const allClassNames = Object.keys(currentManifest.classes);
       
-      // Filter and prioritize "Starts With" over "Includes"
       const startsWithMatches = allClassNames.filter(name => name.toLowerCase().startsWith(searchPattern));
       const includesMatches = allClassNames.filter(name => !name.toLowerCase().startsWith(searchPattern) && name.toLowerCase().includes(searchPattern));
       
-      matches = [...startsWithMatches, ...includesMatches]
-        .slice(0, 10)
+      const classMatches = [...startsWithMatches, ...includesMatches]
         .map(name => ({
           label: name,
-          description: currentManifest.classes[name].description || `${activeFramework.current} ${name} Class`,
-          framework: activeFramework.current,
-          type: "class"
+          description: currentManifest.classes[name].description || `${framework} ${name} Class`,
+          framework: framework,
+          type: "class" as const
         }));
+
+      // Inject Snippets
+      const snippetMatches = LIBRARIAN_SNIPPETS.filter(s => 
+        s.label.toLowerCase().includes(searchPattern)
+      );
+
+      // Prioritize Snippets at the top
+      matches = [...snippetMatches, ...classMatches];
     }
 
     setSuggestions(matches);

@@ -82,7 +82,8 @@ async function generateDmlManifest() {
       version: moduleVersion,
       description: description || `DML Module: ${moduleName}`,
       path: `DML/modules/${file}`,
-      methods: {}
+      methods: {},
+      attributes: {} // NEW: Track DML Attributes (Zone Properties)
     };
 
     // 4. Extract Functions (Classic: function name.func(), OOP: function name:func())
@@ -95,8 +96,36 @@ async function generateDmlManifest() {
       moduleInfo.methods[funcName] = {
         name: funcName,
         params,
-        description: '' // Future: Extract per-function comments
+        description: '' 
       };
+    }
+
+    // 5. Extract Attributes (Heuristic: Look for ZoneProperty calls)
+    // Pattern: get(Bool|String|Number|PositiveRange)FromZoneProperty(theZone, "attr", default)
+    const attrRegex = /get(?:Bool|String|Number|PositiveRange)FromZoneProperty\s*\([^,]+,\s*["']([^"']+)["']/g;
+    const noise = ['<none>', 'none', 'change', 'inc', 'vivid', 'tactical', '<o>-<uid>', 'ok', 'no', 'yes'];
+    
+    let attrMatch;
+    while ((attrMatch = attrRegex.exec(content)) !== null) {
+      const attrName = attrMatch[1];
+      if (!noise.includes(attrName.toLowerCase()) && !moduleInfo.attributes[attrName]) {
+        moduleInfo.attributes[attrName] = {
+          name: attrName,
+          type: attrName.endsWith('!') ? 'trigger' : (attrName.endsWith('?') ? 'condition' : 'property')
+        };
+      }
+    }
+
+    // Capture explicit .hasProperty("attr") calls
+    const hasPropRegex = /hasProperty\s*\(\s*["']([^"']+)["']/g;
+    while ((attrMatch = hasPropRegex.exec(content)) !== null) {
+      const attrName = attrMatch[1];
+      if (!noise.includes(attrName.toLowerCase()) && !moduleInfo.attributes[attrName]) {
+        moduleInfo.attributes[attrName] = {
+          name: attrName,
+          type: attrName.endsWith('!') ? 'trigger' : (attrName.endsWith('?') ? 'condition' : 'property')
+        };
+      }
     }
 
     // Map to 'classes' for Librarian compatibility

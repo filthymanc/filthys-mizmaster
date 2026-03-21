@@ -153,6 +153,24 @@
           "params": [],
           "description": ""
         }
+      },
+      "attributes": {
+        "circle_out": {
+          "name": "circle_out",
+          "type": "property"
+        },
+        "redCap!": {
+          "name": "redCap!",
+          "type": "trigger"
+        },
+        "blueCap!": {
+          "name": "blueCap!",
+          "type": "trigger"
+        },
+        "captured!": {
+          "name": "captured!",
+          "type": "trigger"
+        }
       }
     },
     "LZ": {
@@ -231,6 +249,76 @@
           "params": [],
           "description": ""
         }
+      },
+      "attributes": {
+        "landed!": {
+          "name": "landed!",
+          "type": "trigger"
+        },
+        "departed!": {
+          "name": "departed!",
+          "type": "trigger"
+        },
+        "group": {
+          "name": "group",
+          "type": "property"
+        },
+        "groups": {
+          "name": "groups",
+          "type": "property"
+        },
+        "type": {
+          "name": "type",
+          "type": "property"
+        },
+        "types": {
+          "name": "types",
+          "type": "property"
+        },
+        "unit": {
+          "name": "unit",
+          "type": "property"
+        },
+        "units": {
+          "name": "units",
+          "type": "property"
+        },
+        "playerOnly": {
+          "name": "playerOnly",
+          "type": "property"
+        },
+        "method": {
+          "name": "method",
+          "type": "property"
+        },
+        "outputMethod": {
+          "name": "outputMethod",
+          "type": "property"
+        },
+        "lzTriggerMethod": {
+          "name": "lzTriggerMethod",
+          "type": "property"
+        },
+        "triggerMethod": {
+          "name": "triggerMethod",
+          "type": "property"
+        },
+        "isPaused": {
+          "name": "isPaused",
+          "type": "property"
+        },
+        "pause?": {
+          "name": "pause?",
+          "type": "condition"
+        },
+        "continue?": {
+          "name": "continue?",
+          "type": "condition"
+        },
+        "cooldown": {
+          "name": "cooldown",
+          "type": "property"
+        }
       }
     },
     "cfxNDB": {
@@ -274,6 +362,16 @@
           "name": "start",
           "params": [],
           "description": ""
+        }
+      },
+      "attributes": {
+        "cfxnone": {
+          "name": "cfxnone",
+          "type": "property"
+        },
+        "ndbTriggerMethod": {
+          "name": "ndbTriggerMethod",
+          "type": "property"
         }
       }
     },
@@ -354,6 +452,52 @@
           "name": "start",
           "params": [],
           "description": ""
+        }
+      },
+      "attributes": {
+        "RND!": {
+          "name": "RND!",
+          "type": "trigger"
+        },
+        "flags!": {
+          "name": "flags!",
+          "type": "trigger"
+        },
+        "flags": {
+          "name": "flags",
+          "type": "property"
+        },
+        "rndTriggerMethod": {
+          "name": "rndTriggerMethod",
+          "type": "property"
+        },
+        "f?": {
+          "name": "f?",
+          "type": "condition"
+        },
+        "in?": {
+          "name": "in?",
+          "type": "condition"
+        },
+        "rndPoll?": {
+          "name": "rndPoll?",
+          "type": "condition"
+        },
+        "rndMethod": {
+          "name": "rndMethod",
+          "type": "property"
+        },
+        "done+1": {
+          "name": "done+1",
+          "type": "property"
+        },
+        "done!": {
+          "name": "done!",
+          "type": "trigger"
+        },
+        "rndDone!": {
+          "name": "rndDone!",
+          "type": "trigger"
         }
       }
     },
@@ -514,6 +658,16 @@
           "params": [],
           "description": ""
         }
+      },
+      "attributes": {
+        "open?": {
+          "name": "open?",
+          "type": "condition"
+        },
+        "close?": {
+          "name": "close?",
+          "type": "condition"
+        }
       }
     },
     "cfxSSBSingleUse": {
@@ -547,7 +701,8 @@
           "params": [],
           "description": ""
         }
-      }
+      },
+      "attributes": {}
     },
     "tdz": {
       "name": "tdz",
@@ -630,6 +785,20 @@
           "params": [],
           "description": ""
         }
+      },
+      "attributes": {
+        "landed!": {
+          "name": "landed!",
+          "type": "trigger"
+        },
+        "touchdown!": {
+          "name": "touchdown!",
+          "type": "trigger"
+        },
+        "fail!": {
+          "name": "fail!",
+          "type": "trigger"
+        }
       }
     },
     "WHpersistence": {
@@ -668,7 +837,8 @@
           "params": [],
           "description": ""
         }
-      }
+      },
+      "attributes": {}
     },
     "airfield": {
       "name": "airfield",
@@ -781,6 +951,40 @@
           "name": "start",
           "params": [],
           "description": ""
+        }
+      },
+      "attributes": {
+        "red!": {
+          "name": "red!",
+          "type": "trigger"
+        },
+        "blue!": {
+          "name": "blue!",
+          "type": "trigger"
+        },
+        "makeRed?": {
+          "name": "makeRed?",
+          "type": "condition"
+        },
+        "makeBlue?": {
+          "name": "makeBlue?",
+          "type": "condition"
+        },
+        "makeNeutral?": {
+          "name": "makeNeutral?",
+          "type": "condition"
+        },
+        "autoCap?": {
+          "name": "autoCap?",
+          "type": "condition"
+        },
+        "fixed": {
+          "name": "fixed",
+          "type": "property"
+        },
+        "ownedBy#": {
+          "name": "ownedBy#",
+          "type": "property"
         }
       }
     },
@@ -938,6 +1142,24 @@
           "name": "start",
           "params": [],
           "description": ""
+        }
+      },
+      "attributes": {
+        "Firefighting": {
+          "name": "Firefighting",
+          "type": "property"
+        },
+        "UH-1D": {
+          "name": "UH-1D",
+          "type": "property"
+        },
+        "attachTo:": {
+          "name": "attachTo:",
+          "type": "property"
+        },
+        "airtanks": {
+          "name": "airtanks",
+          "type": "property"
         }
       }
     },
@@ -1168,7 +1390,8 @@
           "params": [],
           "description": ""
         }
-      }
+      },
+      "attributes": {}
     },
     "cfxArtilleryZones": {
       "name": "cfxArtilleryZones",
@@ -1339,6 +1562,24 @@
           "params": [],
           "description": ""
         }
+      },
+      "attributes": {
+        "triggerMethod": {
+          "name": "triggerMethod",
+          "type": "property"
+        },
+        "f?": {
+          "name": "f?",
+          "type": "condition"
+        },
+        "artillery?": {
+          "name": "artillery?",
+          "type": "condition"
+        },
+        "in?": {
+          "name": "in?",
+          "type": "condition"
+        }
       }
     },
     "asw": {
@@ -1507,6 +1748,60 @@
           "name": "start",
           "params": [],
           "description": ""
+        }
+      },
+      "attributes": {
+        "buoyLife": {
+          "name": "buoyLife",
+          "type": "property"
+        },
+        "detectionRange": {
+          "name": "detectionRange",
+          "type": "property"
+        },
+        "sureDetect": {
+          "name": "sureDetect",
+          "type": "property"
+        },
+        "detectionDepth": {
+          "name": "detectionDepth",
+          "type": "property"
+        },
+        "fixLife": {
+          "name": "fixLife",
+          "type": "property"
+        },
+        "verbose": {
+          "name": "verbose",
+          "type": "property"
+        },
+        "fixSound": {
+          "name": "fixSound",
+          "type": "property"
+        },
+        "sonarSound": {
+          "name": "sonarSound",
+          "type": "property"
+        },
+        "redKill!": {
+          "name": "redKill!",
+          "type": "trigger"
+        },
+        "blueKill!": {
+          "name": "blueKill!",
+          "type": "trigger"
+        },
+        "method": {
+          "name": "method",
+          "type": "property"
+        },
+        "killScore": {
+          "name": "killScore",
+          "type": "property"
+        },
+        "killFeat": {
+          "name": "killFeat",
+          "type": "property"
         }
       }
     },
@@ -1703,6 +1998,20 @@
           "params": [],
           "description": ""
         }
+      },
+      "attributes": {
+        "aswCarriers": {
+          "name": "aswCarriers",
+          "type": "property"
+        },
+        "buoyWeight": {
+          "name": "buoyWeight",
+          "type": "property"
+        },
+        "torpedoWeight": {
+          "name": "torpedoWeight",
+          "type": "property"
+        }
       }
     },
     "aswSubs": {
@@ -1752,6 +2061,24 @@
           "name": "start",
           "params": [],
           "description": ""
+        }
+      },
+      "attributes": {
+        "critDist": {
+          "name": "critDist",
+          "type": "property"
+        },
+        "explosionDamage": {
+          "name": "explosionDamage",
+          "type": "property"
+        },
+        "salvoSize": {
+          "name": "salvoSize",
+          "type": "property"
+        },
+        "targets": {
+          "name": "targets",
+          "type": "property"
         }
       }
     },
@@ -1817,6 +2144,32 @@
           "name": "start",
           "params": [],
           "description": ""
+        }
+      },
+      "attributes": {
+        "buoyS": {
+          "name": "buoyS",
+          "type": "property"
+        },
+        "torpedoes": {
+          "name": "torpedoes",
+          "type": "property"
+        },
+        "triggerMethod": {
+          "name": "triggerMethod",
+          "type": "property"
+        },
+        "aswTriggerMethod": {
+          "name": "aswTriggerMethod",
+          "type": "property"
+        },
+        "buoy?": {
+          "name": "buoy?",
+          "type": "condition"
+        },
+        "torpedo?": {
+          "name": "torpedo?",
+          "type": "condition"
         }
       }
     },
@@ -1885,6 +2238,16 @@
           "params": [],
           "description": ""
         }
+      },
+      "attributes": {
+        "redCSAR": {
+          "name": "redCSAR",
+          "type": "property"
+        },
+        "blueCSAR": {
+          "name": "blueCSAR",
+          "type": "property"
+        }
       }
     },
     "bank": {
@@ -1945,6 +2308,16 @@
           "params": [],
           "description": ""
         }
+      },
+      "attributes": {
+        "cfxNameMissing": {
+          "name": "cfxNameMissing",
+          "type": "property"
+        },
+        "sharedData": {
+          "name": "sharedData",
+          "type": "property"
+        }
       }
     },
     "baseCaptured": {
@@ -1996,6 +2369,52 @@
           "params": [],
           "description": ""
         }
+      },
+      "attributes": {
+        "baseCaptured!": {
+          "name": "baseCaptured!",
+          "type": "trigger"
+        },
+        "method": {
+          "name": "method",
+          "type": "property"
+        },
+        "capturedMethod": {
+          "name": "capturedMethod",
+          "type": "property"
+        },
+        "blueCaptured!": {
+          "name": "blueCaptured!",
+          "type": "trigger"
+        },
+        "blue!": {
+          "name": "blue!",
+          "type": "trigger"
+        },
+        "redCaptured!": {
+          "name": "redCaptured!",
+          "type": "trigger"
+        },
+        "red!": {
+          "name": "red!",
+          "type": "trigger"
+        },
+        "contested!": {
+          "name": "contested!",
+          "type": "trigger"
+        },
+        "baseOwner": {
+          "name": "baseOwner",
+          "type": "property"
+        },
+        "verbose": {
+          "name": "verbose",
+          "type": "property"
+        },
+        "handleContested": {
+          "name": "handleContested",
+          "type": "property"
+        }
       }
     },
     "bcn": {
@@ -2046,7 +2465,8 @@
           ],
           "description": ""
         }
-      }
+      },
+      "attributes": {}
     },
     "bombRange": {
       "name": "bombRange",
@@ -2209,6 +2629,48 @@
           "name": "start",
           "params": [],
           "description": ""
+        }
+      },
+      "attributes": {
+        "Red_Flag": {
+          "name": "Red_Flag",
+          "type": "property"
+        },
+        "Black_Tyre_RF": {
+          "name": "Black_Tyre_RF",
+          "type": "property"
+        },
+        "house2arm": {
+          "name": "house2arm",
+          "type": "property"
+        },
+        "house2arm, Black_Tyre_RF, Red_Flag": {
+          "name": "house2arm, Black_Tyre_RF, Red_Flag",
+          "type": "property"
+        },
+        "Contact BOMB RANGE": {
+          "name": "Contact BOMB RANGE",
+          "type": "property"
+        },
+        "hit!": {
+          "name": "hit!",
+          "type": "trigger"
+        },
+        "signIn!": {
+          "name": "signIn!",
+          "type": "trigger"
+        },
+        "signOut!": {
+          "name": "signOut!",
+          "type": "trigger"
+        },
+        "types": {
+          "name": "types",
+          "type": "property"
+        },
+        "attachTo:": {
+          "name": "attachTo:",
+          "type": "property"
         }
       }
     },
@@ -2390,6 +2852,32 @@
           "params": [],
           "description": ""
         }
+      },
+      "attributes": {
+        "Quest Snare 3.wav": {
+          "name": "Quest Snare 3.wav",
+          "type": "property"
+        },
+        "nocamp": {
+          "name": "nocamp",
+          "type": "property"
+        },
+        "cloner": {
+          "name": "cloner",
+          "type": "property"
+        },
+        "blueOnly": {
+          "name": "blueOnly",
+          "type": "property"
+        },
+        "redOnly": {
+          "name": "redOnly",
+          "type": "property"
+        },
+        "FARP": {
+          "name": "FARP",
+          "type": "property"
+        }
       }
     },
     "cfxCargoManager": {
@@ -2475,7 +2963,8 @@
           "params": [],
           "description": ""
         }
-      }
+      },
+      "attributes": {}
     },
     "cfxCargoReceiver": {
       "name": "cfxCargoReceiver",
@@ -2549,6 +3038,28 @@
           "name": "start",
           "params": [],
           "description": ""
+        }
+      },
+      "attributes": {
+        "*<none>": {
+          "name": "*<none>",
+          "type": "property"
+        },
+        "cargoMethod": {
+          "name": "cargoMethod",
+          "type": "property"
+        },
+        "cargoReceiver!": {
+          "name": "cargoReceiver!",
+          "type": "trigger"
+        },
+        "f!": {
+          "name": "f!",
+          "type": "trigger"
+        },
+        "cargoReceived!": {
+          "name": "cargoReceived!",
+          "type": "trigger"
         }
       }
     },
@@ -2666,7 +3177,8 @@
           "params": [],
           "description": ""
         }
-      }
+      },
+      "attributes": {}
     },
     "cfxGroups": {
       "name": "cfxGroups",
@@ -2699,7 +3211,8 @@
           "params": [],
           "description": ""
         }
-      }
+      },
+      "attributes": {}
     },
     "cfxMX": {
       "name": "cfxMX",
@@ -2805,7 +3318,8 @@
           "params": [],
           "description": ""
         }
-      }
+      },
+      "attributes": {}
     },
     "cfxPlayer": {
       "name": "cfxPlayer",
@@ -3013,7 +3527,8 @@
           "params": [],
           "description": ""
         }
-      }
+      },
+      "attributes": {}
     },
     "cfxZones": {
       "name": "cfxZones",
@@ -4135,6 +4650,24 @@
           "params": [],
           "description": ""
         }
+      },
+      "attributes": {
+        "verbose": {
+          "name": "verbose",
+          "type": "property"
+        },
+        "forgotten master": {
+          "name": "forgotten master",
+          "type": "property"
+        },
+        "linkedUnit": {
+          "name": "linkedUnit",
+          "type": "property"
+        },
+        "masterOwner": {
+          "name": "masterOwner",
+          "type": "property"
+        }
       }
     },
     "changer": {
@@ -4185,6 +4718,96 @@
           "name": "start",
           "params": [],
           "description": ""
+        }
+      },
+      "attributes": {
+        "change?": {
+          "name": "change?",
+          "type": "condition"
+        },
+        "triggerMethod": {
+          "name": "triggerMethod",
+          "type": "property"
+        },
+        "triggerChangeMethod": {
+          "name": "triggerChangeMethod",
+          "type": "property"
+        },
+        "inEval": {
+          "name": "inEval",
+          "type": "property"
+        },
+        "to": {
+          "name": "to",
+          "type": "property"
+        },
+        "changeTo": {
+          "name": "changeTo",
+          "type": "property"
+        },
+        "out!": {
+          "name": "out!",
+          "type": "trigger"
+        },
+        "changeOut!": {
+          "name": "changeOut!",
+          "type": "trigger"
+        },
+        "paused": {
+          "name": "paused",
+          "type": "property"
+        },
+        "changePaused": {
+          "name": "changePaused",
+          "type": "property"
+        },
+        "on?": {
+          "name": "on?",
+          "type": "condition"
+        },
+        "changeOn?": {
+          "name": "changeOn?",
+          "type": "condition"
+        },
+        "off?": {
+          "name": "off?",
+          "type": "condition"
+        },
+        "changeOff?": {
+          "name": "changeOff?",
+          "type": "condition"
+        },
+        "min": {
+          "name": "min",
+          "type": "property"
+        },
+        "max": {
+          "name": "max",
+          "type": "property"
+        },
+        "On/Off?": {
+          "name": "On/Off?",
+          "type": "condition"
+        },
+        "changeOn/Off?": {
+          "name": "changeOn/Off?",
+          "type": "condition"
+        },
+        "NOT On/Off?": {
+          "name": "NOT On/Off?",
+          "type": "condition"
+        },
+        "NOT changeOn/Off?": {
+          "name": "NOT changeOn/Off?",
+          "type": "condition"
+        },
+        "verbose": {
+          "name": "verbose",
+          "type": "property"
+        },
+        "ups": {
+          "name": "ups",
+          "type": "property"
         }
       }
     },
@@ -4338,6 +4961,20 @@
           "params": [],
           "description": ""
         }
+      },
+      "attributes": {
+        "maxTraffic": {
+          "name": "maxTraffic",
+          "type": "property"
+        },
+        "maxFlights": {
+          "name": "maxFlights",
+          "type": "property"
+        },
+        "aircraftTypes": {
+          "name": "aircraftTypes",
+          "type": "property"
+        }
       }
     },
     "civHelo": {
@@ -4487,6 +5124,16 @@
           "params": [],
           "description": ""
         }
+      },
+      "attributes": {
+        "xxx": {
+          "name": "xxx",
+          "type": "property"
+        },
+        "types": {
+          "name": "types",
+          "type": "property"
+        }
       }
     },
     "clients": {
@@ -4585,7 +5232,8 @@
           "params": [],
           "description": ""
         }
-      }
+      },
+      "attributes": {}
     },
     "cloneZones": {
       "name": "cloneZones",
@@ -4969,6 +5617,124 @@
           "params": [],
           "description": ""
         }
+      },
+      "attributes": {
+        "source": {
+          "name": "source",
+          "type": "property"
+        },
+        "cloneTriggerMethod": {
+          "name": "cloneTriggerMethod",
+          "type": "property"
+        },
+        "f?": {
+          "name": "f?",
+          "type": "condition"
+        },
+        "in?": {
+          "name": "in?",
+          "type": "condition"
+        },
+        "spawn?": {
+          "name": "spawn?",
+          "type": "condition"
+        },
+        "clone?": {
+          "name": "clone?",
+          "type": "condition"
+        },
+        "deSpawn?": {
+          "name": "deSpawn?",
+          "type": "condition"
+        },
+        "deClone?": {
+          "name": "deClone?",
+          "type": "condition"
+        },
+        "wipe?": {
+          "name": "wipe?",
+          "type": "condition"
+        },
+        "cWipe?": {
+          "name": "cWipe?",
+          "type": "condition"
+        },
+        "empty!": {
+          "name": "empty!",
+          "type": "trigger"
+        },
+        "method": {
+          "name": "method",
+          "type": "property"
+        },
+        "trackWith:": {
+          "name": "trackWith:",
+          "type": "property"
+        },
+        "useDelicates": {
+          "name": "useDelicates",
+          "type": "property"
+        },
+        "requestable": {
+          "name": "requestable",
+          "type": "property"
+        },
+        "rndLoc": {
+          "name": "rndLoc",
+          "type": "property"
+        },
+        "wholeGroups": {
+          "name": "wholeGroups",
+          "type": "property"
+        },
+        "inBuiltup": {
+          "name": "inBuiltup",
+          "type": "property"
+        },
+        "identical": {
+          "name": "identical",
+          "type": "property"
+        },
+        "nameScheme": {
+          "name": "nameScheme",
+          "type": "property"
+        },
+        "groupScheme": {
+          "name": "groupScheme",
+          "type": "property"
+        },
+        "despawnIn": {
+          "name": "despawnIn",
+          "type": "property"
+        },
+        "damaged!": {
+          "name": "damaged!",
+          "type": "trigger"
+        },
+        "health#": {
+          "name": "health#",
+          "type": "property"
+        },
+        "maxCycles": {
+          "name": "maxCycles",
+          "type": "property"
+        },
+        "maxCycle": {
+          "name": "maxCycle",
+          "type": "property"
+        },
+        "uniqueCount": {
+          "name": "uniqueCount",
+          "type": "property"
+        },
+        "localCount": {
+          "name": "localCount",
+          "type": "property"
+        },
+        "globalCount": {
+          "name": "globalCount",
+          "type": "property"
+        }
       }
     },
     "cfxCommander": {
@@ -5216,6 +5982,12 @@
           "name": "start",
           "params": [],
           "description": ""
+        }
+      },
+      "attributes": {
+        "pathing": {
+          "name": "pathing",
+          "type": "property"
         }
       }
     },
@@ -5474,6 +6246,56 @@
           "params": [],
           "description": ""
         }
+      },
+      "attributes": {
+        "UI_SCI-FI_Tone_Bright_Dry_25_stereo.wav": {
+          "name": "UI_SCI-FI_Tone_Bright_Dry_25_stereo.wav",
+          "type": "property"
+        },
+        "Convoys": {
+          "name": "Convoys",
+          "type": "property"
+        },
+        "spawn?": {
+          "name": "spawn?",
+          "type": "condition"
+        },
+        "destination": {
+          "name": "destination",
+          "type": "property"
+        },
+        "dead!": {
+          "name": "dead!",
+          "type": "trigger"
+        },
+        "attacked!": {
+          "name": "attacked!",
+          "type": "trigger"
+        },
+        "arrived!": {
+          "name": "arrived!",
+          "type": "trigger"
+        },
+        "attachTo:": {
+          "name": "attachTo:",
+          "type": "property"
+        },
+        "redConvoy#": {
+          "name": "redConvoy#",
+          "type": "property"
+        },
+        "blueConvoy#": {
+          "name": "blueConvoy#",
+          "type": "property"
+        },
+        "neutralConvoy#": {
+          "name": "neutralConvoy#",
+          "type": "property"
+        },
+        "allConvoy#": {
+          "name": "allConvoy#",
+          "type": "property"
+        }
       }
     },
     "countDown": {
@@ -5551,6 +6373,56 @@
           "params": [],
           "description": ""
         }
+      },
+      "attributes": {
+        "ctdwnMethod": {
+          "name": "ctdwnMethod",
+          "type": "property"
+        },
+        "ctdwnTriggerMethod": {
+          "name": "ctdwnTriggerMethod",
+          "type": "property"
+        },
+        "count?": {
+          "name": "count?",
+          "type": "condition"
+        },
+        "clock?": {
+          "name": "clock?",
+          "type": "condition"
+        },
+        "in?": {
+          "name": "in?",
+          "type": "condition"
+        },
+        "reset?": {
+          "name": "reset?",
+          "type": "condition"
+        },
+        "zero!": {
+          "name": "zero!",
+          "type": "trigger"
+        },
+        "out!": {
+          "name": "out!",
+          "type": "trigger"
+        },
+        "tMinus!": {
+          "name": "tMinus!",
+          "type": "trigger"
+        },
+        "counterOut#": {
+          "name": "counterOut#",
+          "type": "property"
+        },
+        "disableCounter?": {
+          "name": "disableCounter?",
+          "type": "condition"
+        },
+        "enableCounter?": {
+          "name": "enableCounter?",
+          "type": "condition"
+        }
       }
     },
     "counter": {
@@ -5594,6 +6466,44 @@
           "name": "start",
           "params": [],
           "description": ""
+        }
+      },
+      "attributes": {
+        "count?": {
+          "name": "count?",
+          "type": "condition"
+        },
+        "triggerMethod": {
+          "name": "triggerMethod",
+          "type": "property"
+        },
+        "triggerChangeMethod": {
+          "name": "triggerChangeMethod",
+          "type": "property"
+        },
+        "countMethod": {
+          "name": "countMethod",
+          "type": "property"
+        },
+        "method": {
+          "name": "method",
+          "type": "property"
+        },
+        "out!": {
+          "name": "out!",
+          "type": "trigger"
+        },
+        "countOut!": {
+          "name": "countOut!",
+          "type": "trigger"
+        },
+        "verbose": {
+          "name": "verbose",
+          "type": "property"
+        },
+        "ups": {
+          "name": "ups",
+          "type": "property"
         }
       }
     },
@@ -5708,6 +6618,36 @@
           "name": "start",
           "params": [],
           "description": ""
+        }
+      },
+      "attributes": {
+        "xxx": {
+          "name": "xxx",
+          "type": "property"
+        },
+        "debris": {
+          "name": "debris",
+          "type": "property"
+        },
+        "landTypes": {
+          "name": "landTypes",
+          "type": "property"
+        },
+        "roadTypes": {
+          "name": "roadTypes",
+          "type": "property"
+        },
+        "seaTypes": {
+          "name": "seaTypes",
+          "type": "property"
+        },
+        "enemies": {
+          "name": "enemies",
+          "type": "property"
+        },
+        "nasties": {
+          "name": "nasties",
+          "type": "property"
         }
       }
     },
@@ -6142,6 +7082,116 @@
           "name": "start",
           "params": [],
           "description": ""
+        }
+      },
+      "attributes": {
+        "*none": {
+          "name": "*none",
+          "type": "property"
+        },
+        "*<none>": {
+          "name": "*<none>",
+          "type": "property"
+        },
+        "Radio_beacon_of_distress_on_121,5_MHz.ogg": {
+          "name": "Radio_beacon_of_distress_on_121,5_MHz.ogg",
+          "type": "property"
+        },
+        "Quest Snare 3.wav": {
+          "name": "Quest Snare 3.wav",
+          "type": "property"
+        },
+        "UH-1D": {
+          "name": "UH-1D",
+          "type": "property"
+        },
+        "Lt, Lt, Lt, Col, Cpt, WO, WO": {
+          "name": "Lt, Lt, Lt, Col, Cpt, WO, WO",
+          "type": "property"
+        },
+        "Soldier M4 GRG": {
+          "name": "Soldier M4 GRG",
+          "type": "property"
+        },
+        "coalition": {
+          "name": "coalition",
+          "type": "property"
+        },
+        "name": {
+          "name": "name",
+          "type": "property"
+        },
+        "csarName": {
+          "name": "csarName",
+          "type": "property"
+        },
+        "pilotName": {
+          "name": "pilotName",
+          "type": "property"
+        },
+        "victimName": {
+          "name": "victimName",
+          "type": "property"
+        },
+        "timeLimit": {
+          "name": "timeLimit",
+          "type": "property"
+        },
+        "in?": {
+          "name": "in?",
+          "type": "condition"
+        },
+        "start?": {
+          "name": "start?",
+          "type": "condition"
+        },
+        "startCSAR?": {
+          "name": "startCSAR?",
+          "type": "condition"
+        },
+        "score": {
+          "name": "score",
+          "type": "property"
+        },
+        "onRoads": {
+          "name": "onRoads",
+          "type": "property"
+        },
+        "inPopulated": {
+          "name": "inPopulated",
+          "type": "property"
+        },
+        "clearance": {
+          "name": "clearance",
+          "type": "property"
+        },
+        "inBuiltup": {
+          "name": "inBuiltup",
+          "type": "property"
+        },
+        "inBuiltUp": {
+          "name": "inBuiltUp",
+          "type": "property"
+        },
+        "csarRedDelivered!": {
+          "name": "csarRedDelivered!",
+          "type": "trigger"
+        },
+        "csarBlueDelivered!": {
+          "name": "csarBlueDelivered!",
+          "type": "trigger"
+        },
+        "csarDelivered!": {
+          "name": "csarDelivered!",
+          "type": "trigger"
+        },
+        "troopCarriers": {
+          "name": "troopCarriers",
+          "type": "property"
+        },
+        "attachTo:": {
+          "name": "attachTo:",
+          "type": "property"
         }
       }
     },
@@ -7976,7 +9026,8 @@
           "params": [],
           "description": ""
         }
-      }
+      },
+      "attributes": {}
     },
     "delayFlag": {
       "name": "delayFlag",
@@ -8050,6 +9101,48 @@
           "name": "start",
           "params": [],
           "description": ""
+        }
+      },
+      "attributes": {
+        "*<none>": {
+          "name": "*<none>",
+          "type": "property"
+        },
+        "*cfxIgnored": {
+          "name": "*cfxIgnored",
+          "type": "property"
+        },
+        "delayTriggerMethod": {
+          "name": "delayTriggerMethod",
+          "type": "property"
+        },
+        "startDelay?": {
+          "name": "startDelay?",
+          "type": "condition"
+        },
+        "delayMethod": {
+          "name": "delayMethod",
+          "type": "property"
+        },
+        "delayDone!": {
+          "name": "delayDone!",
+          "type": "trigger"
+        },
+        "stopDelay?": {
+          "name": "stopDelay?",
+          "type": "condition"
+        },
+        "pauseDelay?": {
+          "name": "pauseDelay?",
+          "type": "condition"
+        },
+        "continueDelay?": {
+          "name": "continueDelay?",
+          "type": "condition"
+        },
+        "delayLeft": {
+          "name": "delayLeft",
+          "type": "property"
         }
       }
     },
@@ -8155,6 +9248,52 @@
           "params": [],
           "description": ""
         }
+      },
+      "attributes": {
+        "power": {
+          "name": "power",
+          "type": "property"
+        },
+        "delicatesHit!": {
+          "name": "delicatesHit!",
+          "type": "trigger"
+        },
+        "f!": {
+          "name": "f!",
+          "type": "trigger"
+        },
+        "out!": {
+          "name": "out!",
+          "type": "trigger"
+        },
+        "safetyMargin": {
+          "name": "safetyMargin",
+          "type": "property"
+        },
+        "method": {
+          "name": "method",
+          "type": "property"
+        },
+        "delicatesMethod": {
+          "name": "delicatesMethod",
+          "type": "property"
+        },
+        "thriggerMethod": {
+          "name": "thriggerMethod",
+          "type": "property"
+        },
+        "remove": {
+          "name": "remove",
+          "type": "property"
+        },
+        "blowAll?": {
+          "name": "blowAll?",
+          "type": "condition"
+        },
+        "verbose": {
+          "name": "verbose",
+          "type": "property"
+        }
       }
     },
     "duel": {
@@ -8240,6 +9379,20 @@
           "name": "start",
           "params": [],
           "description": ""
+        }
+      },
+      "attributes": {
+        "*none": {
+          "name": "*none",
+          "type": "property"
+        },
+        "on?": {
+          "name": "on?",
+          "type": "condition"
+        },
+        "off?": {
+          "name": "off?",
+          "type": "condition"
         }
       }
     },
@@ -8381,6 +9534,60 @@
           "params": [],
           "description": ""
         }
+      },
+      "attributes": {
+        "circle_out": {
+          "name": "circle_out",
+          "type": "property"
+        },
+        "attackersRED": {
+          "name": "attackersRED",
+          "type": "property"
+        },
+        "attackersBLUE": {
+          "name": "attackersBLUE",
+          "type": "property"
+        },
+        "pause?": {
+          "name": "pause?",
+          "type": "condition"
+        },
+        "activate?": {
+          "name": "activate?",
+          "type": "condition"
+        },
+        "factoryTriggerMethod": {
+          "name": "factoryTriggerMethod",
+          "type": "property"
+        },
+        "method": {
+          "name": "method",
+          "type": "property"
+        },
+        "redP!": {
+          "name": "redP!",
+          "type": "trigger"
+        },
+        "blueP!": {
+          "name": "blueP!",
+          "type": "trigger"
+        },
+        "redD!": {
+          "name": "redD!",
+          "type": "trigger"
+        },
+        "blueD!": {
+          "name": "blueD!",
+          "type": "trigger"
+        },
+        "defendMe?": {
+          "name": "defendMe?",
+          "type": "condition"
+        },
+        "productionTime": {
+          "name": "productionTime",
+          "type": "property"
+        }
       }
     },
     "fireCtrl": {
@@ -8490,6 +9697,40 @@
           "params": [],
           "description": ""
         }
+      },
+      "attributes": {
+        "Highperch": {
+          "name": "Highperch",
+          "type": "property"
+        },
+        "firefight new fire alice.ogg": {
+          "name": "firefight new fire alice.ogg",
+          "type": "property"
+        },
+        "Contact ": {
+          "name": "Contact ",
+          "type": "property"
+        },
+        "cfxNameMissing": {
+          "name": "cfxNameMissing",
+          "type": "property"
+        },
+        "ctrOn?": {
+          "name": "ctrOn?",
+          "type": "condition"
+        },
+        "ctrOff?": {
+          "name": "ctrOff?",
+          "type": "condition"
+        },
+        "attachTo:": {
+          "name": "attachTo:",
+          "type": "property"
+        },
+        "sharedData": {
+          "name": "sharedData",
+          "type": "property"
+        }
       }
     },
     "fireFX": {
@@ -8558,6 +9799,24 @@
           "params": [],
           "description": ""
         }
+      },
+      "attributes": {
+        "*<none>": {
+          "name": "*<none>",
+          "type": "property"
+        },
+        "start?": {
+          "name": "start?",
+          "type": "condition"
+        },
+        "stop?": {
+          "name": "stop?",
+          "type": "condition"
+        },
+        "triggerMethod": {
+          "name": "triggerMethod",
+          "type": "property"
+        }
       }
     },
     "flareZone": {
@@ -8589,6 +9848,36 @@
           "name": "start",
           "params": [],
           "description": ""
+        }
+      },
+      "attributes": {
+        "f?": {
+          "name": "f?",
+          "type": "condition"
+        },
+        "launchFlare?": {
+          "name": "launchFlare?",
+          "type": "condition"
+        },
+        "flareTriggerMethod": {
+          "name": "flareTriggerMethod",
+          "type": "property"
+        },
+        "azimuth": {
+          "name": "azimuth",
+          "type": "property"
+        },
+        "alt": {
+          "name": "alt",
+          "type": "property"
+        },
+        "flareAlt": {
+          "name": "flareAlt",
+          "type": "property"
+        },
+        "agl": {
+          "name": "agl",
+          "type": "property"
         }
       }
     },
@@ -8626,6 +9915,20 @@
           "name": "start",
           "params": [],
           "description": ""
+        }
+      },
+      "attributes": {
+        "visibility": {
+          "name": "visibility",
+          "type": "property"
+        },
+        "thickness": {
+          "name": "thickness",
+          "type": "property"
+        },
+        "onStart": {
+          "name": "onStart",
+          "type": "property"
         }
       }
     },
@@ -8665,6 +9968,16 @@
           "name": "start",
           "params": [],
           "description": ""
+        }
+      },
+      "attributes": {
+        "boom?": {
+          "name": "boom?",
+          "type": "condition"
+        },
+        "flares": {
+          "name": "flares",
+          "type": "property"
         }
       }
     },
@@ -8906,6 +10219,24 @@
           "params": [],
           "description": ""
         }
+      },
+      "attributes": {
+        "UI_SCI-FI_Tone_Bright_Dry_20_stereo.wav": {
+          "name": "UI_SCI-FI_Tone_Bright_Dry_20_stereo.wav",
+          "type": "property"
+        },
+        "lazeCode": {
+          "name": "lazeCode",
+          "type": "property"
+        },
+        "laseCode": {
+          "name": "laseCode",
+          "type": "property"
+        },
+        "laserCode": {
+          "name": "laserCode",
+          "type": "property"
+        }
       }
     },
     "groupTracker": {
@@ -9034,6 +10365,72 @@
           "name": "start",
           "params": [],
           "description": ""
+        }
+      },
+      "attributes": {
+        "2": {
+          "name": "2",
+          "type": "property"
+        },
+        "*<none>": {
+          "name": "*<none>",
+          "type": "property"
+        },
+        "destroy?": {
+          "name": "destroy?",
+          "type": "condition"
+        },
+        "addToTracker:": {
+          "name": "addToTracker:",
+          "type": "property"
+        },
+        "trackerMethod": {
+          "name": "trackerMethod",
+          "type": "property"
+        },
+        "trackerTriggerMethod": {
+          "name": "trackerTriggerMethod",
+          "type": "property"
+        },
+        "numGroups": {
+          "name": "numGroups",
+          "type": "property"
+        },
+        "numGroups#": {
+          "name": "numGroups#",
+          "type": "property"
+        },
+        "numUnits": {
+          "name": "numUnits",
+          "type": "property"
+        },
+        "numUnits#": {
+          "name": "numUnits#",
+          "type": "property"
+        },
+        "addGroup": {
+          "name": "addGroup",
+          "type": "property"
+        },
+        "addGroup!": {
+          "name": "addGroup!",
+          "type": "trigger"
+        },
+        "removeGroup": {
+          "name": "removeGroup",
+          "type": "property"
+        },
+        "removeGroup!": {
+          "name": "removeGroup!",
+          "type": "trigger"
+        },
+        "groupFilter": {
+          "name": "groupFilter",
+          "type": "property"
+        },
+        "allGone!": {
+          "name": "allGone!",
+          "type": "trigger"
         }
       }
     },
@@ -9225,6 +10622,40 @@
             "weaponName"
           ],
           "description": ""
+        }
+      },
+      "attributes": {
+        "*<none>": {
+          "name": "*<none>",
+          "type": "property"
+        },
+        "nosound": {
+          "name": "nosound",
+          "type": "property"
+        },
+        "activate?": {
+          "name": "activate?",
+          "type": "condition"
+        },
+        "on?": {
+          "name": "on?",
+          "type": "condition"
+        },
+        "deactivate?": {
+          "name": "deactivate?",
+          "type": "condition"
+        },
+        "off?": {
+          "name": "off?",
+          "type": "condition"
+        },
+        "launchSound": {
+          "name": "launchSound",
+          "type": "property"
+        },
+        "interventionSound": {
+          "name": "interventionSound",
+          "type": "property"
         }
       }
     },
@@ -9545,6 +10976,40 @@
           "params": [],
           "description": ""
         }
+      },
+      "attributes": {
+        "cfxNone": {
+          "name": "cfxNone",
+          "type": "property"
+        },
+        "Quest Snare 3.wav": {
+          "name": "Quest Snare 3.wav",
+          "type": "property"
+        },
+        "UH-1D": {
+          "name": "UH-1D",
+          "type": "property"
+        },
+        "Airlift Troops": {
+          "name": "Airlift Troops",
+          "type": "property"
+        },
+        "legalTroops": {
+          "name": "legalTroops",
+          "type": "property"
+        },
+        "pickupRang": {
+          "name": "pickupRang",
+          "type": "property"
+        },
+        "troopCarriers": {
+          "name": "troopCarriers",
+          "type": "property"
+        },
+        "attachTo:": {
+          "name": "attachTo:",
+          "type": "property"
+        }
       }
     },
     "impostors": {
@@ -9660,6 +11125,56 @@
           "params": [],
           "description": ""
         }
+      },
+      "attributes": {
+        "impostor?": {
+          "name": "impostor?",
+          "type": "condition"
+        },
+        "reanimate?": {
+          "name": "reanimate?",
+          "type": "condition"
+        },
+        "triggerMethod": {
+          "name": "triggerMethod",
+          "type": "property"
+        },
+        "impostorTriggerMethod": {
+          "name": "impostorTriggerMethod",
+          "type": "property"
+        },
+        "onStart": {
+          "name": "onStart",
+          "type": "property"
+        },
+        "blink": {
+          "name": "blink",
+          "type": "property"
+        },
+        "trackWith:": {
+          "name": "trackWith:",
+          "type": "property"
+        },
+        "allDead": {
+          "name": "allDead",
+          "type": "property"
+        },
+        "method": {
+          "name": "method",
+          "type": "property"
+        },
+        "impostorMethod": {
+          "name": "impostorMethod",
+          "type": "property"
+        },
+        "ups": {
+          "name": "ups",
+          "type": "property"
+        },
+        "verbose": {
+          "name": "verbose",
+          "type": "property"
+        }
       }
     },
     "income": {
@@ -9704,6 +11219,12 @@
           "name": "start",
           "params": [],
           "description": ""
+        }
+      },
+      "attributes": {
+        "New funds from income available: §<i>": {
+          "name": "New funds from income available: §<i>",
+          "type": "property"
         }
       }
     },
@@ -9842,6 +11363,24 @@
           "params": [],
           "description": ""
         }
+      },
+      "attributes": {
+        "ignite?": {
+          "name": "ignite?",
+          "type": "condition"
+        },
+        "douse?": {
+          "name": "douse?",
+          "type": "condition"
+        },
+        "extinguished!": {
+          "name": "extinguished!",
+          "type": "trigger"
+        },
+        "fire#": {
+          "name": "fire#",
+          "type": "property"
+        }
       }
     },
     "jtacGrpUI": {
@@ -9959,6 +11498,36 @@
           "params": [],
           "description": ""
         }
+      },
+      "attributes": {
+        "all": {
+          "name": "all",
+          "type": "property"
+        },
+        "UI_SCI-FI_Tone_Bright_Dry_20_stereo.wav": {
+          "name": "UI_SCI-FI_Tone_Bright_Dry_20_stereo.wav",
+          "type": "property"
+        },
+        "jtac Lasing Report": {
+          "name": "jtac Lasing Report",
+          "type": "property"
+        },
+        "<g><twnnm>": {
+          "name": "<g><twnnm>",
+          "type": "property"
+        },
+        " - lasing <typ> [<lat>:<lon>], code=<code>": {
+          "name": " - lasing <typ> [<lat>:<lon>], code=<code>",
+          "type": "property"
+        },
+        " - lasing <typ> [<rngnm>nm, bearing <bea>°], code=<code>": {
+          "name": " - lasing <typ> [<rngnm>nm, bearing <bea>°], code=<code>",
+          "type": "property"
+        },
+        "attachTo:": {
+          "name": "attachTo:",
+          "type": "property"
+        }
       }
     },
     "launchPlatform": {
@@ -10029,6 +11598,16 @@
           "name": "start",
           "params": [],
           "description": ""
+        }
+      },
+      "attributes": {
+        "salvos": {
+          "name": "salvos",
+          "type": "property"
+        },
+        "salvo": {
+          "name": "salvo",
+          "type": "property"
         }
       }
     },
@@ -10258,6 +11837,40 @@
           "params": [],
           "description": ""
         }
+      },
+      "attributes": {
+        "*none": {
+          "name": "*none",
+          "type": "property"
+        },
+        "#red": {
+          "name": "#red",
+          "type": "property"
+        },
+        "#blue": {
+          "name": "#blue",
+          "type": "property"
+        },
+        "redWinsFlag!": {
+          "name": "redWinsFlag!",
+          "type": "trigger"
+        },
+        "blueWinsFlag!": {
+          "name": "blueWinsFlag!",
+          "type": "trigger"
+        },
+        "warningSound": {
+          "name": "warningSound",
+          "type": "property"
+        },
+        "winSound": {
+          "name": "winSound",
+          "type": "property"
+        },
+        "loseSound": {
+          "name": "loseSound",
+          "type": "property"
+        }
       }
     },
     "cfxMapMarkers": {
@@ -10289,6 +11902,12 @@
           "name": "start",
           "params": [],
           "description": ""
+        }
+      },
+      "attributes": {
+        "coalition": {
+          "name": "coalition",
+          "type": "property"
         }
       }
     },
@@ -10366,6 +11985,76 @@
           "params": [],
           "description": ""
         }
+      },
+      "attributes": {
+        "*none": {
+          "name": "*none",
+          "type": "property"
+        },
+        "<:h>:<:m>:<:s>": {
+          "name": "<:h>:<:m>:<:s>",
+          "type": "property"
+        },
+        "messageDuration": {
+          "name": "messageDuration",
+          "type": "property"
+        },
+        "msgTriggerMethod": {
+          "name": "msgTriggerMethod",
+          "type": "property"
+        },
+        "messageMute": {
+          "name": "messageMute",
+          "type": "property"
+        },
+        "messageOff?": {
+          "name": "messageOff?",
+          "type": "condition"
+        },
+        "messageOn?": {
+          "name": "messageOn?",
+          "type": "condition"
+        },
+        "coalition": {
+          "name": "coalition",
+          "type": "property"
+        },
+        "msgCoalition": {
+          "name": "msgCoalition",
+          "type": "property"
+        },
+        "group": {
+          "name": "group",
+          "type": "property"
+        },
+        "msgGroup": {
+          "name": "msgGroup",
+          "type": "property"
+        },
+        "unit": {
+          "name": "unit",
+          "type": "property"
+        },
+        "msgUnit": {
+          "name": "msgUnit",
+          "type": "property"
+        },
+        "messageValue?": {
+          "name": "messageValue?",
+          "type": "condition"
+        },
+        "imperialUnits": {
+          "name": "imperialUnits",
+          "type": "property"
+        },
+        "messageError": {
+          "name": "messageError",
+          "type": "property"
+        },
+        "responses": {
+          "name": "responses",
+          "type": "property"
+        }
       }
     },
     "milGround": {
@@ -10417,6 +12106,20 @@
           "name": "start",
           "params": [],
           "description": ""
+        }
+      },
+      "attributes": {
+        "cfxNone": {
+          "name": "cfxNone",
+          "type": "property"
+        },
+        "cloner": {
+          "name": "cloner",
+          "type": "property"
+        },
+        "coalition": {
+          "name": "coalition",
+          "type": "property"
         }
       }
     },
@@ -10659,6 +12362,20 @@
           "params": [],
           "description": ""
         }
+      },
+      "attributes": {
+        "cas": {
+          "name": "cas",
+          "type": "property"
+        },
+        "masterOwner": {
+          "name": "masterOwner",
+          "type": "property"
+        },
+        "casRadius": {
+          "name": "casRadius",
+          "type": "property"
+        }
       }
     },
     "milWings": {
@@ -10814,6 +12531,36 @@
           "params": [],
           "description": ""
         }
+      },
+      "attributes": {
+        "<*": {
+          "name": "<*",
+          "type": "property"
+        },
+        "cas": {
+          "name": "cas",
+          "type": "property"
+        },
+        "SEAD": {
+          "name": "SEAD",
+          "type": "property"
+        },
+        "wingTarget": {
+          "name": "wingTarget",
+          "type": "property"
+        },
+        "masterOwner": {
+          "name": "masterOwner",
+          "type": "property"
+        },
+        "wingRadius": {
+          "name": "wingRadius",
+          "type": "property"
+        },
+        "wingTypes": {
+          "name": "wingTypes",
+          "type": "property"
+        }
       }
     },
     "missionRestart": {
@@ -10832,7 +12579,8 @@
           "params": [],
           "description": ""
         }
-      }
+      },
+      "attributes": {}
     },
     "mxObjects": {
       "name": "mxObjects",
@@ -10884,7 +12632,8 @@
           "params": [],
           "description": ""
         }
-      }
+      },
+      "attributes": {}
     },
     "nameStats": {
       "name": "nameStats",
@@ -11032,7 +12781,8 @@
           ],
           "description": ""
         }
-      }
+      },
+      "attributes": {}
     },
     "names": {
       "name": "names",
@@ -11055,7 +12805,8 @@
           "params": [],
           "description": ""
         }
-      }
+      },
+      "attributes": {}
     },
     "noGap": {
       "name": "noGap",
@@ -11165,6 +12916,20 @@
           "params": [],
           "description": ""
         }
+      },
+      "attributes": {
+        "*<none>": {
+          "name": "*<none>",
+          "type": "property"
+        },
+        "on?": {
+          "name": "on?",
+          "type": "condition"
+        },
+        "off?": {
+          "name": "off?",
+          "type": "condition"
+        }
       }
     },
     "cfxObjectDestructDetector": {
@@ -11237,6 +13002,44 @@
           "name": "start",
           "params": [],
           "description": ""
+        }
+      },
+      "attributes": {
+        "default": {
+          "name": "default",
+          "type": "property"
+        },
+        "*none": {
+          "name": "*none",
+          "type": "property"
+        },
+        "name": {
+          "name": "name",
+          "type": "property"
+        },
+        "oddMethod": {
+          "name": "oddMethod",
+          "type": "property"
+        },
+        "f!": {
+          "name": "f!",
+          "type": "trigger"
+        },
+        "destroyed!": {
+          "name": "destroyed!",
+          "type": "trigger"
+        },
+        "objectDestroyed!": {
+          "name": "objectDestroyed!",
+          "type": "trigger"
+        },
+        "redScore": {
+          "name": "redScore",
+          "type": "property"
+        },
+        "blueScore": {
+          "name": "blueScore",
+          "type": "property"
         }
       }
     },
@@ -11359,6 +13162,48 @@
           "params": [],
           "description": ""
         }
+      },
+      "attributes": {
+        "White_Tyre": {
+          "name": "White_Tyre",
+          "type": "property"
+        },
+        "*": {
+          "name": "*",
+          "type": "property"
+        },
+        "verbose": {
+          "name": "verbose",
+          "type": "property"
+        },
+        "ups": {
+          "name": "ups",
+          "type": "property"
+        },
+        "f?": {
+          "name": "f?",
+          "type": "condition"
+        },
+        "spawn?": {
+          "name": "spawn?",
+          "type": "condition"
+        },
+        "spawnObjects?": {
+          "name": "spawnObjects?",
+          "type": "condition"
+        },
+        "activate?": {
+          "name": "activate?",
+          "type": "condition"
+        },
+        "pause?": {
+          "name": "pause?",
+          "type": "condition"
+        },
+        "useDelicates": {
+          "name": "useDelicates",
+          "type": "property"
+        }
       }
     },
     "ownAll": {
@@ -11395,6 +13240,28 @@
           "name": "start",
           "params": [],
           "description": ""
+        }
+      },
+      "attributes": {
+        "red!": {
+          "name": "red!",
+          "type": "trigger"
+        },
+        "red#": {
+          "name": "red#",
+          "type": "property"
+        },
+        "blue!": {
+          "name": "blue!",
+          "type": "trigger"
+        },
+        "blue#": {
+          "name": "blue#",
+          "type": "property"
+        },
+        "total#": {
+          "name": "total#",
+          "type": "property"
         }
       }
     },
@@ -11567,6 +13434,116 @@
           "params": [],
           "description": ""
         }
+      },
+      "attributes": {
+        "*<cfxnone>": {
+          "name": "*<cfxnone>",
+          "type": "property"
+        },
+        "cfxNoneErr": {
+          "name": "cfxNoneErr",
+          "type": "property"
+        },
+        "<no tile defined>": {
+          "name": "<no tile defined>",
+          "type": "property"
+        },
+        "verbose": {
+          "name": "verbose",
+          "type": "property"
+        },
+        "Quest Snare 3.wav": {
+          "name": "Quest Snare 3.wav",
+          "type": "property"
+        },
+        "Death BRASS.wav": {
+          "name": "Death BRASS.wav",
+          "type": "property"
+        },
+        "conquered!": {
+          "name": "conquered!",
+          "type": "trigger"
+        },
+        "redCap!": {
+          "name": "redCap!",
+          "type": "trigger"
+        },
+        "redLost!": {
+          "name": "redLost!",
+          "type": "trigger"
+        },
+        "blueCap!": {
+          "name": "blueCap!",
+          "type": "trigger"
+        },
+        "blueLost!": {
+          "name": "blueLost!",
+          "type": "trigger"
+        },
+        "neutral!": {
+          "name": "neutral!",
+          "type": "trigger"
+        },
+        "ownedBy#": {
+          "name": "ownedBy#",
+          "type": "property"
+        },
+        "ownedBy": {
+          "name": "ownedBy",
+          "type": "property"
+        },
+        "masterOwner": {
+          "name": "masterOwner",
+          "type": "property"
+        },
+        "announce": {
+          "name": "announce",
+          "type": "property"
+        },
+        "title": {
+          "name": "title",
+          "type": "property"
+        },
+        "r!": {
+          "name": "r!",
+          "type": "trigger"
+        },
+        "b!": {
+          "name": "b!",
+          "type": "trigger"
+        },
+        "n!": {
+          "name": "n!",
+          "type": "trigger"
+        },
+        "allBlue!": {
+          "name": "allBlue!",
+          "type": "trigger"
+        },
+        "allRed!": {
+          "name": "allRed!",
+          "type": "trigger"
+        },
+        "redOwned#": {
+          "name": "redOwned#",
+          "type": "property"
+        },
+        "blueOwned#": {
+          "name": "blueOwned#",
+          "type": "property"
+        },
+        "neutralOwned#": {
+          "name": "neutralOwned#",
+          "type": "property"
+        },
+        "totalZones#": {
+          "name": "totalZones#",
+          "type": "property"
+        },
+        "excludedTypes": {
+          "name": "excludedTypes",
+          "type": "property"
+        }
       }
     },
     "parashoo": {
@@ -11589,7 +13566,8 @@
           ],
           "description": ""
         }
-      }
+      },
+      "attributes": {}
     },
     "persistence": {
       "name": "persistence",
@@ -11764,6 +13742,44 @@
           "params": [],
           "description": ""
         }
+      },
+      "attributes": {
+        "*dummy": {
+          "name": "*dummy",
+          "type": "property"
+        },
+        "Missions\\\\": {
+          "name": "Missions\\\\",
+          "type": "property"
+        },
+        "*<none>": {
+          "name": "*<none>",
+          "type": "property"
+        },
+        "root": {
+          "name": "root",
+          "type": "property"
+        },
+        "saveDir": {
+          "name": "saveDir",
+          "type": "property"
+        },
+        "saveFileName": {
+          "name": "saveFileName",
+          "type": "property"
+        },
+        "versionID": {
+          "name": "versionID",
+          "type": "property"
+        },
+        "cleanRestart?": {
+          "name": "cleanRestart?",
+          "type": "condition"
+        },
+        "saveMission?": {
+          "name": "saveMission?",
+          "type": "condition"
+        }
       }
     },
     "planeGuard": {
@@ -11795,6 +13811,12 @@
           "name": "start",
           "params": [],
           "description": ""
+        }
+      },
+      "attributes": {
+        "CH-53E": {
+          "name": "CH-53E",
+          "type": "property"
         }
       }
     },
@@ -12178,6 +14200,52 @@
           "params": [],
           "description": ""
         }
+      },
+      "attributes": {
+        "kill": {
+          "name": "kill",
+          "type": "property"
+        },
+        "(some feat)": {
+          "name": "(some feat)",
+          "type": "property"
+        },
+        "Death BRASS.wav": {
+          "name": "Death BRASS.wav",
+          "type": "property"
+        },
+        "Quest Snare 3.wav": {
+          "name": "Quest Snare 3.wav",
+          "type": "property"
+        },
+        "Player Scores": {
+          "name": "Player Scores",
+          "type": "property"
+        },
+        "cfxNameMissing": {
+          "name": "cfxNameMissing",
+          "type": "property"
+        },
+        "saveScore?": {
+          "name": "saveScore?",
+          "type": "condition"
+        },
+        "showScore?": {
+          "name": "showScore?",
+          "type": "condition"
+        },
+        "redScore#": {
+          "name": "redScore#",
+          "type": "property"
+        },
+        "blueScore#": {
+          "name": "blueScore#",
+          "type": "property"
+        },
+        "sharedData": {
+          "name": "sharedData",
+          "type": "property"
+        }
       }
     },
     "cfxPlayerScoreUI": {
@@ -12224,6 +14292,20 @@
           "params": [],
           "description": ""
         }
+      },
+      "attributes": {
+        "Show Score": {
+          "name": "Show Score",
+          "type": "property"
+        },
+        "Quest Snare 3.wav": {
+          "name": "Quest Snare 3.wav",
+          "type": "property"
+        },
+        "attachTo:": {
+          "name": "attachTo:",
+          "type": "property"
+        }
       }
     },
     "playerZone": {
@@ -12269,6 +14351,40 @@
           "name": "start",
           "params": [],
           "description": ""
+        }
+      },
+      "attributes": {
+        "pzMethod": {
+          "name": "pzMethod",
+          "type": "property"
+        },
+        "pNum#": {
+          "name": "pNum#",
+          "type": "property"
+        },
+        "added!": {
+          "name": "added!",
+          "type": "trigger"
+        },
+        "gone!": {
+          "name": "gone!",
+          "type": "trigger"
+        },
+        "red#": {
+          "name": "red#",
+          "type": "property"
+        },
+        "blue#": {
+          "name": "blue#",
+          "type": "property"
+        },
+        "neutral#": {
+          "name": "neutral#",
+          "type": "property"
+        },
+        "total#": {
+          "name": "total#",
+          "type": "property"
         }
       }
     },
@@ -12337,6 +14453,64 @@
           "name": "start",
           "params": [],
           "description": ""
+        }
+      },
+      "attributes": {
+        "*none": {
+          "name": "*none",
+          "type": "property"
+        },
+        "pulse": {
+          "name": "pulse",
+          "type": "property"
+        },
+        "pulse!": {
+          "name": "pulse!",
+          "type": "trigger"
+        },
+        "time": {
+          "name": "time",
+          "type": "property"
+        },
+        "pulseInterval": {
+          "name": "pulseInterval",
+          "type": "property"
+        },
+        "pulses": {
+          "name": "pulses",
+          "type": "property"
+        },
+        "pulseTriggerMethod": {
+          "name": "pulseTriggerMethod",
+          "type": "property"
+        },
+        "activate?": {
+          "name": "activate?",
+          "type": "condition"
+        },
+        "startPulse?": {
+          "name": "startPulse?",
+          "type": "condition"
+        },
+        "pause?": {
+          "name": "pause?",
+          "type": "condition"
+        },
+        "pausePulse?": {
+          "name": "pausePulse?",
+          "type": "condition"
+        },
+        "outputMethod": {
+          "name": "outputMethod",
+          "type": "property"
+        },
+        "pulsesDone!": {
+          "name": "pulsesDone!",
+          "type": "trigger"
+        },
+        "done!": {
+          "name": "done!",
+          "type": "trigger"
         }
       }
     },
@@ -12552,6 +14726,152 @@
           "params": [],
           "description": ""
         }
+      },
+      "attributes": {
+        "<no A submenu>": {
+          "name": "<no A submenu>",
+          "type": "property"
+        },
+        "<no B submenu>": {
+          "name": "<no B submenu>",
+          "type": "property"
+        },
+        "<no C submenu>": {
+          "name": "<no C submenu>",
+          "type": "property"
+        },
+        "<no D submenu>": {
+          "name": "<no D submenu>",
+          "type": "property"
+        },
+        "<No Name>": {
+          "name": "<No Name>",
+          "type": "property"
+        },
+        "*<none>": {
+          "name": "*<none>",
+          "type": "property"
+        },
+        "Please stand by (<s> seconds)": {
+          "name": "Please stand by (<s> seconds)",
+          "type": "property"
+        },
+        "Acknowledged: A": {
+          "name": "Acknowledged: A",
+          "type": "property"
+        },
+        "Acknowledged: B": {
+          "name": "Acknowledged: B",
+          "type": "property"
+        },
+        "Acknowledged: C": {
+          "name": "Acknowledged: C",
+          "type": "property"
+        },
+        "Acknowledged: D": {
+          "name": "Acknowledged: D",
+          "type": "property"
+        },
+        "itemA": {
+          "name": "itemA",
+          "type": "property"
+        },
+        "itemB": {
+          "name": "itemB",
+          "type": "property"
+        },
+        "itemC": {
+          "name": "itemC",
+          "type": "property"
+        },
+        "itemD": {
+          "name": "itemD",
+          "type": "property"
+        },
+        "attachTo:": {
+          "name": "attachTo:",
+          "type": "property"
+        },
+        "group": {
+          "name": "group",
+          "type": "property"
+        },
+        "groups": {
+          "name": "groups",
+          "type": "property"
+        },
+        "type": {
+          "name": "type",
+          "type": "property"
+        },
+        "types": {
+          "name": "types",
+          "type": "property"
+        },
+        "radioMethod": {
+          "name": "radioMethod",
+          "type": "property"
+        },
+        "valA": {
+          "name": "valA",
+          "type": "property"
+        },
+        "ackA": {
+          "name": "ackA",
+          "type": "property"
+        },
+        "ackASnd": {
+          "name": "ackASnd",
+          "type": "property"
+        },
+        "valB": {
+          "name": "valB",
+          "type": "property"
+        },
+        "ackB": {
+          "name": "ackB",
+          "type": "property"
+        },
+        "ackBSnd": {
+          "name": "ackBSnd",
+          "type": "property"
+        },
+        "valC": {
+          "name": "valC",
+          "type": "property"
+        },
+        "ackC": {
+          "name": "ackC",
+          "type": "property"
+        },
+        "ackCSnd": {
+          "name": "ackCSnd",
+          "type": "property"
+        },
+        "valD": {
+          "name": "valD",
+          "type": "property"
+        },
+        "ackD": {
+          "name": "ackD",
+          "type": "property"
+        },
+        "ackDSnd": {
+          "name": "ackDSnd",
+          "type": "property"
+        },
+        "removeMenu?": {
+          "name": "removeMenu?",
+          "type": "condition"
+        },
+        "addMenu?": {
+          "name": "addMenu?",
+          "type": "condition"
+        },
+        "radioMenu": {
+          "name": "radioMenu",
+          "type": "property"
+        }
       }
     },
     "radioTrigger": {
@@ -12602,6 +14922,40 @@
           "name": "start",
           "params": [],
           "description": ""
+        }
+      },
+      "attributes": {
+        "radio?": {
+          "name": "radio?",
+          "type": "condition"
+        },
+        "triggerMethod": {
+          "name": "triggerMethod",
+          "type": "property"
+        },
+        "radioTriggerMethod": {
+          "name": "radioTriggerMethod",
+          "type": "property"
+        },
+        "method": {
+          "name": "method",
+          "type": "property"
+        },
+        "rtMethod": {
+          "name": "rtMethod",
+          "type": "property"
+        },
+        "out!": {
+          "name": "out!",
+          "type": "trigger"
+        },
+        "rtOut!": {
+          "name": "rtOut!",
+          "type": "trigger"
+        },
+        "verbose": {
+          "name": "verbose",
+          "type": "property"
         }
       }
     },
@@ -12658,6 +15012,20 @@
           "name": "start",
           "params": [],
           "description": ""
+        }
+      },
+      "attributes": {
+        "raiseTriggerMethod": {
+          "name": "raiseTriggerMethod",
+          "type": "property"
+        },
+        "stopFlag?": {
+          "name": "stopFlag?",
+          "type": "condition"
+        },
+        "timeLeft#": {
+          "name": "timeLeft#",
+          "type": "property"
         }
       }
     },
@@ -12864,6 +15232,44 @@
           "params": [],
           "description": ""
         }
+      },
+      "attributes": {
+        "reaper": {
+          "name": "reaper",
+          "type": "property"
+        },
+        "UI_SCI-FI_Tone_Bright_Dry_20_stereo.wav": {
+          "name": "UI_SCI-FI_Tone_Bright_Dry_20_stereo.wav",
+          "type": "property"
+        },
+        "Drone Command": {
+          "name": "Drone Command",
+          "type": "property"
+        },
+        "launch?": {
+          "name": "launch?",
+          "type": "condition"
+        },
+        "status?": {
+          "name": "status?",
+          "type": "condition"
+        },
+        "cycle?": {
+          "name": "cycle?",
+          "type": "condition"
+        },
+        "blueStatus?": {
+          "name": "blueStatus?",
+          "type": "condition"
+        },
+        "redStatus?": {
+          "name": "redStatus?",
+          "type": "condition"
+        },
+        "attachTo:": {
+          "name": "attachTo:",
+          "type": "property"
+        }
       }
     },
     "cfxReconGUI": {
@@ -12989,7 +15395,8 @@
           "params": [],
           "description": ""
         }
-      }
+      },
+      "attributes": {}
     },
     "cfxReconMode": {
       "name": "cfxReconMode",
@@ -13295,6 +15702,80 @@
           ],
           "description": ""
         }
+      },
+      "attributes": {
+        "verbose": {
+          "name": "verbose",
+          "type": "property"
+        },
+        "*<none>": {
+          "name": "*<none>",
+          "type": "property"
+        },
+        "<nosound>": {
+          "name": "<nosound>",
+          "type": "property"
+        },
+        "prio": {
+          "name": "prio",
+          "type": "property"
+        },
+        "prio+": {
+          "name": "prio+",
+          "type": "property"
+        },
+        "prio!": {
+          "name": "prio!",
+          "type": "trigger"
+        },
+        "detect+": {
+          "name": "detect+",
+          "type": "property"
+        },
+        "detect!": {
+          "name": "detect!",
+          "type": "trigger"
+        },
+        "reconMethod": {
+          "name": "reconMethod",
+          "type": "property"
+        },
+        "reconSound": {
+          "name": "reconSound",
+          "type": "property"
+        },
+        "activate?": {
+          "name": "activate?",
+          "type": "condition"
+        },
+        "on?": {
+          "name": "on?",
+          "type": "condition"
+        },
+        "deactivate?": {
+          "name": "deactivate?",
+          "type": "condition"
+        },
+        "off?": {
+          "name": "off?",
+          "type": "condition"
+        },
+        "imperialUnits": {
+          "name": "imperialUnits",
+          "type": "property"
+        },
+        "prioMessage": {
+          "name": "prioMessage",
+          "type": "property"
+        },
+        "reconMessage": {
+          "name": "reconMessage",
+          "type": "property"
+        },
+        "spotted!": {
+          "name": "spotted!",
+          "type": "trigger"
+        }
       }
     },
     "scribe": {
@@ -13475,6 +15956,52 @@
           "params": [],
           "description": ""
         }
+      },
+      "attributes": {
+        "Mission Logbook": {
+          "name": "Mission Logbook",
+          "type": "property"
+        },
+        "landings:": {
+          "name": "landings:",
+          "type": "property"
+        },
+        "take-offs:": {
+          "name": "take-offs:",
+          "type": "property"
+        },
+        "starts:": {
+          "name": "starts:",
+          "type": "property"
+        },
+        "crashes:": {
+          "name": "crashes:",
+          "type": "property"
+        },
+        "rescues:": {
+          "name": "rescues:",
+          "type": "property"
+        },
+        "time:": {
+          "name": "time:",
+          "type": "property"
+        },
+        "d:": {
+          "name": "d:",
+          "type": "property"
+        },
+        "cfxNameMissing": {
+          "name": "cfxNameMissing",
+          "type": "property"
+        },
+        "attachTo:": {
+          "name": "attachTo:",
+          "type": "property"
+        },
+        "sharedData": {
+          "name": "sharedData",
+          "type": "property"
+        }
       }
     },
     "sequencer": {
@@ -13583,6 +16110,48 @@
           "params": [],
           "description": ""
         }
+      },
+      "attributes": {
+        "86400": {
+          "name": "86400",
+          "type": "property"
+        },
+        "interval": {
+          "name": "interval",
+          "type": "property"
+        },
+        "done!": {
+          "name": "done!",
+          "type": "trigger"
+        },
+        "seqDone!": {
+          "name": "seqDone!",
+          "type": "trigger"
+        },
+        "next?": {
+          "name": "next?",
+          "type": "condition"
+        },
+        "startSeq?": {
+          "name": "startSeq?",
+          "type": "condition"
+        },
+        "stopSeq?": {
+          "name": "stopSeq?",
+          "type": "condition"
+        },
+        "resetSeq?": {
+          "name": "resetSeq?",
+          "type": "condition"
+        },
+        "seqMethod": {
+          "name": "seqMethod",
+          "type": "property"
+        },
+        "seqTriggerMethod": {
+          "name": "seqTriggerMethod",
+          "type": "property"
+        }
       }
     },
     "shallows": {
@@ -13610,7 +16179,8 @@
           ],
           "description": ""
         }
-      }
+      },
+      "attributes": {}
     },
     "sittingDucks": {
       "name": "sittingDucks",
@@ -13649,6 +16219,28 @@
           "params": [],
           "description": ""
         }
+      },
+      "attributes": {
+        "resupplyTime": {
+          "name": "resupplyTime",
+          "type": "property"
+        },
+        "onStart": {
+          "name": "onStart",
+          "type": "property"
+        },
+        "triggerMethod": {
+          "name": "triggerMethod",
+          "type": "property"
+        },
+        "on?": {
+          "name": "on?",
+          "type": "condition"
+        },
+        "off?": {
+          "name": "off?",
+          "type": "condition"
+        }
       }
     },
     "sixthSense": {
@@ -13664,7 +16256,8 @@
           ],
           "description": ""
         }
-      }
+      },
+      "attributes": {}
     },
     "slotty": {
       "name": "slotty",
@@ -13698,7 +16291,8 @@
           "params": [],
           "description": ""
         }
-      }
+      },
+      "attributes": {}
     },
     "cfxSmokeZone": {
       "name": "cfxSmokeZone",
@@ -13773,6 +16367,24 @@
           "params": [],
           "description": ""
         }
+      },
+      "attributes": {
+        "alt": {
+          "name": "alt",
+          "type": "property"
+        },
+        "agl": {
+          "name": "agl",
+          "type": "property"
+        },
+        "stopSmoke?": {
+          "name": "stopSmoke?",
+          "type": "condition"
+        },
+        "smokeTriggerMethod": {
+          "name": "smokeTriggerMethod",
+          "type": "property"
+        }
       }
     },
     "smoking": {
@@ -13818,6 +16430,16 @@
           "name": "start",
           "params": [],
           "description": ""
+        }
+      },
+      "attributes": {
+        "Smoke Trail": {
+          "name": "Smoke Trail",
+          "type": "property"
+        },
+        "attachTo:": {
+          "name": "attachTo:",
+          "type": "property"
         }
       }
     },
@@ -13946,6 +16568,80 @@
           "params": [],
           "description": ""
         }
+      },
+      "attributes": {
+        "Soldier M4": {
+          "name": "Soldier M4",
+          "type": "property"
+        },
+        "*": {
+          "name": "*",
+          "type": "property"
+        },
+        "circle_out": {
+          "name": "circle_out",
+          "type": "property"
+        },
+        "Custom": {
+          "name": "Custom",
+          "type": "property"
+        },
+        "guard": {
+          "name": "guard",
+          "type": "property"
+        },
+        "trackWith:": {
+          "name": "trackWith:",
+          "type": "property"
+        },
+        "useDelicates": {
+          "name": "useDelicates",
+          "type": "property"
+        },
+        "f?": {
+          "name": "f?",
+          "type": "condition"
+        },
+        "spawn?": {
+          "name": "spawn?",
+          "type": "condition"
+        },
+        "spawnUnits?": {
+          "name": "spawnUnits?",
+          "type": "condition"
+        },
+        "activate?": {
+          "name": "activate?",
+          "type": "condition"
+        },
+        "pause?": {
+          "name": "pause?",
+          "type": "condition"
+        },
+        "types": {
+          "name": "types",
+          "type": "property"
+        },
+        "typeMult": {
+          "name": "typeMult",
+          "type": "property"
+        },
+        "masterOwner": {
+          "name": "masterOwner",
+          "type": "property"
+        },
+        "target": {
+          "name": "target",
+          "type": "property"
+        },
+        "code": {
+          "name": "code",
+          "type": "property"
+        },
+        "lcode": {
+          "name": "lcode",
+          "type": "property"
+        }
       }
     },
     "stopGap": {
@@ -14055,6 +16751,20 @@
           "params": [],
           "description": ""
         }
+      },
+      "attributes": {
+        "*<none>": {
+          "name": "*<none>",
+          "type": "property"
+        },
+        "on?": {
+          "name": "on?",
+          "type": "condition"
+        },
+        "off?": {
+          "name": "off?",
+          "type": "condition"
+        }
       }
     },
     "sweeper": {
@@ -14092,7 +16802,8 @@
           "params": [],
           "description": ""
         }
-      }
+      },
+      "attributes": {}
     },
     "tacan": {
       "name": "tacan",
@@ -14195,6 +16906,52 @@
           "params": [],
           "description": ""
         }
+      },
+      "attributes": {
+        "1": {
+          "name": "1",
+          "type": "property"
+        },
+        "X": {
+          "name": "X",
+          "type": "property"
+        },
+        "TXN": {
+          "name": "TXN",
+          "type": "property"
+        },
+        "list": {
+          "name": "list",
+          "type": "property"
+        },
+        "Quest Snare 3.wav": {
+          "name": "Quest Snare 3.wav",
+          "type": "property"
+        },
+        "deploy?": {
+          "name": "deploy?",
+          "type": "condition"
+        },
+        "destroy?": {
+          "name": "destroy?",
+          "type": "condition"
+        },
+        "c#": {
+          "name": "c#",
+          "type": "property"
+        },
+        "desc": {
+          "name": "desc",
+          "type": "property"
+        },
+        "trackWith:": {
+          "name": "trackWith:",
+          "type": "property"
+        },
+        "GUI": {
+          "name": "GUI",
+          "type": "property"
+        }
       }
     },
     "taxiPolice": {
@@ -14249,6 +17006,52 @@
           "name": "start",
           "params": [],
           "description": ""
+        }
+      },
+      "attributes": {
+        "taxiPolice": {
+          "name": "taxiPolice",
+          "type": "property"
+        },
+        "speedLimit": {
+          "name": "speedLimit",
+          "type": "property"
+        },
+        "triggerTime": {
+          "name": "triggerTime",
+          "type": "property"
+        },
+        "leeway": {
+          "name": "leeway",
+          "type": "property"
+        },
+        "extend": {
+          "name": "extend",
+          "type": "property"
+        },
+        "radius": {
+          "name": "radius",
+          "type": "property"
+        },
+        "maxTickets": {
+          "name": "maxTickets",
+          "type": "property"
+        },
+        "active": {
+          "name": "active",
+          "type": "property"
+        },
+        "greetings": {
+          "name": "greetings",
+          "type": "property"
+        },
+        "onPatrol": {
+          "name": "onPatrol",
+          "type": "property"
+        },
+        "offDuty": {
+          "name": "offDuty",
+          "type": "property"
         }
       }
     },
@@ -14412,6 +17215,64 @@
           "params": [],
           "description": ""
         }
+      },
+      "attributes": {
+        "inputMethod": {
+          "name": "inputMethod",
+          "type": "property"
+        },
+        "---debug: <t> -- Flag <f> changed from <p> to <c> [<z>]": {
+          "name": "---debug: <t> -- Flag <f> changed from <p> to <c> [<z>]",
+          "type": "property"
+        },
+        "keepOpen": {
+          "name": "keepOpen",
+          "type": "property"
+        },
+        "mark": {
+          "name": "mark",
+          "type": "property"
+        },
+        "verbose": {
+          "name": "verbose",
+          "type": "property"
+        },
+        "debugTriggerMethod": {
+          "name": "debugTriggerMethod",
+          "type": "property"
+        },
+        "sayWhen": {
+          "name": "sayWhen",
+          "type": "property"
+        },
+        "outputMethod": {
+          "name": "outputMethod",
+          "type": "property"
+        },
+        "debugMethod": {
+          "name": "debugMethod",
+          "type": "property"
+        },
+        "notify!": {
+          "name": "notify!",
+          "type": "trigger"
+        },
+        "on?": {
+          "name": "on?",
+          "type": "condition"
+        },
+        "off?": {
+          "name": "off?",
+          "type": "condition"
+        },
+        "reset?": {
+          "name": "reset?",
+          "type": "condition"
+        },
+        "state?": {
+          "name": "state?",
+          "type": "condition"
+        }
       }
     },
     "twn": {
@@ -14432,7 +17293,8 @@
           "params": [],
           "description": ""
         }
-      }
+      },
+      "attributes": {}
     },
     "unGrief": {
       "name": "unGrief",
@@ -14497,6 +17359,16 @@
           "params": [],
           "description": ""
         }
+      },
+      "attributes": {
+        "boom": {
+          "name": "boom",
+          "type": "property"
+        },
+        "pveOnly": {
+          "name": "pveOnly",
+          "type": "property"
+        }
       }
     },
     "unitPersistence": {
@@ -14532,7 +17404,8 @@
           "params": [],
           "description": ""
         }
-      }
+      },
+      "attributes": {}
     },
     "unitZone": {
       "name": "unitZone",
@@ -14605,6 +17478,108 @@
           "params": [],
           "description": ""
         }
+      },
+      "attributes": {
+        "1": {
+          "name": "1",
+          "type": "property"
+        },
+        "*": {
+          "name": "*",
+          "type": "property"
+        },
+        "group": {
+          "name": "group",
+          "type": "property"
+        },
+        "*<none>": {
+          "name": "*<none>",
+          "type": "property"
+        },
+        "*<none1>": {
+          "name": "*<none1>",
+          "type": "property"
+        },
+        "*<none2>": {
+          "name": "*<none2>",
+          "type": "property"
+        },
+        "verbose": {
+          "name": "verbose",
+          "type": "property"
+        },
+        "ups": {
+          "name": "ups",
+          "type": "property"
+        },
+        "coalition": {
+          "name": "coalition",
+          "type": "property"
+        },
+        "uzCoalition": {
+          "name": "uzCoalition",
+          "type": "property"
+        },
+        "uzMethod": {
+          "name": "uzMethod",
+          "type": "property"
+        },
+        "enterZone!": {
+          "name": "enterZone!",
+          "type": "trigger"
+        },
+        "exitZone!": {
+          "name": "exitZone!",
+          "type": "trigger"
+        },
+        "changeZone!": {
+          "name": "changeZone!",
+          "type": "trigger"
+        },
+        "filterFor": {
+          "name": "filterFor",
+          "type": "property"
+        },
+        "filter": {
+          "name": "filter",
+          "type": "property"
+        },
+        "uzDirect": {
+          "name": "uzDirect",
+          "type": "property"
+        },
+        "uzDirect#": {
+          "name": "uzDirect#",
+          "type": "property"
+        },
+        "direct#": {
+          "name": "direct#",
+          "type": "property"
+        },
+        "uzDirectInv": {
+          "name": "uzDirectInv",
+          "type": "property"
+        },
+        "uzDirectInv#": {
+          "name": "uzDirectInv#",
+          "type": "property"
+        },
+        "directInv#": {
+          "name": "directInv#",
+          "type": "property"
+        },
+        "uzOn?": {
+          "name": "uzOn?",
+          "type": "condition"
+        },
+        "uzOff?": {
+          "name": "uzOff?",
+          "type": "condition"
+        },
+        "uzTriggerMethod": {
+          "name": "uzTriggerMethod",
+          "type": "property"
+        }
       }
     },
     "usher": {
@@ -14659,6 +17634,40 @@
           "name": "start",
           "params": [],
           "description": ""
+        }
+      },
+      "attributes": {
+        "Welcome, <p>, your <t> is the first to join <c>.": {
+          "name": "Welcome, <p>, your <t> is the first to join <c>.",
+          "type": "property"
+        },
+        "cfxxx": {
+          "name": "cfxxx",
+          "type": "property"
+        },
+        "Welcome <p>!": {
+          "name": "Welcome <p>!",
+          "type": "trigger"
+        },
+        "cfxNone": {
+          "name": "cfxNone",
+          "type": "property"
+        },
+        "Welcome <p>, you are <u>, part of <c> <g> (a flight of <t>).": {
+          "name": "Welcome <p>, you are <u>, part of <c> <g> (a flight of <t>).",
+          "type": "property"
+        },
+        "Welcome <p>, you are part of <c> <g> (a flight of <t>).": {
+          "name": "Welcome <p>, you are part of <c> <g> (a flight of <t>).",
+          "type": "property"
+        },
+        "Welcome to your <t>, <p>!": {
+          "name": "Welcome to your <t>, <p>!",
+          "type": "trigger"
+        },
+        "u:": {
+          "name": "u:",
+          "type": "property"
         }
       }
     },
@@ -14755,6 +17764,72 @@
           "name": "start",
           "params": [],
           "description": ""
+        }
+      },
+      "attributes": {
+        "*<none>": {
+          "name": "*<none>",
+          "type": "property"
+        },
+        "valetTypes": {
+          "name": "valetTypes",
+          "type": "property"
+        },
+        "<:h>:<:m>:<:s>": {
+          "name": "<:h>:<:m>:<:s>",
+          "type": "property"
+        },
+        "firstInSoundFile": {
+          "name": "firstInSoundFile",
+          "type": "property"
+        },
+        "firstGreeting": {
+          "name": "firstGreeting",
+          "type": "property"
+        },
+        "valetMethod": {
+          "name": "valetMethod",
+          "type": "property"
+        },
+        "hi!": {
+          "name": "hi!",
+          "type": "trigger"
+        },
+        "bye!": {
+          "name": "bye!",
+          "type": "trigger"
+        },
+        "coalition": {
+          "name": "coalition",
+          "type": "property"
+        },
+        "valetCoalition": {
+          "name": "valetCoalition",
+          "type": "property"
+        },
+        "types": {
+          "name": "types",
+          "type": "property"
+        },
+        "groups": {
+          "name": "groups",
+          "type": "property"
+        },
+        "valetGroups": {
+          "name": "valetGroups",
+          "type": "property"
+        },
+        "units": {
+          "name": "units",
+          "type": "property"
+        },
+        "valetUnits": {
+          "name": "valetUnits",
+          "type": "property"
+        },
+        "imperialUnits": {
+          "name": "imperialUnits",
+          "type": "property"
         }
       }
     },
@@ -14958,6 +18033,28 @@
           "params": [],
           "description": ""
         }
+      },
+      "attributes": {
+        "<none)": {
+          "name": "<none)",
+          "type": "property"
+        },
+        "all": {
+          "name": "all",
+          "type": "property"
+        },
+        "some": {
+          "name": "some",
+          "type": "property"
+        },
+        "method": {
+          "name": "method",
+          "type": "property"
+        },
+        "wpFire!": {
+          "name": "wpFire!",
+          "type": "trigger"
+        }
       }
     },
     "wingTaskHelper": {
@@ -14965,7 +18062,8 @@
       "version": "0.0.0",
       "description": "DML Module: wingTaskHelper",
       "path": "DML/modules/wingTaskHelper.lua",
-      "methods": {}
+      "methods": {},
+      "attributes": {}
     },
     "wiper": {
       "name": "wiper",
@@ -15030,6 +18128,40 @@
           "name": "start",
           "params": [],
           "description": ""
+        }
+      },
+      "attributes": {
+        "*<none>": {
+          "name": "*<none>",
+          "type": "property"
+        },
+        "<no name given>": {
+          "name": "<no name given>",
+          "type": "property"
+        },
+        "verbose": {
+          "name": "verbose",
+          "type": "property"
+        },
+        "ups": {
+          "name": "ups",
+          "type": "property"
+        },
+        "cloner": {
+          "name": "cloner",
+          "type": "property"
+        },
+        "triggerWiperMethod": {
+          "name": "triggerWiperMethod",
+          "type": "property"
+        },
+        "wipeCategory": {
+          "name": "wipeCategory",
+          "type": "property"
+        },
+        "wipeNamed": {
+          "name": "wipeNamed",
+          "type": "property"
         }
       }
     },
@@ -15096,6 +18228,64 @@
           "name": "start",
           "params": [],
           "description": ""
+        }
+      },
+      "attributes": {
+        "1": {
+          "name": "1",
+          "type": "property"
+        },
+        "*<none>": {
+          "name": "*<none>",
+          "type": "property"
+        },
+        "or": {
+          "name": "or",
+          "type": "property"
+        },
+        "*<none1>": {
+          "name": "*<none1>",
+          "type": "property"
+        },
+        "*<none2>": {
+          "name": "*<none2>",
+          "type": "property"
+        },
+        "xSuccess!": {
+          "name": "xSuccess!",
+          "type": "trigger"
+        },
+        "out!": {
+          "name": "out!",
+          "type": "trigger"
+        },
+        "xChange!": {
+          "name": "xChange!",
+          "type": "trigger"
+        },
+        "xDirect#": {
+          "name": "xDirect#",
+          "type": "property"
+        },
+        "xCount#": {
+          "name": "xCount#",
+          "type": "property"
+        },
+        "xReset?": {
+          "name": "xReset?",
+          "type": "condition"
+        },
+        "method": {
+          "name": "method",
+          "type": "property"
+        },
+        "xOn?": {
+          "name": "xOn?",
+          "type": "condition"
+        },
+        "xOff?": {
+          "name": "xOff?",
+          "type": "condition"
         }
       }
     }

@@ -110,8 +110,26 @@ async function generateManifest() {
           const methodName = methodDef[1];
           const params = methodDef[2].split(',').map(p => p.trim()).filter(p => p && p !== 'self');
           
+          // Heuristic: Extract leading comment for the method
+          let methodDescription = "";
+          const methodPos = methodDef.index;
+          const searchWindow = fileContent.substring(Math.max(0, methodPos - 1000), methodPos);
+          const lines = searchWindow.split('\n').map(l => l.trim());
+          
+          // Search backwards for the FIRST '---' line that begins a documentation block
+          for (let i = lines.length - 1; i >= 0; i--) {
+            const line = lines[i];
+            if (line.startsWith('---')) {
+              methodDescription = line.replace(/^---/, '').replace(/\*\*/g, '').trim();
+              break;
+            }
+            // If we hit a line that doesn't look like a comment and isn't empty, stop searching
+            if (line && !line.startsWith('--')) break;
+          }
+
           methods[methodName] = {
             params,
+            description: methodDescription
           };
         }
 
