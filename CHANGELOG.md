@@ -1,6 +1,13 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+## [2.16.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.15.0...v2.16.0) (2026-03-21)
+
+
+### Features
+
+* **ui:** unified dev-mode descriptions and universal hot-loading tools ([555ea18](https://github.com/filthymanc/filthys-mizmaster/commit/555ea181d3daaa268dc8b1d51a0aea041a6dd29a))
+
 ## [2.15.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.14.1...v2.15.0) (2026-03-20)
 
 
