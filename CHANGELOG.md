@@ -1,6 +1,13 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+## [2.17.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.16.0...v2.17.0) (2026-03-21)
+
+
+### Features
+
+* **librarian:** v2.17.0 snippets, strict attribute logic, and UI overhaul ([4f163ff](https://github.com/filthymanc/filthys-mizmaster/commit/4f163fffe508ce2e29705212fe0d448b57e58f35))
+
 ## [2.16.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.15.0...v2.16.0) (2026-03-21)
 
 
