@@ -56,7 +56,7 @@ const getFrameworkDocsTool = (
   targetMooseBranch: MooseBranch
 ): FunctionDeclaration => ({
   name: "get_framework_docs",
-  description: `Fetches RAW LUA SOURCE CODE from the official GitHub repositories (MOOSE or DML). Use this to analyze function definitions and header comments directly. NOTE: You MUST strictly use the branch defined in [SYSTEM CONFIGURATION]. Your currently authorized MOOSE branch is '${targetMooseBranch}'. Use 'LEGACY' only if the class is retired and you have user permission.`,
+  description: `Fetches RAW LUA SOURCE CODE from the official GitHub repositories (MOOSE or DML). Use this to analyze function definitions and header comments directly. NOTE: In 'SANITIZED' mode, you are restricted to the '${targetMooseBranch}' branch. In 'DESANITIZED' (Dev Mode), you have full authorization to hot-test and research across any branch (STABLE, DEVELOP, or LEGACY).`,
   parameters: {
     type: Type.OBJECT,
     properties: {

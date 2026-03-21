@@ -17,6 +17,7 @@ import {
   BrightnessLevel,
   AccentRole,
   ThemeMode,
+  MooseBranch,
 } from "../../core/types";
 import { MISSION_PROFILES } from "../../core/constants";
 import { clearAllData } from "../services/storageService";
@@ -320,7 +321,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                                 {
                                   id: "DEVELOP",
                                   label: "DEVELOP (develop)",
-                                  desc: "Testing / Hot-Loading - For experimental features and real-time script injection.",
+                                  desc: "Bleeding Edge - Requires Dev Mode for experimental features and multi-branch research.",
                                 },
                                 {
                                   id: "LEGACY",
@@ -334,7 +335,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                                   data-testid={`shared-settings-moose-branch-${branch.id.toLowerCase()}`}
                                   onClick={() =>
                                     updateSettings({
-                                      targetMooseBranch: branch.id as any,
+                                    targetMooseBranch: branch.id as MooseBranch,
                                     })
                                   }
                                   className={`text-left p-3 rounded-xl border transition-all ${
@@ -366,10 +367,10 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                                 Dev Mode (Desanitize)
                               </div>
                               <div className="text-xs text-app-tertiary mt-1 max-w-md">
-                                Enables advanced scripting capabilities. In Dev
-                                Mode, the AI can generate code that interacts
-                                with the OS (io, lfs, os) and bypasses standard
-                                security constraints.
+                                Enables advanced scripting and hot-testing. In
+                                Dev Mode, the Librarian can research across all
+                                branches and the AI can generate OS-level code
+                                (io, lfs, os).
                               </div>
                             </div>
                             <button
@@ -411,10 +412,9 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                                   Dev Mode Active
                                 </span>
                                 <span>
-                                  Advanced scripting and OS-level library access
-                                  enabled. Standard safety protocols are
-                                  bypassed for mission development and
-                                  debugging.
+                                  Advanced scripting, multi-branch research, and
+                                  OS-level library access enabled. Librarian
+                                  hot-testing authorized for all frameworks.
                                 </span>
                               </div>
                             </div>

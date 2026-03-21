@@ -81,15 +81,15 @@ assert(loadfile(MOOSE_DEVELOPMENT_FOLDER .. "/Moose Setup/Moose Templates/Moose_
       </section>
 
       {/* 2. DEVELOPER TOOLS (Conditional) */}
-      {settings.targetMooseBranch === "DEVELOP" && (
+      {settings.isDesanitized && (
         <section className="space-y-3 animate-slideDown">
           <h3 className="text-[10px] font-bold text-app-status-danger uppercase tracking-widest flex items-center gap-2">
             <AlertIcon className="h-3 w-3" />
-            Hot-Loading Snippet
+            Hot-Testing / Loader
           </h3>
           <div className="bg-app-status-danger/5 border border-app-status-danger/20 rounded-xl p-4 space-y-3">
              <p className="text-[9px] text-app-secondary leading-relaxed font-mono">
-               Use this snippet in your mission to load MOOSE source directly from your local drive.
+               Active in **Dev Mode**. Use this snippet to load MOOSE source directly from your local drive for any branch.
              </p>
              <div className="relative group">
                 <pre className="p-2.5 bg-app-canvas border border-app-border rounded-lg text-[9px] font-mono text-app-tertiary overflow-x-auto select-all whitespace-pre-wrap">

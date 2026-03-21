@@ -223,22 +223,19 @@ export const getFrameworkDocs = async (
 
     if (fwKey === "DML") branchKey = "MAIN";
 
-    // SECURITY CHECK: Branch Locking for MOOSE
-    if (fwKey === "MOOSE" && branchKey !== authorizedMooseBranch) {
-       // Exception: Allow 'LEGACY' check if STABLE or DEVELOP fails (handled by AI protocol), 
-       // but here we enforce that the tool call itself must match unless it's a specific legacy fallback.
-       if (branchKey !== "LEGACY") {
-          return `ACCESS DENIED: The Librarian is locked to the MOOSE '${authorizedMooseBranch}' branch based on your System Configuration.
-
-To access the '${branchKey}' branch, please change your 'Framework Target' in the Settings (Engine tab) first.`;
-       }
-    }
-
-    // SECURITY CHECK: DEVELOP branch requires Dev Mode (Desanitized)
-    if (fwKey === "MOOSE" && branchKey === "DEVELOP" && !isDesanitized) {
-      return `ACCESS DENIED: The MOOSE 'DEVELOP' branch requires 'Dev Mode' to be active. 
-
-Please enable 'Dev Mode' in your Settings to use experimental framework features and hot-loading capabilities.`;
+    // SECURITY & MODE CHECK: 
+    // - In DESANITIZED (Dev Mode), allow hot-testing any branch.
+    // - In SANITIZED (Standard Mode), lock to the authorizedMooseBranch (Stable/Legacy).
+    if (!isDesanitized && fwKey === "MOOSE") {
+      if (branchKey !== authorizedMooseBranch && branchKey !== "LEGACY") {
+        return `ACCESS DENIED: In Sanitized Mode, the Librarian is locked to the MOOSE '${authorizedMooseBranch}' branch. 
+        
+Please enable 'Dev Mode' (Desanitized) in Settings to hot-test or research modules from other branches.`;
+      }
+      
+      if (branchKey === "DEVELOP") {
+        return `ACCESS DENIED: The MOOSE 'DEVELOP' branch requires 'Dev Mode' to be active.`;
+      }
     }
 
     const config = REPOS[fwKey]?.[branchKey];
