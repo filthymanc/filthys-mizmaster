@@ -1,6 +1,13 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+### [2.17.1](https://github.com/filthymanc/filthys-mizmaster/compare/v2.17.0...v2.17.1) (2026-03-29)
+
+
+### Miscellaneous Chores
+
+* **security:** resolve moderate and high vulnerabilities via npm audit fix ([f040f86](https://github.com/filthymanc/filthys-mizmaster/commit/f040f86b1575561c8d77e96ba1042ff1bdaed275))
+
 ## [2.17.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.16.0...v2.17.0) (2026-03-21)
 
 
