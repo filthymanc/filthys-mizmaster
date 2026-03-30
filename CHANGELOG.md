@@ -1,6 +1,13 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+## [2.18.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.17.1...v2.18.0) (2026-03-30)
+
+
+### Features
+
+* **librarian:** implement manifest-driven IntelliSense and UI overhaul ([b311b97](https://github.com/filthymanc/filthys-mizmaster/commit/b311b9769cea9efe4227814558b4ee5ba126cf90))
+
 ### [2.17.1](https://github.com/filthymanc/filthys-mizmaster/compare/v2.17.0...v2.17.1) (2026-03-29)
 
 
