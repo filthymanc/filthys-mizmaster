@@ -1,6 +1,13 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+## [2.20.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.19.0...v2.20.0) (2026-03-30)
+
+
+### Features
+
+* **librarian:** introduce get_api_summary tool for token-efficient research ([34d8c86](https://github.com/filthymanc/filthys-mizmaster/commit/34d8c86184d2c55c2c52685b7450bc2c78b0e302))
+
 ## [2.19.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.18.0...v2.19.0) (2026-03-30)
 
 
