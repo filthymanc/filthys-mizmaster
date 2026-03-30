@@ -1,6 +1,13 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+## [2.19.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.18.0...v2.19.0) (2026-03-30)
+
+
+### Features
+
+* synchronize in-app documentation and overhaul hot-loading tools ([0506388](https://github.com/filthymanc/filthys-mizmaster/commit/05063887899652047a18de26341b9b79252bc6a4))
+
 ## [2.18.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.17.1...v2.18.0) (2026-03-30)
 
 
