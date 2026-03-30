@@ -18289,5 +18289,1569 @@
         }
       }
     }
+  },
+  "enums": {
+    "FARPZones": {
+      "description": "Constants for FARPZones",
+      "fields": [
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        },
+        {
+          "name": "spinUpDelay",
+          "description": "Value: 30"
+        },
+        {
+          "name": "startingUp",
+          "description": "Value: false"
+        }
+      ]
+    },
+    "LZ": {
+      "description": "Constants for LZ",
+      "fields": [
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        },
+        {
+          "name": "ups",
+          "description": "Value: 1"
+        }
+      ]
+    },
+    "cfxNDB": {
+      "description": "Constants for cfxNDB",
+      "fields": [
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        },
+        {
+          "name": "ups",
+          "description": "Value: 1"
+        },
+        {
+          "name": "refresh",
+          "description": "Value: 10"
+        },
+        {
+          "name": "power",
+          "description": "Value: 100"
+        }
+      ]
+    },
+    "rndFlags": {
+      "description": "Constants for rndFlags",
+      "fields": [
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        }
+      ]
+    },
+    "cfxSSBClient": {
+      "description": "Constants for cfxSSBClient",
+      "fields": [
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        },
+        {
+          "name": "singleUse",
+          "description": "Value: false"
+        },
+        {
+          "name": "reUseAfter",
+          "description": "Value: -1"
+        },
+        {
+          "name": "enabledFlagValue",
+          "description": "Value: 0"
+        },
+        {
+          "name": "disabledFlagValue",
+          "description": "Value: cfxSSBClient.enabledFlagValue + 100"
+        },
+        {
+          "name": "allowNeutralFields",
+          "description": "Value: false"
+        },
+        {
+          "name": "maxAirfieldRange",
+          "description": "Value: 3000"
+        },
+        {
+          "name": "keepInAirGroups",
+          "description": "Value: false"
+        }
+      ]
+    },
+    "cfxSSBSingleUse": {
+      "description": "Constants for cfxSSBSingleUse",
+      "fields": [
+        {
+          "name": "enabledFlagValue",
+          "description": "Value: 0"
+        },
+        {
+          "name": "disabledFlagValue",
+          "description": "Value: cfxSSBSingleUse.enabledFlagValue + 100"
+        },
+        {
+          "name": "verbose",
+          "description": "Value: true"
+        },
+        {
+          "name": "useDebris",
+          "description": "Value: false"
+        }
+      ]
+    },
+    "tdz": {
+      "description": "Constants for tdz",
+      "fields": [
+        {
+          "name": "watching",
+          "description": "Value: false"
+        },
+        {
+          "name": "timeoutAfter",
+          "description": "Value: 120"
+        }
+      ]
+    },
+    "WHpersistence": {
+      "description": "Constants for WHpersistence",
+      "fields": [
+        {
+          "name": "lastState",
+          "description": "Value: nil"
+        }
+      ]
+    },
+    "airfield": {
+      "description": "Constants for airfield",
+      "fields": [
+        {
+          "name": "gracePeriod",
+          "description": "Value: 3"
+        }
+      ]
+    },
+    "airtank": {
+      "description": "Constants for airtank",
+      "fields": [
+        {
+          "name": "mainMenu",
+          "description": "Value: nil"
+        },
+        {
+          "name": "pumpSpeed",
+          "description": "Value: 100"
+        },
+        {
+          "name": "dropSpeed",
+          "description": "Value: 1000"
+        },
+        {
+          "name": "releaseAlt",
+          "description": "Value: 100"
+        },
+        {
+          "name": "pumpAlt",
+          "description": "Value: 10"
+        }
+      ]
+    },
+    "cfxArtilleryUI": {
+      "description": "Constants for cfxArtilleryUI",
+      "fields": [
+        {
+          "name": "allowPlanes",
+          "description": "Value: false"
+        },
+        {
+          "name": "smokeColor",
+          "description": "Value: \"red\""
+        },
+        {
+          "name": "updateDelay",
+          "description": "Value: 1"
+        },
+        {
+          "name": "updateSound",
+          "description": "Value: \"UI_SCI-FI_Tone_Bright_Dry_20_stereo.wav\""
+        },
+        {
+          "name": "maxSmokeDist",
+          "description": "Value: 30000"
+        }
+      ]
+    },
+    "cfxArtilleryZones": {
+      "description": "Constants for cfxArtilleryZones",
+      "fields": [
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        },
+        {
+          "name": "updateDelay",
+          "description": "Value: 1"
+        },
+        {
+          "name": "uuidCount",
+          "description": "Value: 0"
+        }
+      ]
+    },
+    "asw": {
+      "description": "Constants for asw",
+      "fields": [
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        },
+        {
+          "name": "ups",
+          "description": "Value: 0.1"
+        },
+        {
+          "name": "ccounter",
+          "description": "Value: 0"
+        },
+        {
+          "name": "ccinc",
+          "description": "Value: 1"
+        }
+      ]
+    },
+    "aswGUI": {
+      "description": "Constants for aswGUI",
+      "fields": [
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        },
+        {
+          "name": "ups",
+          "description": "Value: 1"
+        }
+      ]
+    },
+    "aswSubs": {
+      "description": "Constants for aswSubs",
+      "fields": [
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        }
+      ]
+    },
+    "aswZones": {
+      "description": "Constants for aswZones",
+      "fields": [
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        },
+        {
+          "name": "ups",
+          "description": "Value: 1"
+        }
+      ]
+    },
+    "autoCSAR": {
+      "description": "Constants for autoCSAR",
+      "fields": [
+        {
+          "name": "killDelay",
+          "description": "Value: 2 * 60"
+        },
+        {
+          "name": "counter",
+          "description": "Value: 31"
+        },
+        {
+          "name": "killDist",
+          "description": "Value: 2100"
+        }
+      ]
+    },
+    "baseCaptured": {
+      "description": "Constants for baseCaptured",
+      "fields": [
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        },
+        {
+          "name": "ups",
+          "description": "Value: 1"
+        },
+        {
+          "name": "handleContested",
+          "description": "Value: true"
+        }
+      ]
+    },
+    "bcn": {
+      "description": "Constants for bcn",
+      "fields": [
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        }
+      ]
+    },
+    "bombRange": {
+      "description": "Constants for bombRange",
+      "fields": [
+        {
+          "name": "dh",
+          "description": "Value: 1"
+        },
+        {
+          "name": "tracking",
+          "description": "Value: false"
+        },
+        {
+          "name": "killDist",
+          "description": "Value: 20"
+        }
+      ]
+    },
+    "camp": {
+      "description": "Constants for camp",
+      "fields": [
+        {
+          "name": "ups",
+          "description": "Value: 1"
+        }
+      ]
+    },
+    "cfxCargoManager": {
+      "description": "Constants for cfxCargoManager",
+      "fields": [
+        {
+          "name": "ups",
+          "description": "Value: 1"
+        },
+        {
+          "name": "monitor",
+          "description": "Value: false"
+        }
+      ]
+    },
+    "cfxCargoReceiver": {
+      "description": "Constants for cfxCargoReceiver",
+      "fields": [
+        {
+          "name": "ups",
+          "description": "Value: 1"
+        },
+        {
+          "name": "maxDirectionRange",
+          "description": "Value: 500"
+        }
+      ]
+    },
+    "cfxMX": {
+      "description": "Constants for cfxMX",
+      "fields": [
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        }
+      ]
+    },
+    "cfxPlayer": {
+      "description": "Constants for cfxPlayer",
+      "fields": [
+        {
+          "name": "verbose",
+          "description": "Value: false;"
+        },
+        {
+          "name": "running",
+          "description": "Value: false"
+        },
+        {
+          "name": "ups",
+          "description": "Value: 1"
+        },
+        {
+          "name": "updateSchedule",
+          "description": "Value: 0"
+        }
+      ]
+    },
+    "cfxZones": {
+      "description": "Constants for cfxZones",
+      "fields": [
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        },
+        {
+          "name": "caseSensitiveProperties",
+          "description": "Value: false"
+        },
+        {
+          "name": "ups",
+          "description": "Value: 1"
+        }
+      ]
+    },
+    "changer": {
+      "description": "Constants for changer",
+      "fields": [
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        },
+        {
+          "name": "ups",
+          "description": "Value: 1"
+        }
+      ]
+    },
+    "civAir": {
+      "description": "Constants for civAir",
+      "fields": [
+        {
+          "name": "ups",
+          "description": "Value: 0.05"
+        },
+        {
+          "name": "initialAirSpawns",
+          "description": "Value: true"
+        },
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        },
+        {
+          "name": "maxTraffic",
+          "description": "Value: 10"
+        },
+        {
+          "name": "maxIdle",
+          "description": "Value: 8 * 60"
+        },
+        {
+          "name": "airStartSeparation",
+          "description": "Value: 0"
+        },
+        {
+          "name": "flightCount",
+          "description": "Value: 0"
+        }
+      ]
+    },
+    "civHelo": {
+      "description": "Constants for civHelo",
+      "fields": [
+        {
+          "name": "maxDist",
+          "description": "Value: 600000"
+        },
+        {
+          "name": "minDist",
+          "description": "Value: 1000"
+        }
+      ]
+    },
+    "clients": {
+      "description": "Constants for clients",
+      "fields": [
+        {
+          "name": "ups",
+          "description": "Value: 1"
+        },
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        },
+        {
+          "name": "netlog",
+          "description": "Value: true"
+        }
+      ]
+    },
+    "cloneZones": {
+      "description": "Constants for cloneZones",
+      "fields": [
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        },
+        {
+          "name": "minSep",
+          "description": "Value: 10"
+        },
+        {
+          "name": "maxIter",
+          "description": "Value: 100"
+        },
+        {
+          "name": "uniqueCounter",
+          "description": "Value: 9200000"
+        },
+        {
+          "name": "lclUniqueCounter",
+          "description": "Value: 1"
+        },
+        {
+          "name": "globalCounter",
+          "description": "Value: 1"
+        },
+        {
+          "name": "respawnOnGroupID",
+          "description": "Value: true"
+        }
+      ]
+    },
+    "cfxCommander": {
+      "description": "Constants for cfxCommander",
+      "fields": [
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        },
+        {
+          "name": "forceOffRoad",
+          "description": "Value: true"
+        },
+        {
+          "name": "noRoadsAtAll",
+          "description": "Value: true"
+        }
+      ]
+    },
+    "convoy": {
+      "description": "Constants for convoy",
+      "fields": [
+        {
+          "name": "ups",
+          "description": "Value: 1"
+        },
+        {
+          "name": "uuidNum",
+          "description": "Value: 1"
+        }
+      ]
+    },
+    "countDown": {
+      "description": "Constants for countDown",
+      "fields": [
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        },
+        {
+          "name": "ups",
+          "description": "Value: 1"
+        }
+      ]
+    },
+    "counter": {
+      "description": "Constants for counter",
+      "fields": [
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        },
+        {
+          "name": "ups",
+          "description": "Value: 1"
+        }
+      ]
+    },
+    "csarManager": {
+      "description": "Constants for csarManager",
+      "fields": [
+        {
+          "name": "ups",
+          "description": "Value: 1"
+        },
+        {
+          "name": "missionID",
+          "description": "Value: 1"
+        },
+        {
+          "name": "rescueRadius",
+          "description": "Value: 70"
+        },
+        {
+          "name": "hoverRadius",
+          "description": "Value: 30"
+        },
+        {
+          "name": "hoverAlt",
+          "description": "Value: 40"
+        },
+        {
+          "name": "hoverDuration",
+          "description": "Value: 20"
+        },
+        {
+          "name": "rescueTriggerRange",
+          "description": "Value: 2000"
+        },
+        {
+          "name": "beaconSound",
+          "description": "Value: \"Radio_beacon_of_distress_on_121,5_MHz.ogg\""
+        },
+        {
+          "name": "pilotWeight",
+          "description": "Value: 120"
+        },
+        {
+          "name": "vectoring",
+          "description": "Value: true"
+        }
+      ]
+    },
+    "delayFlag": {
+      "description": "Constants for delayFlag",
+      "fields": [
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        }
+      ]
+    },
+    "delicates": {
+      "description": "Constants for delicates",
+      "fields": [
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        },
+        {
+          "name": "ups",
+          "description": "Value: 1"
+        }
+      ]
+    },
+    "duel": {
+      "description": "Constants for duel",
+      "fields": [
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        }
+      ]
+    },
+    "factoryZone": {
+      "description": "Constants for factoryZone",
+      "fields": [
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        },
+        {
+          "name": "ups",
+          "description": "Value: 1"
+        },
+        {
+          "name": "initialized",
+          "description": "Value: false"
+        },
+        {
+          "name": "defendingTime",
+          "description": "Value: 100"
+        },
+        {
+          "name": "attackingTime",
+          "description": "Value: 300"
+        },
+        {
+          "name": "shockTime",
+          "description": "Value: 200"
+        },
+        {
+          "name": "repairTime",
+          "description": "Value: 200"
+        }
+      ]
+    },
+    "fireFX": {
+      "description": "Constants for fireFX",
+      "fields": [
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        },
+        {
+          "name": "ups",
+          "description": "Value: 1"
+        }
+      ]
+    },
+    "flareZone": {
+      "description": "Constants for flareZone",
+      "fields": [
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        }
+      ]
+    },
+    "cfxGroundTroops": {
+      "description": "Constants for cfxGroundTroops",
+      "fields": [
+        {
+          "name": "ups",
+          "description": "Value: 0.25"
+        },
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        }
+      ]
+    },
+    "groupTracker": {
+      "description": "Constants for groupTracker",
+      "fields": [
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        },
+        {
+          "name": "ups",
+          "description": "Value: 1"
+        }
+      ]
+    },
+    "guardianAngel": {
+      "description": "Constants for guardianAngel",
+      "fields": [
+        {
+          "name": "ups",
+          "description": "Value: 10"
+        },
+        {
+          "name": "active",
+          "description": "Value: true"
+        },
+        {
+          "name": "minMissileDist",
+          "description": "Value: 50"
+        },
+        {
+          "name": "safetyFactor",
+          "description": "Value: 1.8"
+        }
+      ]
+    },
+    "cfxHeloTroops": {
+      "description": "Constants for cfxHeloTroops",
+      "fields": [
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        },
+        {
+          "name": "autoDrop",
+          "description": "Value: true"
+        },
+        {
+          "name": "autoPickup",
+          "description": "Value: false"
+        },
+        {
+          "name": "pickupRange",
+          "description": "Value: 100"
+        },
+        {
+          "name": "requestRange",
+          "description": "Value: 500"
+        },
+        {
+          "name": "minTime",
+          "description": "Value: 3"
+        },
+        {
+          "name": "troopWeight",
+          "description": "Value: 100"
+        }
+      ]
+    },
+    "impostors": {
+      "description": "Constants for impostors",
+      "fields": [
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        },
+        {
+          "name": "ups",
+          "description": "Value: 1"
+        },
+        {
+          "name": "uniqueCounter",
+          "description": "Value: 8200000"
+        }
+      ]
+    },
+    "inferno": {
+      "description": "Constants for inferno",
+      "fields": [
+        {
+          "name": "maxStages",
+          "description": "Value: 10"
+        },
+        {
+          "name": "threshold",
+          "description": "Value: 4.9"
+        }
+      ]
+    },
+    "limitedAirframes": {
+      "description": "Constants for limitedAirframes",
+      "fields": [
+        {
+          "name": "warningSound",
+          "description": "Value: \"Quest Snare 3.wav\""
+        },
+        {
+          "name": "loseSound",
+          "description": "Value: \"Death PIANO.wav\""
+        },
+        {
+          "name": "winSound",
+          "description": "Value: \"Triumphant Victory.wav\""
+        },
+        {
+          "name": "currRed",
+          "description": "Value: 0"
+        },
+        {
+          "name": "currBlue",
+          "description": "Value: 0"
+        },
+        {
+          "name": "theCommand",
+          "description": "Value: nil"
+        }
+      ]
+    },
+    "cfxMapMarkers": {
+      "description": "Constants for cfxMapMarkers",
+      "fields": [
+        {
+          "name": "autostart",
+          "description": "Value: true"
+        }
+      ]
+    },
+    "messenger": {
+      "description": "Constants for messenger",
+      "fields": [
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        }
+      ]
+    },
+    "milGround": {
+      "description": "Constants for milGround",
+      "fields": [
+        {
+          "name": "ups",
+          "description": "Value: 0.5"
+        }
+      ]
+    },
+    "milHelo": {
+      "description": "Constants for milHelo",
+      "fields": [
+        {
+          "name": "ups",
+          "description": "Value: 1"
+        }
+      ]
+    },
+    "milWings": {
+      "description": "Constants for milWings",
+      "fields": [
+        {
+          "name": "ups",
+          "description": "Value: 1"
+        }
+      ]
+    },
+    "missionRestart": {
+      "description": "Constants for missionRestart",
+      "fields": [
+        {
+          "name": "restarting",
+          "description": "Value: false"
+        }
+      ]
+    },
+    "mxObjects": {
+      "description": "Constants for mxObjects",
+      "fields": [
+        {
+          "name": "imperial",
+          "description": "Value: true"
+        },
+        {
+          "name": "doubleLine",
+          "description": "Value: true"
+        }
+      ]
+    },
+    "noGap": {
+      "description": "Constants for noGap",
+      "fields": [
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        },
+        {
+          "name": "ignoreMe",
+          "description": "Value: \"-ng\""
+        },
+        {
+          "name": "spIgnore",
+          "description": "Value: \"-sp\""
+        },
+        {
+          "name": "isMP",
+          "description": "Value: false"
+        },
+        {
+          "name": "enabled",
+          "description": "Value: true"
+        },
+        {
+          "name": "timeOut",
+          "description": "Value: 0"
+        }
+      ]
+    },
+    "cfxObjectDestructDetector": {
+      "description": "Constants for cfxObjectDestructDetector",
+      "fields": [
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        }
+      ]
+    },
+    "cfxObjectSpawnZones": {
+      "description": "Constants for cfxObjectSpawnZones",
+      "fields": [
+        {
+          "name": "ups",
+          "description": "Value: 1"
+        },
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        }
+      ]
+    },
+    "ownAll": {
+      "description": "Constants for ownAll",
+      "fields": [
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        }
+      ]
+    },
+    "cfxOwnedZones": {
+      "description": "Constants for cfxOwnedZones",
+      "fields": [
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        },
+        {
+          "name": "announcer",
+          "description": "Value: true"
+        },
+        {
+          "name": "ups",
+          "description": "Value: 1"
+        },
+        {
+          "name": "initialized",
+          "description": "Value: false"
+        },
+        {
+          "name": "defendingTime",
+          "description": "Value: 100"
+        },
+        {
+          "name": "attackingTime",
+          "description": "Value: 300"
+        },
+        {
+          "name": "shockTime",
+          "description": "Value: 200"
+        },
+        {
+          "name": "repairTime",
+          "description": "Value: 200"
+        }
+      ]
+    },
+    "parashoo": {
+      "description": "Constants for parashoo",
+      "fields": [
+        {
+          "name": "killDelay",
+          "description": "Value: 3 * 60"
+        }
+      ]
+    },
+    "persistence": {
+      "description": "Constants for persistence",
+      "fields": [
+        {
+          "name": "ups",
+          "description": "Value: 1"
+        },
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        },
+        {
+          "name": "active",
+          "description": "Value: false"
+        },
+        {
+          "name": "saveFileName",
+          "description": "Value: nil"
+        },
+        {
+          "name": "sharedDir",
+          "description": "Value: nil"
+        },
+        {
+          "name": "missionDir",
+          "description": "Value: nil"
+        },
+        {
+          "name": "saveDir",
+          "description": "Value: nil"
+        }
+      ]
+    },
+    "cfxPlayerScore": {
+      "description": "Constants for cfxPlayerScore",
+      "fields": [
+        {
+          "name": "firstSave",
+          "description": "Value: true"
+        },
+        {
+          "name": "deferredScore",
+          "description": "Value: false"
+        },
+        {
+          "name": "delayAfterLanding",
+          "description": "Value: 10"
+        },
+        {
+          "name": "delayBetweenLandings",
+          "description": "Value: 30"
+        },
+        {
+          "name": "aircraft",
+          "description": "Value: 50"
+        },
+        {
+          "name": "helo",
+          "description": "Value: 40"
+        },
+        {
+          "name": "ground",
+          "description": "Value: 10"
+        },
+        {
+          "name": "ship",
+          "description": "Value: 80"
+        },
+        {
+          "name": "train",
+          "description": "Value: 5"
+        },
+        {
+          "name": "landing",
+          "description": "Value: 0"
+        }
+      ]
+    },
+    "pulseFlags": {
+      "description": "Constants for pulseFlags",
+      "fields": [
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        }
+      ]
+    },
+    "radioMenu": {
+      "description": "Constants for radioMenu",
+      "fields": [
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        },
+        {
+          "name": "ups",
+          "description": "Value: 1"
+        }
+      ]
+    },
+    "radioTrigger": {
+      "description": "Constants for radioTrigger",
+      "fields": [
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        },
+        {
+          "name": "ups",
+          "description": "Value: 1"
+        }
+      ]
+    },
+    "reaper": {
+      "description": "Constants for reaper",
+      "fields": [
+        {
+          "name": "scanInterval",
+          "description": "Value: 10"
+        },
+        {
+          "name": "trackInterval",
+          "description": "Value: 0.3"
+        },
+        {
+          "name": "uuidCnt",
+          "description": "Value: 0"
+        }
+      ]
+    },
+    "cfxReconGUI": {
+      "description": "Constants for cfxReconGUI",
+      "fields": [
+        {
+          "name": "simpleCommands",
+          "description": "Value: true"
+        }
+      ]
+    },
+    "cfxReconMode": {
+      "description": "Constants for cfxReconMode",
+      "fields": [
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        },
+        {
+          "name": "reconSound",
+          "description": "Value: \"UI_SCI-FI_Tone_Bright_Dry_20_stereo.wav\""
+        },
+        {
+          "name": "removeWhenDestroyed",
+          "description": "Value: true"
+        },
+        {
+          "name": "detectionMinRange",
+          "description": "Value: 3000"
+        },
+        {
+          "name": "detectionMaxRange",
+          "description": "Value: 12000"
+        },
+        {
+          "name": "maxAlt",
+          "description": "Value: 9000"
+        },
+        {
+          "name": "autoRecon",
+          "description": "Value: true"
+        },
+        {
+          "name": "redScouts",
+          "description": "Value: false"
+        },
+        {
+          "name": "blueScouts",
+          "description": "Value: true"
+        },
+        {
+          "name": "greyScouts",
+          "description": "Value: false"
+        },
+        {
+          "name": "playerOnlyRecon",
+          "description": "Value: false"
+        },
+        {
+          "name": "reportNumbers",
+          "description": "Value: true"
+        },
+        {
+          "name": "prioFlag",
+          "description": "Value: nil"
+        },
+        {
+          "name": "detectFlag",
+          "description": "Value: nil"
+        },
+        {
+          "name": "method",
+          "description": "Value: \"inc\""
+        },
+        {
+          "name": "applyMarks",
+          "description": "Value: true"
+        },
+        {
+          "name": "mgrs",
+          "description": "Value: false"
+        },
+        {
+          "name": "ups",
+          "description": "Value: 1"
+        },
+        {
+          "name": "marksFadeAfter",
+          "description": "Value: 30*60"
+        },
+        {
+          "name": "uuidCount",
+          "description": "Value: 0"
+        }
+      ]
+    },
+    "scribe": {
+      "description": "Constants for scribe",
+      "fields": [
+        {
+          "name": "verbose",
+          "description": "Value: true"
+        }
+      ]
+    },
+    "sequencer": {
+      "description": "Constants for sequencer",
+      "fields": [
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        }
+      ]
+    },
+    "shallows": {
+      "description": "Constants for shallows",
+      "fields": [
+        {
+          "name": "removeAfter",
+          "description": "Value: 5"
+        },
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        },
+        {
+          "name": "uuid",
+          "description": "Value: 1"
+        }
+      ]
+    },
+    "sittingDucks": {
+      "description": "Constants for sittingDucks",
+      "fields": [
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        },
+        {
+          "name": "ssbDisabled",
+          "description": "Value: 100"
+        },
+        {
+          "name": "resupplyTime",
+          "description": "Value: -1"
+        }
+      ]
+    },
+    "cfxSmokeZone": {
+      "description": "Constants for cfxSmokeZone",
+      "fields": [
+        {
+          "name": "updateDelay",
+          "description": "Value: 5 * 60"
+        }
+      ]
+    },
+    "cfxSpawnZones": {
+      "description": "Constants for cfxSpawnZones",
+      "fields": [
+        {
+          "name": "ups",
+          "description": "Value: 1"
+        },
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        }
+      ]
+    },
+    "stopGap": {
+      "description": "Constants for stopGap",
+      "fields": [
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        },
+        {
+          "name": "ssbEnabled",
+          "description": "Value: true"
+        },
+        {
+          "name": "ignoreMe",
+          "description": "Value: \"-sg\""
+        },
+        {
+          "name": "spIgnore",
+          "description": "Value: \"-sp\""
+        },
+        {
+          "name": "isMP",
+          "description": "Value: false"
+        },
+        {
+          "name": "running",
+          "description": "Value: true"
+        },
+        {
+          "name": "refreshInterval",
+          "description": "Value: -1"
+        },
+        {
+          "name": "kickTheDead",
+          "description": "Value: true"
+        },
+        {
+          "name": "allNeutral",
+          "description": "Value: false"
+        },
+        {
+          "name": "noParking",
+          "description": "Value: false"
+        }
+      ]
+    },
+    "sweeper": {
+      "description": "Constants for sweeper",
+      "fields": [
+        {
+          "name": "interval",
+          "description": "Value: 5 * 60"
+        },
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        }
+      ]
+    },
+    "tacan": {
+      "description": "Constants for tacan",
+      "fields": [
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        }
+      ]
+    },
+    "taxiPolice": {
+      "description": "Constants for taxiPolice",
+      "fields": [
+        {
+          "name": "verbose",
+          "description": "Value: true"
+        },
+        {
+          "name": "ups",
+          "description": "Value: 1"
+        },
+        {
+          "name": "speedLimit",
+          "description": "Value: 14"
+        },
+        {
+          "name": "triggerTime",
+          "description": "Value: 3"
+        },
+        {
+          "name": "rwyLeeway",
+          "description": "Value: 5"
+        },
+        {
+          "name": "rwyExtend",
+          "description": "Value: 500"
+        },
+        {
+          "name": "airfieldMaxDist",
+          "description": "Value: 3000"
+        },
+        {
+          "name": "maxTickets",
+          "description": "Value: 3"
+        }
+      ]
+    },
+    "debugger": {
+      "description": "Constants for debugger",
+      "fields": [
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        },
+        {
+          "name": "ups",
+          "description": "Value: 4"
+        },
+        {
+          "name": "log",
+          "description": "Value: \"\""
+        },
+        {
+          "name": "lastEvent",
+          "description": "Value: nil"
+        }
+      ]
+    },
+    "twn": {
+      "description": "Constants for twn",
+      "fields": [
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        }
+      ]
+    },
+    "unGrief": {
+      "description": "Constants for unGrief",
+      "fields": [
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        },
+        {
+          "name": "ups",
+          "description": "Value: 1"
+        },
+        {
+          "name": "enabledFlagValue",
+          "description": "Value: 0"
+        },
+        {
+          "name": "disabledFlagValue",
+          "description": "Value: unGrief.enabledFlagValue + 100"
+        }
+      ]
+    },
+    "unitPersistence": {
+      "description": "Constants for unitPersistence",
+      "fields": [
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        },
+        {
+          "name": "updateTime",
+          "description": "Value: 60"
+        }
+      ]
+    },
+    "unitZone": {
+      "description": "Constants for unitZone",
+      "fields": [
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        },
+        {
+          "name": "ups",
+          "description": "Value: 1"
+        }
+      ]
+    },
+    "usher": {
+      "description": "Constants for usher",
+      "fields": [
+        {
+          "name": "lastPNum",
+          "description": "Value: 0"
+        }
+      ]
+    },
+    "valet": {
+      "description": "Constants for valet",
+      "fields": [
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        }
+      ]
+    },
+    "williePete": {
+      "description": "Constants for williePete",
+      "fields": [
+        {
+          "name": "ups",
+          "description": "Value: 10"
+        }
+      ]
+    },
+    "wiper": {
+      "description": "Constants for wiper",
+      "fields": [
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        },
+        {
+          "name": "ups",
+          "description": "Value: 1"
+        },
+        {
+          "name": "inventory",
+          "description": "Value: \"\""
+        }
+      ]
+    },
+    "xFlags": {
+      "description": "Constants for xFlags",
+      "fields": [
+        {
+          "name": "verbose",
+          "description": "Value: false"
+        },
+        {
+          "name": "hiVerbose",
+          "description": "Value: false"
+        },
+        {
+          "name": "ups",
+          "description": "Value: 1"
+        }
+      ]
+    }
   }
 }

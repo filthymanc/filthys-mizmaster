@@ -33,7 +33,7 @@ export interface FrameworkManifest {
       attributes?: Record<string, { name: string; type: 'property' | 'trigger' | 'condition' }>;
     }
   >;
-  enums: Record<string, string[]>;
+  enums: Record<string, { description?: string, fields: { name: string; description?: string }[] }>;
 }
 
 interface MissionArchitectDB extends DBSchema {
@@ -60,7 +60,7 @@ interface MissionArchitectDB extends DBSchema {
 }
 
 const DB_NAME = "filthys-mizmaster-db";
-const DB_VERSION = 7; // Incremented to support attributes and method docs
+const DB_VERSION = 8; // Incremented to support enums
 
 let dbPromise: Promise<IDBPDatabase<MissionArchitectDB>> | null = null;
 
@@ -85,8 +85,8 @@ const getDB = () => {
         ) {
           db.createObjectStore("librarian_cache", { keyPath: "url" });
         }
-        // Force manifest flush on Version 7 to ensure new attributes/docs are cached
-        if (oldVersion < 7) {
+        // Force manifest flush on Version 8 to ensure new enums are cached
+        if (oldVersion < 8) {
           if (db.objectStoreNames.contains("manifests")) {
             db.deleteObjectStore("manifests");
           }

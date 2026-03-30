@@ -38,7 +38,8 @@ async function generateDmlManifest() {
     framework: 'DML',
     branch: 'master',
     modules: {},
-    classes: {} // Map DML modules to classes for Librarian compatibility
+    classes: {}, // Map DML modules to classes for Librarian compatibility
+    enums: {} // Map static constants for Librarian auto-suggest
   };
 
   const files = fs.readdirSync(MODULES_DIR).filter(f => f.endsWith('.lua') && !f.includes('template'));
@@ -125,6 +126,29 @@ async function generateDmlManifest() {
           name: attrName,
           type: attrName.endsWith('!') ? 'trigger' : (attrName.endsWith('?') ? 'condition' : 'property')
         };
+      }
+    }
+
+    // 6. Extract Constants (Top-level table assignments)
+    // Matches: cfxZones.verbose = true, moduleName.CONSTANT = 1
+    const constRegex = new RegExp(`^${moduleName}\\.([A-Za-z0-9_]+)\\s*=\\s*(.+)`, 'gm');
+    let constMatch;
+    while ((constMatch = constRegex.exec(content)) !== null) {
+      const constName = constMatch[1];
+      const constValue = constMatch[2].split('--')[0].trim(); // Remove inline comments
+      
+      // Filter out boilerplate
+      const ignoreList = ['version', 'name', 'requiredLibs'];
+      if (!ignoreList.includes(constName) && !constValue.startsWith('function') && !constValue.startsWith('{')) {
+          if (!manifest.enums[moduleName]) {
+             manifest.enums[moduleName] = { description: `Constants for ${moduleName}`, fields: [] };
+          }
+          if (!manifest.enums[moduleName].fields.find(f => f.name === constName)) {
+              manifest.enums[moduleName].fields.push({
+                 name: constName,
+                 description: `Value: ${constValue.replace(/,$/, '')}` 
+              });
+          }
       }
     }
 

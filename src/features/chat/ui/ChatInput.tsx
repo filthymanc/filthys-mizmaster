@@ -83,21 +83,29 @@ const ChatInput: React.FC<ChatInputProps> = ({
   };
 
   const handleSuggestionClick = (suggestion: LibrarianSuggestion) => {
-    const words = input.split(/[\s\n]+/);
-    const lastWord = words.pop() || "";
-    // We replace the partially typed word with the full suggestion or snippet template
-    let insertText = suggestion.type === "snippet" && suggestion.template ? suggestion.template : suggestion.label;
+    // 1. Precise Boundary Detection: Find the true active word regardless of trailing spaces
+    const match = input.match(/([\w.:]+)\s*$/);
+    const startIndex = match ? match.index! : input.length;
 
-    // Scrub VS Code snippet tabstops (e.g. ${1:MySpawner} -> MySpawner) before injecting into the plain textarea
-    if (suggestion.type === "snippet") {
-      insertText = insertText.replace(/\$\{\d+:([^}]+)\}/g, "$1");
-      insertText = insertText.replace(/\$\d+/g, ""); // Remove empty tabstops like ${1}
+    // 2. Prepare Insertion Text
+    const insertText = suggestion.label;
+    // 3. Smart Path Replacement:
+    // We replace from the start of the current word/path segment.
+    let newInput = input.substring(0, startIndex) + insertText;
+
+    // 4. Space Suppression for Namespaces (Classes and Enum Groups)
+    // We don't add a space to allow users to immediately type a dot or colon.
+    const isNamespace = 
+      suggestion.type === "class" || 
+      (suggestion.type === "enum" && (suggestion.description?.startsWith("Namespace:") || !suggestion.label.includes(".")));
+    
+    // Exception: If it's a "leaf" enum (uppercase constants like S_EVENT), it's a completion
+    const isLeafEnum = suggestion.type === "enum" && /[A-Z_]{3,}/.test(suggestion.label.split(".").pop() || "");
+    
+    if (!isNamespace || isLeafEnum) {
+      newInput += " ";
     }
 
-    const newInput =
-      input.substring(0, input.length - lastWord.length) +
-      insertText +
-      " ";
     setInput(newInput);
     if (textareaRef.current) textareaRef.current.focus();
   };
@@ -136,6 +144,8 @@ const ChatInput: React.FC<ChatInputProps> = ({
                 \${
                   s.type === "snippet"
                     ? "bg-app-brand"
+                    : s.type === "enum"
+                    ? "bg-app-status-alert"
                     : s.type === "attribute"
                     ? s.attrType === "trigger" ? "bg-app-status-danger" : s.attrType === "condition" ? "bg-app-status-alert" : "bg-app-status-nav"
                     : s.framework === "MOOSE"
@@ -161,6 +171,11 @@ const ChatInput: React.FC<ChatInputProps> = ({
                       }
                     `}>
                       {s.attrType}
+                    </span>
+                  )}
+                  {s.type === "enum" && (
+                    <span className="text-[9px] px-1 rounded uppercase font-bold border border-app-status-alert text-app-status-alert bg-app-status-alert/10">
+                      ENUM
                     </span>
                   )}
                 </div>

@@ -44786,5 +44786,2729 @@
       }
     }
   },
-  "enums": {}
+  "enums": {
+    "world": {
+      "description": "DCS Enum world",
+      "fields": [
+        {
+          "name": "event",
+          "description": "[https://wiki.hoggitworld.com/view/DCS_enum_world](https://wiki.hoggitworld.com/view/DCS_enum_world)"
+        },
+        {
+          "name": "BirthPlace",
+          "description": "The birthplace enumerator is used to define where an aircraft or helicopter has spawned in association with birth events."
+        },
+        {
+          "name": "VolumeType",
+          "description": "The volumeType enumerator defines the types of 3d geometery used within the [world.searchObjects](https://wiki.hoggitworld.com/view/DCS_func_searchObjects) function."
+        },
+        {
+          "name": "weather",
+          "description": "Weather functions for fog etc."
+        },
+        {
+          "name": "world",
+          "description": ""
+        }
+      ]
+    },
+    "world.event": {
+      "description": "https://wiki.hoggitworld.com/view/DCS_enum_world",
+      "fields": [
+        {
+          "name": "S_EVENT_INVALID",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_SHOT",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_HIT",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_TAKEOFF",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_LAND",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_CRASH",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_EJECTION",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_REFUELING",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_DEAD",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_PILOT_DEAD",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_BASE_CAPTURED",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_MISSION_START",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_MISSION_END",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_TOOK_CONTROL",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_REFUELING_STOP",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_BIRTH",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_HUMAN_FAILURE",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_DETAILED_FAILURE",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_ENGINE_STARTUP",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_ENGINE_SHUTDOWN",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_PLAYER_ENTER_UNIT",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_PLAYER_LEAVE_UNIT",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_PLAYER_COMMENT",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_SHOOTING_START",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_SHOOTING_END",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_MARK_ADDED",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_MARK_CHANGE",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_MARK_REMOVED",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_KILL",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_SCORE",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_UNIT_LOST",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_LANDING_AFTER_EJECTION",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_PARATROOPER_LENDING",
+          "description": "-- who's lending whom what? ;)"
+        },
+        {
+          "name": "S_EVENT_DISCARD_CHAIR_AFTER_EJECTION",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_WEAPON_ADD",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_TRIGGER_ZONE",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_LANDING_QUALITY_MARK",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_BDA",
+          "description": "-- battle damage assessment"
+        },
+        {
+          "name": "S_EVENT_AI_ABORT_MISSION",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_DAYNIGHT",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_FLIGHT_TIME",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_PLAYER_SELF_KILL_PILOT",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_PLAYER_CAPTURE_AIRFIELD",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_EMERGENCY_LANDING",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_UNIT_CREATE_TASK",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_UNIT_DELETE_TASK",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_SIMULATION_START",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_WEAPON_REARM",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_WEAPON_DROP",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_UNIT_TASK_COMPLETE",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_UNIT_TASK_STAGE",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_MAC_EXTRA_SCORE",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_MISSION_RESTART",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_MISSION_WINNER",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_RUNWAY_TAKEOFF",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_RUNWAY_TOUCH",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_MAC_LMS_RESTART",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_SIMULATION_FREEZE",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_SIMULATION_UNFREEZE",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_HUMAN_AIRCRAFT_REPAIR_START",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_HUMAN_AIRCRAFT_REPAIR_FINISH",
+          "description": ""
+        },
+        {
+          "name": "S_EVENT_MAX",
+          "description": ""
+        }
+      ]
+    },
+    "world.BirthPlace": {
+      "description": "The birthplace enumerator is used to define where an aircraft or helicopter has spawned in association with birth events.",
+      "fields": [
+        {
+          "name": "wsBirthPlace_Air",
+          "description": ""
+        },
+        {
+          "name": "wsBirthPlace_RunWay",
+          "description": ""
+        },
+        {
+          "name": "wsBirthPlace_Park",
+          "description": ""
+        },
+        {
+          "name": "wsBirthPlace_Heliport_Hot",
+          "description": ""
+        },
+        {
+          "name": "wsBirthPlace_Heliport_Cold",
+          "description": ""
+        }
+      ]
+    },
+    "world.VolumeType": {
+      "description": "The volumeType enumerator defines the types of 3d geometery used within the #world.searchObjects function.",
+      "fields": [
+        {
+          "name": "SEGMENT",
+          "description": ""
+        },
+        {
+          "name": "BOX",
+          "description": ""
+        },
+        {
+          "name": "SPHERE",
+          "description": ""
+        },
+        {
+          "name": "PYRAMID",
+          "description": ""
+        }
+      ]
+    },
+    "world.FogAnimation": {
+      "description": "Fog animation data structure.",
+      "fields": [
+        {
+          "name": "time",
+          "description": ""
+        },
+        {
+          "name": "visibility",
+          "description": ""
+        },
+        {
+          "name": "thickness",
+          "description": ""
+        }
+      ]
+    },
+    "radio": {
+      "description": "DCS Singleton env",
+      "fields": [
+        {
+          "name": "modulation",
+          "description": ""
+        }
+      ]
+    },
+    "radio.modulation": {
+      "description": "",
+      "fields": [
+        {
+          "name": "AM",
+          "description": ""
+        },
+        {
+          "name": "FM",
+          "description": ""
+        }
+      ]
+    },
+    "land": {
+      "description": "DCS Singleton land",
+      "fields": [
+        {
+          "name": "SurfaceType",
+          "description": ""
+        }
+      ]
+    },
+    "land.SurfaceType": {
+      "description": "Type of surface enumerator",
+      "fields": [
+        {
+          "name": "LAND",
+          "description": "Land=1"
+        },
+        {
+          "name": "SHALLOW_WATER",
+          "description": "Shallow water=2"
+        },
+        {
+          "name": "WATER",
+          "description": "Water=3"
+        },
+        {
+          "name": "ROAD",
+          "description": "Road=4"
+        },
+        {
+          "name": "RUNWAY",
+          "description": "Runway=5"
+        }
+      ]
+    },
+    "country": {
+      "description": "DCS Enum country",
+      "fields": [
+        {
+          "name": "id",
+          "description": ""
+        }
+      ]
+    },
+    "country.id": {
+      "description": "DCS enumerator country",
+      "fields": [
+        {
+          "name": "RUSSIA",
+          "description": ""
+        },
+        {
+          "name": "UKRAINE",
+          "description": ""
+        },
+        {
+          "name": "USA",
+          "description": ""
+        },
+        {
+          "name": "TURKEY",
+          "description": ""
+        },
+        {
+          "name": "UK",
+          "description": ""
+        },
+        {
+          "name": "FRANCE",
+          "description": ""
+        },
+        {
+          "name": "GERMANY",
+          "description": ""
+        },
+        {
+          "name": "AGGRESSORS",
+          "description": ""
+        },
+        {
+          "name": "CANADA",
+          "description": ""
+        },
+        {
+          "name": "SPAIN",
+          "description": ""
+        },
+        {
+          "name": "THE_NETHERLANDS",
+          "description": ""
+        },
+        {
+          "name": "BELGIUM",
+          "description": ""
+        },
+        {
+          "name": "NORWAY",
+          "description": ""
+        },
+        {
+          "name": "DENMARK",
+          "description": ""
+        },
+        {
+          "name": "ISRAEL",
+          "description": ""
+        },
+        {
+          "name": "GEORGIA",
+          "description": ""
+        },
+        {
+          "name": "INSURGENTS",
+          "description": ""
+        },
+        {
+          "name": "ABKHAZIA",
+          "description": ""
+        },
+        {
+          "name": "SOUTH_OSETIA",
+          "description": ""
+        },
+        {
+          "name": "ITALY",
+          "description": ""
+        },
+        {
+          "name": "AUSTRALIA",
+          "description": ""
+        },
+        {
+          "name": "SWITZERLAND",
+          "description": ""
+        },
+        {
+          "name": "AUSTRIA",
+          "description": ""
+        },
+        {
+          "name": "BELARUS",
+          "description": ""
+        },
+        {
+          "name": "BULGARIA",
+          "description": ""
+        },
+        {
+          "name": "CHEZH_REPUBLIC",
+          "description": ""
+        },
+        {
+          "name": "CHINA",
+          "description": ""
+        },
+        {
+          "name": "CROATIA",
+          "description": ""
+        },
+        {
+          "name": "EGYPT",
+          "description": ""
+        },
+        {
+          "name": "FINLAND",
+          "description": ""
+        },
+        {
+          "name": "GREECE",
+          "description": ""
+        },
+        {
+          "name": "HUNGARY",
+          "description": ""
+        },
+        {
+          "name": "INDIA",
+          "description": ""
+        },
+        {
+          "name": "IRAN",
+          "description": ""
+        },
+        {
+          "name": "IRAQ",
+          "description": ""
+        },
+        {
+          "name": "JAPAN",
+          "description": ""
+        },
+        {
+          "name": "KAZAKHSTAN",
+          "description": ""
+        },
+        {
+          "name": "NORTH_KOREA",
+          "description": ""
+        },
+        {
+          "name": "PAKISTAN",
+          "description": ""
+        },
+        {
+          "name": "POLAND",
+          "description": ""
+        },
+        {
+          "name": "ROMANIA",
+          "description": ""
+        },
+        {
+          "name": "SAUDI_ARABIA",
+          "description": ""
+        },
+        {
+          "name": "SERBIA",
+          "description": ""
+        },
+        {
+          "name": "SLOVAKIA",
+          "description": ""
+        },
+        {
+          "name": "SOUTH_KOREA",
+          "description": ""
+        },
+        {
+          "name": "SWEDEN",
+          "description": ""
+        },
+        {
+          "name": "SYRIA",
+          "description": ""
+        },
+        {
+          "name": "YEMEN",
+          "description": ""
+        },
+        {
+          "name": "VIETNAM",
+          "description": ""
+        },
+        {
+          "name": "VENEZUELA",
+          "description": ""
+        },
+        {
+          "name": "TUNISIA",
+          "description": ""
+        },
+        {
+          "name": "THAILAND",
+          "description": ""
+        },
+        {
+          "name": "SUDAN",
+          "description": ""
+        },
+        {
+          "name": "PHILIPPINES",
+          "description": ""
+        },
+        {
+          "name": "MOROCCO",
+          "description": ""
+        },
+        {
+          "name": "MEXICO",
+          "description": ""
+        },
+        {
+          "name": "MALAYSIA",
+          "description": ""
+        },
+        {
+          "name": "LIBYA",
+          "description": ""
+        },
+        {
+          "name": "JORDAN",
+          "description": ""
+        },
+        {
+          "name": "INDONESIA",
+          "description": ""
+        },
+        {
+          "name": "HONDURAS",
+          "description": ""
+        },
+        {
+          "name": "ETHIOPIA",
+          "description": ""
+        },
+        {
+          "name": "CHILE",
+          "description": ""
+        },
+        {
+          "name": "BRAZIL",
+          "description": ""
+        },
+        {
+          "name": "BAHRAIN",
+          "description": ""
+        },
+        {
+          "name": "THIRDREICH",
+          "description": ""
+        },
+        {
+          "name": "YUGOSLAVIA",
+          "description": ""
+        },
+        {
+          "name": "USSR",
+          "description": ""
+        },
+        {
+          "name": "ITALIAN_SOCIAL_REPUBLIC",
+          "description": ""
+        },
+        {
+          "name": "ALGERIA",
+          "description": ""
+        },
+        {
+          "name": "KUWAIT",
+          "description": ""
+        },
+        {
+          "name": "QATAR",
+          "description": ""
+        },
+        {
+          "name": "OMAN",
+          "description": ""
+        },
+        {
+          "name": "UNITED_ARAB_EMIRATES",
+          "description": ""
+        },
+        {
+          "name": "SOUTH_AFRICA",
+          "description": ""
+        },
+        {
+          "name": "CUBA",
+          "description": ""
+        },
+        {
+          "name": "PORTUGAL",
+          "description": ""
+        },
+        {
+          "name": "GDR",
+          "description": ""
+        },
+        {
+          "name": "LEBANON",
+          "description": ""
+        },
+        {
+          "name": "CJTF_BLUE",
+          "description": ""
+        },
+        {
+          "name": "CJTF_RED",
+          "description": ""
+        },
+        {
+          "name": "UN_PEACEKEEPERS",
+          "description": ""
+        },
+        {
+          "name": "Argentinia",
+          "description": ""
+        },
+        {
+          "name": "Cyprus",
+          "description": ""
+        },
+        {
+          "name": "Slovenia",
+          "description": ""
+        },
+        {
+          "name": "BOLIVIA",
+          "description": ""
+        },
+        {
+          "name": "GHANA",
+          "description": ""
+        },
+        {
+          "name": "NIGERIA",
+          "description": ""
+        },
+        {
+          "name": "PERU",
+          "description": ""
+        },
+        {
+          "name": "ECUADOR",
+          "description": ""
+        }
+      ]
+    },
+    "Command": {
+      "description": "",
+      "fields": [
+        {
+          "name": "id",
+          "description": ""
+        },
+        {
+          "name": "params",
+          "description": ""
+        }
+      ]
+    },
+    "coalition": {
+      "description": "DCS Enum coalition",
+      "fields": [
+        {
+          "name": "side",
+          "description": ""
+        }
+      ]
+    },
+    "coalition.side": {
+      "description": "DCS Enum coalition.side",
+      "fields": [
+        {
+          "name": "NEUTRAL",
+          "description": ""
+        },
+        {
+          "name": "RED",
+          "description": ""
+        },
+        {
+          "name": "BLUE",
+          "description": ""
+        }
+      ]
+    },
+    "Desc": {
+      "description": "Descriptors.",
+      "fields": [
+        {
+          "name": "speedMax0",
+          "description": "Max speed in meters/second at zero altitude."
+        },
+        {
+          "name": "massEmpty",
+          "description": "Empty mass in kg."
+        },
+        {
+          "name": "tankerType",
+          "description": "Type of refueling system: 0=boom, 1=probe."
+        },
+        {
+          "name": "range",
+          "description": "Range in km(?)."
+        },
+        {
+          "name": "box",
+          "description": "Bounding box."
+        },
+        {
+          "name": "Hmax",
+          "description": "Max height in meters."
+        },
+        {
+          "name": "Kmax",
+          "description": "?"
+        },
+        {
+          "name": "speedMax10K",
+          "description": "Max speed in meters/second at 10k altitude."
+        },
+        {
+          "name": "NyMin",
+          "description": "?"
+        },
+        {
+          "name": "NyMax",
+          "description": "?"
+        },
+        {
+          "name": "fuelMassMax",
+          "description": "Max fuel mass in kg."
+        },
+        {
+          "name": "massMax",
+          "description": "Max mass of unit."
+        },
+        {
+          "name": "RCS",
+          "description": "?"
+        },
+        {
+          "name": "life",
+          "description": "Life points."
+        },
+        {
+          "name": "VyMax",
+          "description": "Max vertical velocity in m/s."
+        },
+        {
+          "name": "Kab",
+          "description": "?"
+        },
+        {
+          "name": "attributes",
+          "description": "Table of attributes."
+        },
+        {
+          "name": "typeName",
+          "description": "Type Name."
+        },
+        {
+          "name": "displayName",
+          "description": "Localized display name."
+        },
+        {
+          "name": "category",
+          "description": "Unit category."
+        }
+      ]
+    },
+    "Vec3": {
+      "description": "Vec3 type is a 3D-vector.",
+      "fields": [
+        {
+          "name": "x",
+          "description": "is directed to the North"
+        },
+        {
+          "name": "z",
+          "description": "is directed to the East"
+        },
+        {
+          "name": "y",
+          "description": "is directed up"
+        }
+      ]
+    },
+    "Vec2": {
+      "description": "Vec2 is a 2D-vector for the ground plane as a reference plane.",
+      "fields": [
+        {
+          "name": "x",
+          "description": "Vec2.x = Vec3.x"
+        },
+        {
+          "name": "y",
+          "description": "Vec2.y = Vec3.z"
+        }
+      ]
+    },
+    "Position3": {
+      "description": "Position is a composite structure. It consists of both coordinate vector and orientation matrix. Position3 (also known as \"Pos3\" for short) is a table that has following format:",
+      "fields": [
+        {
+          "name": "p",
+          "description": "3D position vector."
+        },
+        {
+          "name": "x",
+          "description": "Orientation component of vector pointing East."
+        },
+        {
+          "name": "y",
+          "description": "Orientation component of vector pointing up."
+        },
+        {
+          "name": "z",
+          "description": "Orientation component of vector pointing North."
+        }
+      ]
+    },
+    "Box3": {
+      "description": "3-dimensional box.",
+      "fields": [
+        {
+          "name": "min",
+          "description": "Min."
+        },
+        {
+          "name": "max",
+          "description": "Max"
+        }
+      ]
+    },
+    "Zone": {
+      "description": "",
+      "fields": [
+        {
+          "name": "DCSVec3#Vec3",
+          "description": "point"
+        },
+        {
+          "name": "radius",
+          "description": ""
+        }
+      ]
+    },
+    "Task": {
+      "description": "A task descriptor (internal structure for DCS World). See https://wiki.hoggitworld.com/view/Category:Tasks.",
+      "fields": [
+        {
+          "name": "id",
+          "description": ""
+        },
+        {
+          "name": "param",
+          "description": ""
+        }
+      ]
+    },
+    "WaypointAir": {
+      "description": "",
+      "fields": [
+        {
+          "name": "lateActivated",
+          "description": ""
+        },
+        {
+          "name": "uncontrolled",
+          "description": ""
+        }
+      ]
+    },
+    "Template": {
+      "description": "DCS template data structure.",
+      "fields": [
+        {
+          "name": "uncontrolled",
+          "description": "Aircraft is uncontrolled."
+        },
+        {
+          "name": "lateActivation",
+          "description": "Group is late activated."
+        },
+        {
+          "name": "x",
+          "description": "2D Position on x-axis in meters."
+        },
+        {
+          "name": "y",
+          "description": "2D Position on y-axis in meters."
+        },
+        {
+          "name": "units",
+          "description": "Unit list."
+        }
+      ]
+    },
+    "Template.Unit": {
+      "description": "Unit data structure.",
+      "fields": [
+        {
+          "name": "name",
+          "description": "Name of the unit."
+        },
+        {
+          "name": "x",
+          "description": ""
+        },
+        {
+          "name": "y",
+          "description": ""
+        },
+        {
+          "name": "alt",
+          "description": ""
+        }
+      ]
+    },
+    "Object": {
+      "description": "DCS Class Object",
+      "fields": [
+        {
+          "name": "Category",
+          "description": ""
+        },
+        {
+          "name": "Desc",
+          "description": ""
+        }
+      ]
+    },
+    "Object.Category": {
+      "description": "DCS Enum Object.Category",
+      "fields": [
+        {
+          "name": "UNIT",
+          "description": ""
+        },
+        {
+          "name": "WEAPON",
+          "description": ""
+        },
+        {
+          "name": "STATIC",
+          "description": ""
+        },
+        {
+          "name": "BASE",
+          "description": ""
+        },
+        {
+          "name": "SCENERY",
+          "description": ""
+        },
+        {
+          "name": "CARGO",
+          "description": ""
+        }
+      ]
+    },
+    "Object.Desc": {
+      "description": "",
+      "fields": [
+        {
+          "name": "life",
+          "description": "initial life level"
+        },
+        {
+          "name": "box",
+          "description": "bounding box of collision geometry"
+        }
+      ]
+    },
+    "Weapon": {
+      "description": "DCS Class Weapon",
+      "fields": [
+        {
+          "name": "flag",
+          "description": "enum stores weapon flags. Some of them are combination of another flags."
+        },
+        {
+          "name": "Category",
+          "description": "enum that stores weapon categories."
+        },
+        {
+          "name": "GuidanceType",
+          "description": "enum that stores guidance methods. Available only for guided weapon (Weapon.Category.MISSILE and some Weapon.Category.BOMB)."
+        },
+        {
+          "name": "MissileCategory",
+          "description": "enum that stores missile category. Available only for missiles (Weapon.Category.MISSILE)."
+        },
+        {
+          "name": "WarheadType",
+          "description": "enum that stores warhead types."
+        },
+        {
+          "name": "Desc",
+          "description": "The descriptor of a weapon."
+        }
+      ]
+    },
+    "Weapon.flag": {
+      "description": "enum stores weapon flags. Some of them are combination of another flags.",
+      "fields": [
+        {
+          "name": "LGB",
+          "description": ""
+        },
+        {
+          "name": "TvGB",
+          "description": ""
+        },
+        {
+          "name": "SNSGB",
+          "description": ""
+        },
+        {
+          "name": "HEBomb",
+          "description": ""
+        },
+        {
+          "name": "Penetrator",
+          "description": ""
+        },
+        {
+          "name": "NapalmBomb",
+          "description": ""
+        },
+        {
+          "name": "FAEBomb",
+          "description": ""
+        },
+        {
+          "name": "ClusterBomb",
+          "description": ""
+        },
+        {
+          "name": "Dispencer",
+          "description": ""
+        },
+        {
+          "name": "CandleBomb",
+          "description": ""
+        },
+        {
+          "name": "ParachuteBomb",
+          "description": ""
+        },
+        {
+          "name": "GuidedBomb",
+          "description": "+ TvGB + SNSGB"
+        },
+        {
+          "name": "AnyUnguidedBomb",
+          "description": "+ Penetrator + NapalmBomb + FAEBomb + ClusterBomb + Dispencer + CandleBomb + ParachuteBomb"
+        },
+        {
+          "name": "AnyBomb",
+          "description": "+ AnyUnguidedBomb"
+        },
+        {
+          "name": "LightRocket",
+          "description": ""
+        },
+        {
+          "name": "MarkerRocket",
+          "description": ""
+        },
+        {
+          "name": "CandleRocket",
+          "description": ""
+        },
+        {
+          "name": "HeavyRocket",
+          "description": ""
+        },
+        {
+          "name": "AnyRocket",
+          "description": "+ HeavyRocket + MarkerRocket + CandleRocket"
+        },
+        {
+          "name": "AntiRadarMissile",
+          "description": ""
+        },
+        {
+          "name": "AntiShipMissile",
+          "description": ""
+        },
+        {
+          "name": "AntiTankMissile",
+          "description": ""
+        },
+        {
+          "name": "FireAndForgetASM",
+          "description": ""
+        },
+        {
+          "name": "LaserASM",
+          "description": ""
+        },
+        {
+          "name": "TeleASM",
+          "description": ""
+        },
+        {
+          "name": "CruiseMissile",
+          "description": ""
+        },
+        {
+          "name": "GuidedASM",
+          "description": "+ TeleASM"
+        },
+        {
+          "name": "TacticASM",
+          "description": "+ FireAndForgetASM"
+        },
+        {
+          "name": "AnyASM",
+          "description": "+ AntiShipMissile + AntiTankMissile + FireAndForgetASM + GuidedASM + CruiseMissile"
+        },
+        {
+          "name": "SRAAM",
+          "description": ""
+        },
+        {
+          "name": "MRAAM",
+          "description": ""
+        },
+        {
+          "name": "LRAAM",
+          "description": ""
+        },
+        {
+          "name": "IR_AAM",
+          "description": ""
+        },
+        {
+          "name": "SAR_AAM",
+          "description": ""
+        },
+        {
+          "name": "AR_AAM",
+          "description": ""
+        },
+        {
+          "name": "AnyAAM",
+          "description": "+ SAR_AAM + AR_AAM + SRAAM + MRAAM + LRAAM"
+        },
+        {
+          "name": "AnyMissile",
+          "description": "+ AnyAAM"
+        },
+        {
+          "name": "AnyAutonomousMissile",
+          "description": "+ AntiRadarMissile + AntiShipMissile + FireAndForgetASM + CruiseMissile"
+        },
+        {
+          "name": "GUN_POD",
+          "description": ""
+        },
+        {
+          "name": "BuiltInCannon",
+          "description": ""
+        },
+        {
+          "name": "Cannons",
+          "description": "+ BuiltInCannon"
+        },
+        {
+          "name": "AnyAGWeapon",
+          "description": "+ GUN_POD + AnyBomb + AnyRocket + AnyASM"
+        },
+        {
+          "name": "AnyAAWeapon",
+          "description": "+ GUN_POD + AnyAAM"
+        },
+        {
+          "name": "UnguidedWeapon",
+          "description": "+ BuiltInCannon + GUN_POD + AnyUnguidedBomb + AnyRocket"
+        },
+        {
+          "name": "GuidedWeapon",
+          "description": "+ AnyASM + AnyAAM"
+        },
+        {
+          "name": "AnyWeapon",
+          "description": "+ AnyRocket + AnyMissile + Cannons"
+        },
+        {
+          "name": "MarkerWeapon",
+          "description": "+ CandleRocket + CandleBomb"
+        },
+        {
+          "name": "ArmWeapon",
+          "description": "- MarkerWeapon"
+        }
+      ]
+    },
+    "Weapon.Category": {
+      "description": "Weapon.Category enum that stores weapon categories.",
+      "fields": [
+        {
+          "name": "SHELL",
+          "description": "Shell."
+        },
+        {
+          "name": "MISSILE",
+          "description": "Missile"
+        },
+        {
+          "name": "ROCKET",
+          "description": "Rocket."
+        },
+        {
+          "name": "BOMB",
+          "description": "Bomb."
+        },
+        {
+          "name": "TORPEDO",
+          "description": "Torpedo."
+        }
+      ]
+    },
+    "Weapon.GuidanceType": {
+      "description": "Weapon.GuidanceType enum that stores guidance methods. Available only for guided weapon (Weapon.Category.MISSILE and some Weapon.Category.BOMB).",
+      "fields": [
+        {
+          "name": "INS",
+          "description": ""
+        },
+        {
+          "name": "IR",
+          "description": ""
+        },
+        {
+          "name": "RADAR_ACTIVE",
+          "description": ""
+        },
+        {
+          "name": "RADAR_SEMI_ACTIVE",
+          "description": ""
+        },
+        {
+          "name": "RADAR_PASSIVE",
+          "description": ""
+        },
+        {
+          "name": "TV",
+          "description": ""
+        },
+        {
+          "name": "LASER",
+          "description": ""
+        },
+        {
+          "name": "TELE",
+          "description": ""
+        }
+      ]
+    },
+    "Weapon.MissileCategory": {
+      "description": "Weapon.MissileCategory enum that stores missile category. Available only for missiles (Weapon.Category.MISSILE).",
+      "fields": [
+        {
+          "name": "AAM",
+          "description": ""
+        },
+        {
+          "name": "SAM",
+          "description": ""
+        },
+        {
+          "name": "BM",
+          "description": ""
+        },
+        {
+          "name": "ANTI_SHIP",
+          "description": ""
+        },
+        {
+          "name": "CRUISE",
+          "description": ""
+        },
+        {
+          "name": "OTHER",
+          "description": ""
+        }
+      ]
+    },
+    "Weapon.WarheadType": {
+      "description": "Weapon.WarheadType enum that stores warhead types.",
+      "fields": [
+        {
+          "name": "AP",
+          "description": ""
+        },
+        {
+          "name": "HE",
+          "description": ""
+        },
+        {
+          "name": "SHAPED_EXPLOSIVE",
+          "description": ""
+        }
+      ]
+    },
+    "Airbase": {
+      "description": "DCS Class Airbase",
+      "fields": [
+        {
+          "name": "ID",
+          "description": "Identifier of an airbase. It assigned to an airbase by the Mission Editor automatically. This identifier is used in AI tasks to refer an airbase that exists (spawned and not dead) or not."
+        },
+        {
+          "name": "Category",
+          "description": "enum contains identifiers of airbase categories."
+        },
+        {
+          "name": "Desc",
+          "description": "Airbase descriptor. Airdromes are unique and their types are unique, but helipads and ships are not always unique and may have the same type."
+        }
+      ]
+    },
+    "Airbase.Category": {
+      "description": "Enum contains identifiers of airbase categories.",
+      "fields": [
+        {
+          "name": "AIRDROME",
+          "description": ""
+        },
+        {
+          "name": "HELIPAD",
+          "description": ""
+        },
+        {
+          "name": "SHIP",
+          "description": ""
+        }
+      ]
+    },
+    "Airbase.Desc": {
+      "description": "Airbase descriptor. Airdromes are unique and their types are unique, but helipads and ships are not always unique and may have the same type.",
+      "fields": [
+        {
+          "name": "category",
+          "description": "Category of the airbase type."
+        }
+      ]
+    },
+    "Spot": {
+      "description": "DCS Class Spot",
+      "fields": [
+        {
+          "name": "Category",
+          "description": "enum that stores spot categories."
+        }
+      ]
+    },
+    "Spot.Category": {
+      "description": "Enum that stores spot categories.",
+      "fields": [
+        {
+          "name": "INFRA_RED",
+          "description": ""
+        },
+        {
+          "name": "LASER",
+          "description": ""
+        }
+      ]
+    },
+    "Controller": {
+      "description": "Controller is an object that performs A.I.-tasks. Other words controller is an instance of A.I.. Controller stores current main task, active enroute tasks and behavior options. Controller performs commands. Please, read DCS A-10C GUI Manual EN.pdf chapter \"Task Planning for Unit Groups\", page 91 to understand A.I. system of DCS:A-10C.",
+      "fields": [
+        {
+          "name": "Detection",
+          "description": "Enum contains identifiers of surface types."
+        }
+      ]
+    },
+    "Controller.Detection": {
+      "description": "Enum containing detection types.",
+      "fields": [
+        {
+          "name": "VISUAL",
+          "description": "Visual detection. Numeric value 1."
+        },
+        {
+          "name": "OPTIC",
+          "description": "Optical detection. Numeric value 2."
+        },
+        {
+          "name": "RADAR",
+          "description": "Radar detection. Numeric value 4."
+        },
+        {
+          "name": "IRST",
+          "description": "Infra-red search and track detection. Numeric value 8."
+        },
+        {
+          "name": "RWR",
+          "description": "Radar Warning Receiver detection. Numeric value 16."
+        },
+        {
+          "name": "DLINK",
+          "description": "Data link detection. Numeric value 32."
+        }
+      ]
+    },
+    "Controller.DetectedTarget": {
+      "description": "Detected target.",
+      "fields": [
+        {
+          "name": "DCS#Object",
+          "description": "object The target"
+        },
+        {
+          "name": "visible",
+          "description": "The target is visible"
+        },
+        {
+          "name": "type",
+          "description": "The target type is known"
+        },
+        {
+          "name": "distance",
+          "description": "Distance to the target is known"
+        }
+      ]
+    },
+    "Unit": {
+      "description": "Unit.",
+      "fields": [
+        {
+          "name": "ID",
+          "description": "Identifier of an unit. It assigned to an unit by the Mission Editor automatically."
+        },
+        {
+          "name": "Category",
+          "description": ""
+        },
+        {
+          "name": "RefuelingSystem",
+          "description": ""
+        },
+        {
+          "name": "SensorType",
+          "description": ""
+        },
+        {
+          "name": "OpticType",
+          "description": ""
+        },
+        {
+          "name": "RadarType",
+          "description": ""
+        },
+        {
+          "name": "Desc",
+          "description": ""
+        },
+        {
+          "name": "DescAircraft",
+          "description": ""
+        },
+        {
+          "name": "DescAirplane",
+          "description": ""
+        },
+        {
+          "name": "DescHelicopter",
+          "description": ""
+        },
+        {
+          "name": "DescVehicle",
+          "description": ""
+        },
+        {
+          "name": "DescShip",
+          "description": ""
+        },
+        {
+          "name": "AmmoItem",
+          "description": ""
+        },
+        {
+          "name": "Ammo",
+          "description": ""
+        },
+        {
+          "name": "Sensor",
+          "description": ""
+        },
+        {
+          "name": "Optic",
+          "description": ""
+        },
+        {
+          "name": "Radar",
+          "description": ""
+        },
+        {
+          "name": "IRST",
+          "description": ""
+        }
+      ]
+    },
+    "Unit.Category": {
+      "description": "Enum that stores unit categories.",
+      "fields": [
+        {
+          "name": "AIRPLANE",
+          "description": ""
+        },
+        {
+          "name": "HELICOPTER",
+          "description": ""
+        },
+        {
+          "name": "GROUND_UNIT",
+          "description": ""
+        },
+        {
+          "name": "SHIP",
+          "description": ""
+        },
+        {
+          "name": "STRUCTURE",
+          "description": ""
+        }
+      ]
+    },
+    "Unit.RefuelingSystem": {
+      "description": "Enum that stores aircraft refueling system types.",
+      "fields": [
+        {
+          "name": "BOOM_AND_RECEPTACLE",
+          "description": "Tanker with a boom."
+        },
+        {
+          "name": "PROBE_AND_DROGUE",
+          "description": "Tanker with a probe."
+        }
+      ]
+    },
+    "Unit.SensorType": {
+      "description": "Enum that stores sensor types.",
+      "fields": [
+        {
+          "name": "OPTIC",
+          "description": ""
+        },
+        {
+          "name": "RADAR",
+          "description": ""
+        },
+        {
+          "name": "IRST",
+          "description": ""
+        },
+        {
+          "name": "RWR",
+          "description": ""
+        }
+      ]
+    },
+    "Unit.OpticType": {
+      "description": "Enum that stores types of optic sensors.",
+      "fields": [
+        {
+          "name": "TV",
+          "description": "TV-sensor"
+        },
+        {
+          "name": "LLTV",
+          "description": "Low-level TV-sensor"
+        },
+        {
+          "name": "IR",
+          "description": "Infra-Red optic sensor"
+        }
+      ]
+    },
+    "Unit.RadarType": {
+      "description": "Enum that stores radar types.",
+      "fields": [
+        {
+          "name": "AS",
+          "description": "air search radar"
+        },
+        {
+          "name": "SS",
+          "description": "surface/land search radar"
+        }
+      ]
+    },
+    "Unit.Desc": {
+      "description": "A unit descriptor.",
+      "fields": [
+        {
+          "name": "category",
+          "description": "Unit Category"
+        },
+        {
+          "name": "massEmpty",
+          "description": "mass of empty unit"
+        },
+        {
+          "name": "speedMax",
+          "description": "istance / Time, --maximal velocity"
+        }
+      ]
+    },
+    "Unit.DescAircraft": {
+      "description": "An aircraft descriptor.",
+      "fields": [
+        {
+          "name": "fuelMassMax",
+          "description": "maximal inner fuel mass"
+        },
+        {
+          "name": "range",
+          "description": "Operational range"
+        },
+        {
+          "name": "Hmax",
+          "description": "Ceiling"
+        },
+        {
+          "name": "VyMax",
+          "description": "#Distance / #Time, --maximal climb rate"
+        },
+        {
+          "name": "NyMin",
+          "description": "minimal safe acceleration"
+        },
+        {
+          "name": "NyMax",
+          "description": "maximal safe acceleration"
+        },
+        {
+          "name": "tankerType",
+          "description": "refueling system type"
+        }
+      ]
+    },
+    "Unit.DescAirplane": {
+      "description": "An airplane descriptor.",
+      "fields": [
+        {
+          "name": "speedMax0",
+          "description": "Distance / Time maximal TAS at ground level"
+        },
+        {
+          "name": "speedMax10K",
+          "description": "Distance / Time maximal TAS at altitude of 10 km"
+        }
+      ]
+    },
+    "Unit.DescHelicopter": {
+      "description": "A helicopter descriptor.",
+      "fields": [
+        {
+          "name": "HmaxStat",
+          "description": "static ceiling"
+        }
+      ]
+    },
+    "Unit.DescVehicle": {
+      "description": "A vehicle descriptor.",
+      "fields": [
+        {
+          "name": "maxSlopeAngle",
+          "description": "maximal slope angle"
+        },
+        {
+          "name": "riverCrossing",
+          "description": "can the vehicle cross a rivers"
+        }
+      ]
+    },
+    "Unit.AmmoItem": {
+      "description": "ammunition item: \"type-count\" pair.",
+      "fields": [
+        {
+          "name": "desc",
+          "description": "ammunition descriptor"
+        },
+        {
+          "name": "count",
+          "description": "ammunition count"
+        }
+      ]
+    },
+    "Unit.Sensor": {
+      "description": "A unit sensor.",
+      "fields": [
+        {
+          "name": "typeName",
+          "description": ""
+        },
+        {
+          "name": "type",
+          "description": ""
+        }
+      ]
+    },
+    "Unit.Optic": {
+      "description": "An optic sensor.",
+      "fields": [
+        {
+          "name": "opticType",
+          "description": ""
+        }
+      ]
+    },
+    "Unit.Radar": {
+      "description": "A radar.",
+      "fields": [
+        {
+          "name": "detectionDistanceRBM",
+          "description": "detection distance for RCS=1m^2 in real-beam mapping mode, nil if radar doesn't support surface/land search"
+        },
+        {
+          "name": "detectionDistanceHRM",
+          "description": "detection distance for RCS=1m^2 in high-resolution mapping mode, nil if radar has no HRM"
+        },
+        {
+          "name": "detectionDistanceAir",
+          "description": "detection distance for RCS=1m^2 airborne target, nil if radar doesn't support air search"
+        }
+      ]
+    },
+    "Unit.Radar.detectionDistanceAir": {
+      "description": "A radar.",
+      "fields": [
+        {
+          "name": "upperHemisphere",
+          "description": ""
+        },
+        {
+          "name": "lowerHemisphere",
+          "description": ""
+        }
+      ]
+    },
+    "Unit.Radar.detectionDistanceAir.upperHemisphere": {
+      "description": "A radar.",
+      "fields": [
+        {
+          "name": "headOn",
+          "description": ""
+        },
+        {
+          "name": "tailOn",
+          "description": ""
+        }
+      ]
+    },
+    "Unit.Radar.detectionDistanceAir.lowerHemisphere": {
+      "description": "A radar.",
+      "fields": [
+        {
+          "name": "headOn",
+          "description": ""
+        },
+        {
+          "name": "tailOn",
+          "description": ""
+        }
+      ]
+    },
+    "Unit.IRST": {
+      "description": "An IRST.",
+      "fields": [
+        {
+          "name": "detectionDistanceIdle",
+          "description": "detection of tail-on target with heat signature = 1 in upper hemisphere, engines are in idle"
+        },
+        {
+          "name": "detectionDistanceMaximal",
+          "description": "..., engines are in maximal mode"
+        },
+        {
+          "name": "detectionDistanceAfterburner",
+          "description": "..., engines are in afterburner mode"
+        }
+      ]
+    },
+    "Group": {
+      "description": "Represents group of Units.",
+      "fields": [
+        {
+          "name": "ID",
+          "description": "Identifier of a group. It is assigned to a group by Mission Editor automatically."
+        },
+        {
+          "name": "Category",
+          "description": "Enum contains identifiers of group types."
+        }
+      ]
+    },
+    "Group.Category": {
+      "description": "Enum contains identifiers of group types.",
+      "fields": [
+        {
+          "name": "AIRPLANE",
+          "description": ""
+        },
+        {
+          "name": "HELICOPTER",
+          "description": ""
+        },
+        {
+          "name": "GROUND",
+          "description": ""
+        },
+        {
+          "name": "SHIP",
+          "description": ""
+        },
+        {
+          "name": "TRAIN",
+          "description": ""
+        }
+      ]
+    },
+    "Event": {
+      "description": "Event structure. Note that present fields depend on type of event.",
+      "fields": [
+        {
+          "name": "id",
+          "description": "Event ID."
+        },
+        {
+          "name": "time",
+          "description": "Mission time in seconds."
+        },
+        {
+          "name": "DCS#Unit",
+          "description": "initiator Unit initiating the event."
+        },
+        {
+          "name": "DCS#Airbase",
+          "description": "place Airbase."
+        },
+        {
+          "name": "number",
+          "description": "subPlace Subplace. Unknown and often just 0."
+        },
+        {
+          "name": "weapon_name",
+          "description": "Weapoin name."
+        },
+        {
+          "name": "idx",
+          "description": "Mark ID."
+        },
+        {
+          "name": "coalition",
+          "description": "Coalition ID."
+        },
+        {
+          "name": "groupID",
+          "description": "Group ID, *e.g.* of group that added mark point."
+        },
+        {
+          "name": "text",
+          "description": "Text, *e.g.* of mark point."
+        },
+        {
+          "name": "DCS#Vec3",
+          "description": "pos Position vector, *e.g.* of mark point."
+        },
+        {
+          "name": "comment",
+          "description": "Comment, *e.g.* LSO score."
+        }
+      ]
+    },
+    "AI": {
+      "description": "https://wiki.hoggitworld.com/view/DCS_enum_AI",
+      "fields": [
+        {
+          "name": "Skill",
+          "description": ""
+        },
+        {
+          "name": "Task",
+          "description": ""
+        },
+        {
+          "name": "Option",
+          "description": ""
+        }
+      ]
+    },
+    "AI.Skill": {
+      "description": "https://wiki.hoggitworld.com/view/DCS_enum_AI",
+      "fields": [
+        {
+          "name": "AVERAGE",
+          "description": ""
+        },
+        {
+          "name": "GOOD",
+          "description": ""
+        },
+        {
+          "name": "HIGH",
+          "description": ""
+        },
+        {
+          "name": "EXCELLENT",
+          "description": ""
+        },
+        {
+          "name": "PLAYER",
+          "description": ""
+        },
+        {
+          "name": "CLIENT",
+          "description": ""
+        }
+      ]
+    },
+    "AI.Task": {
+      "description": "https://wiki.hoggitworld.com/view/DCS_enum_AI",
+      "fields": [
+        {
+          "name": "WeaponExpend",
+          "description": ""
+        },
+        {
+          "name": "OrbitPattern",
+          "description": ""
+        },
+        {
+          "name": "Designation",
+          "description": ""
+        },
+        {
+          "name": "WaypointType",
+          "description": ""
+        },
+        {
+          "name": "TurnMethod",
+          "description": ""
+        },
+        {
+          "name": "AltitudeType",
+          "description": ""
+        },
+        {
+          "name": "VehicleFormation",
+          "description": ""
+        }
+      ]
+    },
+    "AI.Task.WeaponExpend": {
+      "description": "https://wiki.hoggitworld.com/view/DCS_enum_AI",
+      "fields": [
+        {
+          "name": "ONE",
+          "description": ""
+        },
+        {
+          "name": "TWO",
+          "description": ""
+        },
+        {
+          "name": "FOUR",
+          "description": ""
+        },
+        {
+          "name": "QUARTER",
+          "description": ""
+        },
+        {
+          "name": "HALF",
+          "description": ""
+        },
+        {
+          "name": "ALL",
+          "description": ""
+        }
+      ]
+    },
+    "AI.Task.OrbitPattern": {
+      "description": "https://wiki.hoggitworld.com/view/DCS_enum_AI",
+      "fields": [
+        {
+          "name": "CIRCLE",
+          "description": ""
+        },
+        {
+          "name": "RACE_TRACK",
+          "description": ""
+        }
+      ]
+    },
+    "AI.Task.Designation": {
+      "description": "https://wiki.hoggitworld.com/view/DCS_enum_AI",
+      "fields": [
+        {
+          "name": "NO",
+          "description": ""
+        },
+        {
+          "name": "AUTO",
+          "description": ""
+        },
+        {
+          "name": "WP",
+          "description": ""
+        },
+        {
+          "name": "IR_POINTER",
+          "description": ""
+        },
+        {
+          "name": "LASER",
+          "description": ""
+        }
+      ]
+    },
+    "AI.Task.WaypointType": {
+      "description": "",
+      "fields": [
+        {
+          "name": "TAKEOFF",
+          "description": ""
+        },
+        {
+          "name": "TAKEOFF_PARKING",
+          "description": ""
+        },
+        {
+          "name": "TURNING_POINT",
+          "description": ""
+        },
+        {
+          "name": "TAKEOFF_PARKING_HOT",
+          "description": ""
+        },
+        {
+          "name": "LAND",
+          "description": ""
+        }
+      ]
+    },
+    "AI.Task.TurnMethod": {
+      "description": "",
+      "fields": [
+        {
+          "name": "FLY_OVER_POINT",
+          "description": ""
+        },
+        {
+          "name": "FIN_POINT",
+          "description": ""
+        }
+      ]
+    },
+    "AI.Task.AltitudeType": {
+      "description": "",
+      "fields": [
+        {
+          "name": "BARO",
+          "description": ""
+        },
+        {
+          "name": "RADIO",
+          "description": ""
+        }
+      ]
+    },
+    "AI.Task.VehicleFormation": {
+      "description": "",
+      "fields": [
+        {
+          "name": "OFF_ROAD",
+          "description": ""
+        },
+        {
+          "name": "ON_ROAD",
+          "description": ""
+        },
+        {
+          "name": "RANK",
+          "description": ""
+        },
+        {
+          "name": "CONE",
+          "description": ""
+        },
+        {
+          "name": "DIAMOND",
+          "description": ""
+        },
+        {
+          "name": "VEE",
+          "description": ""
+        },
+        {
+          "name": "ECHELON_LEFT",
+          "description": ""
+        },
+        {
+          "name": "ECHELON_RIGHT",
+          "description": ""
+        }
+      ]
+    },
+    "AI.Option": {
+      "description": "",
+      "fields": [
+        {
+          "name": "Air",
+          "description": ""
+        },
+        {
+          "name": "Ground",
+          "description": ""
+        },
+        {
+          "name": "Naval",
+          "description": ""
+        }
+      ]
+    },
+    "AI.Option.Air": {
+      "description": "",
+      "fields": [
+        {
+          "name": "id",
+          "description": ""
+        },
+        {
+          "name": "val",
+          "description": ""
+        }
+      ]
+    },
+    "AI.Option.Ground": {
+      "description": "",
+      "fields": [
+        {
+          "name": "id",
+          "description": ""
+        },
+        {
+          "name": "val",
+          "description": ""
+        },
+        {
+          "name": "mid",
+          "description": ""
+        },
+        {
+          "name": "mval",
+          "description": ""
+        }
+      ]
+    },
+    "AI.Option.Naval": {
+      "description": "",
+      "fields": [
+        {
+          "name": "id",
+          "description": ""
+        },
+        {
+          "name": "val",
+          "description": ""
+        }
+      ]
+    },
+    "AI.Option.Air.id": {
+      "description": "",
+      "fields": [
+        {
+          "name": "NO_OPTION",
+          "description": ""
+        },
+        {
+          "name": "ROE",
+          "description": ""
+        },
+        {
+          "name": "REACTION_ON_THREAT",
+          "description": ""
+        },
+        {
+          "name": "RADAR_USING",
+          "description": ""
+        },
+        {
+          "name": "FLARE_USING",
+          "description": ""
+        },
+        {
+          "name": "FORMATION",
+          "description": ""
+        },
+        {
+          "name": "RTB_ON_BINGO",
+          "description": ""
+        },
+        {
+          "name": "SILENCE",
+          "description": ""
+        },
+        {
+          "name": "RTB_ON_OUT_OF_AMMO",
+          "description": ""
+        },
+        {
+          "name": "ECM_USING",
+          "description": ""
+        },
+        {
+          "name": "PROHIBIT_AA",
+          "description": ""
+        },
+        {
+          "name": "PROHIBIT_JETT",
+          "description": ""
+        },
+        {
+          "name": "PROHIBIT_AB",
+          "description": ""
+        },
+        {
+          "name": "PROHIBIT_AG",
+          "description": ""
+        },
+        {
+          "name": "MISSILE_ATTACK",
+          "description": ""
+        },
+        {
+          "name": "PROHIBIT_WP_PASS_REPORT",
+          "description": ""
+        },
+        {
+          "name": "OPTION_RADIO_USAGE_CONTACT",
+          "description": ""
+        },
+        {
+          "name": "OPTION_RADIO_USAGE_ENGAGE",
+          "description": ""
+        },
+        {
+          "name": "OPTION_RADIO_USAGE_KILL",
+          "description": ""
+        },
+        {
+          "name": "JETT_TANKS_IF_EMPTY",
+          "description": ""
+        },
+        {
+          "name": "FORCED_ATTACK",
+          "description": ""
+        }
+      ]
+    },
+    "AI.Option.Air.val": {
+      "description": "",
+      "fields": [
+        {
+          "name": "ROE",
+          "description": ""
+        },
+        {
+          "name": "REACTION_ON_THREAT",
+          "description": ""
+        },
+        {
+          "name": "RADAR_USING",
+          "description": ""
+        },
+        {
+          "name": "FLARE_USING",
+          "description": ""
+        }
+      ]
+    },
+    "AI.Option.Air.val.ROE": {
+      "description": "",
+      "fields": [
+        {
+          "name": "WEAPON_FREE",
+          "description": ""
+        },
+        {
+          "name": "OPEN_FIRE_WEAPON_FREE",
+          "description": ""
+        },
+        {
+          "name": "OPEN_FIRE",
+          "description": ""
+        },
+        {
+          "name": "RETURN_FIRE",
+          "description": ""
+        },
+        {
+          "name": "WEAPON_HOLD",
+          "description": ""
+        }
+      ]
+    },
+    "AI.Option.Air.val.REACTION_ON_THREAT": {
+      "description": "",
+      "fields": [
+        {
+          "name": "NO_REACTION",
+          "description": ""
+        },
+        {
+          "name": "PASSIVE_DEFENCE",
+          "description": ""
+        },
+        {
+          "name": "EVADE_FIRE",
+          "description": ""
+        },
+        {
+          "name": "BYPASS_AND_ESCAPE",
+          "description": ""
+        },
+        {
+          "name": "ALLOW_ABORT_MISSION",
+          "description": ""
+        }
+      ]
+    },
+    "AI.Option.Air.val.RADAR_USING": {
+      "description": "",
+      "fields": [
+        {
+          "name": "NEVER",
+          "description": ""
+        },
+        {
+          "name": "FOR_ATTACK_ONLY",
+          "description": ""
+        },
+        {
+          "name": "FOR_SEARCH_IF_REQUIRED",
+          "description": ""
+        },
+        {
+          "name": "FOR_CONTINUOUS_SEARCH",
+          "description": ""
+        }
+      ]
+    },
+    "AI.Option.Air.val.FLARE_USING": {
+      "description": "",
+      "fields": [
+        {
+          "name": "NEVER",
+          "description": ""
+        },
+        {
+          "name": "AGAINST_FIRED_MISSILE",
+          "description": ""
+        },
+        {
+          "name": "WHEN_FLYING_IN_SAM_WEZ",
+          "description": ""
+        },
+        {
+          "name": "WHEN_FLYING_NEAR_ENEMIES",
+          "description": ""
+        }
+      ]
+    },
+    "AI.Option.Air.val.ECM_USING": {
+      "description": "",
+      "fields": [
+        {
+          "name": "NEVER_USE",
+          "description": ""
+        },
+        {
+          "name": "USE_IF_ONLY_LOCK_BY_RADAR",
+          "description": ""
+        },
+        {
+          "name": "USE_IF_DETECTED_LOCK_BY_RADAR",
+          "description": ""
+        },
+        {
+          "name": "ALWAYS_USE",
+          "description": ""
+        }
+      ]
+    },
+    "AI.Option.Air.val.MISSILE_ATTACK": {
+      "description": "",
+      "fields": [
+        {
+          "name": "MAX_RANGE",
+          "description": ""
+        },
+        {
+          "name": "NEZ_RANGE",
+          "description": ""
+        },
+        {
+          "name": "HALF_WAY_RMAX_NEZ",
+          "description": ""
+        },
+        {
+          "name": "TARGET_THREAT_EST",
+          "description": ""
+        },
+        {
+          "name": "RANDOM_RANGE",
+          "description": ""
+        }
+      ]
+    },
+    "AI.Option.Ground.id": {
+      "description": "",
+      "fields": [
+        {
+          "name": "NO_OPTION",
+          "description": ""
+        },
+        {
+          "name": "ROE",
+          "description": "@{#AI.Option.Ground.val.ROE}"
+        },
+        {
+          "name": "FORMATION",
+          "description": ""
+        },
+        {
+          "name": "DISPERSE_ON_ATTACK",
+          "description": "true or false"
+        },
+        {
+          "name": "ALARM_STATE",
+          "description": "@{#AI.Option.Ground.val.ALARM_STATE}"
+        },
+        {
+          "name": "ENGAGE_AIR_WEAPONS",
+          "description": ""
+        },
+        {
+          "name": "AC_ENGAGEMENT_RANGE_RESTRICTION",
+          "description": ""
+        },
+        {
+          "name": "EVASION_OF_ARM",
+          "description": ""
+        }
+      ]
+    },
+    "AI.Option.Ground.mid": {
+      "description": "",
+      "fields": [
+        {
+          "name": "RESTRICT_AAA_MIN",
+          "description": "27"
+        },
+        {
+          "name": "RESTRICT_AAA_MAX",
+          "description": "29"
+        },
+        {
+          "name": "RESTRICT_TARGETS",
+          "description": "@{#AI.Option.Ground.mval.ENGAGE_TARGETS}  28"
+        }
+      ]
+    },
+    "AI.Option.Ground.val": {
+      "description": "",
+      "fields": [
+        {
+          "name": "ROE",
+          "description": ""
+        },
+        {
+          "name": "ALARM_STATE",
+          "description": ""
+        },
+        {
+          "name": "RESTRICT_TARGETS",
+          "description": ""
+        }
+      ]
+    },
+    "AI.Option.Ground.val.ROE": {
+      "description": "",
+      "fields": [
+        {
+          "name": "OPEN_FIRE",
+          "description": ""
+        },
+        {
+          "name": "RETURN_FIRE",
+          "description": ""
+        },
+        {
+          "name": "WEAPON_HOLD",
+          "description": ""
+        }
+      ]
+    },
+    "AI.Option.Ground.mval": {
+      "description": "",
+      "fields": [
+        {
+          "name": "ENGAGE_TARGETS",
+          "description": ""
+        }
+      ]
+    },
+    "AI.Option.Ground.mval.ENGAGE_TARGETS": {
+      "description": "",
+      "fields": [
+        {
+          "name": "ANY_TARGET",
+          "description": "-- 0"
+        },
+        {
+          "name": "AIR_UNITS_ONLY",
+          "description": "-- 1"
+        },
+        {
+          "name": "GROUND_UNITS_ONLY",
+          "description": "-- 2"
+        }
+      ]
+    },
+    "AI.Option.Ground.val.ALARM_STATE": {
+      "description": "",
+      "fields": [
+        {
+          "name": "AUTO",
+          "description": ""
+        },
+        {
+          "name": "GREEN",
+          "description": ""
+        },
+        {
+          "name": "RED",
+          "description": ""
+        }
+      ]
+    },
+    "AI.Option.Naval.id": {
+      "description": "",
+      "fields": [
+        {
+          "name": "NO_OPTION",
+          "description": ""
+        },
+        {
+          "name": "ROE",
+          "description": ""
+        }
+      ]
+    },
+    "AI.Option.Naval.val": {
+      "description": "",
+      "fields": [
+        {
+          "name": "ROE",
+          "description": ""
+        }
+      ]
+    },
+    "AI.Option.Naval.val.ROE": {
+      "description": "",
+      "fields": [
+        {
+          "name": "OPEN_FIRE",
+          "description": ""
+        },
+        {
+          "name": "RETURN_FIRE",
+          "description": ""
+        },
+        {
+          "name": "WEAPON_HOLD",
+          "description": ""
+        }
+      ]
+    }
+  }
 }

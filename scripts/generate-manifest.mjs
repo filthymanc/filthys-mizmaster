@@ -145,6 +145,79 @@ async function generateManifest() {
     }
   }
 
+  // Parse DCS.lua for Enums
+  const dcsLuaPath = path.join(MOOSE_ROOT, 'DCS.lua');
+  if (fs.existsSync(dcsLuaPath)) {
+    console.log(`[Librarian] Parsing DCS.lua for Enums...`);
+    const dcsContent = fs.readFileSync(dcsLuaPath, 'utf-8');
+    const lines = dcsContent.split('\n');
+    let currentEnum = null;
+    let currentDesc = "";
+
+    for (let i = 0; i < lines.length; i++) {
+        const line = lines[i].trim();
+        
+        if (line.startsWith('---')) {
+            currentDesc = line.replace(/^---\s*/, '').trim();
+            // Remove markdown links to just keep text
+            currentDesc = currentDesc.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1');
+            continue;
+        }
+
+        const typeMatch = line.match(/^--\s*@type\s+([A-Za-z0-9_.]+)/);
+        if (typeMatch) {
+            currentEnum = typeMatch[1];
+            if (!manifest.enums) manifest.enums = {};
+            if (!manifest.enums[currentEnum]) {
+                manifest.enums[currentEnum] = {
+                    description: currentDesc,
+                    fields: []
+                };
+            }
+            currentDesc = "";
+            continue;
+        }
+
+        if (currentEnum && line.startsWith('--')) {
+            const fieldMatch = line.match(/^--\s*@field\s+([^ \t\n=]+)(?:\s+(.*))?/);
+            if (fieldMatch) {
+                let name = fieldMatch[1];
+                let remainder = fieldMatch[2] || "";
+                
+                // If name is a type hint like #number, the real name is next
+                if (name.startsWith('#') && remainder) {
+                    const parts = remainder.split(/\s+/);
+                    name = parts.shift();
+                    remainder = parts.join(' ');
+                }
+                
+                // Clean up `= value` from the remainder descriptor
+                let cleanDesc = remainder.replace(/^=\s*[^ ]+\s*/, '').trim();
+
+                // Prevent pushing duplicate fields if they are somehow duplicated
+                if (name && !manifest.enums[currentEnum].fields.find(f => f.name === name)) {
+                    manifest.enums[currentEnum].fields.push({
+                        name: name,
+                        description: cleanDesc
+                    });
+                }
+            }
+        } else if (line !== "" && !line.startsWith('--')) {
+            // End of the enum doc block
+            currentEnum = null;
+        }
+    }
+  } else {
+    console.warn(`[Librarian] DCS.lua not found at ${dcsLuaPath}`);
+  }
+
+  // Cleanup enums with no fields
+  for (const enumName in manifest.enums) {
+      if (manifest.enums[enumName].fields.length === 0) {
+          delete manifest.enums[enumName];
+      }
+  }
+
   fs.writeFileSync(OUTPUT_PATH, JSON.stringify(manifest, null, 2));
   console.log(`✅ Manifest generated: ${OUTPUT_PATH} (${Object.keys(manifest.classes).length} classes found)`);
 }
