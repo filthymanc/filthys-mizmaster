@@ -32,7 +32,7 @@
 
 ### 📚 The Librarian Engine
 
-MizMaster doesn't just guess; it researches. The Librarian can browse the entire file trees of the MOOSE and DML frameworks on GitHub, fetching specific class definitions or documentation to provide context-aware scripting solutions.
+MizMaster doesn't just guess; it researches. The Librarian features **Manifest-Driven IntelliSense**, dynamically autocompleting MOOSE and DML attributes, methods, and enums as you type. It actively searches multi-branch framework repositories (STABLE, DEVELOP, LEGACY) via GitHub to fetch specific class definitions, providing context-aware scripting solutions that are strictly doctrine-compliant.
 
 ### 🛡️ Secure Vault Architecture
 
