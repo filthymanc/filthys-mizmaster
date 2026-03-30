@@ -28,6 +28,7 @@ import { Message, ModelType, MooseBranch } from "../../core/types";
 import { getFrameworkDocs } from "./githubService";
 import { SSE_DEFINITIONS } from "../../data/sse-definitions";
 import { logger } from "../../shared/utils/logger";
+import { getManifest } from "../../shared/services/idbService";
 
 // --- Type Definitions for Tool Arguments ---
 
@@ -52,11 +53,39 @@ const mapMessagesToHistory = (messages: Message[]): Content[] => {
     }));
 };
 
+const getApiSummaryTool = (
+  targetMooseBranch: MooseBranch,
+): FunctionDeclaration => ({
+  name: "get_api_summary",
+  description: `Fetches a lightweight summary of a MOOSE or DML class/module from the local framework manifest. Returns class descriptions, parent classes, method signatures, parameter lists, and attributes. NOTE: You are restricted to the '${targetMooseBranch}' branch for MOOSE, unless checking for retired classes in the 'LEGACY' branch. Use this as your first step for syntax checks and structural research to save tokens.`,
+  parameters: {
+    type: Type.OBJECT,
+    properties: {
+      framework: {
+        type: Type.STRING,
+        description: "Framework name ('MOOSE' or 'DML').",
+        enum: ["MOOSE", "DML"],
+      },
+      module_name: {
+        type: Type.STRING,
+        description:
+          "Name of the class or enum to search for (e.g., 'SPAWN', 'Group.Category').",
+      },
+      branch: {
+        type: Type.STRING,
+        description: `Required for MOOSE. Choose the branch matching your authorized configuration: '${targetMooseBranch}'.`,
+        enum: ["STABLE", "DEVELOP", "LEGACY"],
+      },
+    },
+    required: ["framework", "module_name"],
+  },
+});
+
 const getFrameworkDocsTool = (
-  targetMooseBranch: MooseBranch
+  targetMooseBranch: MooseBranch,
 ): FunctionDeclaration => ({
   name: "get_framework_docs",
-  description: `Fetches RAW LUA SOURCE CODE from the official GitHub repositories (MOOSE or DML). Use this to analyze function definitions and header comments directly. NOTE: In 'SANITIZED' mode, you are restricted to the '${targetMooseBranch}' branch. In 'DESANITIZED' (Dev Mode), you have full authorization to hot-test and research across any branch (STABLE, DEVELOP, or LEGACY).`,
+  description: `Fetches RAW LUA SOURCE CODE from the official GitHub repositories (MOOSE or DML). Use this to analyze function definitions and header comments directly. NOTE: You are restricted to the '${targetMooseBranch}' branch for MOOSE, unless checking for retired classes in the 'LEGACY' branch.`,
   parameters: {
     type: Type.OBJECT,
     properties: {
@@ -147,6 +176,7 @@ ${envStatus}`;
   const tools: Tool[] = [
     {
       functionDeclarations: [
+        getApiSummaryTool(targetMooseBranch),
         getFrameworkDocsTool(targetMooseBranch),
         sseDocsTool,
       ],
@@ -318,8 +348,66 @@ export async function* sendMessageStream(
         toolCalls.map(async (call) => {
           let result = "";
 
+          // HANDLER: API Summary (Phase 2)
+          if (call.name === "get_api_summary") {
+            const args = call.args as unknown as FrameworkDocsArgs;
+            const { framework, module_name, branch } = args;
+
+            const fwKey = framework.toUpperCase();
+            let branchKey = branch || (fwKey === "MOOSE" ? targetMooseBranch : "master");
+            if (fwKey === "DML") branchKey = "master";
+
+            const fingerprint = `SUMMARY:${fwKey}:${module_name}:${branchKey}`.toUpperCase();
+
+            if (toolCallHistory.has(fingerprint)) {
+              result = `REFERENCE NOTICE: API Summary for '${module_name}' was already provided.`;
+            } else {
+              toolCallHistory.add(fingerprint);
+              try {
+                const manifest = await getManifest(fwKey, branchKey);
+                if (manifest) {
+                  // Case-insensitive lookup for Class
+                  const className = Object.keys(manifest.classes).find(
+                    (k) => k.toLowerCase() === module_name.toLowerCase(),
+                  );
+                  // Case-insensitive lookup for Enum
+                  const enumName = Object.keys(manifest.enums).find(
+                    (k) => k.toLowerCase() === module_name.toLowerCase(),
+                  );
+
+                  if (className) {
+                    result = JSON.stringify(
+                      {
+                        type: "class",
+                        name: className,
+                        ...manifest.classes[className],
+                      },
+                      null,
+                      2,
+                    );
+                  } else if (enumName) {
+                    result = JSON.stringify(
+                      {
+                        type: "enum",
+                        name: enumName,
+                        ...manifest.enums[enumName],
+                      },
+                      null,
+                      2,
+                    );
+                  } else {
+                    result = `ERROR: '${module_name}' not found in ${fwKey} ${branchKey} manifest. Fallback to 'get_framework_docs' for a deeper file-tree search.`;
+                  }
+                } else {
+                  result = `ERROR: Local manifest for ${fwKey} ${branchKey} not found. Ensure frameworks are synchronized.`;
+                }
+              } catch (e) {
+                result = `ERROR: Failed to access local manifest: ${(e as Error).message}`;
+              }
+            }
+          }
           // HANDLER: GitHub Docs
-          if (call.name === "get_framework_docs") {
+          else if (call.name === "get_framework_docs") {
             const args = call.args as unknown as FrameworkDocsArgs;
             const { framework, module_name, branch } = args;
 

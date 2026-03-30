@@ -209,7 +209,7 @@ export const getFrameworkDocs = async (
   moduleName: string,
   branch: string = "STABLE",
   githubToken?: string, // Token passed from context
-  isDesanitized: boolean = false, // Security context
+  _isDesanitized: boolean = false, // Security context
   authorizedMooseBranch: string = "STABLE" // The user's active setting
 ): Promise<string> => {
   try {
@@ -224,17 +224,11 @@ export const getFrameworkDocs = async (
     if (fwKey === "DML") branchKey = "MAIN";
 
     // SECURITY & MODE CHECK: 
-    // - In DESANITIZED (Dev Mode), allow hot-testing any branch.
-    // - In SANITIZED (Standard Mode), lock to the authorizedMooseBranch (Stable/Legacy).
-    if (!isDesanitized && fwKey === "MOOSE") {
+    // - Lock to the authorizedMooseBranch based on System Configuration.
+    // - LEGACY branch is always allowed for fallback checks of retired classes.
+    if (fwKey === "MOOSE") {
       if (branchKey !== authorizedMooseBranch && branchKey !== "LEGACY") {
-        return `ACCESS DENIED: In Sanitized Mode, the Librarian is locked to the MOOSE '${authorizedMooseBranch}' branch. 
-        
-Please enable 'Dev Mode' (Desanitized) in Settings to hot-test or research modules from other branches.`;
-      }
-      
-      if (branchKey === "DEVELOP") {
-        return `ACCESS DENIED: The MOOSE 'DEVELOP' branch requires 'Dev Mode' to be active.`;
+        return `ACCESS DENIED: The Librarian is locked to the MOOSE '${authorizedMooseBranch}' branch based on your System Configuration.`;
       }
     }
 
