@@ -18,7 +18,7 @@ interface AssetKitProps {
 }
 
 const AssetKit: React.FC<AssetKitProps> = ({ settings }) => {
-  const [showCopySuccess, setShowCopySuccess] = useState(false);
+  const [copiedId, setCopiedId] = useState<string | null>(null);
 
   const getMooseDownloadUrl = (branch: MooseBranch) => {
     switch (branch) {
@@ -33,15 +33,27 @@ const AssetKit: React.FC<AssetKitProps> = ({ settings }) => {
     }
   };
 
-  const dynamicLoaderSnippet = `--- MOOSE DYNAMIC LOADER SNIPPET ---
--- Point this to your local MOOSE repository path
-MOOSE_DEVELOPMENT_FOLDER = "C:/Users/YourName/Saved Games/DCS/Scripts/MOOSE"
-assert(loadfile(MOOSE_DEVELOPMENT_FOLDER .. "/Moose Setup/Moose Templates/Moose_Dynamic_Loader.lua"))()`;
+  const frameworkLoaderSnippet = `--- MOOSE FRAMEWORK LOADER ---
+local MOOSE_BASE = "C:/Users/YourName/GitHub/MOOSE"
+MOOSE_DEVELOPMENT_FOLDER = MOOSE_BASE .. "/Moose Development"
+assert(loadfile(MOOSE_BASE .. "/Moose Setup/Moose Templates/Moose_Dynamic_Loader.lua"))()`;
 
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(dynamicLoaderSnippet);
-    setShowCopySuccess(true);
-    setTimeout(() => setShowCopySuccess(false), 2000);
+  const missionScriptLoaderSnippet = `--- MISSION SCRIPT HOT-LOADER ---
+local scriptPath = "C:/Users/YourName/Saved Games/DCS/Scripts/MyMission.lua"
+local f, err = loadfile(scriptPath)
+if f then
+    f()
+    env.info("HOT LOADER: Loaded " .. scriptPath)
+    trigger.action.outText("Script Loaded Successfully", 5)
+else
+    env.error("HOT LOADER ERROR: " .. tostring(err))
+    trigger.action.outText("Hot-Load Failed. Check dcs.log", 5)
+end`;
+
+  const copyToClipboard = (id: string, text: string) => {
+    navigator.clipboard.writeText(text);
+    setCopiedId(id);
+    setTimeout(() => setCopiedId(null), 2000);
   };
 
   return (
@@ -82,30 +94,53 @@ assert(loadfile(MOOSE_DEVELOPMENT_FOLDER .. "/Moose Setup/Moose Templates/Moose_
 
       {/* 2. DEVELOPER TOOLS (Conditional) */}
       {settings.isDesanitized && (
-        <section className="space-y-3 animate-slideDown">
+        <section className="space-y-4 animate-slideDown">
           <h3 className="text-[10px] font-bold text-app-status-danger uppercase tracking-widest flex items-center gap-2">
             <AlertIcon className="h-3 w-3" />
-            Hot-Testing / Loader
+            Dev Mode: Hot-Loading Tools
           </h3>
+          
+          {/* Framework Loader */}
           <div className="bg-app-status-danger/5 border border-app-status-danger/20 rounded-xl p-4 space-y-3">
-             <p className="text-[9px] text-app-secondary leading-relaxed font-mono">
-               Active in **Dev Mode**. Use this snippet to load MOOSE source directly from your local drive for any branch.
-             </p>
+             <div>
+                <p className="text-[10px] font-bold text-app-primary uppercase tracking-tighter">Framework Loader</p>
+                <p className="text-[9px] text-app-tertiary mt-1">Load framework source directly from your local repository clone.</p>
+             </div>
              <div className="relative group">
                 <pre className="p-2.5 bg-app-canvas border border-app-border rounded-lg text-[9px] font-mono text-app-tertiary overflow-x-auto select-all whitespace-pre-wrap">
-                  {dynamicLoaderSnippet}
+                  {frameworkLoaderSnippet}
                 </pre>
                 <button 
-                  onClick={copyToClipboard}
+                  onClick={() => copyToClipboard("framework", frameworkLoaderSnippet)}
                   className="absolute top-2 right-2 p-1.5 bg-app-surface border border-app-border rounded shadow-sm opacity-0 group-hover:opacity-100 transition-opacity hover:text-app-brand"
                 >
-                  {showCopySuccess ? "✓" : <PlusIcon className="h-3 w-3" />}
+                  {copiedId === "framework" ? "✓" : <PlusIcon className="h-3 w-3" />}
                 </button>
              </div>
-             <p className="text-[8px] text-app-status-danger/70 font-bold uppercase tracking-tighter">
-               Requires Desanitized Mission Scripting environment.
-             </p>
           </div>
+
+          {/* Mission Script Loader */}
+          <div className="bg-app-status-danger/5 border border-app-status-danger/20 rounded-xl p-4 space-y-3">
+             <div>
+                <p className="text-[10px] font-bold text-app-primary uppercase tracking-tighter">Mission Script Hot-Loader</p>
+                <p className="text-[9px] text-app-tertiary mt-1">Iterate on your scripts without restarting missions. Provides UI feedback and logs to dcs.log.</p>
+             </div>
+             <div className="relative group">
+                <pre className="p-2.5 bg-app-canvas border border-app-border rounded-lg text-[9px] font-mono text-app-tertiary overflow-x-auto select-all whitespace-pre-wrap">
+                  {missionScriptLoaderSnippet}
+                </pre>
+                <button 
+                  onClick={() => copyToClipboard("script", missionScriptLoaderSnippet)}
+                  className="absolute top-2 right-2 p-1.5 bg-app-surface border border-app-border rounded shadow-sm opacity-0 group-hover:opacity-100 transition-opacity hover:text-app-brand"
+                >
+                  {copiedId === "script" ? "✓" : <PlusIcon className="h-3 w-3" />}
+                </button>
+             </div>
+          </div>
+
+          <p className="text-[8px] text-app-status-danger/70 font-bold uppercase tracking-widest text-center">
+            Requires Desanitized DCS Environment (MissionScripting.lua)
+          </p>
         </section>
       )}
 

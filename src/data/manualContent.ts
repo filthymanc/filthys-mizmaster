@@ -80,7 +80,7 @@ export const MANUAL_CONTENT = {
             {
               label: "THE ARMORY",
               color: "nav",
-              text: 'A persistent snippet library. Save useful code blocks from the chat stream by clicking the "Star" icon on any code block. Access your saved snippets via the Armory button in the sidebar footer.',
+              text: 'A persistent script library. Save useful code blocks from the chat stream by clicking the "Star" icon on any code block. Access your saved scripts via the Armory button in the sidebar footer.',
             },
             {
               label: "FIELD MODE",

@@ -321,7 +321,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                                 {
                                   id: "DEVELOP",
                                   label: "DEVELOP (develop)",
-                                  desc: "Bleeding Edge - Requires Dev Mode for experimental features and multi-branch research.",
+                                  desc: "Experimental / Testing - Access bleeding-edge framework features and latest class updates. (Independent of Dev Mode).",
                                 },
                                 {
                                   id: "LEGACY",
@@ -367,10 +367,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                                 Dev Mode (Desanitize)
                               </div>
                               <div className="text-xs text-app-tertiary mt-1 max-w-md">
-                                Enables advanced scripting and hot-testing. In
-                                Dev Mode, the Librarian can research across all
-                                branches and the AI can generate OS-level code
-                                (io, lfs, os).
+                                Enables advanced scripting for desanitized DCS environments. In Dev Mode, the AI can generate OS-level code (io, lfs, os) to read/write files dynamically while DCS is running.
                               </div>
                             </div>
                             <button

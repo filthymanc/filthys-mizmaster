@@ -127,7 +127,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
         <div className="absolute bottom-full left-0 mb-4 ml-4 flex flex-col gap-1 z-50 animate-scaleIn origin-bottom-left max-h-[60vh] overflow-y-auto custom-scrollbar pr-3 pb-2 transition-all">
           <div className="sticky top-0 bg-app-canvas/95 backdrop-blur-sm py-1 z-10 border-b border-app-border/30 mb-1">
             <div className="text-[10px] font-bold text-app-tertiary uppercase tracking-wider pl-1">
-              Librarian Intelligence (v2.17.0)
+              Librarian Intelligence (v2.18.0)
             </div>
           </div>
           {suggestions.map((s, idx) => (

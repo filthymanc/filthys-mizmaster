@@ -63,8 +63,7 @@ const OnboardingModal: React.FC<OnboardingModalProps> = ({
             </h1>
           </div>
           <p className="text-app-secondary">
-            Welcome, Commander. Before you begin scripting, please review the
-            core operational protocols.
+            Operational boundaries and technical requirements.
           </p>
         </div>
 
@@ -77,23 +76,14 @@ const OnboardingModal: React.FC<OnboardingModalProps> = ({
             </div>
             <div>
               <h3 className="font-bold text-app-primary mb-1">
-                Sanitized Environment Protocol
+                Sanitization vs Dev Mode
               </h3>
               <p className="text-sm text-app-secondary leading-relaxed">
-                By default, DCS disables{" "}
-                <code className="text-app-status-nav">os</code>,{" "}
-                <code className="text-app-status-nav">io</code>, and{" "}
-                <code className="text-app-status-nav">lfs</code> libraries to
-                prevent malicious code execution.
+                By default, DCS disables <code className="text-app-status-nav">os</code>, <code className="text-app-status-nav">io</code>, and <code className="text-app-status-nav">lfs</code> libraries to
+                prevent unauthorized file-system access.
                 <br />
                 <br />
-                This AI assumes a <strong>SANITIZED</strong> environment. It
-                will refuse to generate file-system code unless you explicitly
-                enable{" "}
-                <span className="text-app-status-danger font-bold">
-                  DEV MODE
-                </span>{" "}
-                in the <strong>System Configuration</strong>.
+                The AI assumes a <strong>SANITIZED</strong> environment. To generate code that reads/writes files dynamically while DCS is running, you must enable <span className="text-app-status-danger font-bold">DEV MODE</span> in System Settings. This is independent of your framework branch.
               </p>
             </div>
           </div>
@@ -105,16 +95,11 @@ const OnboardingModal: React.FC<OnboardingModalProps> = ({
             </div>
             <div>
               <h3 className="font-bold text-app-primary mb-1">
-                Anti-Hallucination Mandate
+                Librarian Execution
               </h3>
               <p className="text-sm text-app-secondary leading-relaxed">
-                DCS scripting engines (MOOSE/DCS API) are strict. To prevent
-                crashes, the AI is programmed to{" "}
-                <strong>Verify before Writing</strong>.
-                <br />
-                <br />
-                If it cannot find a documented method (e.g., in the MOOSE docs),
-                it will fallback to standard Lua math rather than guessing.
+                The AI is programmed to fetch and analyze live Lua source code from GitHub (MOOSE/DML) before answering. 
+                If a method is missing or deprecated in your target branch, the AI will provide a notice and fall back to standard Lua logic.
               </p>
             </div>
           </div>

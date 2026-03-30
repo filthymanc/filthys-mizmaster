@@ -57,7 +57,7 @@ const ArmoryModal: React.FC<ArmoryModalProps> = ({ isOpen, onClose }) => {
             <h2 className="text-xl font-bold tracking-widest text-app-primary flex items-center gap-3">
               THE ARMORY
               <span className="text-xs font-mono bg-app-brand/10 text-app-brand px-2 py-1 rounded border border-app-brand/20">
-                SNIPPET LIBRARY
+                SCRIPT LIBRARY
               </span>
             </h2>
             <p className="text-xs text-app-tertiary mt-1 font-mono uppercase tracking-wider">
@@ -153,7 +153,7 @@ const ArmoryModal: React.FC<ArmoryModalProps> = ({ isOpen, onClose }) => {
                       data-testid="armory-snippet-delete"
                       onClick={() => {
                         if (
-                          window.confirm("Delete this snippet permanently?")
+                          window.confirm("Delete this script permanently?")
                         ) {
                           removeSnippet(snippet.id);
                         }
