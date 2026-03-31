@@ -1,6 +1,18 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+### [2.20.1](https://github.com/filthymanc/filthys-mizmaster/compare/v2.20.0...v2.20.1) (2026-03-31)
+
+
+### Bug Fixes
+
+* **librarian:** dynamic branch routing, expanded MOOSE discovery, and DML branch sync ([461a0e5](https://github.com/filthymanc/filthys-mizmaster/commit/461a0e570d52d5946a7c093861abb156fe25c690))
+
+
+### Documentation
+
+* update README with Manifest-Driven IntelliSense features ([cbc75b5](https://github.com/filthymanc/filthys-mizmaster/commit/cbc75b5d2cff94ed7f8555392e340d2985cd8a56))
+
 ## [2.20.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.19.0...v2.20.0) (2026-03-30)
 
 
