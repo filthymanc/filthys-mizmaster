@@ -354,8 +354,9 @@ export async function* sendMessageStream(
             const { framework, module_name, branch } = args;
 
             const fwKey = framework.toUpperCase();
-            let branchKey = branch || (fwKey === "MOOSE" ? targetMooseBranch : "master");
-            if (fwKey === "DML") branchKey = "master";
+            // Branch mapping: For MOOSE, use provided branch or fallback to setting. For DML, force 'main'.
+            let branchKey = branch || (fwKey === "MOOSE" ? targetMooseBranch : "main");
+            if (fwKey === "DML") branchKey = "main";
 
             const fingerprint = `SUMMARY:${fwKey}:${module_name}:${branchKey}`.toUpperCase();
 
@@ -413,13 +414,14 @@ export async function* sendMessageStream(
 
             // Normalize Module Name (remove extension) for Fingerprinting
             const cleanModuleName = module_name.toUpperCase().replace(/\.LUA$/, "");
+            const fwKey = framework.toUpperCase();
             const branchKey =
               branch ||
-              (framework.toUpperCase() === "MOOSE"
+              (fwKey === "MOOSE"
                 ? targetMooseBranch
                 : "MAIN");
             const fingerprint =
-              `${framework}:${cleanModuleName}:${branchKey}`.toUpperCase();
+              `${fwKey}:${cleanModuleName}:${branchKey}`.toUpperCase();
 
             if (toolCallHistory.has(fingerprint)) {
               logger.warn(
@@ -436,7 +438,7 @@ If you believe the previous fetch was incomplete, proceed with the information y
               result = await getFrameworkDocs(
                 framework,
                 module_name,
-                branch || targetMooseBranch,
+                branchKey,
                 githubToken,
                 isDesanitized,
                 targetMooseBranch,

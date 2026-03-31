@@ -79,7 +79,7 @@ async function generateManifest() {
       
       // Find all classes in this file (usually just one, but let's be safe)
       // Matches both CLASS = { and CLASS = BASE:Inherit
-      const classRegex = /^([A-Z_0-9]+)\s*=\s*(?:\{|BASE:Inherit)/gm;
+      const classRegex = /^\s*([A-Z_0-9]+)\s*=\s*(?:\{|BASE:Inherit)/gm;
       let classMatch;
 
       while ((classMatch = classRegex.exec(fileContent)) !== null) {

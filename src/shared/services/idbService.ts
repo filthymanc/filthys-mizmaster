@@ -60,7 +60,7 @@ interface MissionArchitectDB extends DBSchema {
 }
 
 const DB_NAME = "filthys-mizmaster-db";
-const DB_VERSION = 8; // Incremented to support enums
+const DB_VERSION = 10; // Incremented to force flush for expanded regex manifest discovery
 
 let dbPromise: Promise<IDBPDatabase<MissionArchitectDB>> | null = null;
 
@@ -85,8 +85,8 @@ const getDB = () => {
         ) {
           db.createObjectStore("librarian_cache", { keyPath: "url" });
         }
-        // Force manifest flush on Version 8 to ensure new enums are cached
-        if (oldVersion < 8) {
+        // Force manifest flush on Version 10 to ensure expanded class discovery is cached
+        if (oldVersion < 10) {
           if (db.objectStoreNames.contains("manifests")) {
             db.deleteObjectStore("manifests");
           }

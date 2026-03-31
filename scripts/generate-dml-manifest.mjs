@@ -9,7 +9,7 @@ const PROJECT_ROOT = path.resolve(__dirname, '..');
 
 const DML_ROOT = globalThis.process.env.DML_ROOT || path.resolve(PROJECT_ROOT, '../DML');
 const MODULES_DIR = path.join(DML_ROOT, 'modules');
-const OUTPUT_PATH = globalThis.process.env.MANIFEST_OUTPUT_PATH || path.join(PROJECT_ROOT, 'public/manifests/dml-master.json');
+const OUTPUT_PATH = globalThis.process.env.MANIFEST_OUTPUT_PATH || path.join(PROJECT_ROOT, 'public/manifests/dml-main.json');
 
 /**
  * Extracts the framework version from the git repository.
@@ -36,7 +36,7 @@ async function generateDmlManifest() {
   const manifest = {
     version,
     framework: 'DML',
-    branch: 'master',
+    branch: 'main',
     modules: {},
     classes: {}, // Map DML modules to classes for Librarian compatibility
     enums: {} // Map static constants for Librarian auto-suggest

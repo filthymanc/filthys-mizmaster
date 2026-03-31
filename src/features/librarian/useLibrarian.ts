@@ -38,7 +38,7 @@ export const useLibrarian = (input: string, activeBranch: string = "master-ng") 
       let data = await getManifest(framework, branch);
       if (!data) {
         console.log(`[Librarian] Manifest miss for ${framework} (${branch}), fetching...`);
-        const url = framework === "MOOSE" ? `/filthys-mizmaster/manifests/moose-${branch}.json` : `/filthys-mizmaster/manifests/dml-master.json`;
+        const url = framework === "MOOSE" ? `/filthys-mizmaster/manifests/moose-${branch}.json` : `/filthys-mizmaster/manifests/dml-main.json`;
         const response = await fetch(url);
         if (response.ok) {
           data = await response.json();
@@ -62,7 +62,7 @@ export const useLibrarian = (input: string, activeBranch: string = "master-ng") 
   // 1. Initial Load
   useEffect(() => {
     loadManifest("MOOSE", activeBranch);
-    loadManifest("DML", "master");
+    loadManifest("DML", "main");
   }, [activeBranch, loadManifest]);
 
   // 2. Suggestion Logic
@@ -86,7 +86,7 @@ export const useLibrarian = (input: string, activeBranch: string = "master-ng") 
 
     // Determine Framework dynamically
     const mooseManifest = manifests[`MOOSE-${activeBranch}`];
-    const dmlManifest = manifests[`DML-master`];
+    const dmlManifest = manifests[`DML-main`];
     
     let matches: LibrarianSuggestion[] = [];
     const lowerLast = lastWord.toLowerCase();
