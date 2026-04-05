@@ -1,6 +1,13 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+### [2.20.2](https://github.com/filthymanc/filthys-mizmaster/compare/v2.20.1...v2.20.2) (2026-04-05)
+
+
+### Bug Fixes
+
+* **deps:** security updates ([d200e15](https://github.com/filthymanc/filthys-mizmaster/commit/d200e1523d38c62b85cbdac22581d946dcc7ec42))
+
 ### [2.20.1](https://github.com/filthymanc/filthys-mizmaster/compare/v2.20.0...v2.20.1) (2026-03-31)
 
 
