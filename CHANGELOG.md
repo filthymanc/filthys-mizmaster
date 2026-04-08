@@ -1,6 +1,13 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+## [2.21.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.20.3...v2.21.0) (2026-04-08)
+
+
+### Features
+
+* resolve mobile overflow for Librarian and chat bubbles (Issues [#13](https://github.com/filthymanc/filthys-mizmaster/issues/13), [#14](https://github.com/filthymanc/filthys-mizmaster/issues/14)) ([d840887](https://github.com/filthymanc/filthys-mizmaster/commit/d840887b8b41297690165d2464f93e9f76648372))
+
 ### [2.20.3](https://github.com/filthymanc/filthys-mizmaster/compare/v2.20.2...v2.20.3) (2026-04-08)
 
 
