@@ -128,6 +128,7 @@ const sseDocsTool: FunctionDeclaration = {
 
 /**
  * Validates the API key with a 10-second timeout.
+ * Throws specific errors for better reporting.
  */
 export const validateApiKey = async (apiKey: string): Promise<boolean> => {
   const ai = new GoogleGenAI({ apiKey });
@@ -148,6 +149,16 @@ export const validateApiKey = async (apiKey: string): Promise<boolean> => {
     clearTimeout(timeoutId);
     const err = error as Error;
     logger.warn("API Validation failed or timed out:", err.message);
+    
+    // Attempt to detect invalid key vs network
+    const msg = err.message.toLowerCase();
+    if (msg.includes("api_key_invalid") || msg.includes("invalid api key") || msg.includes("400")) {
+       throw new Error("INVALID_KEY");
+    }
+    if (err.name === 'AbortError' || msg.includes("timeout")) {
+       throw new Error("TIMEOUT");
+    }
+    
     return false;
   }
 };

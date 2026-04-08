@@ -1,5 +1,5 @@
 {
-  "version": "2.9.16-984-gefff22fc1",
+  "version": "2.9.17-11-gb0976d161",
   "framework": "MOOSE",
   "branch": "develop",
   "classes": {
@@ -47056,6 +47056,10 @@
         "SetTTSProviderKitten": {
           "params": [],
           "description": "Use Kitten to provide text-to-speech. Only supported if used in combination with Hound-TTS as backend."
+        },
+        "SetTTSProviderOpenAI": {
+          "params": [],
+          "description": "Use OpenAI to provide text-to-speech. Only supported if used in combination with Hound-TTS as backend."
         },
         "Help": {
           "params": [],

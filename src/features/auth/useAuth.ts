@@ -96,13 +96,16 @@ export const useAuth = () => {
         setIsLocked(false);
         setIsVerifying(false);
         return true;
-      } else {
-        setAuthError("Invalid API Key. Please check your credentials.");
-        setIsVerifying(false);
-        return false;
       }
-    } catch {
-      setAuthError("Connection failed. Please check your network.");
+      return false;
+    } catch (e: any) {
+      if (e.message === "INVALID_KEY") {
+        setAuthError("Invalid API Key. Please verify your credentials in Google AI Studio.");
+      } else if (e.message === "TIMEOUT") {
+        setAuthError("Validation timed out. Please check your network connection.");
+      } else {
+        setAuthError("Connection failed. Please check your network or proxy settings.");
+      }
       setIsVerifying(false);
       return false;
     }
@@ -120,23 +123,37 @@ export const useAuth = () => {
     if (!stored || !crypto.isEncrypted(stored)) return false;
 
     setIsVerifying(true);
+    setAuthError(null);
     try {
       const decrypted = await crypto.decryptSecret(stored, password);
-      // Verify the decrypted key works
-      const isValid = await validateApiKey(decrypted);
-      if (isValid) {
-        memoryMasterPassword = password;
-        setApiKey(decrypted);
-        setHasApiKey(true);
-        setIsVisitor(false);
-        setIsLocked(false);
-        setIsVerifying(false);
-        return true;
+      
+      // If we reach here, the password is correct (decryption succeeded)
+      memoryMasterPassword = password;
+      setApiKey(decrypted);
+      setHasApiKey(true);
+      setIsVisitor(false);
+      setIsLocked(false);
+
+      // Attempt to validate the key in the background
+      try {
+        await validateApiKey(decrypted);
+      } catch (ve: any) {
+        if (ve.message === "INVALID_KEY") {
+           setAuthError("API Key is invalid or cancelled. Please update it in Settings.");
+        } else {
+           setAuthError("API Validation failed. Check network status in the workspace.");
+        }
       }
-      throw new Error("INVALID_KEY_IN_VAULT");
-    } catch {
+      
       setIsVerifying(false);
-      setAuthError("Invalid Master Password or Corrupt Vault.");
+      return true;
+    } catch (e: any) {
+      setIsVerifying(false);
+      if (e.message === "INVALID_MASTER_PASSWORD") {
+        setAuthError("Invalid Master Password.");
+      } else {
+        setAuthError("Vault decryption failed or corrupted.");
+      }
       return false;
     }
   };

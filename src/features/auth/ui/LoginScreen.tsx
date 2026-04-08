@@ -18,6 +18,7 @@ import {
   ShieldIcon,
   LockClosedIcon,
   KeyIcon,
+  RefreshIcon,
 } from "../../../shared/ui/Icons";
 import SecurityBriefingModal from "./SecurityBriefingModal";
 
@@ -51,6 +52,19 @@ const LoginScreen: React.FC<LoginScreenProps> = ({
       if (onUnlock) await onUnlock(masterPassword);
     } else {
       await onLogin(tempKey, masterPassword);
+    }
+  };
+
+  const handleForceUpdate = () => {
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+        window.location.reload();
+      });
+    } else {
+      window.location.reload();
     }
   };
 
@@ -251,15 +265,26 @@ const LoginScreen: React.FC<LoginScreenProps> = ({
               </button>
             </div>
 
-            <div className="mt-6 pt-6 border-t border-app-border text-center">
+            <div className="mt-6 pt-6 border-t border-app-border text-center flex flex-col gap-3">
               <button
                 id="auth-login-manual-trigger"
                 data-testid="auth-login-manual-trigger"
                 onClick={onOpenFieldManual}
-                className="px-4 py-2 bg-app-canvas hover:bg-app-surface text-app-secondary hover:text-app-primary rounded-lg text-[10px] font-bold transition-all border border-app-border hover:border-app-highlight flex items-center justify-center gap-2 mx-auto uppercase tracking-widest"
+                className="px-4 py-2 bg-app-canvas hover:bg-app-surface text-app-secondary hover:text-app-primary rounded-lg text-[10px] font-bold transition-all border border-app-border hover:border-app-highlight flex items-center justify-center gap-2 mx-auto uppercase tracking-widest w-full sm:w-auto"
               >
                 <BookIcon className="h-4 w-4" />
                 READ FIELD MANUAL
+              </button>
+              
+              <button
+                id="auth-login-force-update"
+                data-testid="auth-login-force-update"
+                type="button"
+                onClick={handleForceUpdate}
+                className="text-[10px] font-bold text-app-tertiary hover:text-app-primary flex items-center justify-center gap-1 transition-colors uppercase tracking-widest mx-auto"
+              >
+                <RefreshIcon className="h-3 w-3" />
+                Force PWA Update
               </button>
             </div>
           </div>
