@@ -1,6 +1,13 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+### [2.20.3](https://github.com/filthymanc/filthys-mizmaster/compare/v2.20.2...v2.20.3) (2026-04-08)
+
+
+### Bug Fixes
+
+* **auth:** decouple vault unlock from API key validation and add PWA force update ([cca512d](https://github.com/filthymanc/filthys-mizmaster/commit/cca512d845e3b4ea4f04f096b2f98f0ba11be1dd))
+
 ### [2.20.2](https://github.com/filthymanc/filthys-mizmaster/compare/v2.20.1...v2.20.2) (2026-04-05)
 
 
