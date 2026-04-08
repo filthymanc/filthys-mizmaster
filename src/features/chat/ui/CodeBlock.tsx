@@ -132,7 +132,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
 
   if (isInline) {
     return (
-      <code className="text-app-brand font-bold font-mono text-[calc(1em-1px)] bg-app-highlight/30 px-1 rounded">
+      <code className="text-app-brand font-bold font-mono text-[calc(1em-1px)] bg-app-highlight/30 px-1 rounded break-all">
         {codeText || children}
       </code>
     );

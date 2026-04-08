@@ -124,7 +124,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
     <div className="max-w-6xl mx-auto relative px-2 sm:px-0">
       {/* Librarian Intelligence Overlay */}
       {isVisible && !isGenerating && (
-        <div className="absolute bottom-full left-0 mb-4 ml-4 flex flex-col gap-1 z-50 animate-scaleIn origin-bottom-left max-h-[60vh] overflow-y-auto custom-scrollbar pr-3 pb-2 transition-all">
+        <div className="absolute bottom-full left-2 right-2 mb-4 flex flex-col gap-1 z-50 animate-scaleIn origin-bottom-left max-h-[40vh] sm:max-h-[60vh] overflow-y-auto custom-scrollbar pr-1 pb-2 transition-all">
           <div className="sticky top-0 bg-app-canvas/95 backdrop-blur-sm py-1 z-10 border-b border-app-border/30 mb-1">
             <div className="text-[10px] font-bold text-app-tertiary uppercase tracking-wider pl-1">
               Librarian Intelligence (v2.18.0)
@@ -136,7 +136,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
               id={`chat-input-suggestion-${idx}`}
               data-testid={`chat-input-suggestion-${idx}`}
               onClick={() => handleSuggestionClick(s)}
-              className="group flex items-center gap-3 bg-app-frame border border-app-border hover:border-app-brand px-3 py-2 rounded-lg shadow-lg hover:bg-app-surface transition-all text-left max-w-md"
+              className="group flex items-center gap-3 bg-app-frame border border-app-border hover:border-app-brand px-3 py-2 rounded-lg shadow-lg hover:bg-app-surface transition-all text-left w-full sm:max-w-md"
             >
               <div
                 className={`
