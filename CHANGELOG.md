@@ -1,6 +1,12 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+### [2.21.2](https://github.com/filthymanc/filthys-mizmaster/compare/v2.21.1...v2.21.2) (2026-04-19)
+
+
+### Bug Fixes
+
+* comprehensive updates to librarian services, auth flow, and manifest generation ([653711e](https://github.com/filthymanc/filthys-mizmaster/commit/653711e65f195857e1b2d437509bdc07e48bb6f8))
 
 ### [2.21.1](https://github.com/filthymanc/filthys-mizmaster/compare/v2.21.0...v2.21.1) (2026-04-19)
 
