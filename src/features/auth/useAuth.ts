@@ -100,11 +100,17 @@ export const useAuth = () => {
       return false;
     } catch (e: any) {
       if (e.message === "INVALID_KEY") {
-        setAuthError("Invalid API Key. Please verify your credentials in Google AI Studio.");
+        setAuthError(
+          "Invalid API Key. Please verify your credentials in Google AI Studio.",
+        );
       } else if (e.message === "TIMEOUT") {
-        setAuthError("Validation timed out. Please check your network connection.");
+        setAuthError(
+          "Validation timed out. Please check your network connection.",
+        );
       } else {
-        setAuthError("Connection failed. Please check your network or proxy settings.");
+        setAuthError(
+          "Connection failed. Please check your network or proxy settings.",
+        );
       }
       setIsVerifying(false);
       return false;
@@ -126,7 +132,7 @@ export const useAuth = () => {
     setAuthError(null);
     try {
       const decrypted = await crypto.decryptSecret(stored, password);
-      
+
       // If we reach here, the password is correct (decryption succeeded)
       memoryMasterPassword = password;
       setApiKey(decrypted);
@@ -139,12 +145,16 @@ export const useAuth = () => {
         await validateApiKey(decrypted);
       } catch (ve: any) {
         if (ve.message === "INVALID_KEY") {
-           setAuthError("API Key is invalid or cancelled. Please update it in Settings.");
+          setAuthError(
+            "API Key is invalid or cancelled. Please update it in Settings.",
+          );
         } else {
-           setAuthError("API Validation failed. Check network status in the workspace.");
+          setAuthError(
+            "API Validation failed. Check network status in the workspace.",
+          );
         }
       }
-      
+
       setIsVerifying(false);
       return true;
     } catch (e: any) {

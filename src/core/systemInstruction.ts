@@ -78,4 +78,3 @@ export const SYSTEM_INSTRUCTION = `
   <step sequence="5" name="DELIVER">Provide clear, structured explanations alongside strict-typed, error-free Lua code blocks.</step>
 </cognitive_process>
 `;
-

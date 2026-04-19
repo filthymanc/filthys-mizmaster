@@ -34,18 +34,21 @@ const ChatInput: React.FC<ChatInputProps> = ({
 }) => {
   const [input, setInput] = useState("");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-  
+
   const { settings } = useSettings();
   const getBranchName = (target: string) => {
     switch (target) {
-      case "LEGACY": return "master";
-      case "DEVELOP": return "develop";
+      case "LEGACY":
+        return "master";
+      case "DEVELOP":
+        return "develop";
       case "STABLE":
-      default: return "master-ng";
+      default:
+        return "master-ng";
     }
   };
   const activeBranch = getBranchName(settings.targetMooseBranch);
-  
+
   const { suggestions, isVisible } = useLibrarian(input, activeBranch);
 
   useEffect(() => {
@@ -95,13 +98,17 @@ const ChatInput: React.FC<ChatInputProps> = ({
 
     // 4. Space Suppression for Namespaces (Classes and Enum Groups)
     // We don't add a space to allow users to immediately type a dot or colon.
-    const isNamespace = 
-      suggestion.type === "class" || 
-      (suggestion.type === "enum" && (suggestion.description?.startsWith("Namespace:") || !suggestion.label.includes(".")));
-    
+    const isNamespace =
+      suggestion.type === "class" ||
+      (suggestion.type === "enum" &&
+        (suggestion.description?.startsWith("Namespace:") ||
+          !suggestion.label.includes(".")));
+
     // Exception: If it's a "leaf" enum (uppercase constants like S_EVENT), it's a completion
-    const isLeafEnum = suggestion.type === "enum" && /[A-Z_]{3,}/.test(suggestion.label.split(".").pop() || "");
-    
+    const isLeafEnum =
+      suggestion.type === "enum" &&
+      /[A-Z_]{3,}/.test(suggestion.label.split(".").pop() || "");
+
     if (!isNamespace || isLeafEnum) {
       newInput += " ";
     }
@@ -160,7 +167,8 @@ const ChatInput: React.FC<ChatInputProps> = ({
                     {s.label}
                   </div>
                   {s.type === "attribute" && (
-                    <span className={`
+                    <span
+                      className={`
                       text-[9px] px-1 rounded uppercase font-bold border
                       ${
                         s.attrType === "trigger"
@@ -169,7 +177,8 @@ const ChatInput: React.FC<ChatInputProps> = ({
                             ? "border-app-status-alert text-app-status-alert bg-app-status-alert/10"
                             : "border-app-status-nav text-app-status-nav bg-app-status-nav/10"
                       }
-                    `}>
+                    `}
+                    >
                       {s.attrType}
                     </span>
                   )}

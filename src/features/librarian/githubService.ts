@@ -80,7 +80,7 @@ const getApiHeaders = (token?: string): HeadersInit => {
  */
 const fetchRepoTree = async (
   config: RepoConfig,
-  token?: string
+  token?: string,
 ): Promise<GitHubFile[]> => {
   const cacheKey = `${TREE_CACHE_PREFIX}${config.owner}-${config.repo}-${config.branch}`;
   const cached = localStorage.getItem(cacheKey);
@@ -99,7 +99,7 @@ const fetchRepoTree = async (
   }
 
   console.log(
-    `[Librarian] Fetching fresh tree for ${config.repo}/${config.branch}...`
+    `[Librarian] Fetching fresh tree for ${config.repo}/${config.branch}...`,
   );
   const url = `https://api.github.com/repos/${config.owner}/${config.repo}/git/trees/${config.branch}?recursive=1`;
 
@@ -109,7 +109,7 @@ const fetchRepoTree = async (
 
   if (response.status === 401) {
     throw new Error(
-      "GitHub Token Invalid. Please check your token in Settings."
+      "GitHub Token Invalid. Please check your token in Settings.",
     );
   }
 
@@ -118,13 +118,13 @@ const fetchRepoTree = async (
     throw new Error(
       isTokenUsed
         ? "GitHub Rate Limit reached even with Token. Please wait a moment or check your token permissions in Settings."
-        : "GitHub Rate Limit reached (60/hr). Add a free Personal Access Token in Settings to increase this to 5000/hr and continue deep-searching frameworks."
+        : "GitHub Rate Limit reached (60/hr). Add a free Personal Access Token in Settings to increase this to 5000/hr and continue deep-searching frameworks.",
     );
   }
 
   if (!response.ok) {
     throw new Error(
-      `GitHub API Error: ${response.status} ${response.statusText}`
+      `GitHub API Error: ${response.status} ${response.statusText}`,
     );
   }
 
@@ -132,7 +132,7 @@ const fetchRepoTree = async (
 
   if (data.truncated) {
     console.warn(
-      "[Librarian] Warning: Repository tree is truncated by GitHub (too large)."
+      "[Librarian] Warning: Repository tree is truncated by GitHub (too large).",
     );
   }
 
@@ -143,7 +143,7 @@ const fetchRepoTree = async (
       JSON.stringify({
         timestamp: Date.now(),
         tree: data.tree,
-      })
+      }),
     );
   } catch {
     console.warn("Failed to cache tree (Storage Quota).");
@@ -156,7 +156,7 @@ const fetchRepoTree = async (
  */
 const findFileInTree = (
   tree: GitHubFile[],
-  query: string
+  query: string,
 ): GitHubFile | null => {
   const cleanQuery = query
     .toLowerCase()
@@ -170,7 +170,7 @@ const findFileInTree = (
   if (exactMatch) return exactMatch;
 
   const suffixMatch = tree.find((f) =>
-    f.path.toLowerCase().endsWith(`/${cleanQuery}.lua`)
+    f.path.toLowerCase().endsWith(`/${cleanQuery}.lua`),
   );
   if (suffixMatch) return suffixMatch;
 
@@ -178,7 +178,7 @@ const findFileInTree = (
     (f) =>
       f.type === "blob" &&
       f.path.endsWith(".lua") &&
-      f.path.toLowerCase().includes(cleanQuery)
+      f.path.toLowerCase().includes(cleanQuery),
   );
 
   return fuzzyMatch || null;
@@ -210,12 +210,12 @@ export const getFrameworkDocs = async (
   branch: string = "STABLE",
   githubToken?: string, // Token passed from context
   _isDesanitized: boolean = false, // Security context
-  authorizedMooseBranch: string = "STABLE" // The user's active setting
+  authorizedMooseBranch: string = "STABLE", // The user's active setting
 ): Promise<string> => {
   try {
     // 1. Opportunistic Cleanup
     pruneCache(CONTENT_CACHE_TTL).catch((e) =>
-      console.warn("[Librarian] Cache prune failed:", e)
+      console.warn("[Librarian] Cache prune failed:", e),
     );
 
     const fwKey = framework.toUpperCase();
@@ -223,7 +223,7 @@ export const getFrameworkDocs = async (
 
     if (fwKey === "DML") branchKey = "MAIN";
 
-    // SECURITY & MODE CHECK: 
+    // SECURITY & MODE CHECK:
     // - Lock to the authorizedMooseBranch based on System Configuration.
     // - LEGACY branch is always allowed for fallback checks of retired classes.
     if (fwKey === "MOOSE") {
@@ -249,25 +249,30 @@ export const getFrameworkDocs = async (
     if (!file) {
       // PROACTIVE BRANCH CHECK: If not found in current branch, check others to provide helpful error
       let locationHint = "";
-      if (authorizedMooseBranch === "STABLE" || authorizedMooseBranch === "DEVELOP") {
-         // Check LEGACY
-         const legacyConfig = REPOS["MOOSE"]["LEGACY"];
-         try {
-            const legacyTree = await fetchRepoTree(legacyConfig, githubToken);
-            if (findFileInTree(legacyTree, moduleName)) {
-               locationHint = `\n\nPROACTIVE HINT: Module '${moduleName}' was found in the 'LEGACY' (master) branch. It may have been retired or replaced in '${branchKey}'.`;
-            }
-         } catch { /* ignore */ }
+      if (
+        authorizedMooseBranch === "STABLE" ||
+        authorizedMooseBranch === "DEVELOP"
+      ) {
+        // Check LEGACY
+        const legacyConfig = REPOS["MOOSE"]["LEGACY"];
+        try {
+          const legacyTree = await fetchRepoTree(legacyConfig, githubToken);
+          if (findFileInTree(legacyTree, moduleName)) {
+            locationHint = `\n\nPROACTIVE HINT: Module '${moduleName}' was found in the 'LEGACY' (master) branch. It may have been retired or replaced in '${branchKey}'.`;
+          }
+        } catch {
+          /* ignore */
+        }
       }
 
       const suggestions = tree
         .filter(
           (f) =>
-            f.path.includes(moduleName.slice(0, 3)) && f.path.endsWith(".lua")
+            f.path.includes(moduleName.slice(0, 3)) && f.path.endsWith(".lua"),
         )
         .slice(0, 5)
         .map((f) => f.path);
-      
+
       return `ERROR: Module '${moduleName}' not found in ${config.repo} [${branchKey}].${locationHint}\n\nDid you mean: ${suggestions.join(", ")}?`;
     }
 
@@ -299,7 +304,7 @@ export const getFrameworkDocs = async (
         const ageHours =
           (Date.now() - cachedEntry.timestamp) / (1000 * 60 * 60);
         console.log(
-          `[Librarian] Cache Hit: ${file.path} (Age: ${ageHours.toFixed(1)}h)`
+          `[Librarian] Cache Hit: ${file.path} (Age: ${ageHours.toFixed(1)}h)`,
         );
 
         const metadata = `[Librarian Source Metadata]
@@ -331,14 +336,14 @@ URL: ${contentUrl}
 
     if (file.path.endsWith(".lua") && fileSize > COMPRESSION_THRESHOLD) {
       console.log(
-        `[Librarian] Compressing ${file.path} (${fileSize} bytes)...`
+        `[Librarian] Compressing ${file.path} (${fileSize} bytes)...`,
       );
       content = parseLuaSource(content);
     }
 
     // 6. Write to Cache (Async)
     cacheFile(contentUrl, content).catch((e) =>
-      console.warn("[Librarian] Failed to cache file:", e)
+      console.warn("[Librarian] Failed to cache file:", e),
     );
 
     const metadata = `[Librarian Source Metadata]

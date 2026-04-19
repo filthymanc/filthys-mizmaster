@@ -1,164 +1,142 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
-### [2.21.1](https://github.com/filthymanc/filthys-mizmaster/compare/v2.21.0...v2.21.1) (2026-04-19)
 
+### [2.21.1](https://github.com/filthymanc/filthys-mizmaster/compare/v2.21.0...v2.21.1) (2026-04-19)
 
 ### Bug Fixes
 
-* **security:** patch protobufjs critical CVE via npm audit fix ([50303c9](https://github.com/filthymanc/filthys-mizmaster/commit/50303c9a5848c836093e75da958bd66a9c57ec98))
+- **security:** patch protobufjs critical CVE via npm audit fix ([50303c9](https://github.com/filthymanc/filthys-mizmaster/commit/50303c9a5848c836093e75da958bd66a9c57ec98))
 
 ## [2.21.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.20.3...v2.21.0) (2026-04-08)
 
-
 ### Features
 
-* resolve mobile overflow for Librarian and chat bubbles (Issues [#13](https://github.com/filthymanc/filthys-mizmaster/issues/13), [#14](https://github.com/filthymanc/filthys-mizmaster/issues/14)) ([d840887](https://github.com/filthymanc/filthys-mizmaster/commit/d840887b8b41297690165d2464f93e9f76648372))
+- resolve mobile overflow for Librarian and chat bubbles (Issues [#13](https://github.com/filthymanc/filthys-mizmaster/issues/13), [#14](https://github.com/filthymanc/filthys-mizmaster/issues/14)) ([d840887](https://github.com/filthymanc/filthys-mizmaster/commit/d840887b8b41297690165d2464f93e9f76648372))
 
 ### [2.20.3](https://github.com/filthymanc/filthys-mizmaster/compare/v2.20.2...v2.20.3) (2026-04-08)
 
-
 ### Bug Fixes
 
-* **auth:** decouple vault unlock from API key validation and add PWA force update ([cca512d](https://github.com/filthymanc/filthys-mizmaster/commit/cca512d845e3b4ea4f04f096b2f98f0ba11be1dd))
+- **auth:** decouple vault unlock from API key validation and add PWA force update ([cca512d](https://github.com/filthymanc/filthys-mizmaster/commit/cca512d845e3b4ea4f04f096b2f98f0ba11be1dd))
 
 ### [2.20.2](https://github.com/filthymanc/filthys-mizmaster/compare/v2.20.1...v2.20.2) (2026-04-05)
 
-
 ### Bug Fixes
 
-* **deps:** security updates ([d200e15](https://github.com/filthymanc/filthys-mizmaster/commit/d200e1523d38c62b85cbdac22581d946dcc7ec42))
+- **deps:** security updates ([d200e15](https://github.com/filthymanc/filthys-mizmaster/commit/d200e1523d38c62b85cbdac22581d946dcc7ec42))
 
 ### [2.20.1](https://github.com/filthymanc/filthys-mizmaster/compare/v2.20.0...v2.20.1) (2026-03-31)
 
-
 ### Bug Fixes
 
-* **librarian:** dynamic branch routing, expanded MOOSE discovery, and DML branch sync ([461a0e5](https://github.com/filthymanc/filthys-mizmaster/commit/461a0e570d52d5946a7c093861abb156fe25c690))
-
+- **librarian:** dynamic branch routing, expanded MOOSE discovery, and DML branch sync ([461a0e5](https://github.com/filthymanc/filthys-mizmaster/commit/461a0e570d52d5946a7c093861abb156fe25c690))
 
 ### Documentation
 
-* update README with Manifest-Driven IntelliSense features ([cbc75b5](https://github.com/filthymanc/filthys-mizmaster/commit/cbc75b5d2cff94ed7f8555392e340d2985cd8a56))
+- update README with Manifest-Driven IntelliSense features ([cbc75b5](https://github.com/filthymanc/filthys-mizmaster/commit/cbc75b5d2cff94ed7f8555392e340d2985cd8a56))
 
 ## [2.20.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.19.0...v2.20.0) (2026-03-30)
 
-
 ### Features
 
-* **librarian:** introduce get_api_summary tool for token-efficient research ([34d8c86](https://github.com/filthymanc/filthys-mizmaster/commit/34d8c86184d2c55c2c52685b7450bc2c78b0e302))
+- **librarian:** introduce get_api_summary tool for token-efficient research ([34d8c86](https://github.com/filthymanc/filthys-mizmaster/commit/34d8c86184d2c55c2c52685b7450bc2c78b0e302))
 
 ## [2.19.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.18.0...v2.19.0) (2026-03-30)
 
-
 ### Features
 
-* synchronize in-app documentation and overhaul hot-loading tools ([0506388](https://github.com/filthymanc/filthys-mizmaster/commit/05063887899652047a18de26341b9b79252bc6a4))
+- synchronize in-app documentation and overhaul hot-loading tools ([0506388](https://github.com/filthymanc/filthys-mizmaster/commit/05063887899652047a18de26341b9b79252bc6a4))
 
 ## [2.18.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.17.1...v2.18.0) (2026-03-30)
 
-
 ### Features
 
-* **librarian:** implement manifest-driven IntelliSense and UI overhaul ([b311b97](https://github.com/filthymanc/filthys-mizmaster/commit/b311b9769cea9efe4227814558b4ee5ba126cf90))
+- **librarian:** implement manifest-driven IntelliSense and UI overhaul ([b311b97](https://github.com/filthymanc/filthys-mizmaster/commit/b311b9769cea9efe4227814558b4ee5ba126cf90))
 
 ### [2.17.1](https://github.com/filthymanc/filthys-mizmaster/compare/v2.17.0...v2.17.1) (2026-03-29)
 
-
 ### Miscellaneous Chores
 
-* **security:** resolve moderate and high vulnerabilities via npm audit fix ([f040f86](https://github.com/filthymanc/filthys-mizmaster/commit/f040f86b1575561c8d77e96ba1042ff1bdaed275))
+- **security:** resolve moderate and high vulnerabilities via npm audit fix ([f040f86](https://github.com/filthymanc/filthys-mizmaster/commit/f040f86b1575561c8d77e96ba1042ff1bdaed275))
 
 ## [2.17.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.16.0...v2.17.0) (2026-03-21)
 
-
 ### Features
 
-* **librarian:** v2.17.0 snippets, strict attribute logic, and UI overhaul ([4f163ff](https://github.com/filthymanc/filthys-mizmaster/commit/4f163fffe508ce2e29705212fe0d448b57e58f35))
+- **librarian:** v2.17.0 snippets, strict attribute logic, and UI overhaul ([4f163ff](https://github.com/filthymanc/filthys-mizmaster/commit/4f163fffe508ce2e29705212fe0d448b57e58f35))
 
 ## [2.16.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.15.0...v2.16.0) (2026-03-21)
 
-
 ### Features
 
-* **ui:** unified dev-mode descriptions and universal hot-loading tools ([555ea18](https://github.com/filthymanc/filthys-mizmaster/commit/555ea181d3daaa268dc8b1d51a0aea041a6dd29a))
+- **ui:** unified dev-mode descriptions and universal hot-loading tools ([555ea18](https://github.com/filthymanc/filthys-mizmaster/commit/555ea181d3daaa268dc8b1d51a0aea041a6dd29a))
 
 ## [2.15.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.14.1...v2.15.0) (2026-03-20)
 
-
 ### Features
 
-* **librarian:** v2.15.0 - high-density manifests, inheritance & dynamic branch routing ([fda07c4](https://github.com/filthymanc/filthys-mizmaster/commit/fda07c4d22429a1251fd52c82b97369ce6bca52b))
+- **librarian:** v2.15.0 - high-density manifests, inheritance & dynamic branch routing ([fda07c4](https://github.com/filthymanc/filthys-mizmaster/commit/fda07c4d22429a1251fd52c82b97369ce6bca52b))
 
 ### [2.14.1](https://github.com/filthymanc/filthys-mizmaster/compare/v2.14.0...v2.14.1) (2026-03-20)
 
-
 ### Miscellaneous Chores
 
-* dev-sync v2.14.0 synchronization and environment audit ([0ef7613](https://github.com/filthymanc/filthys-mizmaster/commit/0ef7613584ddae69ed7f1be6a05ac3c6ce008d51))
+- dev-sync v2.14.0 synchronization and environment audit ([0ef7613](https://github.com/filthymanc/filthys-mizmaster/commit/0ef7613584ddae69ed7f1be6a05ac3c6ce008d51))
 
 ## [2.14.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.13.1...v2.14.0) (2026-03-19)
 
-
 ### Features
 
-* implement MOOSE branch configuration and loop mitigation ([5648a78](https://github.com/filthymanc/filthys-mizmaster/commit/5648a78e46e6e20c6f9f03069bbf8849d79b1aa7))
+- implement MOOSE branch configuration and loop mitigation ([5648a78](https://github.com/filthymanc/filthys-mizmaster/commit/5648a78e46e6e20c6f9f03069bbf8849d79b1aa7))
 
 ### [2.13.1](https://github.com/filthymanc/filthys-mizmaster/compare/v2.13.0...v2.13.1) (2026-03-19)
 
 ## [2.13.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.12.0...v2.13.0) (2026-03-18)
 
-
 ### Features
 
-* implement MOOSE legacy branch support and retired class protocol ([f4969b4](https://github.com/filthymanc/filthys-mizmaster/commit/f4969b4786874582acddf4d96f3f437a7f860b0b))
+- implement MOOSE legacy branch support and retired class protocol ([f4969b4](https://github.com/filthymanc/filthys-mizmaster/commit/f4969b4786874582acddf4d96f3f437a7f860b0b))
 
 ## [2.12.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.11.0...v2.12.0) (2026-03-18)
 
-
 ### Features
 
-* update MOOSE stable branch to master-ng and fix community resources link ([d1e36a4](https://github.com/filthymanc/filthys-mizmaster/commit/d1e36a44067432ae6979d28152d3d4637ae262c2))
+- update MOOSE stable branch to master-ng and fix community resources link ([d1e36a4](https://github.com/filthymanc/filthys-mizmaster/commit/d1e36a44067432ae6979d28152d3d4637ae262c2))
 
 ## [2.11.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.10.0...v2.11.0) (2026-03-17)
 
-
 ### Features
 
-* synchronize functional accents with official RAF tactical palette (v2.3.2) ([2bc02fb](https://github.com/filthymanc/filthys-mizmaster/commit/2bc02fbed3e9ef0b3e794a9cfc208798a49eb4eb))
-
+- synchronize functional accents with official RAF tactical palette (v2.3.2) ([2bc02fb](https://github.com/filthymanc/filthys-mizmaster/commit/2bc02fbed3e9ef0b3e794a9cfc208798a49eb4eb))
 
 ### Miscellaneous Chores
 
-* resolve merge conflicts in CHANGELOG.md ([ffbfbc6](https://github.com/filthymanc/filthys-mizmaster/commit/ffbfbc6c6785c6b1c5305157a4b37a8fab2454ad))
+- resolve merge conflicts in CHANGELOG.md ([ffbfbc6](https://github.com/filthymanc/filthys-mizmaster/commit/ffbfbc6c6785c6b1c5305157a4b37a8fab2454ad))
 
 ### [2.9.2](https://github.com/filthymanc/filthys-mizmaster/compare/v2.9.1...v2.9.2) (2026-03-16)
 
-
 ### Bug Fixes
 
-* resolve ContentUnion error, implement sanitized logger, and upgrade Librarian to Power Tool ([8f031e0](https://github.com/filthymanc/filthys-mizmaster/commit/8f031e0179ce34816e9cd0acc27cc78bac904a73))
-* resolve missing ShieldIcon import in ChatMessage ([5b29abc](https://github.com/filthymanc/filthys-mizmaster/commit/5b29abc04aa08112781bd2bef31341175da470c1))
-
+- resolve ContentUnion error, implement sanitized logger, and upgrade Librarian to Power Tool ([8f031e0](https://github.com/filthymanc/filthys-mizmaster/commit/8f031e0179ce34816e9cd0acc27cc78bac904a73))
+- resolve missing ShieldIcon import in ChatMessage ([5b29abc](https://github.com/filthymanc/filthys-mizmaster/commit/5b29abc04aa08112781bd2bef31341175da470c1))
 
 ### Miscellaneous Chores
 
-* **release:** 2.9.2 ([243fc69](https://github.com/filthymanc/filthys-mizmaster/commit/243fc6972835fc450856815246f4b4370a0fad6e))
+- **release:** 2.9.2 ([243fc69](https://github.com/filthymanc/filthys-mizmaster/commit/243fc6972835fc450856815246f4b4370a0fad6e))
 
 ## [2.10.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.9.2...v2.10.0) (2026-03-16)
 
-
 ### Features
 
-* implement doctrine-aligned RAF theme system v2.3 ([994fa6c](https://github.com/filthymanc/filthys-mizmaster/commit/994fa6cfac636d51308d918d07b75fca336030dc))
+- implement doctrine-aligned RAF theme system v2.3 ([994fa6c](https://github.com/filthymanc/filthys-mizmaster/commit/994fa6cfac636d51308d918d07b75fca336030dc))
 
 ### [2.9.2](https://github.com/filthymanc/filthys-mizmaster/compare/v2.9.1...v2.9.2) (2026-03-16)
 
-
 ### Bug Fixes
 
-* resolve ContentUnion error, implement sanitized logger, and upgrade Librarian to Power Tool ([8f031e0](https://github.com/filthymanc/filthys-mizmaster/commit/8f031e0179ce34816e9cd0acc27cc78bac904a73))
-* resolve missing ShieldIcon import in ChatMessage ([5b29abc](https://github.com/filthymanc/filthys-mizmaster/commit/5b29abc04aa08112781bd2bef31341175da470c1))
+- resolve ContentUnion error, implement sanitized logger, and upgrade Librarian to Power Tool ([8f031e0](https://github.com/filthymanc/filthys-mizmaster/commit/8f031e0179ce34816e9cd0acc27cc78bac904a73))
+- resolve missing ShieldIcon import in ChatMessage ([5b29abc](https://github.com/filthymanc/filthys-mizmaster/commit/5b29abc04aa08112781bd2bef31341175da470c1))
 
 ### [2.9.1](https://github.com/filthymanc/filthys-mizmaster/compare/v2.9.0...v2.9.1) (2026-03-14)
 

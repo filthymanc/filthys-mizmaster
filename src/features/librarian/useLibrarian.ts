@@ -10,8 +10,11 @@
  */
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import { getManifest, saveManifest, FrameworkManifest } from "../../shared/services/idbService";
-
+import {
+  getManifest,
+  saveManifest,
+  FrameworkManifest,
+} from "../../shared/services/idbService";
 
 export interface LibrarianSuggestion {
   label: string;
@@ -23,41 +26,57 @@ export interface LibrarianSuggestion {
   template?: string;
 }
 
-export const useLibrarian = (input: string, activeBranch: string = "master-ng") => {
+export const useLibrarian = (
+  input: string,
+  activeBranch: string = "master-ng",
+) => {
   const [suggestions, setSuggestions] = useState<LibrarianSuggestion[]>([]);
   const [isVisible, setIsVisible] = useState(false);
-  const [manifests, setManifests] = useState<Record<string, FrameworkManifest>>({});
+  const [manifests, setManifests] = useState<Record<string, FrameworkManifest>>(
+    {},
+  );
   const activeFramework = useRef<"MOOSE" | "DML">("MOOSE");
 
   // Load a specific manifest
-  const loadManifest = useCallback(async (framework: "MOOSE" | "DML", branch: string) => {
-    const manifestKey = `${framework}-${branch}`;
-    if (manifests[manifestKey]) return manifests[manifestKey];
+  const loadManifest = useCallback(
+    async (framework: "MOOSE" | "DML", branch: string) => {
+      const manifestKey = `${framework}-${branch}`;
+      if (manifests[manifestKey]) return manifests[manifestKey];
 
-    try {
-      let data = await getManifest(framework, branch);
-      if (!data) {
-        console.log(`[Librarian] Manifest miss for ${framework} (${branch}), fetching...`);
-        const url = framework === "MOOSE" ? `/filthys-mizmaster/manifests/moose-${branch}.json` : `/filthys-mizmaster/manifests/dml-main.json`;
-        const response = await fetch(url);
-        if (response.ok) {
-          data = await response.json();
-          if (data) {
-            data.id = manifestKey;
-            await saveManifest(data);
+      try {
+        let data = await getManifest(framework, branch);
+        if (!data) {
+          console.log(
+            `[Librarian] Manifest miss for ${framework} (${branch}), fetching...`,
+          );
+          const url =
+            framework === "MOOSE"
+              ? `/filthys-mizmaster/manifests/moose-${branch}.json`
+              : `/filthys-mizmaster/manifests/dml-main.json`;
+          const response = await fetch(url);
+          if (response.ok) {
+            data = await response.json();
+            if (data) {
+              data.id = manifestKey;
+              await saveManifest(data);
+            }
           }
         }
-      }
 
-      if (data) {
-        setManifests(prev => ({ ...prev, [manifestKey]: data }));
-        return data;
+        if (data) {
+          setManifests((prev) => ({ ...prev, [manifestKey]: data }));
+          return data;
+        }
+      } catch (error) {
+        console.error(
+          `[Librarian] Failed to load ${framework} manifest:`,
+          error,
+        );
       }
-    } catch (error) {
-      console.error(`[Librarian] Failed to load ${framework} manifest:`, error);
-    }
-    return null;
-  }, [manifests]);
+      return null;
+    },
+    [manifests],
+  );
 
   // 1. Initial Load
   useEffect(() => {
@@ -87,7 +106,7 @@ export const useLibrarian = (input: string, activeBranch: string = "master-ng") 
     // Determine Framework dynamically
     const mooseManifest = manifests[`MOOSE-${activeBranch}`];
     const dmlManifest = manifests[`DML-main`];
-    
+
     let matches: LibrarianSuggestion[] = [];
     const lowerLast = lastWord.toLowerCase();
     const isMethodTrigger = lastWord.includes(":") || lastWord.includes(".");
@@ -98,45 +117,48 @@ export const useLibrarian = (input: string, activeBranch: string = "master-ng") 
     if (isMethodTrigger) {
       const parts = lastWord.split(/[:.]/);
       const rawClassName = parts[0];
-      methodPrefix = parts.length > 1 ? parts[parts.length - 1].toLowerCase() : "";
+      methodPrefix =
+        parts.length > 1 ? parts[parts.length - 1].toLowerCase() : "";
       const rawPrefixPath = parts.slice(0, parts.length - 1).join(".");
 
-      const findEnumMatches = (manifest: FrameworkManifest | undefined, frameworkName: "MOOSE" | "DML") => {
+      const findEnumMatches = (
+        manifest: FrameworkManifest | undefined,
+        frameworkName: "MOOSE" | "DML",
+      ) => {
         if (!manifest?.enums) return [];
         const enumMatches: LibrarianSuggestion[] = [];
         const lowerPrefix = rawPrefixPath.toLowerCase();
 
         for (const [key, data] of Object.entries(manifest.enums)) {
           const lowerKey = key.toLowerCase();
-          
+
           if (lowerKey === lowerPrefix) {
             const fields = data.fields || [];
-            fields.forEach(f => {
+            fields.forEach((f) => {
               if (f.name.toLowerCase().startsWith(methodPrefix)) {
                 enumMatches.push({
                   label: `${key}.${f.name}`,
                   description: f.description || `Constant: ${f.name} in ${key}`,
                   framework: frameworkName,
-                  type: "enum" as const
+                  type: "enum" as const,
                 });
               }
             });
-          } 
-          else if (lowerKey.startsWith(lowerPrefix + ".")) {
+          } else if (lowerKey.startsWith(lowerPrefix + ".")) {
             const relativeKey = key.substring(lowerPrefix.length + 1);
             const segments = relativeKey.split(".");
             const nextSegment = segments[0];
 
             if (nextSegment.toLowerCase().startsWith(methodPrefix)) {
-               const fullLabel = `${rawPrefixPath}.${nextSegment}`;
-               if (!enumMatches.find(m => m.label === fullLabel)) {
-                 enumMatches.push({
-                   label: fullLabel,
-                   description: `Namespace: ${key}`,
-                   framework: frameworkName,
-                   type: "enum" as const
-                 });
-               }
+              const fullLabel = `${rawPrefixPath}.${nextSegment}`;
+              if (!enumMatches.find((m) => m.label === fullLabel)) {
+                enumMatches.push({
+                  label: fullLabel,
+                  description: `Namespace: ${key}`,
+                  framework: frameworkName,
+                  type: "enum" as const,
+                });
+              }
             }
           }
 
@@ -144,12 +166,12 @@ export const useLibrarian = (input: string, activeBranch: string = "master-ng") 
           // We should immediately suggest its fields so they don't have to manually type the dot.
           if (lowerKey === lowerLast) {
             const fields = data.fields || [];
-            fields.forEach(f => {
+            fields.forEach((f) => {
               enumMatches.push({
                 label: `${key}.${f.name}`,
                 description: f.description || `Constant: ${f.name} in ${key}`,
                 framework: frameworkName,
-                type: "enum" as const
+                type: "enum" as const,
               });
             });
           }
@@ -162,8 +184,16 @@ export const useLibrarian = (input: string, activeBranch: string = "master-ng") 
       matches = [...mooseEnumMatches, ...dmlEnumMatches];
 
       // 2. Class Discovery
-      const mooseClass = mooseManifest ? Object.keys(mooseManifest.classes).find(k => k.toLowerCase() === rawClassName.toLowerCase()) : null;
-      const dmlClass = dmlManifest ? Object.keys(dmlManifest.classes).find(k => k.toLowerCase() === rawClassName.toLowerCase()) : null;
+      const mooseClass = mooseManifest
+        ? Object.keys(mooseManifest.classes).find(
+            (k) => k.toLowerCase() === rawClassName.toLowerCase(),
+          )
+        : null;
+      const dmlClass = dmlManifest
+        ? Object.keys(dmlManifest.classes).find(
+            (k) => k.toLowerCase() === rawClassName.toLowerCase(),
+          )
+        : null;
 
       if (mooseClass) {
         framework = "MOOSE";
@@ -174,7 +204,8 @@ export const useLibrarian = (input: string, activeBranch: string = "master-ng") 
       }
 
       activeFramework.current = framework;
-      const currentManifest = framework === "MOOSE" ? mooseManifest : dmlManifest;
+      const currentManifest =
+        framework === "MOOSE" ? mooseManifest : dmlManifest;
 
       let methodMatches: LibrarianSuggestion[] = [];
       let attrMatches: LibrarianSuggestion[] = [];
@@ -182,7 +213,10 @@ export const useLibrarian = (input: string, activeBranch: string = "master-ng") 
       if (currentManifest && className) {
         const classData = currentManifest.classes[className];
         if (classData) {
-          const availableMethods: Record<string, { params?: string[]; description?: string }> = {};
+          const availableMethods: Record<
+            string,
+            { params?: string[]; description?: string }
+          > = {};
           const visited = new Set<string>();
           const collectMethods = (cls: string) => {
             if (visited.has(cls)) return;
@@ -205,7 +239,7 @@ export const useLibrarian = (input: string, activeBranch: string = "master-ng") 
               description: data.description || `Method of ${className}`,
               framework: framework,
               type: "method" as const,
-              params: data.params
+              params: data.params,
             }));
 
           if (activeFramework.current === "DML" && classData.attributes) {
@@ -216,64 +250,84 @@ export const useLibrarian = (input: string, activeBranch: string = "master-ng") 
                 description: `DML ${data.type.toUpperCase()}: Configuration property for ${className}`,
                 framework: "DML" as const,
                 type: "attribute" as const,
-                attrType: data.type
+                attrType: data.type,
               }));
           }
         }
       }
 
-      matches = [...matches, ...attrMatches, ...methodMatches]
-        .sort((a, b) => {
-          if (a.type !== b.type) {
-            const typePriority = { enum: 0, attribute: 1, method: 2, class: 3 };
-            return typePriority[a.type as keyof typeof typePriority] - typePriority[b.type as keyof typeof typePriority];
-          }
-          if (a.type === "attribute" && b.type === "attribute") {
-            const attrPriority: Record<string, number> = { trigger: 1, condition: 2, property: 3 };
-            const priorityA = attrPriority[a.attrType!] || 4;
-            const priorityB = attrPriority[b.attrType!] || 4;
-            return priorityA - priorityB;
-          }
-          return a.label.localeCompare(b.label);
-        });
+      matches = [...matches, ...attrMatches, ...methodMatches].sort((a, b) => {
+        if (a.type !== b.type) {
+          const typePriority = { enum: 0, attribute: 1, method: 2, class: 3 };
+          return (
+            typePriority[a.type as keyof typeof typePriority] -
+            typePriority[b.type as keyof typeof typePriority]
+          );
+        }
+        if (a.type === "attribute" && b.type === "attribute") {
+          const attrPriority: Record<string, number> = {
+            trigger: 1,
+            condition: 2,
+            property: 3,
+          };
+          const priorityA = attrPriority[a.attrType!] || 4;
+          const priorityB = attrPriority[b.attrType!] || 4;
+          return priorityA - priorityB;
+        }
+        return a.label.localeCompare(b.label);
+      });
     } else {
       const searchPattern = lowerLast;
 
       // Determine Framework for Standard Search
-      const isExplicitDml = lowerLast.startsWith("cfx") || lowerLast.startsWith("dml");
+      const isExplicitDml =
+        lowerLast.startsWith("cfx") || lowerLast.startsWith("dml");
       if (isExplicitDml) {
         framework = "DML";
       } else {
-        const mooseMatch = mooseManifest ? Object.keys(mooseManifest.classes).some(k => k.toLowerCase().startsWith(lowerLast)) : false;
-        const dmlMatch = dmlManifest ? Object.keys(dmlManifest.classes).some(k => k.toLowerCase().startsWith(lowerLast)) : false;
+        const mooseMatch = mooseManifest
+          ? Object.keys(mooseManifest.classes).some((k) =>
+              k.toLowerCase().startsWith(lowerLast),
+            )
+          : false;
+        const dmlMatch = dmlManifest
+          ? Object.keys(dmlManifest.classes).some((k) =>
+              k.toLowerCase().startsWith(lowerLast),
+            )
+          : false;
         if (!mooseMatch && dmlMatch) {
           framework = "DML";
         }
       }
 
       activeFramework.current = framework;
-      const currentManifest = framework === "MOOSE" ? mooseManifest : dmlManifest;
+      const currentManifest =
+        framework === "MOOSE" ? mooseManifest : dmlManifest;
 
       if (currentManifest) {
         const allClassNames = Object.keys(currentManifest.classes);
-        const allEnumNames = currentManifest.enums ? Object.keys(currentManifest.enums) : [];
+        const allEnumNames = currentManifest.enums
+          ? Object.keys(currentManifest.enums)
+          : [];
 
         const classMatches = allClassNames
-          .filter(name => name.toLowerCase().includes(searchPattern))
-          .map(name => ({
+          .filter((name) => name.toLowerCase().includes(searchPattern))
+          .map((name) => ({
             label: name,
-            description: currentManifest.classes[name].description || `${framework} ${name} Class`,
+            description:
+              currentManifest.classes[name].description ||
+              `${framework} ${name} Class`,
             framework: framework,
-            type: "class" as const
+            type: "class" as const,
           }));
 
         const enumMatches = allEnumNames
-          .filter(name => name.toLowerCase().startsWith(searchPattern))
-          .map(name => ({
+          .filter((name) => name.toLowerCase().startsWith(searchPattern))
+          .map((name) => ({
             label: name,
             description: `Namespace: ${name}`,
             framework: framework,
-            type: "enum" as const
+            type: "enum" as const,
           }));
 
         matches = [...enumMatches, ...classMatches];

@@ -140,7 +140,10 @@ export const parseLuaSource = (raw: string): string => {
     }
 
     // 2. CLASS DEFINITIONS & INSTANTIATION
-    if (/^[A-Z_0-9]+\s*=\s*[A-Z_0-9.:]+/.test(trimmed) || /^[A-Z_0-9]+\s*=\s*\{/.test(trimmed)) {
+    if (
+      /^[A-Z_0-9]+\s*=\s*[A-Z_0-9.:]+/.test(trimmed) ||
+      /^[A-Z_0-9]+\s*=\s*\{/.test(trimmed)
+    ) {
       output.push(line);
       continue;
     }
@@ -160,8 +163,8 @@ export const parseLuaSource = (raw: string): string => {
 
     // 4. CONSTANTS & ENUMS (Keep significant ones)
     if (/^[A-Z_0-9]+\.[A-Z_0-9]+\s*=/.test(trimmed)) {
-       output.push(line);
-       continue;
+      output.push(line);
+      continue;
     }
   }
 

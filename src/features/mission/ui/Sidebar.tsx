@@ -127,18 +127,18 @@ const Sidebar: React.FC<SidebarProps> = ({
 
         {/* Tab Switcher */}
         <div className="p-2 border-b border-app-border bg-app-canvas flex">
-           <button 
+          <button
             onClick={() => setActiveTab("missions")}
-            className={`flex-1 py-2 text-[10px] font-bold tracking-widest uppercase transition-all rounded-md ${activeTab === 'missions' ? 'bg-app-surface text-app-brand shadow-sm ring-1 ring-app-border' : 'text-app-tertiary hover:text-app-secondary'}`}
-           >
-             Missions
-           </button>
-           <button 
+            className={`flex-1 py-2 text-[10px] font-bold tracking-widest uppercase transition-all rounded-md ${activeTab === "missions" ? "bg-app-surface text-app-brand shadow-sm ring-1 ring-app-border" : "text-app-tertiary hover:text-app-secondary"}`}
+          >
+            Missions
+          </button>
+          <button
             onClick={() => setActiveTab("assets")}
-            className={`flex-1 py-2 text-[10px] font-bold tracking-widest uppercase transition-all rounded-md ${activeTab === 'assets' ? 'bg-app-surface text-app-brand shadow-sm ring-1 ring-app-border' : 'text-app-tertiary hover:text-app-secondary'}`}
-           >
-             Asset Kit
-           </button>
+            className={`flex-1 py-2 text-[10px] font-bold tracking-widest uppercase transition-all rounded-md ${activeTab === "assets" ? "bg-app-surface text-app-brand shadow-sm ring-1 ring-app-border" : "text-app-tertiary hover:text-app-secondary"}`}
+          >
+            Asset Kit
+          </button>
         </div>
 
         {activeTab === "missions" ? (

@@ -275,7 +275,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({
                 <BookIcon className="h-4 w-4" />
                 READ FIELD MANUAL
               </button>
-              
+
               <button
                 id="auth-login-force-update"
                 data-testid="auth-login-force-update"

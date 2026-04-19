@@ -10,7 +10,12 @@
  */
 
 import React from "react";
-import { AppSettings, ApiStatus, Session, MooseBranch } from "../../../core/types";
+import {
+  AppSettings,
+  ApiStatus,
+  Session,
+  MooseBranch,
+} from "../../../core/types";
 import {
   SUGGESTED_QUERIES,
   AVAILABLE_MODELS,
@@ -115,13 +120,17 @@ const Dashboard: React.FC<DashboardProps> = ({
         {/* 2. STREAMLINED STATUS BAR */}
         <div className="flex flex-wrap items-center gap-3 md:gap-6 p-3 rounded-xl border border-app-border bg-app-surface/40 shadow-sm text-[10px] md:text-xs font-bold uppercase tracking-widest font-mono">
           <div className={`flex items-center gap-2 ${getStatusTextColor()}`}>
-            <div className={`w-2 h-2 rounded-full ${apiStatus === 'idle' ? 'bg-app-status-ready animate-pulse shadow-[0_0_8px_var(--color-status-ready)]' : apiStatus === 'error' ? 'bg-app-status-danger' : 'bg-app-tertiary'}`}></div>
+            <div
+              className={`w-2 h-2 rounded-full ${apiStatus === "idle" ? "bg-app-status-ready animate-pulse shadow-[0_0_8px_var(--color-status-ready)]" : apiStatus === "error" ? "bg-app-status-danger" : "bg-app-tertiary"}`}
+            ></div>
             API: {apiStatus === "idle" ? "ONLINE" : apiStatus}
           </div>
           <div className="text-app-border">|</div>
-          
-          <div className={`flex items-center gap-2 ${settings.isDesanitized ? "text-app-status-danger" : "text-app-status-nav"}`}>
-             ENV: {settings.isDesanitized ? "DEV MODE" : "SANITIZED"}
+
+          <div
+            className={`flex items-center gap-2 ${settings.isDesanitized ? "text-app-status-danger" : "text-app-status-nav"}`}
+          >
+            ENV: {settings.isDesanitized ? "DEV MODE" : "SANITIZED"}
           </div>
           <div className="text-app-border">|</div>
 
@@ -135,17 +144,26 @@ const Dashboard: React.FC<DashboardProps> = ({
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* LEFT COLUMN: Configuration, Actions & Suggestions */}
         <div className="lg:col-span-2 flex flex-col gap-6">
-          
           {/* PRE-FLIGHT CONFIGURATION */}
           <div className="bg-app-surface border border-app-border rounded-xl p-5 md:p-6 shadow-sm">
-             <h2 className="text-xs font-bold text-app-secondary uppercase tracking-widest mb-4 flex items-center gap-2">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-app-status-nav" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+            <h2 className="text-xs font-bold text-app-secondary uppercase tracking-widest mb-4 flex items-center gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-4 w-4 text-app-status-nav"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
+                />
               </svg>
               Pre-Flight Parameters
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-              
               {/* MOOSE Target */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
@@ -154,53 +172,74 @@ const Dashboard: React.FC<DashboardProps> = ({
                   </label>
                 </div>
                 <div className="grid grid-cols-3 gap-1 bg-app-canvas p-1 rounded-lg border border-app-border">
-                  {(["STABLE", "DEVELOP", "LEGACY"] as MooseBranch[]).map((b) => (
-                    <button
-                      key={b}
-                      onClick={() => onUpdateSettings({ targetMooseBranch: b })}
-                      className={`py-1.5 text-[9px] md:text-[10px] font-bold rounded transition-all ${
-                        settings.targetMooseBranch === b
-                          ? "bg-app-brand text-app-canvas shadow-sm"
-                          : "text-app-tertiary hover:text-app-secondary hover:bg-app-surface"
-                      }`}
-                    >
-                      {b}
-                    </button>
-                  ))}
+                  {(["STABLE", "DEVELOP", "LEGACY"] as MooseBranch[]).map(
+                    (b) => (
+                      <button
+                        key={b}
+                        onClick={() =>
+                          onUpdateSettings({ targetMooseBranch: b })
+                        }
+                        className={`py-1.5 text-[9px] md:text-[10px] font-bold rounded transition-all ${
+                          settings.targetMooseBranch === b
+                            ? "bg-app-brand text-app-canvas shadow-sm"
+                            : "text-app-tertiary hover:text-app-secondary hover:bg-app-surface"
+                        }`}
+                      >
+                        {b}
+                      </button>
+                    ),
+                  )}
                 </div>
                 <p className="text-[9px] text-app-tertiary font-mono px-1">
-                  {settings.targetMooseBranch === "STABLE" && "Vanilla scripts (master-ng)"}
-                  {settings.targetMooseBranch === "DEVELOP" && "Experimental/Testing (develop)"}
-                  {settings.targetMooseBranch === "LEGACY" && "Retired classes (master)"}
+                  {settings.targetMooseBranch === "STABLE" &&
+                    "Vanilla scripts (master-ng)"}
+                  {settings.targetMooseBranch === "DEVELOP" &&
+                    "Experimental/Testing (develop)"}
+                  {settings.targetMooseBranch === "LEGACY" &&
+                    "Retired classes (master)"}
                 </p>
               </div>
 
               {/* Environment Mode */}
               <div className="space-y-2">
-                 <label className="text-[10px] font-bold text-app-tertiary uppercase tracking-wider flex justify-between">
-                    Security Context
-                 </label>
-                 <button
-                    onClick={() => onUpdateSettings({ isDesanitized: !settings.isDesanitized })}
-                    className={`w-full flex items-center justify-between p-2 rounded-lg border transition-all ${
-                      settings.isDesanitized 
-                        ? "bg-app-status-danger/10 border-app-status-danger text-app-status-danger" 
-                        : "bg-app-canvas border-app-border hover:border-app-highlight text-app-secondary"
-                    }`}
-                 >
-                    <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider">
-                      {settings.isDesanitized ? <AlertIcon className="h-4 w-4" /> : <ShieldIcon className="h-4 w-4" />}
-                      {settings.isDesanitized ? "Dev Mode Active" : "Sanitized"}
-                    </div>
-                    <div className={`relative inline-flex h-4 w-8 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out ${settings.isDesanitized ? "bg-app-status-danger" : "bg-app-primary/20"}`}>
-                      <span aria-hidden="true" className={`pointer-events-none inline-block h-3 w-3 transform rounded-full bg-app-primary shadow ring-0 transition duration-200 ease-in-out ${settings.isDesanitized ? "translate-x-4" : "translate-x-0"}`} />
-                    </div>
-                 </button>
-                 <p className={`text-[9px] font-mono px-1 ${settings.isDesanitized ? "text-app-status-danger/80" : "text-app-tertiary"}`}>
-                   {settings.isDesanitized ? "OS-level libraries unlocked." : "Standard constraints active."}
-                 </p>
+                <label className="text-[10px] font-bold text-app-tertiary uppercase tracking-wider flex justify-between">
+                  Security Context
+                </label>
+                <button
+                  onClick={() =>
+                    onUpdateSettings({ isDesanitized: !settings.isDesanitized })
+                  }
+                  className={`w-full flex items-center justify-between p-2 rounded-lg border transition-all ${
+                    settings.isDesanitized
+                      ? "bg-app-status-danger/10 border-app-status-danger text-app-status-danger"
+                      : "bg-app-canvas border-app-border hover:border-app-highlight text-app-secondary"
+                  }`}
+                >
+                  <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider">
+                    {settings.isDesanitized ? (
+                      <AlertIcon className="h-4 w-4" />
+                    ) : (
+                      <ShieldIcon className="h-4 w-4" />
+                    )}
+                    {settings.isDesanitized ? "Dev Mode Active" : "Sanitized"}
+                  </div>
+                  <div
+                    className={`relative inline-flex h-4 w-8 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out ${settings.isDesanitized ? "bg-app-status-danger" : "bg-app-primary/20"}`}
+                  >
+                    <span
+                      aria-hidden="true"
+                      className={`pointer-events-none inline-block h-3 w-3 transform rounded-full bg-app-primary shadow ring-0 transition duration-200 ease-in-out ${settings.isDesanitized ? "translate-x-4" : "translate-x-0"}`}
+                    />
+                  </div>
+                </button>
+                <p
+                  className={`text-[9px] font-mono px-1 ${settings.isDesanitized ? "text-app-status-danger/80" : "text-app-tertiary"}`}
+                >
+                  {settings.isDesanitized
+                    ? "OS-level libraries unlocked."
+                    : "Standard constraints active."}
+                </p>
               </div>
-
             </div>
           </div>
 

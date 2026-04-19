@@ -152,9 +152,7 @@ const ArmoryModal: React.FC<ArmoryModalProps> = ({ isOpen, onClose }) => {
                       id={`armory-snippet-${snippet.id}-delete`}
                       data-testid="armory-snippet-delete"
                       onClick={() => {
-                        if (
-                          window.confirm("Delete this script permanently?")
-                        ) {
+                        if (window.confirm("Delete this script permanently?")) {
                           removeSnippet(snippet.id);
                         }
                       }}

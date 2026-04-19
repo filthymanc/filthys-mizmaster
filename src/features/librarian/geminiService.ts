@@ -149,16 +149,20 @@ export const validateApiKey = async (apiKey: string): Promise<boolean> => {
     clearTimeout(timeoutId);
     const err = error as Error;
     logger.warn("API Validation failed or timed out:", err.message);
-    
+
     // Attempt to detect invalid key vs network
     const msg = err.message.toLowerCase();
-    if (msg.includes("api_key_invalid") || msg.includes("invalid api key") || msg.includes("400")) {
-       throw new Error("INVALID_KEY");
+    if (
+      msg.includes("api_key_invalid") ||
+      msg.includes("invalid api key") ||
+      msg.includes("400")
+    ) {
+      throw new Error("INVALID_KEY");
     }
-    if (err.name === 'AbortError' || msg.includes("timeout")) {
-       throw new Error("TIMEOUT");
+    if (err.name === "AbortError" || msg.includes("timeout")) {
+      throw new Error("TIMEOUT");
     }
-    
+
     return false;
   }
 };
@@ -366,10 +370,12 @@ export async function* sendMessageStream(
 
             const fwKey = framework.toUpperCase();
             // Branch mapping: For MOOSE, use provided branch or fallback to setting. For DML, force 'main'.
-            let branchKey = branch || (fwKey === "MOOSE" ? targetMooseBranch : "main");
+            let branchKey =
+              branch || (fwKey === "MOOSE" ? targetMooseBranch : "main");
             if (fwKey === "DML") branchKey = "main";
 
-            const fingerprint = `SUMMARY:${fwKey}:${module_name}:${branchKey}`.toUpperCase();
+            const fingerprint =
+              `SUMMARY:${fwKey}:${module_name}:${branchKey}`.toUpperCase();
 
             if (toolCallHistory.has(fingerprint)) {
               result = `REFERENCE NOTICE: API Summary for '${module_name}' was already provided.`;
@@ -424,13 +430,12 @@ export async function* sendMessageStream(
             const { framework, module_name, branch } = args;
 
             // Normalize Module Name (remove extension) for Fingerprinting
-            const cleanModuleName = module_name.toUpperCase().replace(/\.LUA$/, "");
+            const cleanModuleName = module_name
+              .toUpperCase()
+              .replace(/\.LUA$/, "");
             const fwKey = framework.toUpperCase();
             const branchKey =
-              branch ||
-              (fwKey === "MOOSE"
-                ? targetMooseBranch
-                : "MAIN");
+              branch || (fwKey === "MOOSE" ? targetMooseBranch : "MAIN");
             const fingerprint =
               `${fwKey}:${cleanModuleName}:${branchKey}`.toUpperCase();
 
@@ -438,8 +443,7 @@ export async function* sendMessageStream(
               logger.warn(
                 `[Librarian] Duplicate tool call blocked: ${fingerprint}`,
               );
-              result =
-                `REFERENCE NOTICE: The source code for module '${module_name}' (${framework} branch ${branchKey}) was already successfully provided in a previous turn of this session. 
+              result = `REFERENCE NOTICE: The source code for module '${module_name}' (${framework} branch ${branchKey}) was already successfully provided in a previous turn of this session. 
 
 To prevent a context-bloating loop, the Librarian has not re-fetched the full file. Please scroll up and reference the existing '[Librarian Source Metadata]' block for '${module_name}'. 
 

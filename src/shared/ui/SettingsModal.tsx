@@ -335,7 +335,8 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                                   data-testid={`shared-settings-moose-branch-${branch.id.toLowerCase()}`}
                                   onClick={() =>
                                     updateSettings({
-                                    targetMooseBranch: branch.id as MooseBranch,
+                                      targetMooseBranch:
+                                        branch.id as MooseBranch,
                                     })
                                   }
                                   className={`text-left p-3 rounded-xl border transition-all ${
@@ -367,7 +368,10 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                                 Dev Mode (Desanitize)
                               </div>
                               <div className="text-xs text-app-tertiary mt-1 max-w-md">
-                                Enables advanced scripting for desanitized DCS environments. In Dev Mode, the AI can generate OS-level code (io, lfs, os) to read/write files dynamically while DCS is running.
+                                Enables advanced scripting for desanitized DCS
+                                environments. In Dev Mode, the AI can generate
+                                OS-level code (io, lfs, os) to read/write files
+                                dynamically while DCS is running.
                               </div>
                             </div>
                             <button

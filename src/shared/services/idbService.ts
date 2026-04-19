@@ -30,10 +30,16 @@ export interface FrameworkManifest {
       parent?: string | null;
       description?: string;
       methods?: Record<string, { params?: string[]; description?: string }>;
-      attributes?: Record<string, { name: string; type: 'property' | 'trigger' | 'condition' }>;
+      attributes?: Record<
+        string,
+        { name: string; type: "property" | "trigger" | "condition" }
+      >;
     }
   >;
-  enums: Record<string, { description?: string, fields: { name: string; description?: string }[] }>;
+  enums: Record<
+    string,
+    { description?: string; fields: { name: string; description?: string }[] }
+  >;
 }
 
 interface MissionArchitectDB extends DBSchema {
@@ -68,7 +74,9 @@ const getDB = () => {
   if (!dbPromise) {
     dbPromise = openDB<MissionArchitectDB>(DB_NAME, DB_VERSION, {
       upgrade(db, oldVersion, _newVersion, _transaction) {
-        console.log(`[IDB] Upgrading database from v${oldVersion} to v${DB_VERSION}`);
+        console.log(
+          `[IDB] Upgrading database from v${oldVersion} to v${DB_VERSION}`,
+        );
         // Create object stores if they don't exist
         if (!db.objectStoreNames.contains("sessions")) {
           db.createObjectStore("sessions", { keyPath: "id" });
@@ -94,19 +102,23 @@ const getDB = () => {
         }
       },
       blocked() {
-        console.warn("[IDB] Database upgrade blocked! Please close other tabs.");
+        console.warn(
+          "[IDB] Database upgrade blocked! Please close other tabs.",
+        );
       },
       blocking() {
-        console.warn("[IDB] Database version change pending. Closing connection.");
+        console.warn(
+          "[IDB] Database version change pending. Closing connection.",
+        );
         if (dbPromise) {
-          dbPromise.then(db => db.close());
+          dbPromise.then((db) => db.close());
           dbPromise = null;
         }
       },
       terminated() {
         console.error("[IDB] Database connection terminated.");
         dbPromise = null;
-      }
+      },
     });
   }
   return dbPromise;

@@ -79,11 +79,21 @@ const OnboardingModal: React.FC<OnboardingModalProps> = ({
                 Sanitization vs Dev Mode
               </h3>
               <p className="text-sm text-app-secondary leading-relaxed">
-                By default, DCS disables <code className="text-app-status-nav">os</code>, <code className="text-app-status-nav">io</code>, and <code className="text-app-status-nav">lfs</code> libraries to
+                By default, DCS disables{" "}
+                <code className="text-app-status-nav">os</code>,{" "}
+                <code className="text-app-status-nav">io</code>, and{" "}
+                <code className="text-app-status-nav">lfs</code> libraries to
                 prevent unauthorized file-system access.
                 <br />
                 <br />
-                The AI assumes a <strong>SANITIZED</strong> environment. To generate code that reads/writes files dynamically while DCS is running, you must enable <span className="text-app-status-danger font-bold">DEV MODE</span> in System Settings. This is independent of your framework branch.
+                The AI assumes a <strong>SANITIZED</strong> environment. To
+                generate code that reads/writes files dynamically while DCS is
+                running, you must enable{" "}
+                <span className="text-app-status-danger font-bold">
+                  DEV MODE
+                </span>{" "}
+                in System Settings. This is independent of your framework
+                branch.
               </p>
             </div>
           </div>
@@ -98,8 +108,10 @@ const OnboardingModal: React.FC<OnboardingModalProps> = ({
                 Librarian Execution
               </h3>
               <p className="text-sm text-app-secondary leading-relaxed">
-                The AI is programmed to fetch and analyze live Lua source code from GitHub (MOOSE/DML) before answering. 
-                If a method is missing or deprecated in your target branch, the AI will provide a notice and fall back to standard Lua logic.
+                The AI is programmed to fetch and analyze live Lua source code
+                from GitHub (MOOSE/DML) before answering. If a method is missing
+                or deprecated in your target branch, the AI will provide a
+                notice and fall back to standard Lua logic.
               </p>
             </div>
           </div>

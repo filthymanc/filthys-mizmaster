@@ -70,7 +70,7 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({
 
         // V2 Theme Initialization / Migration
         let themeSet: ThemeSet = parsed.themeSet || "mono";
-        
+
         // Migrate v2.1 sets to v2.3 RAF sets
         if ((themeSet as string) === "nvg") themeSet = "woodland";
         if ((themeSet as string) === "coyote") themeSet = "desert";
