@@ -1,6 +1,13 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+### [2.21.1](https://github.com/filthymanc/filthys-mizmaster/compare/v2.21.0...v2.21.1) (2026-04-19)
+
+
+### Bug Fixes
+
+* **security:** patch protobufjs critical CVE via npm audit fix ([50303c9](https://github.com/filthymanc/filthys-mizmaster/commit/50303c9a5848c836093e75da958bd66a9c57ec98))
+
 ## [2.21.0](https://github.com/filthymanc/filthys-mizmaster/compare/v2.20.3...v2.21.0) (2026-04-08)
 
 
