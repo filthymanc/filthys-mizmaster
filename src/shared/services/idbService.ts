@@ -30,6 +30,7 @@ export interface FrameworkManifest {
       parent?: string | null;
       description?: string;
       methods?: Record<string, { params?: string[]; description?: string }>;
+      fields?: Record<string, { type: string; description?: string }>;
       attributes?: Record<
         string,
         { name: string; type: "property" | "trigger" | "condition" }

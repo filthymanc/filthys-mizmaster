@@ -374,6 +374,17 @@ export async function* sendMessageStream(
               branch || (fwKey === "MOOSE" ? targetMooseBranch : "main");
             if (fwKey === "DML") branchKey = "main";
 
+            // Translate logical branch keys (STABLE/DEVELOP/LEGACY) to git branch names
+            // that match how manifests are keyed in IDB by useLibrarian (MOOSE-master-ng, etc.)
+            const mooseBranchMap: Record<string, string> = {
+              STABLE: "master-ng",
+              DEVELOP: "develop",
+              LEGACY: "master",
+            };
+            if (fwKey === "MOOSE" && mooseBranchMap[branchKey]) {
+              branchKey = mooseBranchMap[branchKey];
+            }
+
             const fingerprint =
               `SUMMARY:${fwKey}:${module_name}:${branchKey}`.toUpperCase();
 

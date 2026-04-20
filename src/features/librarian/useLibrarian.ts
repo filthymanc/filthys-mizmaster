@@ -253,6 +253,19 @@ export const useLibrarian = (
                 attrType: data.type,
               }));
           }
+
+          if (classData.fields) {
+            const fieldMatches: LibrarianSuggestion[] = Object.entries(classData.fields)
+              .filter(([name]) => name.toLowerCase().startsWith(methodPrefix))
+              .map(([name, data]) => ({
+                label: `${className}.${name}`,
+                description: `${data.type} — ${data.description || `Field of ${className}`}`,
+                framework: framework,
+                type: "attribute" as const,
+                attrType: "property" as const,
+              }));
+            attrMatches = [...attrMatches, ...fieldMatches];
+          }
         }
       }
 

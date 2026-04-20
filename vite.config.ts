@@ -10,8 +10,20 @@ const __dirname = dirname(__filename);
 
 const packageJson = JSON.parse(readFileSync("./package.json", "utf-8"));
 
+// Dev-only plugin: strips `upgrade-insecure-requests` from the index.html CSP meta tag
+// so the host-side Hybrid Browser can load modules from the container via plain HTTP.
+// Only active during `vite dev` — production builds retain the full CSP.
+const stripUpgradeCspInDev = () => ({
+  name: "strip-upgrade-csp-dev",
+  apply: "serve" as const,
+  transformIndexHtml(html: string) {
+    return html.replace(/\s*upgrade-insecure-requests;?/g, "");
+  },
+});
+
 export default defineConfig({
   plugins: [
+    stripUpgradeCspInDev(),
     react(),
     VitePWA({
       strategies: "injectManifest",
@@ -50,6 +62,7 @@ export default defineConfig({
       },
       injectManifest: {
         globPatterns: ["**/*.{js,css,html,ico,png,svg,json}"],
+        maximumFileSizeToCacheInBytes: 4 * 1024 * 1024,
       },
     }),
   ],

@@ -161,8 +161,9 @@ export const parseLuaSource = (raw: string): string => {
       continue;
     }
 
-    // 4. CONSTANTS & ENUMS (Keep significant ones)
-    if (/^[A-Z_0-9]+\.[A-Z_0-9]+\s*=/.test(trimmed)) {
+    // 4. CONSTANTS, FIELDS & ENUMS (Keep significant ones)
+    // Allows camelCase property names (e.g. TARS.targetNameFilter) in addition to ALL_CAPS
+    if (/^[A-Z_0-9]+\.[A-Za-z_0-9]+\s*=/.test(trimmed)) {
       output.push(line);
       continue;
     }

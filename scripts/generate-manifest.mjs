@@ -14,7 +14,7 @@ const branch = globalThis.process.argv[2] || "master-ng";
 // Path to the MOOSE framework root
 const MOOSE_ROOT =
   globalThis.process.env.MOOSE_ROOT ||
-  path.resolve(PROJECT_ROOT, `../moose-${branch}/Moose Development/Moose`);
+  path.resolve(PROJECT_ROOT, `../MOOSE/${branch}/Moose Development/Moose`);
 
 // Path to the output manifest file
 const OUTPUT_PATH =
@@ -47,6 +47,165 @@ function getFrameworkVersion(mooseRoot, branchName) {
   return branchName;
 }
 
+/**
+ * Parses @field annotations from a @type block for the given className.
+ * Returns a map of fieldName -> { type, description }.
+ */
+function parseFieldsForClass(fileContent, className) {
+  const fields = {};
+  const lines = fileContent.split("\n");
+  let inTypeBlock = false;
+
+  for (const line of lines) {
+    const trimmed = line.trim();
+
+    // Detect start of the @type block for this exact class (not sub-types like SPAWN.Takeoff)
+    // Handles both -- and --- prefix styles used inconsistently across MOOSE source files
+    if (trimmed.match(new RegExp(`^-{2,3}\\s*@type\\s+${className}\\s*$`, "i"))) {
+      inTypeBlock = true;
+      continue;
+    }
+
+    if (inTypeBlock) {
+      // A new @type line starts a different block — stop
+      if (trimmed.match(/^-{2,3}\s*@type\s+/i)) {
+        inTypeBlock = false;
+        continue;
+      }
+      // Non-comment, non-empty line ends the block
+      if (trimmed && !trimmed.startsWith("--")) {
+        inTypeBlock = false;
+        continue;
+      }
+
+      const fieldMatch = trimmed.match(/^-{2,3}\s*@field\s+(.+)$/);
+      if (fieldMatch) {
+        const parts = fieldMatch[1].trim().split(/\s+/);
+        let fType = "unknown";
+        let fName = "";
+        let fDesc = "";
+
+        if (parts[0].startsWith("#") || parts[0].includes("#")) {
+          // Pattern: @field #type fieldName description
+          fType = parts[0];
+          fName = parts[1] || "";
+          fDesc = parts.slice(2).join(" ");
+        } else {
+          // Pattern: @field fieldName description (no type prefix)
+          fName = parts[0];
+          fDesc = parts.slice(1).join(" ");
+        }
+
+        // Skip: self-reference, private fields (_prefix), bare class names
+        if (
+          fName &&
+          fName !== className &&
+          !fName.startsWith("@") &&
+          !fName.startsWith("_") &&
+          fName !== "ClassName"
+        ) {
+          fields[fName] = { type: fType, description: fDesc.trim() || undefined };
+        }
+      }
+    }
+  }
+
+  return fields;
+}
+
+/**
+ * Parses inner @type blocks (e.g. SPAWN.Takeoff) from a file and adds them
+ * to the manifest as sub-type entries.
+ */
+function parseInnerTypes(fileContent, relativePath, manifest) {
+  const lines = fileContent.split("\n");
+  let currentInnerType = null;
+  let outerClass = null;
+  const innerFields = {};
+
+  for (const line of lines) {
+    const trimmed = line.trim();
+
+    // Match inner @type like "-- @type SPAWN.Takeoff" (handles -- and --- prefix)
+    const innerTypeMatch = trimmed.match(
+      /^-{2,3}\s*@type\s+(([A-Z_0-9]+)\.([A-Za-z_0-9]+))\s*$/,
+    );
+    if (innerTypeMatch) {
+      // Save previous inner type if any
+      if (currentInnerType && manifest.classes[outerClass]) {
+        manifest.classes[currentInnerType] = {
+          path: `Moose/${relativePath}`,
+          parent: outerClass,
+          description: `${currentInnerType.split(".")[1]} sub-type of ${outerClass}`,
+          methods: {},
+          fields:
+            Object.keys(innerFields[currentInnerType] || {}).length > 0
+              ? innerFields[currentInnerType]
+              : undefined,
+        };
+      }
+
+      currentInnerType = innerTypeMatch[1]; // "SPAWN.Takeoff"
+      outerClass = innerTypeMatch[2];       // "SPAWN"
+      innerFields[currentInnerType] = {};
+      continue;
+    }
+
+    if (currentInnerType) {
+      // New @type (any) or non-comment non-empty ends the block
+      if (trimmed.match(/^-{2,3}\s*@type\s+/i)) {
+        // Check if it's another inner type — handled by the match above on next iteration
+        currentInnerType = null;
+        outerClass = null;
+        continue;
+      }
+      if (trimmed && !trimmed.startsWith("--")) {
+        currentInnerType = null;
+        outerClass = null;
+        continue;
+      }
+
+      const fieldMatch = trimmed.match(/^-{2,3}\s*@field\s+(.+)$/);
+      if (fieldMatch) {
+        const parts = fieldMatch[1].trim().split(/\s+/);
+        let fType = "unknown";
+        let fName = "";
+        let fDesc = "";
+
+        if (parts[0].startsWith("#") || parts[0].includes("#")) {
+          fType = parts[0];
+          fName = parts[1] || "";
+          fDesc = parts.slice(2).join(" ");
+        } else {
+          fName = parts[0];
+          fDesc = parts.slice(1).join(" ");
+        }
+
+        if (fName && !fName.startsWith("@") && !fName.startsWith("_")) {
+          innerFields[currentInnerType][fName] = {
+            type: fType,
+            description: fDesc.trim() || undefined,
+          };
+        }
+      }
+    }
+  }
+
+  // Flush the last inner type
+  if (currentInnerType && manifest.classes[outerClass]) {
+    manifest.classes[currentInnerType] = {
+      path: `Moose/${relativePath}`,
+      parent: outerClass,
+      description: `${currentInnerType.split(".")[1]} sub-type of ${outerClass}`,
+      methods: {},
+      fields:
+        Object.keys(innerFields[currentInnerType] || {}).length > 0
+          ? innerFields[currentInnerType]
+          : undefined,
+    };
+  }
+}
+
 async function generateManifest() {
   const version = getFrameworkVersion(MOOSE_ROOT, branch);
   const modulesLuaPath = path.join(MOOSE_ROOT, "Modules.lua");
@@ -74,21 +233,13 @@ async function generateManifest() {
     const pathMatch = line.match(/'(.*?)'/);
     if (!pathMatch) continue;
 
-    const relativePath = pathMatch[1].replace(/^\//, ""); // Remove leading slash
-    const fullPath = path.join(MOOSE_ROOT, "..", relativePath); // MOOSE_ROOT is .../Moose, we need to go up one level to match the /Moose/ path in the file
-
-    if (!fs.existsSync(fullPath)) {
-      // Try without the /Moose/ prefix if it's already in MOOSE_ROOT
-      // Actually, the include says '/Moose/Utilities/...'
-      // MOOSE_ROOT is already .../Moose.
-      // So we need to be careful.
-    }
+    const relativePath = pathMatch[1].replace(/^\//, "");
+    const fullPath = path.join(MOOSE_ROOT, "..", relativePath);
 
     if (fs.existsSync(fullPath)) {
       const fileContent = fs.readFileSync(fullPath, "utf-8");
 
-      // Find all classes in this file (usually just one, but let's be safe)
-      // Matches both CLASS = { and CLASS = BASE:Inherit
+      // Find all top-level classes in this file
       const classRegex = /^\s*([A-Z_0-9]+)\s*=\s*(?:\{|BASE:Inherit)/gm;
       let classMatch;
 
@@ -111,23 +262,43 @@ async function generateManifest() {
             ? inheritMatch[1]
             : null;
 
-        // Extract Description for this specific class
+        // Extract Description — three MOOSE header patterns, in priority order.
+        // Filter out LDoc structural annotations like "class, extends Core.Base#BASE"
+        // that match the regex but aren't human-readable descriptions.
         let description = `MOOSE ${className} Class`;
-        const descMatch1 = fileContent.match(
-          new RegExp(`--- \\*\\*${className}\\*\\* ([^*]+)`, "i"),
+        const looksStructural = (s) =>
+          /^(class|type|extends|[A-Z_0-9]+ class)\b/i.test(s.trim()) ||
+          /,\s*extends\b/i.test(s.trim());
+
+        // Pattern A: "--- **CLASSNAME — description**" (e.g. TARS, OPSGROUP — class in bolded title)
+        const matchA = fileContent.match(
+          new RegExp(
+            `---\\s+\\*\\*${className}\\s*[—–-]+\\s*([^\\n*]+?)\\*\\*`,
+            "i",
+          ),
         );
-        const descMatch2 = fileContent.match(
-          new RegExp(`--- \\*\\*(?:[^*]+)\\*\\* - ${className} ([^*]+)`, "i"),
+        // Pattern B: "--- **MODULE** - CLASSNAME description" (e.g. SPAWN — module-prefixed)
+        const matchB = fileContent.match(
+          new RegExp(
+            `---\\s+\\*\\*[^*\\n]+\\*\\*\\s*[-—–]+\\s*${className}\\s+([^\\n*]+)`,
+            "i",
+          ),
+        );
+        // Pattern C: "--- **CLASSNAME** description" (legacy LDoc — often structural, filtered)
+        const matchC = fileContent.match(
+          new RegExp(`---\\s+\\*\\*${className}\\*\\*\\s+([^\\n*]+)`, "i"),
         );
 
-        if (descMatch1 && descMatch1[1]) {
-          description = descMatch1[1].trim();
-        } else if (descMatch2 && descMatch2[1]) {
-          description = descMatch2[1].trim();
-        }
+        const pickDesc = (m) =>
+          m && m[1] && !looksStructural(m[1]) ? m[1].trim() : null;
 
-        // Extract Methods for this class
-        // Pattern: function CLASS:Method(args)
+        description =
+          pickDesc(matchA) ||
+          pickDesc(matchB) ||
+          pickDesc(matchC) ||
+          description;
+
+        // Extract Methods
         const methods = {};
         const methodRegex = new RegExp(
           `function\\s+${className}[:\\.]([A-Za-z0-9_]+)\\s*\\(([^)]*)\\)`,
@@ -141,34 +312,31 @@ async function generateManifest() {
             .map((p) => p.trim())
             .filter((p) => p && p !== "self");
 
-          // Heuristic: Extract leading comment for the method
           let methodDescription = "";
           const methodPos = methodDef.index;
           const searchWindow = fileContent.substring(
             Math.max(0, methodPos - 1000),
             methodPos,
           );
-          const lines = searchWindow.split("\n").map((l) => l.trim());
+          const searchLines = searchWindow.split("\n").map((l) => l.trim());
 
-          // Search backwards for the FIRST '---' line that begins a documentation block
-          for (let i = lines.length - 1; i >= 0; i--) {
-            const line = lines[i];
-            if (line.startsWith("---")) {
-              methodDescription = line
+          for (let i = searchLines.length - 1; i >= 0; i--) {
+            const l = searchLines[i];
+            if (l.startsWith("---")) {
+              methodDescription = l
                 .replace(/^---/, "")
                 .replace(/\*\*/g, "")
                 .trim();
               break;
             }
-            // If we hit a line that doesn't look like a comment and isn't empty, stop searching
-            if (line && !line.startsWith("--")) break;
+            if (l && !l.startsWith("--")) break;
           }
 
-          methods[methodName] = {
-            params,
-            description: methodDescription,
-          };
+          methods[methodName] = { params, description: methodDescription };
         }
+
+        // Extract @field annotations from the @type block for this class
+        const fields = parseFieldsForClass(fileContent, className);
 
         manifest.classes[className] = {
           path: `Moose/${relativePath}`,
@@ -178,8 +346,13 @@ async function generateManifest() {
               : parentName,
           description,
           methods,
+          fields: Object.keys(fields).length > 0 ? fields : undefined,
         };
       }
+
+      // Parse inner @type blocks (e.g. SPAWN.Takeoff, AIRBOSS.Recovery)
+      parseInnerTypes(fileContent, relativePath, manifest);
+
     } else {
       console.warn(`[Librarian] File not found: ${fullPath}`);
     }
@@ -190,21 +363,20 @@ async function generateManifest() {
   if (fs.existsSync(dcsLuaPath)) {
     console.log(`[Librarian] Parsing DCS.lua for Enums...`);
     const dcsContent = fs.readFileSync(dcsLuaPath, "utf-8");
-    const lines = dcsContent.split("\n");
+    const dcsLines = dcsContent.split("\n");
     let currentEnum = null;
     let currentDesc = "";
 
-    for (let i = 0; i < lines.length; i++) {
-      const line = lines[i].trim();
+    for (let i = 0; i < dcsLines.length; i++) {
+      const dcsLine = dcsLines[i].trim();
 
-      if (line.startsWith("---")) {
-        currentDesc = line.replace(/^---\s*/, "").trim();
-        // Remove markdown links to just keep text
+      if (dcsLine.startsWith("---")) {
+        currentDesc = dcsLine.replace(/^---\s*/, "").trim();
         currentDesc = currentDesc.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1");
         continue;
       }
 
-      const typeMatch = line.match(/^--\s*@type\s+([A-Za-z0-9_.]+)/);
+      const typeMatch = dcsLine.match(/^--\s*@type\s+([A-Za-z0-9_.]+)/);
       if (typeMatch) {
         currentEnum = typeMatch[1];
         if (!manifest.enums) manifest.enums = {};
@@ -218,25 +390,22 @@ async function generateManifest() {
         continue;
       }
 
-      if (currentEnum && line.startsWith("--")) {
-        const fieldMatch = line.match(
+      if (currentEnum && dcsLine.startsWith("--")) {
+        const fieldMatch = dcsLine.match(
           /^--\s*@field\s+([^ \t\n=]+)(?:\s+(.*))?/,
         );
         if (fieldMatch) {
           let name = fieldMatch[1];
           let remainder = fieldMatch[2] || "";
 
-          // If name is a type hint like #number, the real name is next
           if (name.startsWith("#") && remainder) {
             const parts = remainder.split(/\s+/);
             name = parts.shift();
             remainder = parts.join(" ");
           }
 
-          // Clean up `= value` from the remainder descriptor
           let cleanDesc = remainder.replace(/^=\s*[^ ]+\s*/, "").trim();
 
-          // Prevent pushing duplicate fields if they are somehow duplicated
           if (
             name &&
             !manifest.enums[currentEnum].fields.find((f) => f.name === name)
@@ -247,8 +416,7 @@ async function generateManifest() {
             });
           }
         }
-      } else if (line !== "" && !line.startsWith("--")) {
-        // End of the enum doc block
+      } else if (dcsLine !== "" && !dcsLine.startsWith("--")) {
         currentEnum = null;
       }
     }
@@ -263,9 +431,21 @@ async function generateManifest() {
     }
   }
 
+  const classCount = Object.keys(manifest.classes).length;
+  const fieldCount = Object.values(manifest.classes).reduce(
+    (acc, c) => acc + Object.keys(c.fields || {}).length,
+    0,
+  );
+  const innerTypeCount = Object.keys(manifest.classes).filter((k) =>
+    k.includes("."),
+  ).length;
+
   fs.writeFileSync(OUTPUT_PATH, JSON.stringify(manifest, null, 2));
   console.log(
-    `✅ Manifest generated: ${OUTPUT_PATH} (${Object.keys(manifest.classes).length} classes found)`,
+    `✅ Manifest generated: ${OUTPUT_PATH}\n` +
+    `   Classes: ${classCount} (${innerTypeCount} inner types)\n` +
+    `   Fields:  ${fieldCount}\n` +
+    `   Enums:   ${Object.keys(manifest.enums).length}`,
   );
 }
 
