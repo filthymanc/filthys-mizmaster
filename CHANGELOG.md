@@ -1,6 +1,13 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+### [2.21.3](https://github.com/filthymanc/filthys-mizmaster/compare/v2.21.2...v2.21.3) (2026-04-20)
+
+
+### Bug Fixes
+
+* **librarian:** resolve get_api_summary IDB key mismatch and parse [@field](https://github.com/field) annotations ([c8a3c07](https://github.com/filthymanc/filthys-mizmaster/commit/c8a3c07f4efd1ef2387359b635f50e52f3521f4e))
+
 ### [2.21.2](https://github.com/filthymanc/filthys-mizmaster/compare/v2.21.1...v2.21.2) (2026-04-19)
 
 
