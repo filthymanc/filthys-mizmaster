@@ -1,6 +1,13 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+### [2.21.4](https://github.com/filthymanc/filthys-mizmaster/compare/v2.21.3...v2.21.4) (2026-05-13)
+
+
+### Miscellaneous Chores
+
+* **security:** apply security patches and refresh framework manifests ([9923839](https://github.com/filthymanc/filthys-mizmaster/commit/9923839c3416e7373ceab0c040f37f4043765c8e))
+
 ### [2.21.3](https://github.com/filthymanc/filthys-mizmaster/compare/v2.21.2...v2.21.3) (2026-04-20)
 
 
