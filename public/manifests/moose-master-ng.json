@@ -1,5 +1,5 @@
 {
-  "version": "2.9.17-15-gc59b668ee",
+  "version": "2.9.17-40-g79f03c164",
   "framework": "MOOSE",
   "branch": "master-ng",
   "classes": {
@@ -7547,6 +7547,13 @@
           ],
           "description": "Compares string for FilterPrefix function."
         },
+        "FilterSetRegex": {
+          "params": [
+            "NoRegex",
+            "ReplaceDash"
+          ],
+          "description": "Set Regex Options for FilterPrefix function."
+        },
         "GetSet": {
           "params": [],
           "description": "Gets the Set."
@@ -7816,8 +7823,12 @@
           "type": "Core.Scheduler#SCHEDULER"
         },
         "filterNoRegex": {
-          "type": "#booleaen",
-          "description": "If true, FilterPrefix ignores special characters and evaluates plain string."
+          "type": "#boolean",
+          "description": "If true, FilterPrefix ignores special characters and evaluates plain string. Defaults to false."
+        },
+        "filterReplaceDash": {
+          "type": "#boolean",
+          "description": "If true then if filterNoRegex is false, replace dashes with regex pattern friendly pattern. Defaults to true"
         }
       }
     },
@@ -12002,7 +12013,7 @@
             "SpawnZoneTable",
             "RandomizePositionInZone"
           ],
-          "description": "This method provides the functionality to randomize the spawning of the Groups at a given list of zones of different types."
+          "description": ""
         },
         "InitRandomizeCallsign": {
           "params": [],
@@ -36838,6 +36849,33 @@
           "params": [],
           "description": "[Internal] Init localization"
         },
+        "SetGroupLocaleResolver": {
+          "params": [
+            "Resolver"
+          ],
+          "description": "[User] Set a resolver used to select a CTLD locale for group-specific menus and messages."
+        },
+        "_GetLocaleForGroup": {
+          "params": [
+            "Group"
+          ],
+          "description": "(Internal) Resolve the locale to use for a group-specific CTLD interaction."
+        },
+        "_GetEntryForGroup": {
+          "params": [
+            "ID",
+            "Group"
+          ],
+          "description": "(Internal) Resolve a localized text entry for a group-specific CTLD interaction."
+        },
+        "_GetMenuPluralSuffix": {
+          "params": [
+            "Count",
+            "Kind",
+            "Group"
+          ],
+          "description": ""
+        },
         "SetSRS": {
           "params": [
             "Frequency",
@@ -36867,6 +36905,27 @@
             "Cargo"
           ],
           "description": "(Internal) Resolve cargo label for menus/messages."
+        },
+        "SetCargoDisplayFormatter": {
+          "params": [
+            "Formatter"
+          ],
+          "description": "[User] Set a formatter used for CTLD cargo menu labels."
+        },
+        "_FormatCargoDisplayText": {
+          "params": [
+            "BaseText",
+            "Cargo",
+            "Group"
+          ],
+          "description": "(Internal) Format cargo display text for menus."
+        },
+        "_GetCargoDisplayNameForGroup": {
+          "params": [
+            "Cargo",
+            "Group"
+          ],
+          "description": "(Internal) Resolve and format cargo label for a group-specific CTLD interaction."
         },
         "AllowCATransport": {
           "params": [
@@ -38854,6 +38913,18 @@
           "type": "#string"
         }
       }
+    },
+    "TR": {
+      "path": "Moose/Moose/Ops/CTLD_Localization.lua",
+      "parent": null,
+      "description": "MOOSE TR Class",
+      "methods": {}
+    },
+    "RU": {
+      "path": "Moose/Moose/Sound/RadioSpeech.lua",
+      "parent": "RADIOQUEUE",
+      "description": "MOOSE RU Class",
+      "methods": {}
     },
     "CTLD_HERCULES": {
       "path": "Moose/Moose/Ops/CTLD_Hercules.lua",
@@ -58674,6 +58745,10 @@
         "Callback": {
           "type": "#TARS",
           "description": "The TARS Callback object for menu functions etc."
+        },
+        "PilotParameterHelper": {
+          "type": "#boolean",
+          "description": "If true, there will be messages about the correct parameters to the UNIT."
         }
       }
     },
@@ -59064,6 +59139,10 @@
         "scoring": {
           "type": "Functional.Scoring#SCORING",
           "description": "MOOSE SCORING instance (nil if mooseScoring is false)."
+        },
+        "PilotParameterHelper": {
+          "type": "#boolean",
+          "description": "If true, there will be messages about the correct parameters to the UNIT."
         }
       }
     },
@@ -60483,12 +60562,6 @@
         }
       }
     },
-    "RU": {
-      "path": "Moose/Moose/Sound/RadioSpeech.lua",
-      "parent": "RADIOQUEUE",
-      "description": "MOOSE RU Class",
-      "methods": {}
-    },
     "MSRS": {
       "path": "Moose/Moose/Sound/SRS.lua",
       "parent": "BASE",
@@ -60946,6 +61019,27 @@
             "CallbackFunction"
           ],
           "description": "Hound text translator. Use to translate a message into another language and hand the translation to a function."
+        },
+        "RadioJammerOn": {
+          "params": [
+            "Frequencies",
+            "Modulations",
+            "Coalition",
+            "Noisetype",
+            "Volume",
+            "Seconds",
+            "Label",
+            "Vec3",
+            "Encrypt",
+            "EncKey"
+          ],
+          "description": ""
+        },
+        "RadioJammerOff": {
+          "params": [
+            "ID"
+          ],
+          "description": "Switch off a running Jammer using its ID."
         },
         "LoadConfigFile": {
           "params": [
